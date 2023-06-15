@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archimate:model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:archimate="http://www.archimatetool.com/archimate" name="smava" id="9f3309ae" version="3.1.1">
+  <folder name="Business" id="e53370ff" type="business"/>
+  <folder name="Application" id="4ec70af8" type="application">
+    <element xsi:type="archimate:ApplicationComponent" id="ffb4294b" name="recrt-api">
+      <documentation>service interfaces,&#xD;
+model,&#xD;
+exceptions</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" id="3e9a397f" name="recrt-asynch"/>
+    <element xsi:type="archimate:ApplicationComponent" id="fc186bde" name="recrt-persistence">
+      <documentation>config - spring configuration&#xD;
+model - api model realization&#xD;
+repository - CRUD </documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" id="61527798" name="recrt-rest"/>
+    <element xsi:type="archimate:ApplicationComponent" id="b3234d27" name="recrt-service"/>
+  </folder>
+  <folder name="Technology" id="1f80373b" type="technology"/>
+  <folder name="Motivation" id="de49b453" type="motivation"/>
+  <folder name="Implementation &amp; Migration" id="ff23466b" type="implementation_migration"/>
+  <folder name="Connectors" id="cc16857c" type="connectors"/>
+  <folder name="Relations" id="662040f0" type="relations">
+    <element xsi:type="archimate:UsedByRelationship" id="989f9cd4" source="ffb4294b" target="fc186bde"/>
+    <element xsi:type="archimate:UsedByRelationship" id="b41fa418" source="fc186bde" target="b3234d27"/>
+    <element xsi:type="archimate:UsedByRelationship" id="0dd2dfbf" source="ffb4294b" target="3e9a397f"/>
+    <element xsi:type="archimate:UsedByRelationship" id="a7d386d7" source="b3234d27" target="61527798"/>
+    <element xsi:type="archimate:UsedByRelationship" id="87a1855a" source="3e9a397f" target="61527798"/>
+  </folder>
+  <folder name="Views" id="4af3a229" type="diagrams">
+    <element xsi:type="archimate:ArchimateDiagramModel" id="1e2deb58" name="Component">
+      <child xsi:type="archimate:DiagramObject" id="8654cb8d" textAlignment="2" archimateElement="ffb4294b">
+        <bounds x="264" y="300" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="f947ee81" source="8654cb8d" target="e79742c2" relationship="989f9cd4"/>
+        <sourceConnection xsi:type="archimate:Connection" id="618dfa3d" source="8654cb8d" target="1820635b" relationship="0dd2dfbf">
+          <bendpoint startX="180" startY="-3" endY="189"/>
+        </sourceConnection>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="1820635b" textAlignment="2" targetConnections="618dfa3d" archimateElement="3e9a397f">
+        <bounds x="408" y="108" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="6554f3fd" source="1820635b" target="dae35d97" relationship="87a1855a">
+          <bendpoint startY="-75" endX="144" endY="9"/>
+        </sourceConnection>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="e79742c2" textAlignment="2" targetConnections="f947ee81" archimateElement="fc186bde">
+        <bounds x="264" y="204" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="b43c8983" source="e79742c2" target="b42b5d8e" relationship="b41fa418">
+          <bendpoint startX="-108" startY="-39" endY="57"/>
+        </sourceConnection>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="dae35d97" textAlignment="2" targetConnections="28dbaa0b 6554f3fd" archimateElement="61527798">
+        <bounds x="264" y="24" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="b42b5d8e" textAlignment="2" targetConnections="b43c8983" archimateElement="b3234d27">
+        <bounds x="120" y="108" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="28dbaa0b" source="b42b5d8e" target="dae35d97" relationship="a7d386d7">
+          <bendpoint startX="12" startY="-75" endX="-132" endY="9"/>
+        </sourceConnection>
+      </child>
+      <child xsi:type="archimate:Note" id="d6bee059" textAlignment="1">
+        <bounds x="383" y="220" width="72" height="23"/>
+        <content>hibernate&#xD;
+</content>
+      </child>
+      <child xsi:type="archimate:Note" id="ea9b0558" textAlignment="1">
+        <bounds x="527" y="120" width="72" height="23"/>
+        <content>activemq&#xD;
+</content>
+      </child>
+    </element>
+    <element xsi:type="archimate:SketchModel" id="1fc1aab3" name="New Sketch">
+      <child xsi:type="archimate:SketchModelSticky" id="7dbe1c35" name="Sticky" lineColor="#5c5c5c" textAlignment="1" targetConnections="9b709b4d b337fed7" fillColor="#7f7fff">
+        <bounds x="312" y="48" width="217" height="85"/>
+        <content>>>> app_user &lt;&lt;&lt;&#xD;
+username   : varchar(32)    PK&#xD;
+password    : varchar(32)    nn&#xD;
+email           : varchar(64)    nn</content>
+      </child>
+      <child xsi:type="archimate:SketchModelSticky" id="9e407ee8" name="Sticky" lineColor="#5c5c5c" textAlignment="1" fillColor="#ffffb5">
+        <bounds x="72" y="192" width="313" height="70"/>
+        <sourceConnection id="9b709b4d" source="9e407ee8" target="7dbe1c35">
+          <bendpoint startX="22" startY="-119" endX="-168" endY="18"/>
+        </sourceConnection>
+        <content>>>> app_user_role &lt;&lt;&lt;&#xD;
+app_user_username    : varchar(32)    FK ( app_user )&#xD;
+role                                : int                 ' 0/1</content>
+      </child>
+      <child xsi:type="archimate:SketchModelSticky" id="5e2ca530" name="Sticky" lineColor="#5c5c5c" textAlignment="1" fillColor="#c9e7b7">
+        <bounds x="504" y="177" width="325" height="85"/>
+        <sourceConnection id="b337fed7" source="5e2ca530" target="7dbe1c35">
+          <bendpoint startX="-18" startY="-123" endX="228" endY="6"/>
+        </sourceConnection>
+        <content>>>> bank_account &lt;&lt;&lt;&#xD;
+iban                              : varchar (34 )     PK&#xD;
+bic                                : varchar (11)      nn&#xD;
+app_user_username   : varchar ( 32 ) FK ( app_user )</content>
+      </child>
+    </element>
+  </folder>
+</archimate:model>

@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://www.opengroup.org/xsd/archimate/3.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengroup.org/xsd/archimate/3.0/ http://www.opengroup.org/xsd/archimate/3.1/archimate3_Diagram.xsd" identifier="aa25824a">
+  <name xml:lang="en">event sourcing</name>
+  <elements>
+    <element identifier="id-8794d1c0" xsi:type="BusinessObject">
+      <name xml:lang="en">entity 1</name>
+    </element>
+    <element identifier="id-14c61bfe" xsi:type="BusinessObject">
+      <name xml:lang="en">entity 1</name>
+    </element>
+    <element identifier="id-287114fa" xsi:type="DataObject">
+      <name xml:lang="en">table 1</name>
+    </element>
+    <element identifier="c9406b02" xsi:type="DataObject">
+      <name xml:lang="en">persistence table (event sourcing)</name>
+    </element>
+    <element identifier="id-03b1e8b3" xsi:type="DataObject">
+      <name xml:lang="en">event type</name>
+    </element>
+    <element identifier="id-7beb2964" xsi:type="DataObject">
+      <name xml:lang="en">event content</name>
+    </element>
+    <element identifier="f0a96881" xsi:type="DataObject">
+      <name xml:lang="en">aggregate name</name>
+    </element>
+    <element identifier="id-0de516be" xsi:type="DataObject">
+      <name xml:lang="en">ordinal number</name>
+    </element>
+    <element identifier="cc8e9126" xsi:type="ApplicationEvent">
+      <name xml:lang="en">Application Event</name>
+    </element>
+    <element identifier="id-47caee49" xsi:type="Grouping">
+      <name xml:lang="en">aggregate 1</name>
+    </element>
+    <element identifier="f0cc4a65" xsi:type="Grouping">
+      <name xml:lang="en">aggregate 1</name>
+    </element>
+  </elements>
+  <relationships>
+    <relationship identifier="id-43de4979" source="c9406b02" target="id-0de516be" xsi:type="Composition" />
+    <relationship identifier="id-14df45bd" source="id-287114fa" target="id-47caee49" xsi:type="Association" />
+    <relationship identifier="id-22fad559" source="c9406b02" target="id-03b1e8b3" xsi:type="Composition" />
+    <relationship identifier="a71742e4" source="id-47caee49" target="id-8794d1c0" xsi:type="Association" />
+    <relationship identifier="id-122f4445" source="c9406b02" target="f0a96881" xsi:type="Composition" />
+    <relationship identifier="id-57c012c6" source="f0cc4a65" target="id-14c61bfe" xsi:type="Association" />
+    <relationship identifier="a03ed7b6" source="c9406b02" target="id-7beb2964" xsi:type="Composition" />
+    <relationship identifier="f737d38f" source="f0cc4a65" target="c9406b02" xsi:type="Association" />
+    <relationship identifier="a06e073b" source="cc8e9126" target="f0cc4a65" xsi:type="Influence" />
+  </relationships>
+  <organizations>
+    <item>
+      <label xml:lang="en">Business</label>
+      <item identifierRef="id-8794d1c0" />
+      <item identifierRef="id-14c61bfe" />
+    </item>
+    <item>
+      <label xml:lang="en">Application</label>
+      <item identifierRef="id-287114fa" />
+      <item identifierRef="c9406b02" />
+      <item identifierRef="id-03b1e8b3" />
+      <item identifierRef="id-7beb2964" />
+      <item identifierRef="f0a96881" />
+      <item identifierRef="id-0de516be" />
+      <item identifierRef="cc8e9126" />
+    </item>
+    <item>
+      <label xml:lang="en">Other</label>
+      <item identifierRef="id-47caee49" />
+      <item identifierRef="f0cc4a65" />
+    </item>
+    <item>
+      <label xml:lang="en">Relations</label>
+      <item identifierRef="id-43de4979" />
+      <item identifierRef="id-14df45bd" />
+      <item identifierRef="id-22fad559" />
+      <item identifierRef="a71742e4" />
+      <item identifierRef="id-122f4445" />
+      <item identifierRef="id-57c012c6" />
+      <item identifierRef="a03ed7b6" />
+      <item identifierRef="f737d38f" />
+      <item identifierRef="a06e073b" />
+    </item>
+    <item>
+      <label xml:lang="en">Views</label>
+      <item identifierRef="id-36eea90a" />
+    </item>
+  </organizations>
+  <views>
+    <diagrams>
+      <view identifier="id-36eea90a" xsi:type="Diagram">
+        <name xml:lang="en">event sourcing</name>
+        <node identifier="a6ef2a8c" xsi:type="Label" x="954" y="130" w="657" h="1256">
+          <label xml:lang="en">Event sourcing example.&#xD;
+In order to restore the state of the aggregate, it is necessary to apply to it all the events from the first to the last.&#xD;
+Also, we can determine what the state was at any time in the past.</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-88c9ae9f" xsi:type="Label" x="145" y="130" w="657" h="1256">
+          <label xml:lang="en">Example of traditional snapshot‐only persistence.&#xD;
+To restore the state of the aggregate, you simply need to read it from the table.</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="c9e78879" x="225" y="195" w="491" h="156" xsi:type="Container">
+          <label xml:lang="en">Conceptual domain model</label>
+          <style>
+            <fillColor r="210" g="215" b="215" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-2d183ccb" elementRef="id-8794d1c0" xsi:type="Element" x="330" y="255" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="e02b44c0" x="225" y="475" w="491" h="236" xsi:type="Container">
+          <label xml:lang="en">application layer</label>
+          <style>
+            <fillColor r="210" g="215" b="215" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-637825c5" elementRef="id-47caee49" xsi:type="Element" x="330" y="595" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="a4c462f7" x="225" y="802" w="491" h="504" xsi:type="Container">
+          <label xml:lang="en">data layer</label>
+          <style>
+            <fillColor r="210" g="215" b="215" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="ef9144cd" elementRef="id-287114fa" xsi:type="Element" x="340" y="867" w="120" h="55">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="id-83e98be0" xsi:type="Label" x="340" y="730" w="140" h="56">
+          <label xml:lang="en">persisting the Aggregate state as a whole</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-82e6162b" x="1024" y="210" w="491" h="156" xsi:type="Container">
+          <label xml:lang="en">Conceptual domain model</label>
+          <style>
+            <fillColor r="210" g="215" b="215" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-39dab933" elementRef="id-14c61bfe" xsi:type="Element" x="1129" y="270" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="id-87ac487b" x="1024" y="475" w="491" h="236" xsi:type="Container">
+          <label xml:lang="en">application layer</label>
+          <style>
+            <fillColor r="210" g="215" b="215" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-769dd317" elementRef="f0cc4a65" xsi:type="Element" x="1129" y="595" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-26a817c5" elementRef="cc8e9126" xsi:type="Element" x="1336" y="588" w="120" h="55">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="id-6c499ea7" x="1024" y="819" w="491" h="504" xsi:type="Container">
+          <label xml:lang="en">data layer</label>
+          <style>
+            <fillColor r="210" g="215" b="215" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-06ec5567" elementRef="c9406b02" xsi:type="Element" x="1114" y="879" w="210" h="296">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="255" g="0" b="0" />
+              </font>
+            </style>
+            <node identifier="b832ac8c" elementRef="id-03b1e8b3" xsi:type="Element" x="1159" y="1044" w="120" h="55">
+              <style>
+                <fillColor r="181" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="id-0bb237e9" elementRef="id-7beb2964" xsi:type="Element" x="1159" y="1109" w="120" h="55">
+              <style>
+                <fillColor r="181" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="id-38e66eaa" elementRef="f0a96881" xsi:type="Element" x="1159" y="979" w="120" h="55">
+              <style>
+                <fillColor r="181" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="id-310e0dba" elementRef="id-0de516be" xsi:type="Element" x="1159" y="914" w="120" h="55">
+              <style>
+                <fillColor r="181" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+          </node>
+        </node>
+        <node identifier="id-6bcd6460" xsi:type="Label" x="1119" y="747" w="185" h="56">
+          <label xml:lang="en">Keep the history of all events that happened with the aggreagate</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="d6321fad" xsi:type="Label" x="1320" y="430" w="233" h="120">
+          <label xml:lang="en">Аll changes to the domain objects are initiated by the event objects.&#xD;
+&#xD;
+For example, we can restore events (from the event store) one at a time and see what happens. That is, we can better test the causes and effects of any event.</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <connection identifier="id-636b8195" relationshipRef="a71742e4" xsi:type="Relationship" source="id-637825c5" target="id-2d183ccb">
+          <style>
+            <lineColor r="192" g="192" b="192" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="a277318b" relationshipRef="id-14df45bd" xsi:type="Relationship" source="ef9144cd" target="id-637825c5">
+          <style>
+            <lineColor r="192" g="192" b="192" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-619a4723" relationshipRef="id-57c012c6" xsi:type="Relationship" source="id-769dd317" target="id-39dab933">
+          <style>
+            <lineColor r="192" g="192" b="192" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="a84ba34a" relationshipRef="f737d38f" xsi:type="Relationship" source="id-769dd317" target="id-06ec5567">
+          <style>
+            <lineColor r="192" g="192" b="192" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="cd9dc855" relationshipRef="a06e073b" xsi:type="Relationship" source="id-26a817c5" target="id-769dd317">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+      </view>
+    </diagrams>
+  </views>
+</model>

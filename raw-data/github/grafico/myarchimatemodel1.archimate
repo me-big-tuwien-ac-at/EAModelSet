@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archimate:model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:archimate="http://www.archimatetool.com/archimate" name="myarchimatemodel1" id="e87432ae-34bd-4a77-b291-5dd3ac8883b7" version="5.0.0">
+  <folder name="Strategy" id="f72d74a3-33ed-4b01-b09e-2ee3b60f018a" type="strategy">
+    <element xsi:type="archimate:Resource" name="Resource" id="ad56ff21-8fe9-4615-891e-34b388258da5"/>
+  </folder>
+  <folder name="Business" id="5025e166-ba40-41ae-a74f-523ce4fc8915" type="business">
+    <folder name="BusinessFunctions" id="9c42e01f-f87d-4f39-acbd-a5f7d3d60c25">
+      <element xsi:type="archimate:BusinessFunction" name="MinePlanning" id="33b153e3-aa80-426d-a17b-c34bccbeaaee"/>
+    </folder>
+    <folder name="BusinessFlows" id="ac9f5066-756e-4fcb-9f97-9f002e496b21">
+      <element xsi:type="archimate:BusinessProcess" name="Load Running 3 Month Mine Plan From Repository" id="50b10a1e-f864-4915-99d0-90b203740a0d"/>
+    </folder>
+    <folder name="BusinessEvent" id="374d0d89-c204-4267-99b7-abaa16a2cc47">
+      <element xsi:type="archimate:BusinessEvent" name="Weekly mine planning cycle" id="fa8df875-0823-4154-bd71-ca73839bceb9">
+        <property key="BusinessEvent-Frequency" value="once a day"/>
+        <property key="BusinessEvent-MessageSize" value="100m"/>
+        <property key="BusinessEvent-Protocol" value="jdbc"/>
+        <property key="BusinessEvent-Schema" value="http://b2mml/demo.xsd"/>
+      </element>
+    </folder>
+  </folder>
+  <folder name="Application" id="f9788402-e56a-4381-b665-3a5a58023035" type="application">
+    <element xsi:type="archimate:ApplicationComponent" name="EPF" id="7c9c905f-c2ac-485d-be99-3e61df70a3fd">
+      <property key="ApplicationType" value="Planning"/>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="Geo Bank" id="436d08f4-5937-42e2-bc57-fd0602e7ddcf">
+      <property key="ApplicationType" value="Geo Bank"/>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="BV Labs" id="dfe979ae-a9eb-4159-b54a-f6093795b15a">
+      <property key="ApplicationType" value="LIMS"/>
+    </element>
+  </folder>
+  <folder name="Technology &amp; Physical" id="782d8361-7952-4cc6-beed-bae830377fc2" type="technology">
+    <element xsi:type="archimate:Node" name="Node" id="6936a658-3592-4cd1-ac3d-b8a26089f45e"/>
+  </folder>
+  <folder name="Motivation" id="b505d561-6783-4f3d-9247-a1631b0e49cf" type="motivation"/>
+  <folder name="Implementation &amp; Migration" id="ca5dfc70-8516-4bc7-a54e-ad5fb7b9496f" type="implementation_migration"/>
+  <folder name="Other" id="de1649f0-b787-411a-8ca7-a9effe377915" type="other"/>
+  <folder name="Relations" id="a14a3f5e-ff3b-429b-b903-0df01744b3af" type="relations">
+    <element xsi:type="archimate:FlowRelationship" name="BlastHole Sample Analysis Result" id="6f525565-105f-47cc-9bd9-264ebbcf3c7b" source="dfe979ae-a9eb-4159-b54a-f6093795b15a" target="7c9c905f-c2ac-485d-be99-3e61df70a3fd"/>
+    <element xsi:type="archimate:TriggeringRelationship" id="5eb5ba27-7e8f-4b8d-9d08-b166db159fef" source="fa8df875-0823-4154-bd71-ca73839bceb9" target="50b10a1e-f864-4915-99d0-90b203740a0d"/>
+    <element xsi:type="archimate:FlowRelationship" name="Reconsiled Pit To Mine " id="fd0bd504-037a-4e4b-8032-1bc1f6951395" source="436d08f4-5937-42e2-bc57-fd0602e7ddcf" target="7c9c905f-c2ac-485d-be99-3e61df70a3fd">
+      <property key="EventName" value="ReconciledPitToMineROMActual"/>
+    </element>
+  </folder>
+  <folder name="Views" id="325552ed-3199-4366-a522-1eb82cd4ca10" type="diagrams">
+    <element xsi:type="archimate:ArchimateDiagramModel" name="All Systems" id="33bc38dd-e1cb-4ede-92e6-505ef811459a">
+      <child xsi:type="archimate:DiagramObject" id="4d400d90-4fa5-47fb-a420-3802e2e03041" archimateElement="dfe979ae-a9eb-4159-b54a-f6093795b15a" type="1">
+        <bounds x="288" y="36" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="e824f1eb-8ea5-43f1-a2b1-473a2ef46639" source="4d400d90-4fa5-47fb-a420-3802e2e03041" target="82928ecb-fa1f-4978-b889-705463ca4385" archimateRelationship="6f525565-105f-47cc-9bd9-264ebbcf3c7b"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="82928ecb-fa1f-4978-b889-705463ca4385" targetConnections="e824f1eb-8ea5-43f1-a2b1-473a2ef46639 bff617e6-fa57-4311-9741-e458c1646635" archimateElement="7c9c905f-c2ac-485d-be99-3e61df70a3fd" type="1">
+        <bounds x="288" y="222" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="ec68db9c-6509-4842-b983-63a9a1b5bee1" archimateElement="436d08f4-5937-42e2-bc57-fd0602e7ddcf" type="1">
+        <bounds x="696" y="216" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="bff617e6-fa57-4311-9741-e458c1646635" textPosition="0" source="ec68db9c-6509-4842-b983-63a9a1b5bee1" target="82928ecb-fa1f-4978-b889-705463ca4385" archimateRelationship="fd0bd504-037a-4e4b-8032-1bc1f6951395"/>
+      </child>
+    </element>
+    <element xsi:type="archimate:ArchimateDiagramModel" name="buesiness flow" id="525a69b7-67e7-481e-8f7a-f97f7cd57912" viewpoint="business_process_cooperation">
+      <child xsi:type="archimate:DiagramObject" id="938c17d0-79ce-4f6a-84a1-020be3be889a" archimateElement="fa8df875-0823-4154-bd71-ca73839bceb9">
+        <bounds x="120" y="354" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="d39e6f7e-3fe5-4761-853b-7f4eaba70223" source="938c17d0-79ce-4f6a-84a1-020be3be889a" target="1fcf0190-b4c0-4d0e-a02a-816003396afc" archimateRelationship="5eb5ba27-7e8f-4b8d-9d08-b166db159fef"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="805436f7-5c52-4f0e-a78a-6e5d883dd521" archimateElement="33b153e3-aa80-426d-a17b-c34bccbeaaee">
+        <bounds x="252" y="252" width="625" height="337"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="1fcf0190-b4c0-4d0e-a02a-816003396afc" targetConnections="d39e6f7e-3fe5-4761-853b-7f4eaba70223" archimateElement="50b10a1e-f864-4915-99d0-90b203740a0d">
+        <bounds x="312" y="354" width="120" height="55"/>
+      </child>
+    </element>
+  </folder>
+</archimate:model>

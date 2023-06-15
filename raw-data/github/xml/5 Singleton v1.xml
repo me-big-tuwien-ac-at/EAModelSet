@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://www.opengroup.org/xsd/archimate/3.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengroup.org/xsd/archimate/3.0/ http://www.opengroup.org/xsd/archimate/3.1/archimate3_Diagram.xsd" identifier="d7ae4380">
+  <name xml:lang="en">Singleton</name>
+  <elements>
+    <element identifier="cfd64535" xsi:type="ApplicationFunction">
+      <name xml:lang="en">constructor disallowed</name>
+    </element>
+    <element identifier="id-3aa4570b" xsi:type="ApplicationFunction">
+      <name xml:lang="en">get instance (method of the class)</name>
+    </element>
+    <element identifier="aa0feeea" xsi:type="ApplicationComponent">
+      <name xml:lang="en">class singleton</name>
+    </element>
+    <element identifier="fa2ca260" xsi:type="DataObject">
+      <name xml:lang="en">singleton instance</name>
+    </element>
+    <element identifier="a2c7c21c" xsi:type="ApplicationProcess">
+      <name xml:lang="en">first access to singleton</name>
+    </element>
+    <element identifier="id-9057dd78" xsi:type="ApplicationProcess">
+      <name xml:lang="en">second access to singleton</name>
+    </element>
+    <element identifier="e266e3e6" xsi:type="ApplicationProcess">
+      <name xml:lang="en">get var</name>
+    </element>
+    <element identifier="d2a001b0" xsi:type="ApplicationProcess">
+      <name xml:lang="en">create instance and return</name>
+    </element>
+    <element identifier="id-7640d3a0" xsi:type="ApplicationProcess">
+      <name xml:lang="en">return instance already exists</name>
+    </element>
+    <element identifier="id-105cd7bc" xsi:type="ApplicationFunction">
+      <name xml:lang="en">return unique instance</name>
+    </element>
+    <element identifier="id-0f7083e8" xsi:type="AndJunction">
+      <name xml:lang="en">Junction</name>
+    </element>
+    <element identifier="id-1165de0c" xsi:type="OrJunction">
+      <name xml:lang="en">Junction</name>
+    </element>
+  </elements>
+  <relationships>
+    <relationship identifier="id-5e464fbc" source="id-3aa4570b" target="id-0f7083e8" xsi:type="Realization" />
+    <relationship identifier="e91e319d" source="id-3aa4570b" target="e266e3e6" xsi:type="Composition" />
+    <relationship identifier="id-78e9a41a" source="e266e3e6" target="fa2ca260" xsi:type="Access" accessType="Write" />
+    <relationship identifier="id-43d3effb" source="id-3aa4570b" target="id-1165de0c" xsi:type="Realization" />
+    <relationship identifier="id-82e006f1" source="id-3aa4570b" target="d2a001b0" xsi:type="Composition" />
+    <relationship identifier="a14e2d2d" source="id-3aa4570b" target="id-7640d3a0" xsi:type="Composition" />
+    <relationship identifier="id-3d62660e" source="e266e3e6" target="id-1165de0c" xsi:type="Flow" />
+    <relationship identifier="c1cd80fe" source="id-1165de0c" target="id-7640d3a0" xsi:type="Triggering" />
+    <relationship identifier="id-6bf07b8b" source="id-1165de0c" target="d2a001b0" xsi:type="Triggering">
+      <name xml:lang="en">instance =null</name>
+    </relationship>
+    <relationship identifier="f03f3cbd" source="d2a001b0" target="fa2ca260" xsi:type="Access" accessType="Write" />
+    <relationship identifier="fa6a4bc8" source="id-7640d3a0" target="fa2ca260" xsi:type="Access" accessType="Write" />
+    <relationship identifier="id-39310671" source="aa0feeea" target="cfd64535" xsi:type="Assignment" />
+    <relationship identifier="a2d080a1" source="aa0feeea" target="id-3aa4570b" xsi:type="Assignment" />
+    <relationship identifier="b9a406c1" source="d2a001b0" target="a2c7c21c" xsi:type="Serving" />
+    <relationship identifier="id-3ff1a878" source="id-7640d3a0" target="id-9057dd78" xsi:type="Serving" />
+    <relationship identifier="d9a47579" source="a2c7c21c" target="id-9057dd78" xsi:type="Flow" />
+    <relationship identifier="c3a4dc8b" source="id-3aa4570b" target="id-105cd7bc" xsi:type="Composition" />
+    <relationship identifier="id-36e23772" source="id-105cd7bc" target="fa2ca260" xsi:type="Access" accessType="Write" />
+    <relationship identifier="id-335b0b73" source="aa0feeea" target="fa2ca260" xsi:type="Association" />
+    <relationship identifier="d03bd4b4" source="aa0feeea" target="fa2ca260" xsi:type="Access" accessType="Write" />
+  </relationships>
+  <organizations>
+    <item>
+      <label xml:lang="en">Application</label>
+      <item identifierRef="cfd64535" />
+      <item identifierRef="id-3aa4570b" />
+      <item identifierRef="aa0feeea" />
+      <item identifierRef="fa2ca260" />
+      <item identifierRef="a2c7c21c" />
+      <item identifierRef="id-9057dd78" />
+      <item identifierRef="e266e3e6" />
+      <item identifierRef="d2a001b0" />
+      <item identifierRef="id-7640d3a0" />
+      <item identifierRef="id-105cd7bc" />
+    </item>
+    <item>
+      <label xml:lang="en">Other</label>
+      <item identifierRef="id-0f7083e8" />
+      <item identifierRef="id-1165de0c" />
+    </item>
+    <item>
+      <label xml:lang="en">Relations</label>
+      <item identifierRef="id-5e464fbc" />
+      <item identifierRef="e91e319d" />
+      <item identifierRef="id-78e9a41a" />
+      <item identifierRef="id-43d3effb" />
+      <item identifierRef="id-82e006f1" />
+      <item identifierRef="a14e2d2d" />
+      <item identifierRef="id-3d62660e" />
+      <item identifierRef="c1cd80fe" />
+      <item identifierRef="id-6bf07b8b" />
+      <item identifierRef="f03f3cbd" />
+      <item identifierRef="fa6a4bc8" />
+      <item identifierRef="id-39310671" />
+      <item identifierRef="a2d080a1" />
+      <item identifierRef="b9a406c1" />
+      <item identifierRef="id-3ff1a878" />
+      <item identifierRef="d9a47579" />
+      <item identifierRef="c3a4dc8b" />
+      <item identifierRef="id-36e23772" />
+      <item identifierRef="id-335b0b73" />
+      <item identifierRef="d03bd4b4" />
+    </item>
+    <item>
+      <label xml:lang="en">Views</label>
+      <item identifierRef="e5c83a01" />
+      <item identifierRef="c66b6de8" />
+    </item>
+  </organizations>
+  <views>
+    <diagrams>
+      <view identifier="e5c83a01" xsi:type="Diagram">
+        <name xml:lang="en">singl</name>
+        <node identifier="id-3a015c6d" x="171" y="90" w="550" h="140" xsi:type="Container">
+          <label xml:lang="en">programm</label>
+          <style>
+            <fillColor r="210" g="215" b="215" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="d3d40d8f" elementRef="a2c7c21c" xsi:type="Element" x="371" y="140" w="120" h="55">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="e331aacb" elementRef="id-9057dd78" xsi:type="Element" x="551" y="140" w="120" h="55">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="d22cd2fa" elementRef="aa0feeea" xsi:type="Element" x="171" y="265" w="551" h="441">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-672c1b7a" elementRef="fa2ca260" xsi:type="Element" x="198" y="426" w="120" h="261">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-12db57b9" xsi:type="Label" x="198" y="285" w="120" h="55">
+            <label xml:lang="en">only one instance exists</label>
+            <style>
+              <fillColor r="255" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="255" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-3b119576" elementRef="id-3aa4570b" xsi:type="Element" x="371" y="426" w="337" h="261">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+            <node identifier="ebf6e8e5" elementRef="e266e3e6" xsi:type="Element" x="381" y="530" w="120" h="55">
+              <style>
+                <fillColor r="181" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="id-03ad4ee1" elementRef="id-1165de0c" xsi:type="Element" x="531" y="550" w="15" h="15">
+              <style>
+                <fillColor r="0" g="0" b="0" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="id-284a4e1e" elementRef="d2a001b0" xsi:type="Element" x="561" y="456" w="120" h="55">
+              <style>
+                <fillColor r="181" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="255" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="id-6c4c8e79" elementRef="id-7640d3a0" xsi:type="Element" x="561" y="596" w="131" h="55">
+              <style>
+                <fillColor r="181" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="255" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+          </node>
+          <node identifier="ea57ee0b" elementRef="cfd64535" xsi:type="Element" x="371" y="350" w="120" h="55">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <connection identifier="id-2a603926" relationshipRef="d9a47579" xsi:type="Relationship" source="d3d40d8f" target="e331aacb">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-4248f2e0" relationshipRef="id-78e9a41a" xsi:type="Relationship" source="ebf6e8e5" target="id-672c1b7a">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="ddbd1207" relationshipRef="id-3d62660e" xsi:type="Relationship" source="ebf6e8e5" target="id-03ad4ee1">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-1a0a7e7d" relationshipRef="c1cd80fe" xsi:type="Relationship" source="id-03ad4ee1" target="id-6c4c8e79">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="c6af95e2" relationshipRef="id-6bf07b8b" xsi:type="Relationship" source="id-03ad4ee1" target="id-284a4e1e">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-9244fdc4" relationshipRef="f03f3cbd" xsi:type="Relationship" source="id-284a4e1e" target="id-672c1b7a">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-77cb5b9e" relationshipRef="b9a406c1" xsi:type="Relationship" source="id-284a4e1e" target="d3d40d8f">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-60d81f0f" relationshipRef="fa6a4bc8" xsi:type="Relationship" source="id-6c4c8e79" target="id-672c1b7a">
+          <style>
+            <lineColor r="255" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-27cc4af8" relationshipRef="id-3ff1a878" xsi:type="Relationship" source="id-6c4c8e79" target="e331aacb">
+          <style>
+            <lineColor r="255" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+      </view>
+      <view identifier="c66b6de8" xsi:type="Diagram">
+        <name xml:lang="en">uml</name>
+        <node identifier="id-6090aa6f" x="171" y="90" w="550" h="140" xsi:type="Container">
+          <label xml:lang="en">programm</label>
+          <style>
+            <fillColor r="210" g="215" b="215" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-357aa6bd" x="170" y="260" w="551" h="441" xsi:type="Container">
+          <label xml:lang="en">class singleton</label>
+          <style>
+            <fillColor r="210" g="215" b="215" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="ac707067" elementRef="id-3aa4570b" xsi:type="Element" x="363" y="430" w="337" h="261">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+            <node identifier="id-162bd99a" xsi:type="Label" x="440" y="520" w="185" h="80">
+              <label xml:lang="en">static method&#xD;
+ {&#xD;
+ return static  singleton instance&#xD;
+ }</label>
+              <style>
+                <fillColor r="255" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="255" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+          </node>
+          <node identifier="id-1bb85635" elementRef="aa0feeea" xsi:type="Element" x="180" y="300" w="120" h="55">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="e4ee0a56" elementRef="fa2ca260" xsi:type="Element" x="363" y="354" w="120" h="55">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <connection identifier="bac2cc82" relationshipRef="a2d080a1" xsi:type="Relationship" source="id-1bb85635" target="ac707067">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-1ae2ef31" relationshipRef="id-335b0b73" xsi:type="Relationship" source="id-1bb85635" target="e4ee0a56">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+      </view>
+    </diagrams>
+  </views>
+</model>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archimate:model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:archimate="http://www.archimatetool.com/archimate" name="PayNow" id="6a18db2b" version="3.1.1">
+  <folder name="Business" id="7b608ab1" type="business">
+    <element xsi:type="archimate:BusinessActor" id="75d26025" name="Service Provider">
+      <documentation>Party 2 in Contract
+</documentation>
+    </element>
+    <element xsi:type="archimate:BusinessActor" id="7430b38a" name="Service Consumer">
+      <documentation>Party 1 in Contract
+</documentation>
+    </element>
+    <element xsi:type="archimate:BusinessRole" id="c633df8a" name="Requester"/>
+    <element xsi:type="archimate:BusinessRole" id="96d14f95" name="Fulfiller"/>
+    <element xsi:type="archimate:BusinessCollaboration" id="12ed38a5" name="Business Collaboration"/>
+    <element xsi:type="archimate:Contract" id="d9b126b8" name="Service Agreement"/>
+    <element xsi:type="archimate:BusinessInterface" id="1dca85ea" name="Service Desk"/>
+    <element xsi:type="archimate:BusinessEvent" id="04eff9da" name="Business Event"/>
+    <element xsi:type="archimate:BusinessProcess" id="3a819648" name="Business Process"/>
+    <element xsi:type="archimate:BusinessObject" id="c0bb1c73" name="Business Object"/>
+    <element xsi:type="archimate:BusinessService" id="cb617a48" name="IMaaS">
+      <documentation>Incident Management as a Service</documentation>
+    </element>
+    <element xsi:type="archimate:BusinessObject" id="9646d6e8" name="Incident Ticket/Request">
+      <documentation>/*struct TaskRecord {
+		bytes32 sys_id;
+		address requester;
+		string created_on;*/
+		/*Priorities taskPriority;
+	  States taskState;
+		int taskType;
+		int timeWorked;
+		address assigned_to;
+		bool active;
+		address updated_by;
+		//DateTime created_on;
+		DateTime updated_on;
+		DateTime closed_on;
+	}</documentation>
+    </element>
+  </folder>
+  <folder name="Application" id="cbb6025b" type="application">
+    <element xsi:type="archimate:DataObject" id="7c84df22" name="Incident Record/Object"/>
+    <element xsi:type="archimate:DataObject" id="46670a3d" name="incidents[sys_id]"/>
+    <element xsi:type="archimate:DataObject" id="5054a846" name="Stages">
+      <documentation>{in_progress, canceled, paused, completed, breached}</documentation>
+    </element>
+    <element xsi:type="archimate:DataObject" id="f43a5a75" name="States">
+      <documentation>{open, assigned, in_progress, resolved, closed}</documentation>
+    </element>
+  </folder>
+  <folder name="Technology" id="8b588329" type="technology">
+    <element xsi:type="archimate:Artifact" id="9a5ff4b7" name="Incident instance"/>
+    <element xsi:type="archimate:Artifact" id="276c162e" name="opened_at">
+      <documentation>DateTime
+</documentation>
+    </element>
+    <element xsi:type="archimate:Artifact" id="84b7368f" name="opened_by">
+      <documentation>Address
+</documentation>
+    </element>
+    <element xsi:type="archimate:Artifact" id="b4ee3376" name="state">
+      <documentation>Address
+</documentation>
+    </element>
+    <element xsi:type="archimate:Artifact" id="2debd40b" name="current state"/>
+    <element xsi:type="archimate:Artifact" id="1ac4b359" name="latest change"/>
+    <element xsi:type="archimate:Artifact" id="e9ec9136" name="state changes">
+      <documentation>array of all state changes with timestamps
+map[DateTime => States] stateChanges; ??</documentation>
+    </element>
+  </folder>
+  <folder name="Motivation" id="2dfbc263" type="motivation"/>
+  <folder name="Implementation &amp; Migration" id="2c185523" type="implementation_migration"/>
+  <folder name="Connectors" id="2e579412" type="connectors"/>
+  <folder name="Relations" id="2047ba95" type="relations">
+    <element xsi:type="archimate:CompositionRelationship" id="8c587d4c" source="b4ee3376" target="2debd40b"/>
+    <element xsi:type="archimate:CompositionRelationship" id="c33538fa" source="b4ee3376" target="1ac4b359"/>
+    <element xsi:type="archimate:CompositionRelationship" id="a0044e82" source="b4ee3376" target="e9ec9136"/>
+  </folder>
+  <folder name="Views" id="0707319d" type="diagrams">
+    <element xsi:type="archimate:ArchimateDiagramModel" id="644e050e" name="Highlevel">
+      <child xsi:type="archimate:DiagramObject" id="ab366c26" textAlignment="2" archimateElement="75d26025">
+        <bounds x="516" y="42" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="df431a75" textAlignment="2" archimateElement="7430b38a">
+        <bounds x="24" y="42" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="a6305de5" textAlignment="2" archimateElement="c633df8a">
+        <bounds x="24" y="138" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="cadcb10a" textAlignment="2" archimateElement="96d14f95">
+        <bounds x="516" y="138" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="9bd091f9" textAlignment="2" archimateElement="d9b126b8">
+        <bounds x="240" y="24" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="5ecb6915" textAlignment="2" archimateElement="1dca85ea">
+        <bounds x="240" y="168" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="c409ac7c" textAlignment="2" archimateElement="04eff9da">
+        <bounds x="24" y="234" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="a0b683a4" textAlignment="2" archimateElement="3a819648">
+        <bounds x="264" y="306" width="313" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="edf52119" textAlignment="2" archimateElement="c0bb1c73">
+        <bounds x="48" y="306" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="76b973ca" textAlignment="2" archimateElement="cb617a48">
+        <bounds x="240" y="96" width="120" height="55"/>
+      </child>
+    </element>
+    <element xsi:type="archimate:SketchModel" id="9bcbc254" name="New Sketch">
+      <child xsi:type="archimate:SketchModelActor" id="3de1b265" name="Requester">
+        <bounds x="84" y="84" width="75" height="100"/>
+        <sourceConnection id="258b53db" name="SLA" source="3de1b265" target="84ca4a85" type="1"/>
+      </child>
+      <child xsi:type="archimate:SketchModelActor" id="84ca4a85" name="Fulfiller" targetConnections="258b53db">
+        <bounds x="576" y="96" width="75" height="100"/>
+      </child>
+      <child xsi:type="archimate:SketchModelActor" id="0dddb1e0" name="3rd Party">
+        <bounds x="348" y="204" width="75" height="100"/>
+      </child>
+    </element>
+    <element xsi:type="archimate:ArchimateDiagramModel" id="24f58bed" name="Data Model" viewpoint="11">
+      <child xsi:type="archimate:DiagramObject" id="72e64693" textAlignment="2" archimateElement="9646d6e8">
+        <bounds x="36" y="48" width="158" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="2dac5181" textAlignment="2" archimateElement="7c84df22">
+        <bounds x="36" y="144" width="158" height="55"/>
+      </child>
+      <child xsi:type="archimate:Group" id="be1d8312" name="Open Incidents">
+        <bounds x="336" y="48" width="400" height="505"/>
+        <child xsi:type="archimate:DiagramObject" id="2ee12a6a" textAlignment="2" archimateElement="46670a3d">
+          <bounds x="12" y="36" width="373" height="457"/>
+          <child xsi:type="archimate:DiagramObject" id="eb7a9c22" textAlignment="2" archimateElement="276c162e">
+            <bounds x="20" y="46" width="120" height="27"/>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="b703b196" textAlignment="2" archimateElement="84b7368f">
+            <bounds x="20" y="84" width="120" height="27"/>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="436f2c94" textAlignment="2" archimateElement="b4ee3376">
+            <bounds x="20" y="120" width="341" height="325"/>
+            <child xsi:type="archimate:DiagramObject" id="893b08c3" textAlignment="2" archimateElement="2debd40b">
+              <bounds x="12" y="24" width="120" height="25"/>
+            </child>
+            <child xsi:type="archimate:DiagramObject" id="95d26150" textAlignment="2" archimateElement="1ac4b359">
+              <bounds x="12" y="60" width="120" height="25"/>
+            </child>
+            <child xsi:type="archimate:DiagramObject" id="24e9602b" textAlignment="2" archimateElement="e9ec9136">
+              <bounds x="12" y="96" width="120" height="61"/>
+            </child>
+          </child>
+        </child>
+        <documentation>Array of incidents
+map of structures
+</documentation>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="e988ba30" textAlignment="2" archimateElement="5054a846">
+        <bounds x="36" y="228" width="158" height="61"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="5b09984e" textAlignment="2" archimateElement="f43a5a75">
+        <bounds x="39" y="300" width="151" height="61"/>
+      </child>
+    </element>
+  </folder>
+</archimate:model>

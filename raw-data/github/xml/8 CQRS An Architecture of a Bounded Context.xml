@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://www.opengroup.org/xsd/archimate/3.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengroup.org/xsd/archimate/3.0/ http://www.opengroup.org/xsd/archimate/3.1/archimate3_Diagram.xsd" identifier="id-16fbbe4b">
+  <name xml:lang="en">CQRS An Architecture of a Bounded Context</name>
+  <elements>
+    <element identifier="id-3004a266-e7ea-45c1-ac67-f8a49fc0e35b" xsi:type="ApplicationEvent">
+      <name xml:lang="en">command</name>
+    </element>
+    <element identifier="id-1a9265e8-6435-4f42-abed-3c253157a70e" xsi:type="ApplicationEvent">
+      <name xml:lang="en">Query</name>
+    </element>
+    <element identifier="id-99f84b0b-23b9-407e-ab95-bf7649bbf603" xsi:type="ApplicationFunction">
+      <name xml:lang="en">command</name>
+    </element>
+    <element identifier="id-9418a39e-88ed-4f3b-9fc8-6273eef2d629" xsi:type="ApplicationFunction">
+      <name xml:lang="en">Query</name>
+    </element>
+    <element identifier="id-8106433b-e9c0-452b-bd4e-19309e8b053e" xsi:type="Grouping">
+      <name xml:lang="en">user interface</name>
+    </element>
+    <element identifier="ff8bcce4-2fea-480a-a183-701b616fe5e6" xsi:type="Grouping">
+      <name xml:lang="en">Logic</name>
+    </element>
+    <element identifier="f0bbdd8a-95aa-4833-8d17-543997536089" xsi:type="Grouping">
+      <name xml:lang="en">data access</name>
+    </element>
+  </elements>
+  <relationships>
+    <relationship identifier="id-358e9c2c-efd7-4681-803c-a8cd54ae0460" source="id-8106433b-e9c0-452b-bd4e-19309e8b053e" target="ff8bcce4-2fea-480a-a183-701b616fe5e6" xsi:type="Flow" />
+    <relationship identifier="id-6efffe56-e295-4dda-9de0-360c3f0859a3" source="ff8bcce4-2fea-480a-a183-701b616fe5e6" target="f0bbdd8a-95aa-4833-8d17-543997536089" xsi:type="Triggering" />
+    <relationship identifier="id-378d53b6-4527-484b-929c-4a77799b8f25" source="f0bbdd8a-95aa-4833-8d17-543997536089" target="ff8bcce4-2fea-480a-a183-701b616fe5e6" xsi:type="Flow" />
+    <relationship identifier="id-61eb0027-f869-4b96-ac99-4503d028beca" source="id-8106433b-e9c0-452b-bd4e-19309e8b053e" target="f0bbdd8a-95aa-4833-8d17-543997536089" xsi:type="Flow" />
+    <relationship identifier="id-60ad946e-9727-44bf-a6a0-b602665a062e" source="f0bbdd8a-95aa-4833-8d17-543997536089" target="id-8106433b-e9c0-452b-bd4e-19309e8b053e" xsi:type="Flow" />
+  </relationships>
+  <organizations>
+    <item>
+      <label xml:lang="en">Application</label>
+      <item identifierRef="id-3004a266-e7ea-45c1-ac67-f8a49fc0e35b" />
+      <item identifierRef="id-1a9265e8-6435-4f42-abed-3c253157a70e" />
+      <item identifierRef="id-99f84b0b-23b9-407e-ab95-bf7649bbf603" />
+      <item identifierRef="id-9418a39e-88ed-4f3b-9fc8-6273eef2d629" />
+    </item>
+    <item>
+      <label xml:lang="en">Other</label>
+      <item identifierRef="id-8106433b-e9c0-452b-bd4e-19309e8b053e" />
+      <item identifierRef="ff8bcce4-2fea-480a-a183-701b616fe5e6" />
+      <item identifierRef="f0bbdd8a-95aa-4833-8d17-543997536089" />
+    </item>
+    <item>
+      <label xml:lang="en">Relations</label>
+      <item identifierRef="id-358e9c2c-efd7-4681-803c-a8cd54ae0460" />
+      <item identifierRef="id-6efffe56-e295-4dda-9de0-360c3f0859a3" />
+      <item identifierRef="id-378d53b6-4527-484b-929c-4a77799b8f25" />
+      <item identifierRef="id-61eb0027-f869-4b96-ac99-4503d028beca" />
+      <item identifierRef="id-60ad946e-9727-44bf-a6a0-b602665a062e" />
+    </item>
+    <item>
+      <label xml:lang="en">Views</label>
+      <item identifierRef="id-94ad43f7" />
+      <item identifierRef="id-7c7461bf-9947-4b4f-aa26-b9f5c3aeaa85" />
+    </item>
+  </organizations>
+  <views>
+    <diagrams>
+      <view identifier="id-94ad43f7" xsi:type="Diagram">
+        <name xml:lang="en">CQRS: An Architecture of a Bounded Context</name>
+        <node identifier="fea3739f-aec6-4831-90be-ddff703ed836" x="569" y="337" w="962" h="284" xsi:type="Container">
+          <label xml:lang="en">layer</label>
+          <style>
+            <fillColor r="210" g="215" b="215" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="fc880a35-bbc3-4c7f-8dff-805a8a91bdc3" elementRef="id-8106433b-e9c0-452b-bd4e-19309e8b053e" xsi:type="Element" x="809" y="407" w="400" h="140">
+            <style>
+              <fillColor r="255" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="id-85dc3409-7a98-4958-9a97-e9e4e881be9c" x="569" y="644" w="492" h="284" xsi:type="Container">
+          <label xml:lang="en">command layer</label>
+          <style>
+            <fillColor r="176" g="176" b="176" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="cb1fb975-6d03-4787-9bf8-d0488b9fb177" elementRef="ff8bcce4-2fea-480a-a183-701b616fe5e6" xsi:type="Element" x="819" y="744" w="175" h="140">
+            <style>
+              <fillColor r="255" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-9241d4cc-e291-4005-aaf7-b3de15e9f9ed" elementRef="id-3004a266-e7ea-45c1-ac67-f8a49fc0e35b" xsi:type="Element" x="851" y="664" w="120" h="55">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="c1bbbe99-82fe-44a1-966d-7d01fd63f610" x="569" y="950" w="962" h="284" xsi:type="Container">
+          <label xml:lang="en">query layer</label>
+          <style>
+            <fillColor r="136" g="136" b="136" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="c4bb3c76-b908-48c3-8e43-0ef63cf8aa32" elementRef="f0bbdd8a-95aa-4833-8d17-543997536089" xsi:type="Element" x="823" y="1050" w="400" h="140">
+            <style>
+              <fillColor r="255" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="a5391a63-2ef8-4b9c-b4c3-ea54708837b2" elementRef="id-1a9265e8-6435-4f42-abed-3c253157a70e" xsi:type="Element" x="1069" y="980" w="120" h="55">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="id-41fe9fd2" xsi:type="Label" x="450" y="240" w="271" h="80">
+          <label xml:lang="en">Command Query Responsibility&#xD;
+Segregation (CQRS) 
+Different layers for Commands and Queries</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-1edb88a1-a77c-449e-9076-4071ac5eb691" xsi:type="Label" x="1190" y="749" w="185" h="80">
+          <label xml:lang="en">Assymetric layers: 3 in the case of cpmmand and 2 in case of query</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <connection identifier="id-6f54d8aa-8183-4569-82a1-64d1b31cda17" relationshipRef="id-358e9c2c-efd7-4681-803c-a8cd54ae0460" xsi:type="Relationship" source="fc880a35-bbc3-4c7f-8dff-805a8a91bdc3" target="cb1fb975-6d03-4787-9bf8-d0488b9fb177">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="b4597164-fdff-4286-9102-72315278da68" relationshipRef="id-61eb0027-f869-4b96-ac99-4503d028beca" xsi:type="Relationship" source="fc880a35-bbc3-4c7f-8dff-805a8a91bdc3" target="c4bb3c76-b908-48c3-8e43-0ef63cf8aa32">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1110" y="800" />
+        </connection>
+        <connection identifier="b6d5faac-a66a-43ea-b1e4-cc871b836b2a" relationshipRef="id-6efffe56-e295-4dda-9de0-360c3f0859a3" xsi:type="Relationship" source="cb1fb975-6d03-4787-9bf8-d0488b9fb177" target="c4bb3c76-b908-48c3-8e43-0ef63cf8aa32">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="a187bc1b-c75b-47c7-88c0-7b1a99e72127" relationshipRef="id-378d53b6-4527-484b-929c-4a77799b8f25" xsi:type="Relationship" source="c4bb3c76-b908-48c3-8e43-0ef63cf8aa32" target="cb1fb975-6d03-4787-9bf8-d0488b9fb177">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="930" y="1010" />
+        </connection>
+        <connection identifier="fd05d34f-886c-40aa-960a-9dfdf7c85afd" relationshipRef="id-60ad946e-9727-44bf-a6a0-b602665a062e" xsi:type="Relationship" source="c4bb3c76-b908-48c3-8e43-0ef63cf8aa32" target="fc880a35-bbc3-4c7f-8dff-805a8a91bdc3">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1140" y="920" />
+        </connection>
+      </view>
+      <view identifier="id-7c7461bf-9947-4b4f-aa26-b9f5c3aeaa85" xsi:type="Diagram">
+        <name xml:lang="en">CQS</name>
+        <node identifier="id-0d7c612c-4773-4b9b-be4a-2c036bde098f" xsi:type="Label" x="340" y="173" w="185" h="80">
+          <label xml:lang="en">CQS Command/Query Separation</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-740e3bfd-5cd7-420a-95ad-1472bb8f87d8" elementRef="id-99f84b0b-23b9-407e-ab95-bf7649bbf603" xsi:type="Element" x="480" y="272" w="251" h="169">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="befdba4b-9b0a-438c-b627-a8931fbe9181" xsi:type="Label" x="507" y="319" w="185" h="80">
+            <label xml:lang="en">- only input args
+- empty return result
+- side effects/change state</label>
+            <style>
+              <fillColor r="255" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="id-78d5fdb4-c808-483e-b0e3-d9380fdf3a8f" elementRef="id-9418a39e-88ed-4f3b-9fc8-6273eef2d629" xsi:type="Element" x="850" y="272" w="251" h="169">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-1f421a71-9db5-4be8-97b2-3e537653f124" xsi:type="Label" x="882" y="316" w="185" h="80">
+            <label xml:lang="en">- return results
+- not side effects / no chanfge state</label>
+            <style>
+              <fillColor r="255" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+      </view>
+    </diagrams>
+  </views>
+</model>
