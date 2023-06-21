@@ -1,0 +1,148 @@
+{
+  "$id": "https://example.com/archimate-model.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ArchimateModel",
+  "type": "object",
+  "required": ["id", "name"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the model"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the model"
+    },
+    "documentation": {
+      "type": "string",
+      "description": "Additional information about the model (i.e. description, purpose)"
+    },
+    "file": {
+      "type": "string",
+      "description": "Relative file path of the parsed model file"
+    },
+    "format": {
+      "type": "string",
+      "description": "Format of the parsed file (i.e., file extension)",
+      "enum": [ "ARCHIMATE", "XML" ]
+    },
+    "source": {
+      "type": "string",
+      "description": "Source of the model"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "language": {
+      "type": "string",
+      "description": "Language of the model",
+      "enum": [
+        "aa", "ab", "ae", "af", "ak", "am", "an", "ar", "as", "av", "ay", "az", "ba", "be", "bg", "bi",
+        "bm", "bn", "bo", "br", "bs", "ca", "ce", "ch", "co", "cr", "cs", "cu", "cv", "cy", "da", "de",
+        "dv", "dz", "ee", "el", "en", "eo", "es", "et", "eu", "fa", "ff", "fi", "fj", "fo", "fr", "fy",
+        "ga", "gd", "gl", "gn", "gu", "gv", "ha", "he", "hi", "ho", "hr", "ht", "hu", "hy", "hz", "ia",
+        "id", "ie", "ig", "ii", "ik", "io", "is", "it", "iu", "ja", "jv", "ka", "kg", "ki", "kj", "kk",
+        "kl", "km", "kn", "ko", "kr", "ks", "ku", "kv", "kw", "ky", "la", "lb", "lg", "li", "ln", "lo",
+        "lt", "lu", "lv", "mg", "mh", "mi", "mk", "ml", "mn", "mr", "ms", "mt", "my", "na", "nb", "nd",
+        "ne", "ng", "nl", "nn", "no", "nr", "nv", "ny", "oc", "oj", "om", "or", "os", "pa", "pi", "pl",
+        "ps", "pt", "qu", "rm", "rn", "ro", "ru", "rw", "sa", "sc", "sd", "se", "sg", "sh", "si", "sk",
+        "sl", "sm", "sn", "so", "sq", "sr", "ss", "st", "su", "sv", "sw", "ta", "te", "tg", "th", "ti",
+        "tk", "tl", "tn", "to", "tr", "ts", "tt", "tw", "ty", "ug", "uk", "ur", "uz", "ve", "vi", "vo",
+        "wa", "wo", "xh", "yi", "yo", "za", "zh", "zu"
+      ]
+    },
+    "elements": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/element" }
+    },
+    "relationships": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/relationship" }
+    },
+    "views": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/view" }
+    }
+  },
+  "$defs": {
+    "element": {
+      "type": "object",
+      "required": [ "id", "name", "type", "layer" ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the element"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the element"
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of the element"
+        },
+        "layer": {
+          "type": "string",
+          "description": "Layer of the element (computed through type)"
+        },
+        "documentation": {
+          "type": "string",
+          "description": "Additional documentation of the element"
+        }
+      }
+    },
+    "relationship": {
+      "type": "object",
+      "required": [ "id", "sourceId", "targetId", "type" ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the element"
+        },
+        "sourceId": {
+          "type": "string",
+          "description": "ID of the source element"
+        },
+        "targetId": {
+          "type": "string",
+          "description": "ID of the target element"
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of the element"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the element"
+        },
+        "documentation": {
+          "type": "string",
+          "description": "Additional documentation of the relationships"
+        }
+      }
+    },
+    "view": {
+      "type": "object",
+      "required": [ "id", "name", "viewpoint", "documentation" ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the view"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the element"
+        },
+        "viewpoint": {
+          "type": "string",
+          "description": ""
+        },
+        "documentation": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    }
+  }
+}
