@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://www.opengroup.org/xsd/archimate/3.0/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.opengroup.org/xsd/archimate/3.0/ http://www.opengroup.org/xsd/archimate/3.1/archimate3_Diagram.xsd"
+    identifier="model-5"
+    version="1.0">
+
+    <name xml:lang="en">Model with a View</name>
+    
+    <documentation xml:lang="en">Example of basic model with a View</documentation>
+
+    <elements>
+        <element identifier="ba1" xsi:type="BusinessActor">
+            <name xml:lang="en">A Business Actor</name>
+        </element>
+        <element identifier="ba2" xsi:type="BusinessActor">
+            <name xml:lang="en">Another Business Actor</name>
+        </element>
+        <element identifier="br1" xsi:type="BusinessRole">
+            <name xml:lang="en">A Business Role</name>
+        </element>
+        <element identifier="loc1" xsi:type="Location">
+            <name xml:lang="en">A Location</name>
+        </element>
+        <element identifier="grouping1" xsi:type="Grouping">
+            <name xml:lang="en">A Grouping</name>
+        </element>
+    </elements>
+    
+    <relationships>
+        <relationship identifier="relation-1" source="ba1" target="br1" xsi:type="Assignment">
+            <name xml:lang="en">Assignment Relationship</name>
+        </relationship>
+        <relationship identifier="relation-2" source="br1" target="loc1" xsi:type="Association">
+            <name xml:lang="en">Assignment Relationship</name>
+        </relationship>
+        <relationship identifier="relation-3" source="grouping1" target="loc1" xsi:type="Aggregation"/>
+        <relationship identifier="relation-4" source="grouping1" target="ba1" xsi:type="Aggregation"/>
+        <relationship identifier="relation-5" source="grouping1" target="br1" xsi:type="Aggregation"/>
+    </relationships>
+    
+    <views>
+        <diagrams>
+            <view identifier="view1" viewpoint="Organization" xsi:type="Diagram">
+                <name xml:lang="en">Basic View</name>
+                <documentation xml:lang="en">Basic Documentation</documentation>
+                
+                <node identifier="node1" x="36" y="10" w="120" h="55" xsi:type="Element" elementRef="ba1">
+                    <style>
+                        <lineColor b="45" r="45" g="45"/>
+                        <fillColor b="223" r="123" g="123"/>
+                        <font name="Arial" size="12" style="italic"/>
+                    </style>
+                </node>
+                <node identifier="node2" x="430" y="10" w="120" h="55" xsi:type="Element" elementRef="br1"/>
+                <node identifier="node3" x="60" y="192" w="120" h="55" xsi:type="Element" elementRef="loc1"/>
+                <node identifier="node4" x="396" y="168" w="200" h="155" xsi:type="Element" elementRef="grouping1">
+                    <node identifier="node5" x="406" y="188" w="100" h="55" xsi:type="Element" elementRef="ba2"/>
+                </node>
+                
+                <connection identifier="conn1" source="node1" target="node2" xsi:type="Relationship" relationshipRef="relation-1">
+                    <style>
+                        <lineColor b="255" r="45" g="45"/>
+                        <fillColor b="23" r="23" g="23"/>
+                        <font name="Arial" size="12" style="italic"/>
+                    </style>
+                </connection>
+                <connection identifier="conn2" source="node4" target="node2" xsi:type="Relationship" relationshipRef="relation-5"/>
+                
+            </view>
+        </diagrams>
+    </views>
+</model>

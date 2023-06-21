@@ -1,0 +1,1 @@
+Source: http://wflearning.com/organisational-model/operational-model-diagram-files/work-focused_learning_models.archimate/view
