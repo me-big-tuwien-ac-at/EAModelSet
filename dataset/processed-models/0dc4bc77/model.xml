@@ -1,0 +1,2086 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://www.opengroup.org/xsd/archimate/3.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengroup.org/xsd/archimate/3.0/ http://www.opengroup.org/xsd/archimate/3.1/archimate3_Diagram.xsd" identifier="id-0dc4bc77">
+  <name>docker-swarm</name>
+  <elements>
+    <element identifier="id-9c4f6114" xsi:type="BusinessActor">
+      <name>user</name>
+    </element>
+    <element identifier="f82c2338" xsi:type="ApplicationService">
+      <name>Docker Engine</name>
+    </element>
+    <element identifier="id-8b99f9ad" xsi:type="ApplicationService">
+      <name>Swarm worker</name>
+    </element>
+    <element identifier="aa5c1756" xsi:type="ApplicationService">
+      <name>Swarm manager</name>
+    </element>
+    <element identifier="id-3c3e0ec8" xsi:type="ApplicationService">
+      <name>go-demo-db</name>
+    </element>
+    <element identifier="d34e395a" xsi:type="ApplicationService">
+      <name>go-demo</name>
+    </element>
+    <element identifier="id-8ec8b15c" xsi:type="ApplicationService">
+      <name>proxy</name>
+    </element>
+    <element identifier="e00657d7" xsi:type="ApplicationService">
+      <name>Consul</name>
+    </element>
+    <element identifier="id-6e19fc1e" xsi:type="ApplicationService">
+      <name>go-demo v1.0</name>
+    </element>
+    <element identifier="id-9af5e9bb" xsi:type="ApplicationService">
+      <name>go-demo 1.1</name>
+    </element>
+    <element identifier="b4a67d5f" xsi:type="ApplicationService">
+      <name>load balancer</name>
+    </element>
+    <element identifier="id-5419f061" xsi:type="DataObject">
+      <name>service registry</name>
+    </element>
+    <element identifier="f7ebac08" xsi:type="DataObject">
+      <name>Consul</name>
+    </element>
+    <element identifier="d208dd2f" xsi:type="DataObject">
+      <name>Registry</name>
+    </element>
+    <element identifier="cef4175f" xsi:type="DataObject">
+      <name>Host volume</name>
+    </element>
+    <element identifier="id-6496bcd6" xsi:type="ApplicationFunction">
+      <name>unit</name>
+    </element>
+    <element identifier="f5365ca8" xsi:type="ApplicationFunction">
+      <name>staging</name>
+    </element>
+    <element identifier="a366cc66" xsi:type="ApplicationFunction">
+      <name>prod-like t.</name>
+    </element>
+    <element identifier="d689ac8e" xsi:type="ApplicationFunction">
+      <name>prod t.</name>
+    </element>
+    <element identifier="fe6ffb89" xsi:type="ApplicationFunction">
+      <name>build</name>
+    </element>
+    <element identifier="id-0b27c892" xsi:type="ApplicationService">
+      <name>jenkins</name>
+    </element>
+    <element identifier="id-5dc99db1" xsi:type="ApplicationService">
+      <name>jenkins-agent</name>
+    </element>
+    <element identifier="b0246926" xsi:type="Node">
+      <name>node-1</name>
+    </element>
+    <element identifier="id-735efd92" xsi:type="Node">
+      <name>node-2</name>
+    </element>
+    <element identifier="d5482b71" xsi:type="Node">
+      <name>node-3</name>
+    </element>
+    <element identifier="id-56954d1b" xsi:type="CommunicationNetwork">
+      <name>go-demo SDN</name>
+    </element>
+    <element identifier="id-67bbe7c5" xsi:type="CommunicationNetwork">
+      <name>proxy SDN</name>
+    </element>
+    <element identifier="id-9a432693" xsi:type="Node">
+      <name>swarm-cluster</name>
+    </element>
+    <element identifier="id-78118e80" xsi:type="Path">
+      <name>DNS</name>
+    </element>
+    <element identifier="b6f5b014" xsi:type="CommunicationNetwork">
+      <name>routing mesh</name>
+    </element>
+    <element identifier="id-5a3065de" xsi:type="Node">
+      <name>cd cluster</name>
+    </element>
+    <element identifier="id-625cd187" xsi:type="Node">
+      <name>production cluster</name>
+    </element>
+    <element identifier="aa2e299e" xsi:type="Node">
+      <name>prod-like nodes</name>
+    </element>
+    <element identifier="id-284a5b64" xsi:type="Node">
+      <name>jenkins-agent nodes</name>
+    </element>
+  </elements>
+  <relationships>
+    <relationship identifier="be70df76" source="d34e395a" target="id-56954d1b" xsi:type="Association" />
+    <relationship identifier="id-7deb02dc" source="id-3c3e0ec8" target="id-56954d1b" xsi:type="Association" />
+    <relationship identifier="id-4a9e6089" source="d34e395a" target="id-67bbe7c5" xsi:type="Association" />
+    <relationship identifier="id-4679cb06" source="id-8ec8b15c" target="id-67bbe7c5" xsi:type="Association" />
+    <relationship identifier="id-3ac69d33" source="id-9c4f6114" target="id-8ec8b15c" xsi:type="Association" />
+    <relationship identifier="id-16f5f664" source="id-8ec8b15c" target="id-8ec8b15c" xsi:type="Triggering" />
+    <relationship identifier="id-0ea3ad8d" source="e00657d7" target="id-8ec8b15c" xsi:type="Serving" />
+    <relationship identifier="id-516e5962" source="id-9c4f6114" target="id-78118e80" xsi:type="Association" />
+    <relationship identifier="id-97fe71a4" source="id-78118e80" target="b6f5b014" xsi:type="Association" />
+    <relationship identifier="id-9bfbc5c1" source="b6f5b014" target="id-8ec8b15c" xsi:type="Association" />
+    <relationship identifier="cfca5ad1" source="id-8ec8b15c" target="id-67bbe7c5" xsi:type="Association" />
+    <relationship identifier="id-8cd892d3" source="id-67bbe7c5" target="b6f5b014" xsi:type="Association" />
+    <relationship identifier="id-38200a8c" source="id-67bbe7c5" target="d34e395a" xsi:type="Association" />
+    <relationship identifier="id-767eceab" source="b4a67d5f" target="id-8ec8b15c" xsi:type="Flow" />
+    <relationship identifier="bb0742e3" source="id-8ec8b15c" target="b4a67d5f" xsi:type="Flow" />
+    <relationship identifier="id-2f05fc06" source="b4a67d5f" target="d34e395a" xsi:type="Flow" />
+    <relationship identifier="bdc6f794" source="d34e395a" target="id-3c3e0ec8" xsi:type="Flow" />
+    <relationship identifier="d0297d2b" source="id-9c4f6114" target="aa5c1756" xsi:type="Association" />
+    <relationship identifier="id-7ce730c5" source="aa5c1756" target="aa5c1756" xsi:type="Triggering" />
+    <relationship identifier="id-34dd51aa" source="aa5c1756" target="id-8b99f9ad" xsi:type="Triggering" />
+    <relationship identifier="d8afaa57" source="id-8b99f9ad" target="f82c2338" xsi:type="Flow" />
+    <relationship identifier="a104f414" source="aa5c1756" target="f82c2338" xsi:type="Flow" />
+    <relationship identifier="id-22925512" source="f82c2338" target="d34e395a" xsi:type="Flow" />
+    <relationship identifier="id-5c4eb80c" source="f82c2338" target="id-3c3e0ec8" xsi:type="Flow" />
+    <relationship identifier="b9a01432" source="aa5c1756" target="id-5419f061" xsi:type="Access" accessType="Read" />
+    <relationship identifier="id-8794a5f8" source="id-8ec8b15c" target="f7ebac08" xsi:type="Access" accessType="ReadWrite" />
+    <relationship identifier="fad95ea6" source="f7ebac08" target="f7ebac08" xsi:type="Association" />
+    <relationship identifier="cdc0bea2" source="id-9c4f6114" target="b6f5b014" xsi:type="Association" />
+    <relationship identifier="id-6ec5fbb2" source="id-8ec8b15c" target="id-8ec8b15c" xsi:type="Flow" />
+    <relationship identifier="id-4a3e60d7" source="d208dd2f" target="cef4175f" xsi:type="Association" />
+    <relationship identifier="id-5a4e0a22" source="id-8b99f9ad" target="id-5419f061" xsi:type="Access" accessType="Write" />
+  </relationships>
+  <views>
+    <diagrams>
+      <view identifier="id-2de5f20d" xsi:type="Diagram">
+        <name>docker-nodes</name>
+        <node identifier="a9b2d13f" elementRef="b0246926" xsi:type="Element" x="36" y="127" w="229" h="126">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-98107c03" elementRef="f82c2338" xsi:type="Element" x="72" y="223" w="133" h="25">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="id-087f9280" elementRef="id-735efd92" xsi:type="Element" x="288" y="127" w="229" h="126">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-934eae3e" elementRef="f82c2338" xsi:type="Element" x="336" y="223" w="133" h="25">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="id-74a5af01" elementRef="d5482b71" xsi:type="Element" x="540" y="127" w="229" h="126">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-2f98276d" elementRef="f82c2338" xsi:type="Element" x="576" y="223" w="133" h="25">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+      </view>
+      <view identifier="id-4c94ff10" xsi:type="Diagram">
+        <name>swarm-nodes</name>
+        <node identifier="id-6db1a75e" elementRef="b0246926" xsi:type="Element" x="36" y="96" w="229" h="157">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-9bf286c6" elementRef="aa5c1756" xsi:type="Element" x="48" y="216" w="145" h="25">
+            <style>
+              <fillColor r="255" g="127" b="0" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-0978aa46" elementRef="d34e395a" xsi:type="Element" x="60" y="144" w="133" h="25">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="d6701932" elementRef="d34e395a" xsi:type="Element" x="108" y="180" w="133" h="25">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="id-8f373a2c" elementRef="id-735efd92" xsi:type="Element" x="288" y="96" w="229" h="157">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-76336727" elementRef="id-8b99f9ad" xsi:type="Element" x="300" y="216" w="145" h="25">
+            <style>
+              <fillColor r="255" g="127" b="0" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="db3fc004" elementRef="id-3c3e0ec8" xsi:type="Element" x="300" y="168" w="133" h="25">
+            <style>
+              <fillColor r="0" g="0" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="255" g="255" b="255" />
+              </font>
+            </style>
+          </node>
+          <node identifier="b4288710" elementRef="d34e395a" xsi:type="Element" x="372" y="132" w="133" h="25">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="e8822443" elementRef="d5482b71" xsi:type="Element" x="540" y="96" w="229" h="157">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-00214e70" elementRef="id-8b99f9ad" xsi:type="Element" x="552" y="216" w="145" h="25">
+            <style>
+              <fillColor r="255" g="127" b="0" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-0bde1af8" elementRef="d34e395a" xsi:type="Element" x="564" y="132" w="133" h="25">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-46d4d5b4" elementRef="d34e395a" xsi:type="Element" x="588" y="168" w="133" h="25">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="id-20e8c278" elementRef="id-56954d1b" xsi:type="Element" x="36" y="276" w="733" h="25">
+          <style>
+            <fillColor r="0" g="255" b="0" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-330dd17c" elementRef="id-67bbe7c5" xsi:type="Element" x="36" y="48" w="733" h="25">
+          <style>
+            <fillColor r="0" g="255" b="0" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="a8aab1d7" elementRef="id-8ec8b15c" xsi:type="Element" x="36" y="0" w="733" h="25">
+          <style>
+            <fillColor r="153" g="102" b="51" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="255" b="255" />
+            </font>
+          </style>
+        </node>
+        <connection identifier="b65cad10" relationshipRef="be70df76" xsi:type="Relationship" source="id-0978aa46" target="id-20e8c278">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="24" y="156" />
+          <bendpoint x="24" y="288" />
+        </connection>
+        <connection identifier="id-68efdd65" relationshipRef="id-4a9e6089" xsi:type="Relationship" source="id-0978aa46" target="id-330dd17c">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="24" y="156" />
+          <bendpoint x="24" y="60" />
+        </connection>
+        <connection identifier="id-8922deb5" relationshipRef="be70df76" xsi:type="Relationship" source="d6701932" target="id-20e8c278">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="24" y="192" />
+          <bendpoint x="24" y="288" />
+        </connection>
+        <connection identifier="id-46d235d1" relationshipRef="id-4a9e6089" xsi:type="Relationship" source="d6701932" target="id-330dd17c">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="24" y="192" />
+          <bendpoint x="24" y="60" />
+        </connection>
+        <connection identifier="id-25d53040" relationshipRef="id-7deb02dc" xsi:type="Relationship" source="db3fc004" target="id-20e8c278">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="528" y="180" />
+        </connection>
+        <connection identifier="id-832ae259" relationshipRef="be70df76" xsi:type="Relationship" source="b4288710" target="id-20e8c278">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="528" y="144" />
+        </connection>
+        <connection identifier="ef44ac71" relationshipRef="id-4a9e6089" xsi:type="Relationship" source="b4288710" target="id-330dd17c">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="e263bcf7" relationshipRef="be70df76" xsi:type="Relationship" source="id-0bde1af8" target="id-20e8c278">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="528" y="144" />
+        </connection>
+        <connection identifier="bf47c661" relationshipRef="id-4a9e6089" xsi:type="Relationship" source="id-0bde1af8" target="id-330dd17c">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="780" y="144" />
+          <bendpoint x="780" y="72" />
+        </connection>
+        <connection identifier="id-3bfb45ac" relationshipRef="be70df76" xsi:type="Relationship" source="id-46d4d5b4" target="id-20e8c278">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="528" y="180" />
+        </connection>
+        <connection identifier="id-0a98179e" relationshipRef="id-4a9e6089" xsi:type="Relationship" source="id-46d4d5b4" target="id-330dd17c">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="780" y="180" />
+          <bendpoint x="780" y="72" />
+        </connection>
+        <connection identifier="cacbe733" relationshipRef="id-4679cb06" xsi:type="Relationship" source="a8aab1d7" target="id-330dd17c">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+      </view>
+      <view identifier="id-9bea86eb" xsi:type="Diagram">
+        <name>proxy-scaled</name>
+        <node identifier="id-019d45a0" elementRef="id-9a432693" xsi:type="Element" x="96" y="96" w="601" h="241">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-4b2f3fcb" elementRef="id-8ec8b15c" xsi:type="Element" x="120" y="228" w="120" h="25">
+            <style>
+              <fillColor r="153" g="102" b="51" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="255" g="255" b="255" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-18015b2f" elementRef="id-8ec8b15c" xsi:type="Element" x="336" y="240" w="120" h="25">
+            <style>
+              <fillColor r="153" g="102" b="51" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="255" g="255" b="255" />
+              </font>
+            </style>
+          </node>
+          <node identifier="fb588a93" elementRef="d34e395a" xsi:type="Element" x="239" y="300" w="120" h="25">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="dbc66900" elementRef="id-3c3e0ec8" xsi:type="Element" x="390" y="286" w="120" h="25">
+            <style>
+              <fillColor r="0" g="0" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="255" g="255" b="255" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-2a5da9e6" elementRef="d34e395a" xsi:type="Element" x="192" y="262" w="120" h="25">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-852b5bb0" elementRef="d34e395a" xsi:type="Element" x="108" y="300" w="120" h="25">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-3ebc9a43" elementRef="d34e395a" xsi:type="Element" x="504" y="240" w="120" h="25">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="affd747a" elementRef="d34e395a" xsi:type="Element" x="540" y="276" w="120" h="25">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-04850022" elementRef="id-56954d1b" xsi:type="Element" x="108" y="168" w="277" h="25">
+            <style>
+              <fillColor r="0" g="255" b="0" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-48e95321" elementRef="id-67bbe7c5" xsi:type="Element" x="396" y="168" w="277" h="25">
+            <style>
+              <fillColor r="0" g="255" b="0" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="db4bcf66" elementRef="id-8ec8b15c" xsi:type="Element" x="553" y="204" w="120" h="25">
+            <style>
+              <fillColor r="153" g="102" b="51" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="255" g="255" b="255" />
+              </font>
+            </style>
+          </node>
+          <node identifier="fb2cb6fd" elementRef="b6f5b014" xsi:type="Element" x="108" y="132" w="565" h="25">
+            <style>
+              <fillColor r="0" g="255" b="0" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="id-864a43ca" elementRef="id-9c4f6114" xsi:type="Element" x="96" y="48" w="96" h="25">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="edbd7c55" elementRef="id-78118e80" xsi:type="Element" x="240" y="48" w="96" h="25">
+          <style>
+            <fillColor r="255" g="255" b="167" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <connection identifier="f11a85f6" relationshipRef="cfca5ad1" xsi:type="Relationship" source="id-4b2f3fcb" target="id-48e95321">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="396" y="228" />
+        </connection>
+        <connection identifier="id-9d098045" relationshipRef="id-9bfbc5c1" xsi:type="Relationship" source="fb2cb6fd" target="id-4b2f3fcb">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="f19c3a77" relationshipRef="id-516e5962" xsi:type="Relationship" source="id-864a43ca" target="edbd7c55">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="f610e2bf" relationshipRef="id-97fe71a4" xsi:type="Relationship" source="edbd7c55" target="fb2cb6fd">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+      </view>
+      <view identifier="id-053e9c45" xsi:type="Diagram">
+        <name>swarm-update</name>
+        <node identifier="id-1dfe013e" elementRef="b0246926" xsi:type="Element" x="36" y="96" w="229" h="217">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="c13fd000" elementRef="id-3c3e0ec8" xsi:type="Element" x="60" y="156" w="133" h="25">
+            <style>
+              <fillColor r="0" g="0" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="255" g="255" b="255" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-0957b0cd" elementRef="id-6e19fc1e" xsi:type="Element" x="108" y="252" w="133" h="25">
+            <style>
+              <fillColor r="255" g="0" b="0" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="a43cbb6c" elementRef="id-6e19fc1e" xsi:type="Element" x="48" y="216" w="133" h="25">
+            <style>
+              <fillColor r="255" g="0" b="0" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="d7de2f24" elementRef="id-9af5e9bb" xsi:type="Element" x="48" y="276" w="133" h="25">
+            <style>
+              <fillColor r="0" g="255" b="0" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="e89c386e" elementRef="id-735efd92" xsi:type="Element" x="288" y="96" w="229" h="217">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-523f2675" elementRef="id-6e19fc1e" xsi:type="Element" x="300" y="204" w="133" h="25">
+            <style>
+              <fillColor r="255" g="0" b="0" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-9d9c2e38" elementRef="id-6e19fc1e" xsi:type="Element" x="348" y="264" w="133" h="25">
+            <style>
+              <fillColor r="255" g="0" b="0" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="e858143c" elementRef="id-9af5e9bb" xsi:type="Element" x="360" y="168" w="133" h="25">
+            <style>
+              <fillColor r="0" g="255" b="0" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-8b08412f" elementRef="id-9af5e9bb" xsi:type="Element" x="360" y="228" w="133" h="25">
+            <style>
+              <fillColor r="0" g="255" b="0" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="id-2ba484fa" elementRef="d5482b71" xsi:type="Element" x="540" y="96" w="229" h="217">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-00a9e399" elementRef="id-6e19fc1e" xsi:type="Element" x="564" y="240" w="133" h="25">
+            <style>
+              <fillColor r="255" g="0" b="0" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="efefbdcd" elementRef="id-6e19fc1e" xsi:type="Element" x="612" y="180" w="133" h="25">
+            <style>
+              <fillColor r="255" g="0" b="0" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="eb4eaacd" elementRef="id-9af5e9bb" xsi:type="Element" x="612" y="276" w="133" h="25">
+            <style>
+              <fillColor r="0" g="255" b="0" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-354b31f6" elementRef="id-9af5e9bb" xsi:type="Element" x="540" y="216" w="133" h="25">
+            <style>
+              <fillColor r="0" g="255" b="0" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="befa0182" elementRef="id-9af5e9bb" xsi:type="Element" x="552" y="156" w="133" h="25">
+            <style>
+              <fillColor r="0" g="255" b="0" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+      </view>
+      <view identifier="ff50a502" xsi:type="Diagram">
+        <name>go-demo-logical</name>
+        <node identifier="id-0aab5234" elementRef="b4a67d5f" xsi:type="Element" x="168" y="96" w="384" h="25">
+          <style>
+            <fillColor r="127" g="0" b="127" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="255" b="255" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-134638a1" elementRef="id-8ec8b15c" xsi:type="Element" x="432" y="144" w="120" h="25">
+          <style>
+            <fillColor r="153" g="102" b="51" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="255" b="255" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-6c036e39" elementRef="d34e395a" xsi:type="Element" x="168" y="240" w="120" h="25">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-9ced3cf8" elementRef="id-8ec8b15c" xsi:type="Element" x="168" y="144" w="120" h="25">
+          <style>
+            <fillColor r="153" g="102" b="51" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="255" b="255" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-5c6d799f" elementRef="id-8ec8b15c" xsi:type="Element" x="300" y="144" w="120" h="25">
+          <style>
+            <fillColor r="153" g="102" b="51" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="255" b="255" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-573bd495" elementRef="b4a67d5f" xsi:type="Element" x="168" y="192" w="384" h="25">
+          <style>
+            <fillColor r="127" g="0" b="127" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="255" b="255" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-517bc407" elementRef="d34e395a" xsi:type="Element" x="300" y="240" w="120" h="25">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-31118127" elementRef="d34e395a" xsi:type="Element" x="432" y="240" w="120" h="25">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="f1e3320a" elementRef="id-3c3e0ec8" xsi:type="Element" x="168" y="288" w="384" h="25">
+          <style>
+            <fillColor r="0" g="0" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="255" b="255" />
+            </font>
+          </style>
+        </node>
+        <connection identifier="id-72ef3cd6" relationshipRef="id-767eceab" xsi:type="Relationship" source="id-0aab5234" target="id-134638a1">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="b7be1203" relationshipRef="id-767eceab" xsi:type="Relationship" source="id-0aab5234" target="id-5c6d799f">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-41213185" relationshipRef="id-767eceab" xsi:type="Relationship" source="id-0aab5234" target="id-9ced3cf8">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="d95f21f4" relationshipRef="bb0742e3" xsi:type="Relationship" source="id-134638a1" target="id-573bd495">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-5aee942a" relationshipRef="bdc6f794" xsi:type="Relationship" source="id-6c036e39" target="f1e3320a">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-3e3d705a" relationshipRef="bb0742e3" xsi:type="Relationship" source="id-9ced3cf8" target="id-573bd495">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-45b648d0" relationshipRef="bb0742e3" xsi:type="Relationship" source="id-5c6d799f" target="id-573bd495">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-8c639780" relationshipRef="id-2f05fc06" xsi:type="Relationship" source="id-573bd495" target="id-6c036e39">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-93e8bad2" relationshipRef="id-2f05fc06" xsi:type="Relationship" source="id-573bd495" target="id-517bc407">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="e0f440f7" relationshipRef="id-2f05fc06" xsi:type="Relationship" source="id-573bd495" target="id-31118127">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="ae756098" relationshipRef="bdc6f794" xsi:type="Relationship" source="id-517bc407" target="f1e3320a">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-99789fb9" relationshipRef="bdc6f794" xsi:type="Relationship" source="id-31118127" target="f1e3320a">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+      </view>
+      <view identifier="f92c3241" xsi:type="Diagram">
+        <name>swarm-without-service-registry</name>
+        <node identifier="id-9676009e" elementRef="b0246926" xsi:type="Element" x="36" y="96" w="229" h="157">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-608fcd82" elementRef="aa5c1756" xsi:type="Element" x="48" y="180" w="145" h="25">
+            <style>
+              <fillColor r="255" g="127" b="0" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="ea841d67" elementRef="d34e395a" xsi:type="Element" x="108" y="132" w="97" h="25">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-17da7168" elementRef="f82c2338" xsi:type="Element" x="48" y="216" w="145" h="25">
+            <style>
+              <fillColor r="0" g="0" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="255" g="255" b="255" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="bd310864" elementRef="id-735efd92" xsi:type="Element" x="288" y="96" w="229" h="157">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="dee73e81" elementRef="aa5c1756" xsi:type="Element" x="300" y="180" w="145" h="25">
+            <style>
+              <fillColor r="255" g="127" b="0" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-036988ed" elementRef="d34e395a" xsi:type="Element" x="300" y="144" w="97" h="25">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-3565628b" elementRef="f82c2338" xsi:type="Element" x="300" y="216" w="145" h="25">
+            <style>
+              <fillColor r="0" g="0" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="255" g="255" b="255" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-198adff6" elementRef="d34e395a" xsi:type="Element" x="396" y="144" w="97" h="25">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="id-6f5a4781" elementRef="d5482b71" xsi:type="Element" x="540" y="96" w="229" h="157">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-80a7090a" elementRef="id-8b99f9ad" xsi:type="Element" x="552" y="180" w="145" h="25">
+            <style>
+              <fillColor r="255" g="255" b="0" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="f253ac1a" elementRef="id-3c3e0ec8" xsi:type="Element" x="636" y="132" w="120" h="25">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="decaa3e1" elementRef="f82c2338" xsi:type="Element" x="552" y="216" w="145" h="25">
+            <style>
+              <fillColor r="0" g="0" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="255" g="255" b="255" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="b1e82a68" xsi:type="Label" x="144" y="36" w="409" h="49">
+          <label>User sends a request to one of the managers. For example, run two instances of the go-demo service and one instance of the DB.</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-64732e81" elementRef="id-9c4f6114" xsi:type="Element" x="36" y="48" w="86" h="26">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-7b558bc3" xsi:type="Label" x="36" y="264" w="229" h="73">
+          <label>Swarm manager compares the current state of the cluster with the desired state, generates tasks, and sends them to Swarm nodes.</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="e671df89" xsi:type="Label" x="288" y="264" w="229" h="49">
+          <label>Swarm nodes translate received tasks to Docker Engine commands.</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-082aa7f4" xsi:type="Label" x="540" y="264" w="229" h="49">
+          <label>Docker Engine manages local containers.</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <connection identifier="aad897b8" relationshipRef="id-7ce730c5" xsi:type="Relationship" source="id-608fcd82" target="dee73e81">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="c29381ee" relationshipRef="a104f414" xsi:type="Relationship" source="id-608fcd82" target="id-17da7168">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="d978e6c5" relationshipRef="id-34dd51aa" xsi:type="Relationship" source="id-608fcd82" target="id-80a7090a">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="372" y="204" />
+        </connection>
+        <connection identifier="id-6a2232ea" relationshipRef="id-22925512" xsi:type="Relationship" source="id-17da7168" target="ea841d67">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-736e61f1" relationshipRef="a104f414" xsi:type="Relationship" source="dee73e81" target="id-3565628b">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-6e595b50" relationshipRef="id-22925512" xsi:type="Relationship" source="id-3565628b" target="id-198adff6">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="ac3c9fd3" relationshipRef="id-22925512" xsi:type="Relationship" source="id-3565628b" target="id-036988ed">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-6ac393e7" relationshipRef="d8afaa57" xsi:type="Relationship" source="id-80a7090a" target="decaa3e1">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-22ca93d3" relationshipRef="id-5c4eb80c" xsi:type="Relationship" source="decaa3e1" target="f253ac1a">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-35f39133" xsi:type="Line" source="b1e82a68" target="id-64732e81">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-253fe581" relationshipRef="d0297d2b" xsi:type="Relationship" source="id-64732e81" target="id-608fcd82">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="ceff1449" xsi:type="Line" source="id-7b558bc3" target="id-608fcd82">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-63b22d60" xsi:type="Line" source="e671df89" target="dee73e81">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="d522cb4b" xsi:type="Line" source="e671df89" target="id-80a7090a">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-16832495" xsi:type="Line" source="e671df89" target="id-608fcd82">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-5fc8b272" xsi:type="Line" source="id-082aa7f4" target="id-3565628b">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="dca7e885" xsi:type="Line" source="id-082aa7f4" target="id-17da7168">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-98fc7e1c" xsi:type="Line" source="id-082aa7f4" target="decaa3e1">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+      </view>
+      <view identifier="id-3e03b494" xsi:type="Diagram">
+        <name>swarm-standalone</name>
+        <node identifier="e3a87b6a" elementRef="b0246926" xsi:type="Element" x="36" y="96" w="229" h="157">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-64229e8f" elementRef="aa5c1756" xsi:type="Element" x="48" y="180" w="145" h="25">
+            <style>
+              <fillColor r="255" g="127" b="0" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-08294e85" elementRef="d34e395a" xsi:type="Element" x="108" y="132" w="97" h="25">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-70781625" elementRef="f82c2338" xsi:type="Element" x="48" y="216" w="145" h="25">
+            <style>
+              <fillColor r="0" g="0" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="255" g="255" b="255" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="edc294cf" elementRef="id-735efd92" xsi:type="Element" x="288" y="96" w="229" h="157">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="d697dd2e" elementRef="aa5c1756" xsi:type="Element" x="300" y="180" w="145" h="25">
+            <style>
+              <fillColor r="255" g="127" b="0" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-90b17455" elementRef="d34e395a" xsi:type="Element" x="300" y="144" w="97" h="25">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="c7000916" elementRef="f82c2338" xsi:type="Element" x="300" y="216" w="145" h="25">
+            <style>
+              <fillColor r="0" g="0" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="255" g="255" b="255" />
+              </font>
+            </style>
+          </node>
+          <node identifier="bb9991d2" elementRef="d34e395a" xsi:type="Element" x="396" y="144" w="97" h="25">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="id-933e36b1" elementRef="d5482b71" xsi:type="Element" x="540" y="96" w="229" h="157">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-70b4b2c2" elementRef="id-8b99f9ad" xsi:type="Element" x="552" y="180" w="145" h="25">
+            <style>
+              <fillColor r="255" g="255" b="0" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-8f6cbec8" elementRef="id-3c3e0ec8" xsi:type="Element" x="636" y="132" w="120" h="25">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-75708b6d" elementRef="f82c2338" xsi:type="Element" x="552" y="216" w="145" h="25">
+            <style>
+              <fillColor r="0" g="0" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="255" g="255" b="255" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="id-521b46eb" elementRef="id-9c4f6114" xsi:type="Element" x="36" y="55" w="86" h="26">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-45cedb8e" elementRef="id-5419f061" xsi:type="Element" x="288" y="41" w="229" h="40">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-0ef3b4a2" xsi:type="Label" x="132" y="8" w="145" h="73">
+          <label>A user sends a request with the desired state to one of the Swarm managers.</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="fc72d006" xsi:type="Label" x="36" y="264" w="229" h="85">
+          <label>Swarm manager gets the cluster information from the service registry, creates a set of tasks, and dispaches them to Swarm workers (managers in this context act as workers as well).</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-50676de0" xsi:type="Label" x="288" y="264" w="229" h="85">
+          <label>Swarm workers translate the tasks into commands and send them to the local Docker Engine which, in turn, runs or stops containers.</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-62e1a4da" xsi:type="Label" x="540" y="267" w="229" h="80">
+          <label>Swarm workers continuously monitor Docker events and update the service registry.</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <connection identifier="a00f0b5f" relationshipRef="b9a01432" xsi:type="Relationship" source="id-64229e8f" target="id-45cedb8e">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="f3091cb8" xsi:type="Line" source="id-64229e8f" target="fc72d006">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="f6cfc2de" xsi:type="Line" source="d697dd2e" target="id-50676de0">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-956a6ba9" xsi:type="Line" source="id-70b4b2c2" target="id-62e1a4da">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-1d5126ab" relationshipRef="id-5a4e0a22" xsi:type="Relationship" source="id-70b4b2c2" target="id-45cedb8e">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-72174dd0" relationshipRef="d0297d2b" xsi:type="Relationship" source="id-521b46eb" target="id-64229e8f">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-102af4a0" xsi:type="Line" source="id-0ef3b4a2" target="id-521b46eb">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+      </view>
+      <view identifier="id-639d2a2e" xsi:type="Diagram">
+        <name>proxy-scaled-service-view</name>
+        <node identifier="id-16593b73" elementRef="id-9a432693" xsi:type="Element" x="96" y="96" w="601" h="241">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-35d1e163" elementRef="id-67bbe7c5" xsi:type="Element" x="396" y="168" w="277" h="25">
+            <style>
+              <fillColor r="0" g="255" b="0" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-94b817be" elementRef="id-8ec8b15c" xsi:type="Element" x="108" y="276" w="120" h="25">
+            <style>
+              <fillColor r="153" g="102" b="51" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="255" g="255" b="255" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-482b6105" elementRef="b6f5b014" xsi:type="Element" x="108" y="132" w="565" h="25">
+            <style>
+              <fillColor r="0" g="255" b="0" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-138b73d3" elementRef="f7ebac08" xsi:type="Element" x="108" y="199" w="120" h="36">
+            <style>
+              <fillColor r="255" g="0" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="fb3a9847" elementRef="f7ebac08" xsi:type="Element" x="331" y="204" w="120" h="36">
+            <style>
+              <fillColor r="255" g="0" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="e40e3b3e" elementRef="f7ebac08" xsi:type="Element" x="552" y="204" w="120" h="36">
+            <style>
+              <fillColor r="255" g="0" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-071337a0" elementRef="id-8ec8b15c" xsi:type="Element" x="331" y="276" w="120" h="25">
+            <style>
+              <fillColor r="153" g="102" b="51" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="255" g="255" b="255" />
+              </font>
+            </style>
+          </node>
+          <node identifier="d6a49485" elementRef="id-8ec8b15c" xsi:type="Element" x="552" y="276" w="120" h="25">
+            <style>
+              <fillColor r="153" g="102" b="51" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="255" g="255" b="255" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="d23555b8" elementRef="id-9c4f6114" xsi:type="Element" x="96" y="60" w="97" h="25">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <connection identifier="fb8fd89c" relationshipRef="id-8794a5f8" xsi:type="Relationship" source="id-94b817be" target="fb3a9847">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-743e8627" relationshipRef="id-8794a5f8" xsi:type="Relationship" source="id-94b817be" target="e40e3b3e">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-1dc8f751" relationshipRef="id-8794a5f8" xsi:type="Relationship" source="id-94b817be" target="id-138b73d3">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="aaca951a" relationshipRef="id-9bfbc5c1" xsi:type="Relationship" source="id-482b6105" target="id-071337a0">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="312" y="288" />
+        </connection>
+        <connection identifier="d3f187ba" relationshipRef="fad95ea6" xsi:type="Relationship" source="fb3a9847" target="id-138b73d3">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="c2cca2f9" relationshipRef="fad95ea6" xsi:type="Relationship" source="e40e3b3e" target="fb3a9847">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-58d394ee" relationshipRef="id-8794a5f8" xsi:type="Relationship" source="id-071337a0" target="fb3a9847">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-0c1e3d03" relationshipRef="id-6ec5fbb2" xsi:type="Relationship" source="id-071337a0" target="d6a49485">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-2b7676cf" relationshipRef="id-6ec5fbb2" xsi:type="Relationship" source="id-071337a0" target="id-94b817be">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="f06a7e17" relationshipRef="id-8794a5f8" xsi:type="Relationship" source="id-071337a0" target="id-138b73d3">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-8ec156e6" relationshipRef="id-8794a5f8" xsi:type="Relationship" source="id-071337a0" target="e40e3b3e">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-223c73a3" relationshipRef="id-8794a5f8" xsi:type="Relationship" source="d6a49485" target="e40e3b3e">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-4e06734f" relationshipRef="id-8794a5f8" xsi:type="Relationship" source="d6a49485" target="fb3a9847">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-2fdc8c91" relationshipRef="id-8794a5f8" xsi:type="Relationship" source="d6a49485" target="id-138b73d3">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="bee8a88a" relationshipRef="cdc0bea2" xsi:type="Relationship" source="d23555b8" target="id-482b6105">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+      </view>
+      <view identifier="id-4bc70394" xsi:type="Diagram">
+        <name>cd-environment</name>
+        <node identifier="id-1ddc6cb4" elementRef="id-625cd187" xsi:type="Element" x="492" y="60" w="313" h="253">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-39ecb602" elementRef="d208dd2f" xsi:type="Element" x="504" y="264" w="109" h="38">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-9bcd669a" elementRef="id-3c3e0ec8" xsi:type="Element" x="646" y="156" w="120" h="25">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-5a37c664" elementRef="f7ebac08" xsi:type="Element" x="656" y="108" w="99" h="33">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="ccddfd06" elementRef="id-8ec8b15c" xsi:type="Element" x="528" y="112" w="99" h="25">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="de3bf4b4" elementRef="id-9af5e9bb" xsi:type="Element" x="518" y="156" w="120" h="25">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="aed9955a" elementRef="id-5a3065de" xsi:type="Element" x="72" y="60" w="409" h="253">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-686ce356" elementRef="id-284a5b64" xsi:type="Element" x="72" y="96" w="132" h="169">
+            <style>
+              <fillColor r="255" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+            <node identifier="cb8182fe" elementRef="id-6496bcd6" xsi:type="Element" x="72" y="132" w="117" h="25">
+              <style>
+                <fillColor r="181" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="id-558273ba" elementRef="fe6ffb89" xsi:type="Element" x="72" y="156" w="117" h="25">
+              <style>
+                <fillColor r="181" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="id-151cf829" elementRef="f5365ca8" xsi:type="Element" x="72" y="180" w="117" h="25">
+              <style>
+                <fillColor r="181" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="id-3cdd7ec0" elementRef="a366cc66" xsi:type="Element" x="72" y="204" w="117" h="25">
+              <style>
+                <fillColor r="181" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="id-1aee714b" elementRef="d689ac8e" xsi:type="Element" x="72" y="228" w="117" h="25">
+              <style>
+                <fillColor r="181" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+          </node>
+          <node identifier="id-3ccd7953" elementRef="d208dd2f" xsi:type="Element" x="83" y="264" w="109" h="38">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-12653c92" elementRef="aa2e299e" xsi:type="Element" x="192" y="96" w="265" h="169">
+            <style>
+              <fillColor r="255" g="255" b="0" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+            <node identifier="id-0728eacb" elementRef="id-8ec8b15c" xsi:type="Element" x="204" y="136" w="99" h="25">
+              <style>
+                <fillColor r="181" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="id-28344576" elementRef="f7ebac08" xsi:type="Element" x="332" y="132" w="99" h="33">
+              <style>
+                <fillColor r="181" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="f931c7cc" elementRef="id-3c3e0ec8" xsi:type="Element" x="252" y="180" w="120" h="25">
+              <style>
+                <fillColor r="181" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="id-586e64ce" elementRef="id-9af5e9bb" xsi:type="Element" x="252" y="216" w="120" h="25">
+              <style>
+                <fillColor r="181" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+          </node>
+        </node>
+        <node identifier="id-5492fd04" elementRef="cef4175f" xsi:type="Element" x="72" y="324" w="733" h="37">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <connection identifier="id-3b898158" relationshipRef="id-4a3e60d7" xsi:type="Relationship" source="id-39ecb602" target="id-5492fd04">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-0ee14413" relationshipRef="id-4a3e60d7" xsi:type="Relationship" source="id-3ccd7953" target="id-5492fd04">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+      </view>
+      <view identifier="f8999a8b" xsi:type="Diagram">
+        <name>cd-environment-jenkins</name>
+        <node identifier="daf333b4" elementRef="id-5a3065de" xsi:type="Element" x="72" y="60" w="469" h="253">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-0d471bec" elementRef="id-284a5b64" xsi:type="Element" x="72" y="96" w="230" h="169">
+            <style>
+              <fillColor r="255" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+            <node identifier="id-73d3cf69" elementRef="id-5dc99db1" xsi:type="Element" x="120" y="132" w="133" h="25">
+              <style>
+                <fillColor r="181" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+          </node>
+          <node identifier="dfa9796b" elementRef="d208dd2f" xsi:type="Element" x="83" y="264" w="109" h="38">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-6eed9ed9" elementRef="aa2e299e" xsi:type="Element" x="288" y="96" w="230" h="169">
+            <style>
+              <fillColor r="255" g="255" b="0" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+            <node identifier="b9cf16c5" elementRef="id-8ec8b15c" xsi:type="Element" x="288" y="140" w="99" h="25">
+              <style>
+                <fillColor r="181" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="ff04bfd4" elementRef="f7ebac08" xsi:type="Element" x="396" y="136" w="99" h="33">
+              <style>
+                <fillColor r="181" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="a984bc49" elementRef="id-3c3e0ec8" xsi:type="Element" x="336" y="180" w="120" h="25">
+              <style>
+                <fillColor r="181" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="fe665584" elementRef="id-9af5e9bb" xsi:type="Element" x="336" y="216" w="120" h="25">
+              <style>
+                <fillColor r="181" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+          </node>
+        </node>
+        <node identifier="id-262ea5d6" elementRef="cef4175f" xsi:type="Element" x="72" y="324" w="733" h="37">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="a8506536" elementRef="id-625cd187" xsi:type="Element" x="528" y="60" w="277" h="253">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="c6027589" elementRef="d208dd2f" xsi:type="Element" x="540" y="264" w="109" h="38">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-04320de9" elementRef="id-3c3e0ec8" xsi:type="Element" x="662" y="156" w="120" h="25">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-6d60be85" elementRef="f7ebac08" xsi:type="Element" x="672" y="108" w="99" h="33">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="b7dbec6c" elementRef="id-8ec8b15c" xsi:type="Element" x="545" y="112" w="99" h="25">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-924566b1" elementRef="id-9af5e9bb" xsi:type="Element" x="535" y="156" w="120" h="25">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="e2ecf8a5" elementRef="id-0b27c892" xsi:type="Element" x="545" y="204" w="99" h="25">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <connection identifier="b2fec765" relationshipRef="id-4a3e60d7" xsi:type="Relationship" source="dfa9796b" target="id-262ea5d6">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-0b554ec9" relationshipRef="id-4a3e60d7" xsi:type="Relationship" source="c6027589" target="id-262ea5d6">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+      </view>
+      <view identifier="id-8993c47b" xsi:type="Diagram">
+        <name>cloud-architecture</name>
+      </view>
+    </diagrams>
+  </views>
+</model>

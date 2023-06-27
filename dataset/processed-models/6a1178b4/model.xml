@@ -1,0 +1,612 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://www.opengroup.org/xsd/archimate/3.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengroup.org/xsd/archimate/3.0/ http://www.opengroup.org/xsd/archimate/3.1/archimate3_Diagram.xsd" identifier="id-6a1178b4">
+  <name>Types of consistency</name>
+  <elements>
+    <element identifier="id-202fec56" xsi:type="BusinessActor">
+      <name>Actor 1</name>
+    </element>
+    <element identifier="id-987339b7" xsi:type="BusinessActor">
+      <name>Actor 2</name>
+    </element>
+    <element identifier="id-4eb1e8cf" xsi:type="BusinessActor">
+      <name>Actor 1</name>
+    </element>
+    <element identifier="id-386562d2" xsi:type="BusinessActor">
+      <name>Actor 2</name>
+    </element>
+    <element identifier="id-912eabdc" xsi:type="ApplicationEvent">
+      <name>business transaction 1</name>
+    </element>
+    <element identifier="id-4e26333d" xsi:type="ApplicationEvent">
+      <name>business transaction 2</name>
+    </element>
+    <element identifier="f76cbe57" xsi:type="ApplicationEvent">
+      <name>distributed transaction</name>
+    </element>
+    <element identifier="cda25434" xsi:type="ApplicationEvent">
+      <name>distributed transaction (copy)</name>
+    </element>
+    <element identifier="dd09a709" xsi:type="ApplicationEvent">
+      <name>attempt to access system 1</name>
+    </element>
+    <element identifier="id-8d412c37" xsi:type="ApplicationEvent">
+      <name>attempt to access system 2</name>
+    </element>
+    <element identifier="b132b432" xsi:type="ApplicationProcess">
+      <name>Retry attempts to access the system</name>
+    </element>
+    <element identifier="id-4d0c95a9" xsi:type="ApplicationProcess">
+      <name>Retry attempts to access the system</name>
+    </element>
+    <element identifier="c8b3d8c7" xsi:type="ApplicationProcess">
+      <name>Retry attempts to commit distributed transaction</name>
+    </element>
+    <element identifier="f1affb1f" xsi:type="ApplicationEvent">
+      <name>attempt to access system 1 (copy)</name>
+    </element>
+    <element identifier="id-28b23906" xsi:type="ApplicationFunction">
+      <name>system 1 task</name>
+    </element>
+    <element identifier="id-2d239603" xsi:type="ApplicationFunction">
+      <name>system 2 task</name>
+    </element>
+    <element identifier="id-18879795" xsi:type="ApplicationFunction">
+      <name>system 1 task</name>
+    </element>
+    <element identifier="id-8498b088" xsi:type="ApplicationFunction">
+      <name>system 2 task</name>
+    </element>
+    <element identifier="c23d308b" xsi:type="Meaning">
+      <name>Meaning</name>
+    </element>
+    <element identifier="id-7fbf1dbb" xsi:type="Requirement">
+      <name>smaller aggregates</name>
+    </element>
+    <element identifier="id-44b6ebf8" xsi:type="Outcome">
+      <name>reduce transactional locking</name>
+    </element>
+    <element identifier="ba1281cb" xsi:type="Outcome">
+      <name>reduce consistency complexities</name>
+    </element>
+    <element identifier="id-84f4d64c" xsi:type="Grouping">
+      <name>system 1</name>
+    </element>
+    <element identifier="b8e0c309" xsi:type="Grouping">
+      <name>system 2</name>
+    </element>
+    <element identifier="id-52b275fd" xsi:type="Grouping">
+      <name>system 1</name>
+    </element>
+    <element identifier="id-9fa2f0b3" xsi:type="Grouping">
+      <name>system 2</name>
+    </element>
+    <element identifier="id-85609849" xsi:type="Grouping">
+      <name>Transactional Boundary</name>
+    </element>
+    <element identifier="id-19e695af" xsi:type="Grouping">
+      <name>Transactional Boundary</name>
+    </element>
+    <element identifier="a4c8b471" xsi:type="Grouping">
+      <name>Transaction 1 boundary</name>
+    </element>
+    <element identifier="id-4f27e0a1" xsi:type="Grouping">
+      <name>Transaction 2 boundary</name>
+    </element>
+  </elements>
+  <relationships>
+    <relationship identifier="cec93f91" source="f76cbe57" target="id-912eabdc" xsi:type="Composition" />
+    <relationship identifier="ee38f297" source="f76cbe57" target="id-4e26333d" xsi:type="Composition" />
+    <relationship identifier="ff47e1bf" source="id-912eabdc" target="id-84f4d64c" xsi:type="Triggering">
+      <name>request</name>
+    </relationship>
+    <relationship identifier="ac3c16f5" source="id-84f4d64c" target="id-912eabdc" xsi:type="Triggering">
+      <name>response</name>
+    </relationship>
+    <relationship identifier="id-88357bdb" source="id-4e26333d" target="b8e0c309" xsi:type="Triggering">
+      <name>request</name>
+    </relationship>
+    <relationship identifier="e7ede966" source="b8e0c309" target="id-4e26333d" xsi:type="Triggering">
+      <name>response</name>
+    </relationship>
+    <relationship identifier="id-506e7559" source="cda25434" target="id-8d412c37" xsi:type="Composition" />
+    <relationship identifier="id-250df832" source="cda25434" target="dd09a709" xsi:type="Composition" />
+    <relationship identifier="e7bd9544" source="id-52b275fd" target="dd09a709" xsi:type="Triggering">
+      <name>response</name>
+    </relationship>
+    <relationship identifier="ef47368c" source="dd09a709" target="id-52b275fd" xsi:type="Triggering">
+      <name>request</name>
+    </relationship>
+    <relationship identifier="id-9701f2e8" source="id-8d412c37" target="id-9fa2f0b3" xsi:type="Triggering">
+      <name>request</name>
+    </relationship>
+    <relationship identifier="da862877" source="id-9fa2f0b3" target="id-8d412c37" xsi:type="Triggering">
+      <name>response</name>
+    </relationship>
+    <relationship identifier="id-8357ebbf" source="id-85609849" target="id-28b23906" xsi:type="Composition" />
+    <relationship identifier="id-9925b26f" source="id-85609849" target="id-2d239603" xsi:type="Composition" />
+    <relationship identifier="id-7ad13f7f" source="id-987339b7" target="id-2d239603" xsi:type="Association" />
+    <relationship identifier="id-55b50be4" source="id-202fec56" target="id-85609849" xsi:type="Association">
+      <name>The first actor performs a task that involves both systems</name>
+    </relationship>
+    <relationship identifier="id-116b2186" source="id-4eb1e8cf" target="id-19e695af" xsi:type="Association">
+      <name>The first actor performs a task that involves both systems</name>
+    </relationship>
+    <relationship identifier="bb4325a4" source="id-19e695af" target="id-18879795" xsi:type="Composition" />
+    <relationship identifier="id-2f6c7e3c" source="id-19e695af" target="id-8498b088" xsi:type="Composition" />
+    <relationship identifier="id-89e6b0c0" source="id-386562d2" target="id-4f27e0a1" xsi:type="Association" />
+    <relationship identifier="id-3348ebbd" source="a4c8b471" target="id-18879795" xsi:type="Composition" />
+    <relationship identifier="id-3ea037d1" source="id-4f27e0a1" target="id-8498b088" xsi:type="Composition" />
+    <relationship identifier="id-4b215b8d" source="id-4eb1e8cf" target="a4c8b471" xsi:type="Association" />
+    <relationship identifier="id-54dc436c" source="id-4eb1e8cf" target="id-4f27e0a1" xsi:type="Association" />
+    <relationship identifier="id-86e8bfbc" source="id-7fbf1dbb" target="id-44b6ebf8" xsi:type="Influence" />
+    <relationship identifier="id-5a841013" source="id-7fbf1dbb" target="ba1281cb" xsi:type="Influence" />
+  </relationships>
+  <views>
+    <diagrams>
+      <view identifier="id-0de79f25" xsi:type="Diagram">
+        <name>Types of consistency</name>
+        <node identifier="id-644daa56" xsi:type="Label" x="160" y="1289" w="1697" h="412">
+          <label>timeline -&gt;&#xD;
+users get an immediate confrmation that the response 1 received or response 2 received</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="18">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="b649411e" xsi:type="Label" x="160" y="180" w="1697" h="412">
+          <label>timeline -&gt;&#xD;
+users wait until the whole transaction completes</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="18">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-72adf9b7" elementRef="id-84f4d64c" xsi:type="Element" x="430" y="745" w="400" h="140">
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-48e9c728" elementRef="b8e0c309" xsi:type="Element" x="1030" y="745" w="400" h="140">
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="cedc6f28" xsi:type="Label" x="1436" y="494" w="185" h="80">
+          <label>If the error in the second transaction is that both the first and the second rollback</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-0a285a1d" xsi:type="Label" x="1271" y="1545" w="185" h="80">
+          <label>Without transactions there are no locks, two processes are performed separately</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-2d8cb05c" elementRef="id-52b275fd" xsi:type="Element" x="736" y="1051" w="400" h="140">
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-7dca5531" elementRef="id-9fa2f0b3" xsi:type="Element" x="755" y="1820" w="400" h="140">
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-22beb0b7" elementRef="b132b432" xsi:type="Element" x="600" y="1385" w="672" h="101">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="b0f6ffce" elementRef="dd09a709" xsi:type="Element" x="660" y="1415" w="570" h="55">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="id-4a30599f" elementRef="id-4d0c95a9" xsi:type="Element" x="600" y="1525" w="672" h="91">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="f1544965" elementRef="id-8d412c37" xsi:type="Element" x="660" y="1550" w="570" h="55">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="id-0c31c8ba" elementRef="c8b3d8c7" xsi:type="Element" x="235" y="250" w="1318" h="245">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="ec26d1f8" elementRef="f76cbe57" xsi:type="Element" x="280" y="310" w="1236" h="156">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+            <node identifier="id-67d87379" elementRef="id-912eabdc" xsi:type="Element" x="320" y="370" w="570" h="55">
+              <style>
+                <fillColor r="181" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="id-1805a000" elementRef="id-4e26333d" xsi:type="Element" x="925" y="370" w="511" h="55">
+              <style>
+                <fillColor r="181" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+          </node>
+        </node>
+        <node identifier="id-6f038fb4" xsi:type="Label" x="95" y="70" w="461" h="90">
+          <label>Transactional consistency.  &#xD;
+When a transaction is finished the system is in a consistent state.&#xD;
+ACID (Atomicity, Consistency, Isolation, Durability)&#xD;
+The more objects involve a distributed transaction, the greater the risk of potential locks and conflicts</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="f8dbd97d" xsi:type="Label" x="120" y="1190" w="461" h="80">
+          <label>Eventual Consistency.&#xD;
+BASE (Basically Available, Soft state, Eventual consistency)</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-7c791500" elementRef="id-85609849" xsi:type="Element" x="2220" y="305" w="1236" h="156">
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="a7928f72" elementRef="id-28b23906" xsi:type="Element" x="2255" y="370" w="570" h="55">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-609ac3ee" elementRef="id-2d239603" xsi:type="Element" x="2840" y="370" w="570" h="55">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="id-6fe054ca" elementRef="id-202fec56" xsi:type="Element" x="2355" y="159" w="120" h="55">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-05b070f7" elementRef="id-987339b7" xsi:type="Element" x="3090" y="159" w="120" h="55">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-903e6076" xsi:type="Label" x="2898" y="250" w="503" h="44">
+          <label>At the same time, the second actor can not access the second system, even if it is now free&#xD;
+(because both systems are blocked by the first transaction)</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-771fb301" elementRef="id-4eb1e8cf" xsi:type="Element" x="2511" y="1190" w="120" h="55">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-65c09c01" elementRef="id-386562d2" xsi:type="Element" x="2880" y="1720" w="120" h="55">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-53faaaf1" xsi:type="Label" x="2720" y="1640" w="503" h="44">
+          <label>At the same time, the second actor can access the second system if it is now free &#xD;
+(and not necessarily wait for the first system as in the previous example)</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="b6982615" elementRef="a4c8b471" xsi:type="Element" x="2460" y="1355" w="672" h="101">
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="cf14bc7f" elementRef="id-18879795" xsi:type="Element" x="2520" y="1390" w="570" h="55">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="id-2a78a902" elementRef="id-4f27e0a1" xsi:type="Element" x="2460" y="1500" w="672" h="91">
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-52524bdb" elementRef="id-8498b088" xsi:type="Element" x="2520" y="1525" w="570" h="55">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="fd761d2c" xsi:type="Label" x="3175" y="1155" w="206" h="90">
+          <label>If this principle is applied to aggregates, then it turns out that the fewer objects in the aggregate, the less the probability of locks and conflicts</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-7523bbb8" elementRef="id-7fbf1dbb" xsi:type="Element" x="3115" y="1244" w="120" h="55">
+          <style>
+            <fillColor r="204" g="204" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-906f905a" elementRef="id-44b6ebf8" xsi:type="Element" x="3271" y="1045" w="130" h="55">
+          <style>
+            <fillColor r="204" g="204" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="c312a3da" elementRef="ba1281cb" xsi:type="Element" x="3384" y="1127" w="120" h="55">
+          <style>
+            <fillColor r="204" g="204" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <connection identifier="id-3723c1d2" relationshipRef="ac3c16f5" xsi:type="Relationship" source="id-72adf9b7" target="id-67d87379">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="750" y="591" />
+        </connection>
+        <connection identifier="f180eac5" relationshipRef="e7ede966" xsi:type="Relationship" source="id-48e9c728" target="id-1805a000">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1355" y="586" />
+        </connection>
+        <connection identifier="id-2b9eeffe" relationshipRef="e7bd9544" xsi:type="Relationship" source="id-2d8cb05c" target="b0f6ffce">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1113" y="1319" />
+        </connection>
+        <connection identifier="cf24a2d7" relationshipRef="da862877" xsi:type="Relationship" source="id-7dca5531" target="f1544965">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1100" y="1713" />
+        </connection>
+        <connection identifier="ed0c273f" relationshipRef="ef47368c" xsi:type="Relationship" source="b0f6ffce" target="id-2d8cb05c">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="789" y="1315" />
+        </connection>
+        <connection identifier="id-7ef1e66c" relationshipRef="id-9701f2e8" xsi:type="Relationship" source="f1544965" target="id-7dca5531">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="811" y="1718" />
+        </connection>
+        <connection identifier="id-41b35368" relationshipRef="ff47e1bf" xsi:type="Relationship" source="id-67d87379" target="id-72adf9b7">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="466" y="591" />
+        </connection>
+        <connection identifier="id-93aff5f0" relationshipRef="id-88357bdb" xsi:type="Relationship" source="id-1805a000" target="id-48e9c728">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1066" y="591" />
+        </connection>
+        <connection identifier="id-50f76c22" relationshipRef="id-55b50be4" xsi:type="Relationship" source="id-6fe054ca" target="id-7c791500">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="a8338af7" relationshipRef="id-7ad13f7f" xsi:type="Relationship" source="id-05b070f7" target="id-609ac3ee">
+          <style>
+            <lineColor r="255" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-694d2716" relationshipRef="id-4b215b8d" xsi:type="Relationship" source="id-771fb301" target="b6982615">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-1e44c781" relationshipRef="id-54dc436c" xsi:type="Relationship" source="id-771fb301" target="id-2a78a902">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="2615" y="1375" />
+        </connection>
+        <connection identifier="id-69035d66" relationshipRef="id-89e6b0c0" xsi:type="Relationship" source="id-65c09c01" target="id-2a78a902">
+          <style>
+            <lineColor r="255" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="d0cb1d31" relationshipRef="id-86e8bfbc" xsi:type="Relationship" source="id-7523bbb8" target="id-906f905a">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-625352ba" relationshipRef="id-5a841013" xsi:type="Relationship" source="id-7523bbb8" target="c312a3da">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+      </view>
+    </diagrams>
+  </views>
+</model>

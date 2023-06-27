@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archimate:model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:archimate="http://www.archimatetool.com/archimate" name="solr" id="e59bd82e" version="3.1.1">
+  <folder name="Business" id="c9138134" type="business"/>
+  <folder name="Application" id="bc2b5561" type="application">
+    <element xsi:type="archimate:DataObject" id="a3f788d7" name="solr"/>
+    <element xsi:type="archimate:DataObject" id="f7dd7d17" name="Zookeeper"/>
+    <element xsi:type="archimate:ApplicationService" id="e0a50016" name="Proxy"/>
+  </folder>
+  <folder name="Technology" id="a08a9df7" type="technology">
+    <element xsi:type="archimate:Node" id="26cc019d" name="solr-1"/>
+    <element xsi:type="archimate:Node" id="65d70f57" name="solr-2"/>
+    <element xsi:type="archimate:Node" id="cc806673" name="misc"/>
+  </folder>
+  <folder name="Motivation" id="0a570961" type="motivation"/>
+  <folder name="Implementation &amp; Migration" id="21e490e1" type="implementation_migration"/>
+  <folder name="Connectors" id="243b03ab" type="connectors"/>
+  <folder name="Relations" id="d20fdaa4" type="relations">
+    <element xsi:type="archimate:AssociationRelationship" id="a3406d80" name="Replication" source="a3f788d7" target="a3f788d7"/>
+    <element xsi:type="archimate:AssociationRelationship" id="e8f6ea96" name="Replication" source="f7dd7d17" target="f7dd7d17"/>
+    <element xsi:type="archimate:AssociationRelationship" id="9f0f86df" source="a3f788d7" target="f7dd7d17"/>
+    <element xsi:type="archimate:AccessRelationship" id="59c1aa22" source="e0a50016" target="a3f788d7"/>
+    <element xsi:type="archimate:AssociationRelationship" id="2ab0c6f9" name="Sharding" source="a3f788d7" target="a3f788d7"/>
+  </folder>
+  <folder name="Views" id="9d8b601c" type="diagrams">
+    <element xsi:type="archimate:ArchimateDiagramModel" id="bcc8b470" name="architecture">
+      <child xsi:type="archimate:DiagramObject" id="4cf7c619" textAlignment="2" archimateElement="65d70f57">
+        <bounds x="204" y="108" width="145" height="157"/>
+        <child xsi:type="archimate:DiagramObject" id="c0a41e6d" textAlignment="2" targetConnections="d326eb1a cde2b4fb" archimateElement="a3f788d7">
+          <bounds x="12" y="108" width="109" height="37"/>
+          <sourceConnection xsi:type="archimate:Connection" id="7bf66a2b" source="c0a41e6d" target="7f8de3eb" relationship="a3406d80"/>
+          <sourceConnection xsi:type="archimate:Connection" id="eea36559" source="c0a41e6d" target="594a629b" relationship="9f0f86df"/>
+          <sourceConnection xsi:type="archimate:Connection" id="f2b89531" source="c0a41e6d" target="ff77bd1c" relationship="9f0f86df"/>
+          <sourceConnection xsi:type="archimate:Connection" id="08e4c77c" source="c0a41e6d" target="0a0c4d7e" relationship="9f0f86df"/>
+          <sourceConnection xsi:type="archimate:Connection" id="758270fe" source="c0a41e6d" target="de02e185" relationship="2ab0c6f9"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="ff77bd1c" textAlignment="2" targetConnections="ccafb5bf f2b89531 555655f3 ee36832e" archimateElement="f7dd7d17">
+          <bounds x="12" y="48" width="109" height="37"/>
+          <sourceConnection xsi:type="archimate:Connection" id="c07da0b3" source="ff77bd1c" target="594a629b" relationship="e8f6ea96"/>
+        </child>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="643a220e" textAlignment="2" archimateElement="26cc019d">
+        <bounds x="12" y="108" width="145" height="157"/>
+        <child xsi:type="archimate:DiagramObject" id="7f8de3eb" textAlignment="2" targetConnections="7bf66a2b 4f6d4374 b47a06ca" archimateElement="a3f788d7">
+          <bounds x="12" y="108" width="109" height="37"/>
+          <sourceConnection xsi:type="archimate:Connection" id="ccafb5bf" source="7f8de3eb" target="ff77bd1c" relationship="9f0f86df"/>
+          <sourceConnection xsi:type="archimate:Connection" id="dc060b39" source="7f8de3eb" target="0a0c4d7e" relationship="9f0f86df"/>
+          <sourceConnection xsi:type="archimate:Connection" id="f493bd26" source="7f8de3eb" target="594a629b" relationship="9f0f86df"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="594a629b" textAlignment="2" targetConnections="c07da0b3 f493bd26 eea36559 a5e29ac7" archimateElement="f7dd7d17">
+          <bounds x="12" y="48" width="109" height="37"/>
+        </child>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="1e2e4c40" textAlignment="2" archimateElement="cc806673">
+        <bounds x="396" y="108" width="145" height="157"/>
+        <child xsi:type="archimate:DiagramObject" id="0a0c4d7e" textAlignment="2" targetConnections="dc060b39 08e4c77c 256fde5c 6cac3e83" archimateElement="f7dd7d17">
+          <bounds x="12" y="48" width="109" height="37"/>
+          <sourceConnection xsi:type="archimate:Connection" id="555655f3" source="0a0c4d7e" target="ff77bd1c" relationship="e8f6ea96"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="de02e185" textAlignment="2" targetConnections="758270fe a1db5700 2699407e 547a7b17" archimateElement="a3f788d7">
+          <bounds x="12" y="108" width="109" height="37"/>
+          <sourceConnection xsi:type="archimate:Connection" id="6cac3e83" source="de02e185" target="0a0c4d7e" relationship="9f0f86df"/>
+          <sourceConnection xsi:type="archimate:Connection" id="ee36832e" source="de02e185" target="ff77bd1c" relationship="9f0f86df"/>
+          <sourceConnection xsi:type="archimate:Connection" id="a5e29ac7" source="de02e185" target="594a629b" relationship="9f0f86df"/>
+        </child>
+      </child>
+      <child xsi:type="archimate:Note" id="459bc6a6" textAlignment="1">
+        <bounds x="12" y="288" width="193" height="68"/>
+        <sourceConnection id="4f6d4374" source="459bc6a6" target="7f8de3eb"/>
+        <content>Two solr instances are replicating data in order to provide failure recovery.</content>
+      </child>
+      <child xsi:type="archimate:Note" id="f609a15d" textAlignment="1">
+        <bounds x="552" y="156" width="109" height="200"/>
+        <sourceConnection id="a1db5700" source="f609a15d" target="de02e185"/>
+        <content>The third solr instance is not mandatory. If performance becomes a problem, more instances can be added and collections can be split into shards.</content>
+      </child>
+      <child xsi:type="archimate:Note" id="5ab6a0c3" textAlignment="1">
+        <bounds x="552" y="12" width="109" height="133"/>
+        <sourceConnection id="256fde5c" source="5ab6a0c3" target="0a0c4d7e"/>
+        <content>There should be an odd number of Zookeeper instances in order to facilitate leader election. Three is a good start.</content>
+      </child>
+      <child xsi:type="archimate:Note" id="99d43152" textAlignment="1">
+        <bounds x="212" y="288" width="133" height="68"/>
+        <sourceConnection id="cde2b4fb" source="99d43152" target="c0a41e6d"/>
+        <content>Each solr instance is pointing to all Zookeeper instances.</content>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="20b9a48d" textAlignment="2" targetConnections="4ac87993" archimateElement="e0a50016">
+        <bounds x="16" y="72" width="525" height="25"/>
+        <sourceConnection xsi:type="archimate:Connection" id="b47a06ca" source="20b9a48d" target="7f8de3eb" relationship="59c1aa22"/>
+        <sourceConnection xsi:type="archimate:Connection" id="2699407e" source="20b9a48d" target="de02e185" relationship="59c1aa22"/>
+        <sourceConnection xsi:type="archimate:Connection" id="d326eb1a" source="20b9a48d" target="c0a41e6d" relationship="59c1aa22"/>
+      </child>
+      <child xsi:type="archimate:Note" id="01e21034" textAlignment="1">
+        <bounds x="16" y="12" width="525" height="44"/>
+        <sourceConnection id="4ac87993" source="01e21034" target="20b9a48d"/>
+        <content>Proxy (nginx or HAProxy) will switch from one solr replica to another in case of a failure. Load balancing is accomplished by solr itself.</content>
+      </child>
+      <child xsi:type="archimate:Note" id="ef6c53de" textAlignment="1">
+        <bounds x="360" y="288" width="181" height="68"/>
+        <sourceConnection id="547a7b17" source="ef6c53de" target="de02e185"/>
+        <content>Data is sharded between two different solr instances in order to provide faster queries.</content>
+      </child>
+    </element>
+  </folder>
+</archimate:model>

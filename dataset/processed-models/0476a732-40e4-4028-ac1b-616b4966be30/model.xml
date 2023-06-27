@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://www.opengroup.org/xsd/archimate/3.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengroup.org/xsd/archimate/3.0/ http://www.opengroup.org/xsd/archimate/3.1/archimate3_Diagram.xsd" identifier="id-0476a732-40e4-4028-ac1b-616b4966be30">
+  <name>Microservices Design Patterns - Saga Orchestration</name>
+  <elements>
+    <element identifier="id-01ead4ce-dc20-4845-bffa-a17ef91a962b" xsi:type="ApplicationComponent">
+      <name>Order Microservice</name>
+    </element>
+    <element identifier="id-1cfffb1a-d654-40d5-b1a2-5da267815219" xsi:type="ApplicationComponent">
+      <name>Payment Microservice</name>
+    </element>
+    <element identifier="a65f3d15-5f27-427d-8dfa-5cf144f3bd85" xsi:type="ApplicationComponent">
+      <name>Kafka</name>
+    </element>
+    <element identifier="id-5c925794-dc45-4fb2-84df-3e75461a30d2" xsi:type="ApplicationComponent">
+      <name>orderSaga topic</name>
+    </element>
+    <element identifier="id-6cedda7e-a517-426c-9b97-aca57e03ac53" xsi:type="ApplicationComponent">
+      <name>payments topic</name>
+    </element>
+    <element identifier="id-36b046d4-af7d-4c71-881b-95e50ce16aa9" xsi:type="ApplicationInterface">
+      <name>Create order http</name>
+    </element>
+    <element identifier="e6275b58-34fe-43d5-b767-e739e0f66019" xsi:type="ApplicationInterface">
+      <name>Accept order events</name>
+    </element>
+    <element identifier="id-5cd45d16-87b4-48a1-8e7b-7cba813f96fc" xsi:type="ApplicationInterface">
+      <name>Subscribe to order events</name>
+    </element>
+    <element identifier="id-68b882d8-d9d0-428a-93ea-6f714253beff" xsi:type="ApplicationInterface">
+      <name>Accept payment events</name>
+    </element>
+    <element identifier="id-57aa17f1-06cf-4f40-9380-74a67f140fec" xsi:type="ApplicationInterface">
+      <name>Subscribe to payment events</name>
+    </element>
+    <element identifier="id-664b2b80-529e-4ee7-b045-8d4cc7beadf2" xsi:type="DataObject">
+      <name>Order</name>
+    </element>
+    <element identifier="b4ba05d7-38bf-4a7e-b53e-71dbd191b3f2" xsi:type="ApplicationInterface">
+      <name>Get orders</name>
+    </element>
+    <element identifier="id-1a64b803-88b0-4a15-95db-d9f44a059db8" xsi:type="DataObject">
+      <name>Transaction</name>
+    </element>
+    <element identifier="id-9d5cc65c-96fc-4112-ad0e-bfe8c3542d77" xsi:type="ApplicationComponent">
+      <name>shipments topic</name>
+    </element>
+    <element identifier="id-1f5732cf-2a9f-4782-98ce-7b50c484f2db" xsi:type="ApplicationComponent">
+      <name>Shipment microservice</name>
+    </element>
+    <element identifier="id-7898dc40-7a2d-48f1-8c2a-0ce35cd86e1c" xsi:type="DataObject">
+      <name>Shipment</name>
+    </element>
+    <element identifier="id-5efea9d6-7061-4016-94ea-465d7e122b06" xsi:type="DataObject">
+      <name>Order Saga</name>
+    </element>
+  </elements>
+  <relationships>
+    <relationship identifier="id-15a6b8c9-da40-4f75-84a4-a66f95e85c31" source="a65f3d15-5f27-427d-8dfa-5cf144f3bd85" target="id-5c925794-dc45-4fb2-84df-3e75461a30d2" xsi:type="Composition" />
+    <relationship identifier="fdd34e1a-d3ae-449c-a537-cbad462b2a8b" source="a65f3d15-5f27-427d-8dfa-5cf144f3bd85" target="id-6cedda7e-a517-426c-9b97-aca57e03ac53" xsi:type="Composition" />
+    <relationship identifier="id-27e2f84d-1098-4239-bf8b-9fde5e4081be" source="id-01ead4ce-dc20-4845-bffa-a17ef91a962b" target="id-36b046d4-af7d-4c71-881b-95e50ce16aa9" xsi:type="Composition" />
+    <relationship identifier="id-76bf49ce-34f0-4c10-8df4-d448fc102cc9" source="id-1cfffb1a-d654-40d5-b1a2-5da267815219" target="id-68b882d8-d9d0-428a-93ea-6f714253beff" xsi:type="Flow">
+      <name>CreditExceeded, CreditReserved</name>
+    </relationship>
+    <relationship identifier="id-68d5819d-aca2-4b88-8c7c-4e020bf657ee" source="id-01ead4ce-dc20-4845-bffa-a17ef91a962b" target="e6275b58-34fe-43d5-b767-e739e0f66019" xsi:type="Flow">
+      <name>NewOrder</name>
+    </relationship>
+    <relationship identifier="ceea517a-2c79-472f-9ef6-5fb193235d36" source="a65f3d15-5f27-427d-8dfa-5cf144f3bd85" target="e6275b58-34fe-43d5-b767-e739e0f66019" xsi:type="Composition" />
+    <relationship identifier="id-146fc256-c480-478e-a95a-dfce21ef90af" source="id-5c925794-dc45-4fb2-84df-3e75461a30d2" target="e6275b58-34fe-43d5-b767-e739e0f66019" xsi:type="Composition" />
+    <relationship identifier="e1b53660-19fd-48d4-b1bd-f23f32327b08" source="a65f3d15-5f27-427d-8dfa-5cf144f3bd85" target="id-5cd45d16-87b4-48a1-8e7b-7cba813f96fc" xsi:type="Composition" />
+    <relationship identifier="id-16b6a832-f5e0-44b2-816e-8b4f4690f491" source="id-5c925794-dc45-4fb2-84df-3e75461a30d2" target="id-5cd45d16-87b4-48a1-8e7b-7cba813f96fc" xsi:type="Composition" />
+    <relationship identifier="ae1e8b55-84a7-40a3-9d9f-7cc4df277853" source="a65f3d15-5f27-427d-8dfa-5cf144f3bd85" target="id-68b882d8-d9d0-428a-93ea-6f714253beff" xsi:type="Composition" />
+    <relationship identifier="id-31a4f848-94ac-457f-8eaf-d67b88cb4390" source="a65f3d15-5f27-427d-8dfa-5cf144f3bd85" target="id-6cedda7e-a517-426c-9b97-aca57e03ac53" xsi:type="Composition" />
+    <relationship identifier="id-2f491b69-3ff1-4d26-9c71-2925ff900ef4" source="id-6cedda7e-a517-426c-9b97-aca57e03ac53" target="id-68b882d8-d9d0-428a-93ea-6f714253beff" xsi:type="Composition" />
+    <relationship identifier="id-881feb5b-9f50-42ca-b94b-94f369b1ae0f" source="id-5cd45d16-87b4-48a1-8e7b-7cba813f96fc" target="id-1cfffb1a-d654-40d5-b1a2-5da267815219" xsi:type="Flow">
+      <name>NewOrder</name>
+    </relationship>
+    <relationship identifier="f0202f31-4e61-43ca-a277-e01b18bef744" source="a65f3d15-5f27-427d-8dfa-5cf144f3bd85" target="id-57aa17f1-06cf-4f40-9380-74a67f140fec" xsi:type="Composition" />
+    <relationship identifier="id-16e6c752-c0e9-48a8-a2ea-44d14b4bc907" source="id-6cedda7e-a517-426c-9b97-aca57e03ac53" target="id-57aa17f1-06cf-4f40-9380-74a67f140fec" xsi:type="Composition" />
+    <relationship identifier="id-880da5ff-e730-48f6-918b-6e4875119db0" source="id-57aa17f1-06cf-4f40-9380-74a67f140fec" target="id-01ead4ce-dc20-4845-bffa-a17ef91a962b" xsi:type="Flow" />
+    <relationship identifier="id-6edbf86b-172d-49b7-ad13-0413a5f83071" source="id-01ead4ce-dc20-4845-bffa-a17ef91a962b" target="id-664b2b80-529e-4ee7-b045-8d4cc7beadf2" xsi:type="Access" accessType="Write" />
+    <relationship identifier="e3dc2a6b-f4e4-42f6-9b8a-e5e398d0102e" source="id-01ead4ce-dc20-4845-bffa-a17ef91a962b" target="b4ba05d7-38bf-4a7e-b53e-71dbd191b3f2" xsi:type="Composition" />
+    <relationship identifier="af71d923-db65-47e7-a0ca-c6aa05fe8d27" source="id-1cfffb1a-d654-40d5-b1a2-5da267815219" target="id-1a64b803-88b0-4a15-95db-d9f44a059db8" xsi:type="Access" accessType="Write" />
+    <relationship identifier="id-0a9fcf53-d886-4b25-98b2-e7cd45b3784b" source="a65f3d15-5f27-427d-8dfa-5cf144f3bd85" target="id-9d5cc65c-96fc-4112-ad0e-bfe8c3542d77" xsi:type="Composition" />
+    <relationship identifier="e02e087a-1a82-4925-8c22-f7807febab14" source="id-01ead4ce-dc20-4845-bffa-a17ef91a962b" target="id-6cedda7e-a517-426c-9b97-aca57e03ac53" xsi:type="Flow">
+      <name>ReserveCredit, RollbackReserveCredit</name>
+    </relationship>
+    <relationship identifier="id-278d0a14-4055-45cd-8c39-7aa58d3aad8c" source="id-6cedda7e-a517-426c-9b97-aca57e03ac53" target="id-1cfffb1a-d654-40d5-b1a2-5da267815219" xsi:type="Flow" />
+    <relationship identifier="b1d34c1d-d2f0-42e9-87a5-7a43ee55a70e" source="id-1cfffb1a-d654-40d5-b1a2-5da267815219" target="id-5c925794-dc45-4fb2-84df-3e75461a30d2" xsi:type="Flow">
+      <name>CreditExceeded, CreditReserved, CreditReservedRollbacked</name>
+    </relationship>
+    <relationship identifier="cf81fbbd-e977-4e77-9530-9cd8fe6e262c" source="id-5c925794-dc45-4fb2-84df-3e75461a30d2" target="id-01ead4ce-dc20-4845-bffa-a17ef91a962b" xsi:type="Flow" />
+    <relationship identifier="id-297f5707-8a4d-4e92-891f-2241908eaef0" source="id-01ead4ce-dc20-4845-bffa-a17ef91a962b" target="id-9d5cc65c-96fc-4112-ad0e-bfe8c3542d77" xsi:type="Flow">
+      <name>ShipOrder, RollbackShipOrder</name>
+    </relationship>
+    <relationship identifier="id-8474cae7-7bb8-48e6-9891-a112b4500086" source="id-9d5cc65c-96fc-4112-ad0e-bfe8c3542d77" target="id-1f5732cf-2a9f-4782-98ce-7b50c484f2db" xsi:type="Flow" />
+    <relationship identifier="id-01c5438a-bb5d-4998-803a-30dcf31bd23d" source="id-1f5732cf-2a9f-4782-98ce-7b50c484f2db" target="id-5c925794-dc45-4fb2-84df-3e75461a30d2" xsi:type="Flow">
+      <name>OrderShipped, OrderUnshippable,</name>
+    </relationship>
+    <relationship identifier="id-6e10348f-e5a7-49b1-872d-d8e54f9540e0" source="id-1f5732cf-2a9f-4782-98ce-7b50c484f2db" target="id-7898dc40-7a2d-48f1-8c2a-0ce35cd86e1c" xsi:type="Access" accessType="Write" />
+    <relationship identifier="aadde3be-b3da-4f51-869f-43cca04e346a" source="id-01ead4ce-dc20-4845-bffa-a17ef91a962b" target="id-5efea9d6-7061-4016-94ea-465d7e122b06" xsi:type="Access" accessType="Write" />
+  </relationships>
+  <views>
+    <diagrams>
+      <view identifier="id-912723cb-0742-40d8-97f2-2b51d2ef4d68" xsi:type="Diagram">
+        <name>Saga-with-event-orchestration</name>
+        <node identifier="id-81d2b339-3de7-47ad-ad8e-5a9cc2a16c98" elementRef="id-01ead4ce-dc20-4845-bffa-a17ef91a962b" xsi:type="Element" x="180" y="132" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-1f6c7074-a0a0-479e-839e-cbf7ed093614" elementRef="id-1cfffb1a-d654-40d5-b1a2-5da267815219" xsi:type="Element" x="546" y="588" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="cdf3d46a-9aae-4a9b-9c5c-b403567fee5a" elementRef="a65f3d15-5f27-427d-8dfa-5cf144f3bd85" xsi:type="Element" x="420" y="60" w="336" h="433">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="ffe8197b-856e-4cfd-a8f3-9a0cc00e8a35" elementRef="id-5c925794-dc45-4fb2-84df-3e75461a30d2" xsi:type="Element" x="600" y="162" w="120" h="55">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-3bcc6f99-4e4d-415f-bb84-3daee3bb6afc" elementRef="id-6cedda7e-a517-426c-9b97-aca57e03ac53" xsi:type="Element" x="456" y="240" w="120" h="55">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="a7521c01-caf1-4e3c-bc63-77bb64db2d38" elementRef="id-9d5cc65c-96fc-4112-ad0e-bfe8c3542d77" xsi:type="Element" x="600" y="96" w="120" h="55">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="ee13a605-298b-46cf-af91-1d1daf67c1dd" elementRef="id-36b046d4-af7d-4c71-881b-95e50ce16aa9" xsi:type="Element" x="36" y="132" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-335bffa5-c2aa-4288-bc36-ff7abe7610a9" elementRef="id-664b2b80-529e-4ee7-b045-8d4cc7beadf2" xsi:type="Element" x="180" y="240" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-55afaf05-b6fe-4b71-80bc-94943c76fcf7" elementRef="b4ba05d7-38bf-4a7e-b53e-71dbd191b3f2" xsi:type="Element" x="111" y="42" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-1161774b-07b0-4097-adc2-d8f75e628889" elementRef="id-1a64b803-88b0-4a15-95db-d9f44a059db8" xsi:type="Element" x="546" y="666" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="b63e9740-4f10-4f85-b599-7b7b185f4907" elementRef="id-1f5732cf-2a9f-4782-98ce-7b50c484f2db" xsi:type="Element" x="960" y="120" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="a04062e9-6ae4-4d92-91d3-83284c4ab0bf" xsi:type="Label" x="48" y="576" w="469" h="172">
+          <label>1. OrderMicroservice -&gt; ReserveCredit to payments topic
+2. PaymentMicroservice -&gt; CreditExceeded or CreditReserved to orderSaga topic
+3. OrderMicroservice gets the PaymentMicroservice reply
+4. OrderMicroservice sets the Order status
+5a OrderMicroservice -&gt; RollbackCreditReserved to payment topic
+5b OrderMicroservice -&gt; shipIt to shipments topic</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="c74183c5-549b-490e-8e2f-df5a9fd6f408" elementRef="id-7898dc40-7a2d-48f1-8c2a-0ce35cd86e1c" xsi:type="Element" x="960" y="216" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-00fbd0cd-8309-4ce2-a2b9-44363352a90e" elementRef="id-5efea9d6-7061-4016-94ea-465d7e122b06" xsi:type="Element" x="48" y="240" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-34ba60fb-96ee-4b2f-8ef5-fbbdf968ac1f" xsi:type="Label" x="48" y="324" w="185" h="80">
+          <label>transactionID
+orderID
+status
+commands</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <connection identifier="id-5e6f27da-53b1-40a0-ad0e-ff973a56abb1" relationshipRef="id-27e2f84d-1098-4239-bf8b-9fde5e4081be" xsi:type="Relationship" source="id-81d2b339-3de7-47ad-ad8e-5a9cc2a16c98" target="ee13a605-298b-46cf-af91-1d1daf67c1dd">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-7eb5b14e-50d8-464d-89f8-697d3cce3be7" relationshipRef="id-6edbf86b-172d-49b7-ad13-0413a5f83071" xsi:type="Relationship" source="id-81d2b339-3de7-47ad-ad8e-5a9cc2a16c98" target="id-335bffa5-c2aa-4288-bc36-ff7abe7610a9">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-5a5aafa5-f284-4592-9e9d-cd6b7c48128e" relationshipRef="e3dc2a6b-f4e4-42f6-9b8a-e5e398d0102e" xsi:type="Relationship" source="id-81d2b339-3de7-47ad-ad8e-5a9cc2a16c98" target="id-55afaf05-b6fe-4b71-80bc-94943c76fcf7">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-8c361b16-4b15-4bc7-b8c1-18465c8120c4" relationshipRef="e02e087a-1a82-4925-8c22-f7807febab14" xsi:type="Relationship" source="id-81d2b339-3de7-47ad-ad8e-5a9cc2a16c98" target="id-3bcc6f99-4e4d-415f-bb84-3daee3bb6afc">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-12060afa-6e56-4613-b3e8-c2578baa49a9" relationshipRef="id-297f5707-8a4d-4e92-891f-2241908eaef0" xsi:type="Relationship" source="id-81d2b339-3de7-47ad-ad8e-5a9cc2a16c98" target="a7521c01-caf1-4e3c-bc63-77bb64db2d38">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-001266e5-9680-4805-9df9-93e132a4648a" relationshipRef="aadde3be-b3da-4f51-869f-43cca04e346a" xsi:type="Relationship" source="id-81d2b339-3de7-47ad-ad8e-5a9cc2a16c98" target="id-00fbd0cd-8309-4ce2-a2b9-44363352a90e">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-43216463-c81a-4c5d-bb06-be0e282a658d" relationshipRef="af71d923-db65-47e7-a0ca-c6aa05fe8d27" xsi:type="Relationship" source="id-1f6c7074-a0a0-479e-839e-cbf7ed093614" target="id-1161774b-07b0-4097-adc2-d8f75e628889">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="b5eceff0-4ff0-4e86-bca0-1a561c635524" relationshipRef="b1d34c1d-d2f0-42e9-87a5-7a43ee55a70e" xsi:type="Relationship" source="id-1f6c7074-a0a0-479e-839e-cbf7ed093614" target="ffe8197b-856e-4cfd-a8f3-9a0cc00e8a35">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-5bba6fbb-e05d-4770-91a7-d9ebcb4b343d" relationshipRef="cf81fbbd-e977-4e77-9530-9cd8fe6e262c" xsi:type="Relationship" source="ffe8197b-856e-4cfd-a8f3-9a0cc00e8a35" target="id-81d2b339-3de7-47ad-ad8e-5a9cc2a16c98">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-3fa03eb2-de4c-49e3-8f6f-ac9dfdb8d6ee" relationshipRef="id-278d0a14-4055-45cd-8c39-7aa58d3aad8c" xsi:type="Relationship" source="id-3bcc6f99-4e4d-415f-bb84-3daee3bb6afc" target="id-1f6c7074-a0a0-479e-839e-cbf7ed093614">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-509d948c-204f-490a-8f30-5c62a202d616" relationshipRef="id-8474cae7-7bb8-48e6-9891-a112b4500086" xsi:type="Relationship" source="a7521c01-caf1-4e3c-bc63-77bb64db2d38" target="b63e9740-4f10-4f85-b599-7b7b185f4907">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-5e3c5c43-5bff-43ae-adc6-4f16ee578ba0" relationshipRef="id-01c5438a-bb5d-4998-803a-30dcf31bd23d" xsi:type="Relationship" source="b63e9740-4f10-4f85-b599-7b7b185f4907" target="ffe8197b-856e-4cfd-a8f3-9a0cc00e8a35">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-782d02ce-8652-4bd0-a266-e9d166a10853" relationshipRef="id-6e10348f-e5a7-49b1-872d-d8e54f9540e0" xsi:type="Relationship" source="b63e9740-4f10-4f85-b599-7b7b185f4907" target="c74183c5-549b-490e-8e2f-df5a9fd6f408">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-5fad7790-659d-4d5d-a8c8-b9a6dc50b09f" xsi:type="Line" source="id-34ba60fb-96ee-4b2f-8ef5-fbbdf968ac1f" target="id-00fbd0cd-8309-4ce2-a2b9-44363352a90e">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+      </view>
+    </diagrams>
+  </views>
+</model>

@@ -1,0 +1,3217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://www.opengroup.org/xsd/archimate/3.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengroup.org/xsd/archimate/3.0/ http://www.opengroup.org/xsd/archimate/3.1/archimate3_Diagram.xsd" identifier="id-4b9cc51f183f45c4830114a6b42a6cd6">
+  <name>EDC-IDQ-Axon</name>
+  <elements>
+    <element identifier="id-061ca94c29be4d82bb50078d9c7eaf3b" xsi:type="BusinessActor">
+      <name>Biz End  Users</name>
+      <documentation>Biz End Users and Data Stewards will primarily use Axon&#xD;
+Technologists will primarily use the Enterprise Data Catalog</documentation>
+    </element>
+    <element identifier="id-34443813757b44e9bcec2fb2263cd018" xsi:type="BusinessActor">
+      <name>Data Stewards</name>
+      <documentation>Biz End Users and Data Stewards will primarily use Axon&#xD;
+Technologists will primarily use the Enterprise Data Catalog</documentation>
+    </element>
+    <element identifier="id-a8f4316d226b466bb3c7f1b30631dce8" xsi:type="BusinessActor">
+      <name>Technologists</name>
+      <documentation>Technologists will primarily use the Enterprise Data Catalog&#xD;
+Biz End Users and Data Stewards will primarily use Axon</documentation>
+    </element>
+    <element identifier="id-97e72bd9e96d415abde9d5f3ae04aba8" xsi:type="BusinessService">
+      <name>Data Analysis / Data Profiling</name>
+      <documentation>This is a manual process where Technologists, Biz End Users, and Data Stewards transform "raw data" into "usable information".&#xD;
+&#xD;
+The "usable information" will be published in formal reports in Tableau, PowerBI, and other reporting tier components.</documentation>
+    </element>
+    <element identifier="id-d8d8439bdf8b4331b38a7118660f1ce7" xsi:type="BusinessService">
+      <name>Business Service</name>
+    </element>
+    <element identifier="id-e960173a3a1d487aad0f4bc591b90672" xsi:type="BusinessService">
+      <name>Business Service</name>
+    </element>
+    <element identifier="id-cb83200637304df9bade2fc2c3875aa2" xsi:type="ApplicationComponent">
+      <name>Axon</name>
+      <documentation>Axon integrates and makes available all information provided by EDC and IDQ&#xD;
+&#xD;
+Policies - are attached to each Axon data-set that specifies the Terms of Use&#xD;
+&#xD;
+Axon business glossary has 800 - 900 elements.</documentation>
+    </element>
+    <element identifier="id-0318c251fd664fa88f0d37e3e5161108" xsi:type="ApplicationComponent">
+      <name>Enterprise Data Catalog - EDC</name>
+      <documentation>Enterprise Data Catalog (EDC) primarily &#xD;
+ - identifies the types or catagories of data, and&#xD;
+ - data lineage&#xD;
+&#xD;
+Access Management:&#xD;
+&#xD;
+Authentication is SAML based using Microsoft AD&#xD;
+Authorization is Role based and is setup using "Security" console on EDC UI (https://edc-admin-console-uat.cnoinc.com/administrator/)&#xD;
+&#xD;
+User activity is logged under "Audit" console: https://edc-admin-console-uat.cnoinc.com/administrator/#log_UserActivity/ (Under Administration -&gt; User Activity)&#xD;
+&#xD;
+Application logs: Application logs can be found under "Logs" console under "Administrator" (https://edc-admin-console-uat.cnoinc.com/administrator/) There are tabs for "Domain" and "Service"and "Log Aggregator".&#xD;
+&#xD;
+Node/Service statistics can be viewed under https://edc-admin-console-uat.cnoinc.com/administrator/#admin_Domain. There are tabs for Domain, Services and Nodes, Connections and Schedules. "Services and Nodes" console shows details on various services and details such as properties, Resources, Permissions, Diagnostics, Plugs and Monitoring Configuration.&#xD;
+Monitor console provides real time and historical statistics at Summary and Execution levels (https://edc-admin-console-uat.cnoinc.com/administrator/#monitoring) - Ad Hoc Jobs, Deployed Mappings and Workflows, Requests and Connections and Resource usage. Resource usage shows graphs for CPU usage and Memory usage.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-1">
+          <value>??</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-17803b0031954996a27c7026b755c4be" xsi:type="ApplicationFunction">
+      <name>Application Function 1</name>
+    </element>
+    <element identifier="id-843ff24c40754dc8b274e543a4c9914e" xsi:type="ApplicationFunction">
+      <name>Application Function 2</name>
+    </element>
+    <element identifier="id-035492aa093c4dc88ad59df78255829a" xsi:type="ApplicationFunction">
+      <name>Data Lineage</name>
+      <documentation>The Data Lineage is captured for each data element.&#xD;
+Data Lineage is:  &#xD;
+(1) what Source System first captured the data, as well as &#xD;
+(2) any &amp; all of the downstream applications and data warehouse components where the data element resides</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-2">
+          <value>For each data element, the Data Lineage is specific, which is what Source System first captured the data, as well as all of the downstream applications and data warehouse components where the data element resides</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-97fdc45a3b8a4e239d2444c462083cc6" xsi:type="ApplicationEvent">
+      <name>Data Discovery Scans</name>
+    </element>
+    <element identifier="id-1346f31862034439a6fc59906fc1dffd" xsi:type="ApplicationComponent">
+      <name>All CNO Source  systems</name>
+      <documentation>... represents any and all CNO source system whose data is pulled into the CNO Enterprise Data Warehouse.&#xD;
+&#xD;
+These ~500 CNO systems are defined in the Enterprise System Catalog:   http://tableau.cnoinc.com/views/EnterpriseSystemCatalog/Applications?:iid=1%22&amp;:isGuestRedirectFromVizportal=y&amp;:embed=y &#xD;
+&#xD;
+EDC/IDQ/Axon are focused on tracking Personal-Data to comply with CCPA/CPRA, the current location of ALL Personal-Data need to be tracked.&#xD;
+&#xD;
+Therefore "All CNO Source systems" includes both operational (day to day) source systems as well as data stores within the EDW.</documentation>
+    </element>
+    <element identifier="id-1c8267b4a0654d389952312bb28dd2af" xsi:type="ApplicationFunction">
+      <name>Identify Data Elements by Type</name>
+      <documentation>For example, any data element that fits the patterns 99999, 9999-9999, or 999999999 is a ZipCode</documentation>
+    </element>
+    <element identifier="id-8e773ca1f6314e78b5c1c6ad1d6294ed" xsi:type="ApplicationFunction">
+      <name>Infer Relationships</name>
+      <documentation>When source systems do not specify primary or foreign key relationships explicitly, they  are inferred by comparing the data values of columns from multiple tables</documentation>
+    </element>
+    <element identifier="id-8b7a3d06007c4829a4419ce492f1fcb4" xsi:type="ApplicationFunction">
+      <name>Identify PII and PHI</name>
+      <documentation>Identifies data elements that require a high degree of protection:&#xD;
+ - PII = personally identifyable information&#xD;
+ - PHI = protected health information&#xD;
+&#xD;
+Includes the MOVEMENT of sensitive data; this is essential when we are required to DELETE data as required by the CCPA/CPRA (California Consumer Privacy Act / California Privacy Rights Act )</documentation>
+    </element>
+    <element identifier="id-cab99a7a2333447ca8dbc1c76fa957e9" xsi:type="ApplicationComponent">
+      <name>Informatica Data Quality - IDQ</name>
+      <documentation>Informatic Data Quality (IDQ) primarily focuses upon:&#xD;
+ - DATA PROFILING: which provides statistical information of &#xD;
+   each data element VALUES, and&#xD;
+ - EXCEPTION MANAGEMENT: which identifies bad or suspiciously bad &#xD;
+   data that will require DATA CLEANSING</documentation>
+    </element>
+    <element identifier="id-92727d358dad4a0da1c3ddfe4789b7c2" xsi:type="ApplicationFunction">
+      <name>Data Profiling</name>
+      <documentation>provides statistical information of each data element VALUES</documentation>
+    </element>
+    <element identifier="id-8b960a02da574c1b89a204cc59c4abac" xsi:type="ApplicationFunction">
+      <name>Exception Management</name>
+      <documentation>identifies bad or suspiciously bad data that will require Data Cleansing</documentation>
+    </element>
+    <element identifier="id-a5edac1ff0c84632bcb0e80369d8163b" xsi:type="ApplicationFunction">
+      <name>Manage Business Glossary</name>
+    </element>
+    <element identifier="id-7b5ed25a82e84b19b8c5499d73814c68" xsi:type="ApplicationFunction">
+      <name>Natural Language Processor</name>
+      <documentation>To Do:  needs description &amp; connection to _______</documentation>
+    </element>
+    <element identifier="id-40c42527b35a4985807953f3d2526e66" xsi:type="ApplicationEvent">
+      <name>Data Transfer</name>
+    </element>
+    <element identifier="id-a51d03a6710b416ebd6f2cf9c94c57ef" xsi:type="ApplicationService">
+      <name>UI-9443</name>
+      <documentation>UAT:&#xD;
+     https://lxinfaxonapm01.conseco.ad:9443/&#xD;
+     ToDo: create link to "CNO_Informatica_Axon_User_Access_Guide_UAT.docx"&#xD;
+&#xD;
+PROD:&#xD;
+     https://axon.cnoinc.com:9443/ or&#xD;
+     https://lxinfaxonapp01.conseco.ad:9443/&#xD;
+   ToDo: create link to "CNO_Informatica_Axon_User_Access_Guide_PROD.pdf"&#xD;
+&#xD;
+Authentication and Authorization: Authentication is done using CNO AD. Authorization is done using LDAP setup (ldapcml.conseco.ad) within Axon (https://axon.cnoinc.com:9443/admin/customizeconfig - LDAP Server). Roles are SuperAdmin, Admin, Webuser (Edit), Webuser (View only).&#xD;
+&#xD;
+Application Logs can be found under: https://axon.cnoinc.com:9443/admin/logs and https://axon.cnoinc.com:9443/admin/audit/view</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>9443</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-b29897bb8d054b0198b356df00b6fd06" xsi:type="ApplicationService">
+      <name>Admin Console UI-8443</name>
+      <documentation>UAT:https://LXINFEDCAPM01.conseco.ad:8443&#xD;
+PROD: https://LXINFEDCAPP01.conseco.ad:8443&#xD;
+&#xD;
+CONNECTIONS:&#xD;
+ - navigation: home page --&gt; Manage --&gt; Connections&#xD;
+ - definition: a Connection is an application (usually a Source System) that will be Scanned; &#xD;
+ - Scans: perform Data Discovery&#xD;
+ - The CNO contractual agreement allows 600.&#xD;
+ - Connection Naming Convention _____________&#xD;
+&#xD;
+LOGS:&#xD;
+ - navigation: home page --&gt; Logs&#xD;
+ - definition: a Log records status and error information as Scans are processed&#xD;
+&#xD;
+SECURITY:&#xD;
+ - navigation: home page --&gt; Security&#xD;
+ - definition: this set of web pages shows Users, Groups, Roles, and&#xD;
+    RBAC (role based access control): Membership, Privileges,  and Permissions &#xD;
+&#xD;
+SERVICES &amp; Nodes:&#xD;
+ - navigation: home page --&gt; Manage --&gt; Domains&#xD;
+ - navigation: home page --&gt; Manage --&gt; Services &amp; Nodes&#xD;
+ - definition: a Service is a process that provides various functionality within the EDC ecosystem</documentation>
+    </element>
+    <element identifier="id-f721b29a47d14539b00a4fc0ef887fbb" xsi:type="ApplicationService">
+      <name>UI Services</name>
+    </element>
+    <element identifier="id-85600da0e457409caca513cd1e4d6b1c" xsi:type="ApplicationService">
+      <name>LDM Admin-9085</name>
+      <documentation>UAT: https://lxinfedcapm01.conseco.ad:9085/ldmadmin&#xD;
+PROD: https://edc-catalogadmin.cnoinc.com:9085/ldmadmin&#xD;
+&#xD;
+LDM = Live Data Map&#xD;
+&#xD;
+DEFINITIONS:&#xD;
+ - Asset is &#xD;
+ - Connection is an application (usually a Source System) that will be Scanned. &#xD;
+    The CNO contractual agreement allows 600.&#xD;
+    Connection Naming Convention _____________&#xD;
+ -  Resource are mostly Connections along with _____&#xD;
+ -  Task is a Scan job that has been run at a specific date and time (?)&#xD;
+ - Domain is an algorthim that discerns the data type of each data element within a Connection&#xD;
+    Examples of data types can be names, city, zip code&#xD;
+    Many algorithms are implemented as Regular Expressions&#xD;
+&#xD;
+OVERVIEW tab: Shows Assets, Resources, and Task statuses&#xD;
+&#xD;
+LIBRARY tab:  Shows Domains&#xD;
+&#xD;
+MONITORING tab: Shows all Tasks that have been run.</documentation>
+    </element>
+    <element identifier="id-0bef37685c9f474ba7410e9a289a7d87" xsi:type="ApplicationService">
+      <name>LDM Catalog-9085</name>
+      <documentation>UAT:   https://lxinfedcapm01.conseco.ad:9085/ldmcatalog&#xD;
+PROD:  https://edc-catalog.cnoinc.com:9085/ldmcatalog&#xD;
+&#xD;
+Home Page: &#xD;
+Displays 3 navigation items: Discovery tab, Analytics tab, Resources link&#xD;
+&#xD;
+DISCOVERY tab -- displays the RESOURCES link, which displays our Resources or Connections.  &#xD;
+  - The CNO contractual agreement allows 600 Resources/Connections.&#xD;
+  - .Connection Naming Convention _____________&#xD;
+Click on a Resource/Connection to provide detailed information regarding, such as Tables, Columns, and Relationships&#xD;
+&#xD;
+ANALYTICS tab - Dashboard:&#xD;
+ User Adoption tab:&#xD;
+ - displays metrics regarding aggregate usage&#xD;
+Data Asset Inventory tab:&#xD;
+ - displays information regarding our Resources/Connection&#xD;
+Data Asset Enrichment tab:&#xD;
+ - displays aggregate information regarding Business Terms, Domains, and Data Lineage</documentation>
+    </element>
+    <element identifier="id-11b04caacb784e2fb83cb6d7e9da51f8" xsi:type="ApplicationComponent">
+      <name>Application Component</name>
+    </element>
+    <element identifier="id-bb673a233de74716b38335be34910bc9" xsi:type="ApplicationService">
+      <name />
+    </element>
+    <element identifier="id-d379f600687d483a855775499ab53f0d" xsi:type="ApplicationFunction">
+      <name>Basic Metadata</name>
+      <documentation>This is primarily table names, column names and declarative foreign keys.</documentation>
+    </element>
+    <element identifier="id-fc07620d234845b8800c6ca1ad7ce1e4" xsi:type="ApplicationService">
+      <name>Model Repository Service</name>
+    </element>
+    <element identifier="id-262b292b6d0446bfa000ab88e6313d40" xsi:type="ApplicationService">
+      <name>Document and manage business glossary</name>
+    </element>
+    <element identifier="id-4e8836f74c86420dad287e38a1b132dd" xsi:type="ApplicationService">
+      <name>Search and Understand data, it's lineage and relationships</name>
+    </element>
+    <element identifier="id-ca0eb3a32cb648daa4d2af077c567a06" xsi:type="ApplicationFunction">
+      <name>Ask a question to data steward/owner</name>
+      <documentation>Allows Q&amp;A to ask a question and receive responses.</documentation>
+    </element>
+    <element identifier="id-e6ade059a9aa4a8d9c226b790626a141" xsi:type="ApplicationFunction">
+      <name>IDQ Orphaned Foreign keys</name>
+      <documentation>Referential Integrity Analysis: if orphaned records are present, it denotes a violation of foreign key relationship (a corresponding record is not present in parent table).</documentation>
+    </element>
+    <element identifier="id-b0e5010f2af241bcb5dc07ef89c464bd" xsi:type="ApplicationService">
+      <name>Search and Understand data, it's lineage and relationships</name>
+      <documentation>UAT:   https://lxinfedcapm01.conseco.ad:9085/ldmcatalog&#xD;
+PROD:  https://edc-catalog.cnoinc.com:9085/ldmcatalog&#xD;
+&#xD;
+Home Page: &#xD;
+Displays 3 navigation items: Discovery tab, Analytics tab, Resources link&#xD;
+&#xD;
+DISCOVERY tab -- displays the RESOURCES link, which displays our Resources or Connections.  &#xD;
+  - The CNO contractual agreement allows 600 Resources/Connections.&#xD;
+  - .Connection Naming Convention _____________&#xD;
+Click on a Resource/Connection to provide detailed information regarding, such as Tables, Columns, and Relationships&#xD;
+&#xD;
+ANALYTICS tab - Dashboard:&#xD;
+ User Adoption tab:&#xD;
+ - displays metrics regarding aggregate usage&#xD;
+Data Asset Inventory tab:&#xD;
+ - displays information regarding our Resources/Connection&#xD;
+Data Asset Enrichment tab:&#xD;
+ - displays aggregate information regarding Business Terms, Domains, and Data Lineage</documentation>
+    </element>
+    <element identifier="id-a2305b9ea2f840c5837f301cdaf2f4f0" xsi:type="TechnologyFunction">
+      <name>Technology Function 1</name>
+    </element>
+    <element identifier="id-2f2331cfa27e49f5a63fe2d81e137f1f" xsi:type="TechnologyFunction">
+      <name>Technology Function2</name>
+    </element>
+    <element identifier="id-a93020af920842db8f5eb9a5d38fdb46" xsi:type="TechnologyCollaboration">
+      <name>Technology Collaboration</name>
+    </element>
+    <element identifier="id-109a5f27bfdb4d899d68bfde50e641f3" xsi:type="Node">
+      <name>Node/Host</name>
+    </element>
+    <element identifier="id-90b698494708433d89ff6ecb4a435e71" xsi:type="Node">
+      <name>Azure SQL DB</name>
+    </element>
+    <element identifier="id-ebffdcaf8ac04bcd91f28f95ad2ee438" xsi:type="TechnologyCollaboration">
+      <name>Availability Zone 2</name>
+      <documentation>exists only in Production Environment</documentation>
+    </element>
+    <element identifier="id-40acd5c869c542408fdf5ad7a4b9f672" xsi:type="Node">
+      <name>Azure SQL DB (Active)</name>
+    </element>
+    <element identifier="id-7a546b567f314ed1830e04b14665ec9b" xsi:type="Node">
+      <name>Azure SQL DB (Passive)</name>
+      <documentation>exists only in Production Environment</documentation>
+    </element>
+    <element identifier="id-f6d709faa3754b4abcd68e81f21ce693" xsi:type="Node">
+      <name>EDC NODE01 - LXINFEDCAPP01 (D32a V4)</name>
+      <documentation>Purpose: The Administrator tool (Informatica Administrator) is the administration tool that you use to administer the Informatica domain and security. The Administrator tool is a thin or web client application.&#xD;
+&#xD;
+OS version need to be checked with INFA to RHEL 7.9&#xD;
+&#xD;
+For DEV: &#xD;
+   CNO recommends scale down for initial phase and expand to 32 core as needed.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-4">
+          <value>nslookup LXINFEDCAPP01.conseco.ad</value>
+        </property>
+        <property propertyDefinitionRef="propid-5">
+          <value>nslookup LXINFEDCAPM01.conseco.ad</value>
+        </property>
+        <property propertyDefinitionRef="propid-6">
+          <value>nslookup LXINFEDCAPD01.conseco.ad</value>
+        </property>
+        <property propertyDefinitionRef="propid-7">
+          <value>10.120.73.9</value>
+        </property>
+        <property propertyDefinitionRef="propid-8">
+          <value>10.120.41.12</value>
+        </property>
+        <property propertyDefinitionRef="propid-9">
+          <value>10.120.9.9</value>
+        </property>
+        <property propertyDefinitionRef="propid-10">
+          <value>rg-ccpa-prod-eu2</value>
+        </property>
+        <property propertyDefinitionRef="propid-11">
+          <value>rg-ccpa-uat-eu2</value>
+        </property>
+        <property propertyDefinitionRef="propid-12">
+          <value>rg-ccpa-dev-eu2</value>
+        </property>
+        <property propertyDefinitionRef="propid-13">
+          <value>D32a v4</value>
+        </property>
+        <property propertyDefinitionRef="propid-14">
+          <value>D32a v4</value>
+        </property>
+        <property propertyDefinitionRef="propid-15">
+          <value>D16a_v4</value>
+        </property>
+        <property propertyDefinitionRef="propid-16">
+          <value>RHEL 7.9</value>
+        </property>
+        <property propertyDefinitionRef="propid-17">
+          <value>RHEL 7.9</value>
+        </property>
+        <property propertyDefinitionRef="propid-18">
+          <value>RHEL 7.9</value>
+        </property>
+        <property propertyDefinitionRef="propid-19">
+          <value>32 core</value>
+        </property>
+        <property propertyDefinitionRef="propid-20">
+          <value>32 core</value>
+        </property>
+        <property propertyDefinitionRef="propid-21">
+          <value>16 core</value>
+        </property>
+        <property propertyDefinitionRef="propid-22">
+          <value>128GB</value>
+        </property>
+        <property propertyDefinitionRef="propid-23">
+          <value>128GB</value>
+        </property>
+        <property propertyDefinitionRef="propid-24">
+          <value>64GB</value>
+        </property>
+        <property propertyDefinitionRef="propid-25">
+          <value>Daily Once</value>
+        </property>
+        <property propertyDefinitionRef="propid-26">
+          <value>Daily Once</value>
+        </property>
+        <property propertyDefinitionRef="propid-27">
+          <value>Daily Once</value>
+        </property>
+        <property propertyDefinitionRef="propid-28">
+          <value>14 days</value>
+        </property>
+        <property propertyDefinitionRef="propid-29">
+          <value>7 days</value>
+        </property>
+        <property propertyDefinitionRef="propid-30">
+          <value>7 days</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-c615ebcc6abd4687ab48d6c668de4de8" xsi:type="TechnologyCollaboration">
+      <name>High-Availabiilty: F5 ASM WAF</name>
+      <documentation>High-Availabiilty F5 ASM WAF and EDC Node02  do not exist in Development Environment&#xD;
+&#xD;
+https://devcentral.f5.com/s/articles/the-big-ip-application-security-manager-part-1-what-is-the-asm &#xD;
+&#xD;
+The BIG-IP Application Security Manager (ASM)  is a Layer 7 ICSA-certified Web Application Firewall (WAF) that provides application security in traditional, virtual, and private cloud environments.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-4">
+          <value>nslookup edc-catalogadmin.cnoinc.com</value>
+        </property>
+        <property propertyDefinitionRef="propid-4">
+          <value>nslookup edc-catalog.cnoinc.com</value>
+        </property>
+        <property propertyDefinitionRef="propid-7">
+          <value>10.120.73.16</value>
+        </property>
+        <property propertyDefinitionRef="propid-5">
+          <value>nslookup edc-admin-console-uat.cnoinc.com</value>
+        </property>
+        <property propertyDefinitionRef="propid-8">
+          <value>10.120.41.18</value>
+        </property>
+        <property propertyDefinitionRef="propid-5">
+          <value>nslookup edc-catalog-uat.cnoinc.com</value>
+        </property>
+        <property propertyDefinitionRef="propid-8">
+          <value>10.120.41.19</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-afabcf02281d49fe904f22156a06962a" xsi:type="Node">
+      <name>EDC Services - (Azure) Region - EAST US 2</name>
+      <properties>
+        <property propertyDefinitionRef="propid-31">
+          <value>??</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-0a7f8bf271474a679d919ab018d868a5" xsi:type="TechnologyService">
+      <name>Domain Core Service-6005</name>
+      <documentation>Purpose: TBD</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>6005</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-deeb631bc15544339d87e0cb2546b06b" xsi:type="TechnologyService">
+      <name>AdminConsole UI-8443</name>
+      <documentation>The Administrator tool (Informatica Administrator) is the administration tool that you use to administer the Informatica domain and security. The Administrator tool is a thin or web client application.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>8443</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-cb7a649883be44cd9fd34606146cd652" xsi:type="TechnologyService">
+      <name>Data Integration Service-8495</name>
+      <documentation>Purpose: The Data Integration Service is an application service in the Informatica domain that &#xD;
+    performs data integration tasks for &#xD;
+    Informatica Analyst and Informatica Developer.&#xD;
+&#xD;
+In EDC whenever an user run scans on resources and view the metadata and profiling statistics in Enterprise Data Catalog, the client tool sends requests to the Data Integration Service to perform the enterprise data discovery.&#xD;
+The Data Integration Service execute data profiling and discovery.&#xD;
+Is used during data semantic discovery and basic profiling of data assets (% of Nulls, distinct values etc.)</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>8495</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-eeef0e7bc82142aabb67ccca625f59e5" xsi:type="TechnologyService">
+      <name>Content Management Service-8505</name>
+      <documentation>Purpose: The Content Management Service is an application service that &#xD;
+     manages reference data. &#xD;
+    It provides reference data information &#xD;
+   to the Data Integration Service and to the &#xD;
+   Developer and Analyst tools.&#xD;
+&#xD;
+Content Management Service is an application service that manages reference data. A reference data object contains a set of data values that you can search while performing data quality operations on source data. The Content Management Service also compiles rule specifications into mapplets. Content Management Service uses the Data Integration Service to run mappings to transfer data between reference tables and external data sources. The Content Management Service also provides transformations, mapping specifications, and rule specifications with the following types of reference data:&#xD;
+Address reference data&#xD;
+Identity populations&#xD;
+Probabilistic models and classifier</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>8505</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-fc6bfdc27c074142aaff97e861e6356c" xsi:type="TechnologyService">
+      <name>Informatica Hadoop Service-9475</name>
+      <documentation>Purpose: connection to Hadoop Cluster Services (?)</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>9475</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-9a416aff655b492799e023628c7c6650" xsi:type="TechnologyService">
+      <name>Catalog Adminconsole UI-9485</name>
+      <documentation>Purpose: Use Catalog Administrator to &#xD;
+    consolidate the administrative tasks for resources, attributes, and schedules. &#xD;
+    You launch &#xD;
+        - Catalog Administrator &#xD;
+from Informatica Administrator to &#xD;
+            create resources and &#xD;
+            run the scans and linkage between resources. &#xD;
+&#xD;
+Catalog Service is needed to run the Enterprise data Catalog application and manage the connections between the Enterprise data Catalog components. You can configure the general, application service, and security properties of the Catalog Service</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>9485</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-2277ab1f63084977867a1725d62842ba" xsi:type="TechnologyService">
+      <name>Catalog UI &amp; Rest-9485</name>
+      <documentation>Purpose: The catalog represents an indexed inventory of all the data assets in the enterprise that you configure in Catalog Administrator. Enterprise Data Catalog organizes all the enterprise metadata in the catalog and enables the users of external applications discover and understand the data.The catalog stores all the metadata extracted from external data sources. You can find metadata and statistical information, such as profile results, data domains, and data asset relationships, from the catalog.&#xD;
+&#xD;
+The catalog service coordinates user interaction with catalog metadata stored on the Hadoop cluster. It is the bridge that connects Informatica domain to catalog cluster.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>9485</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-0b88456a80ce489ebe4d4a798529f67d" xsi:type="Node">
+      <name>Hadoop Cluster Services</name>
+      <documentation>Hadoop Cluster services&#xD;
+ &#xD;
+&#xD;
+EDC relies on Hadoop technologies to achieve scalability, performance and flexibility of an enterprise class application that will hold millions of information and serve thousands of requests at the same time as user community will grow in your company. To that end we support different deployment types&#xD;
+&#xD;
+using an existing cluster if your organisation is familiar with the technology, it is the best option.&#xD;
+using an Informatica managed cluster, you just have to provision required hardware and the Informatica domain will take care of deploying the cluster for you.&#xD;
+ &#xD;
+&#xD;
+The Hadoop services that are leveraged by the catalog service are as follow:&#xD;
+&#xD;
+Zookeeper: Maintains the configuration of the Hadoop cluster services across all the cluster nodes&#xD;
+HDFS : EDC stores the catalog information in HDFS , to store the catalog contents a special HDFS directory is created. /Informatica/LDM/&lt;ServiceClusterName&gt;. The directory needs to be owned by serviceuser name ( service principal In case of Kerberos)&#xD;
+Yarn: Stands for Yet Another Resource Negotiator, YARN uses a cluster wide resourcemanager and per node nodemanager daemons to manage Hadoop resource distribution and usage.When catalog service is started , it starts three applications in YARN&#xD;
+HBase: Manage and provide non SQL document storage capabilities on top of HDFS with scalability. This is where all the sources metadata will be stored.&#xD;
+SolR: Provide indexing and search capabilities, EDC build indexes of the metadata stored in HBase and allow fuzzy search and fast retrieve of the metadata&#xD;
+Spark: Ingest service used to collect, transform data and update HBase store and SolR indexes&#xD;
+Scanners: applications launched as batch job to extract metadata, run profiling and data discovery tasks and move the results over to the Catalog queue to be process by the ingestion service. The scanner application will pushdown the execution of the profiling and data discovery to the source application whenever possible (for databases, hadoop clusters, etc.)</documentation>
+    </element>
+    <element identifier="id-39d3470a0a3d4f87b9354f76a7a89a68" xsi:type="TechnologyCollaboration">
+      <name>Availability Zone 1</name>
+      <documentation>Load Balancer does not exist in Development Environment</documentation>
+    </element>
+    <element identifier="id-263042b48c3449ee898c0a7c8e35363c" xsi:type="Node">
+      <name>Hadoop Node01 &amp; Node02 (Availability Set)</name>
+      <documentation>Embedded Hadoop Cluster - HortonWorks</documentation>
+    </element>
+    <element identifier="id-c6328c76585a4e3a881c4cf52386f224" xsi:type="TechnologyService">
+      <name>Ambari UI-8080/8443</name>
+      <documentation>Ambari is a web based tool for provisioning, managing, and monitoring Apache Hadoop clusters    It supports HDFS, MapReduce, Hive, HCatalog, HBASE, ZooKeeper, Oozie, Pig, and Sqoop services.&#xD;
+&#xD;
+Used to start/stop Informatica cluster service using REST API.&#xD;
+Cluster service monitor the health of the Hadoop services using Ambari REST API.&#xD;
+Ambari provides status of the services via the Ambari Metrics service.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>8080/8443</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-5bc77c713534493cb2cfa1a2cae3a864" xsi:type="TechnologyService">
+      <name>NameNode UI-50070/50470</name>
+      <documentation>NameNode Is a daemon that track meta data&#xD;
+•	File Name&#xD;
+•	Permissions&#xD;
+•	Ownership&#xD;
+•	File Location&#xD;
+ for each file in HDFS (Hadoop distributed file system).  Actual  file contents are stored in Data Nodes.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>50070/50470</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-ee5bbc6fbddd42a9b8712784a5981665" xsi:type="TechnologyService">
+      <name>Yarn Resource Manager UI -8088/8090</name>
+      <documentation>Yarn is a resource manager that facilitates MapReduce processes.  MapReduce is a software engineering pattern that splits VERY large jobs into segments that are run in parallel, thereby improving performance.&#xD;
+&#xD;
+Spark, HBase and Solr apps run on YARN.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>8088/8090</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-a5be97498e6a4b7f8aab76c59112bc9c" xsi:type="TechnologyService">
+      <name>NodeManager UI - 8044</name>
+      <documentation>Node Manager manages, allocates, and monitors resource (cpu, ram, disk, ... and oversees the containers running MapReduce processes on a single node/host within a Hadoop cluster.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>8044</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-8f505c561f794ca6be105277360921a8" xsi:type="TechnologyService">
+      <name>Job History UI - 19888</name>
+      <documentation>https://hadoop.apache.org/docs/stable/hadoop-mapreduce-client/hadoop-mapreduce-client-hs/HistoryServerRest.html&#xD;
+&#xD;
+Job History allows the user to get status on finished applications.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>19888</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-636f1fbd8e64438d895e9c857714fd80" xsi:type="TechnologyService">
+      <name>HDFS DataNode - 50075/50475</name>
+      <documentation>Actual  file contents are stored in distributed Data Nodes.   The contents are split across multiple Data Node to take advantage of parallel processing which improves performance.&#xD;
+&#xD;
+Catalog information is stored in HDFS.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>50075/50475</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-4b4026e8a8754fe389ce37ae753ee713" xsi:type="Node">
+      <name>Hadoop Node03</name>
+      <documentation>exists only in Production and User Acceptance Test Environments</documentation>
+    </element>
+    <element identifier="id-e848b36f924747909bf472a6b70466f4" xsi:type="Node">
+      <name>EDC NODE02 - LXINFEDCAPP02 (D32a V4)</name>
+      <documentation>Purpose: The Administrator tool (Informatica Administrator) is the administration tool that you use to administer the Informatica domain and security. The Administrator tool is a thin or web client application.&#xD;
+&#xD;
+OS version need to be checked with INFA to RHEL 7.9&#xD;
+&#xD;
+For DEV: &#xD;
+   CNO recommends scale down for initial phase and expand to 32 core as needed.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-4">
+          <value>nslookup LXINFEDCAPP02.conseco.ad</value>
+        </property>
+        <property propertyDefinitionRef="propid-5">
+          <value>nslookup LXINFEDCAPM02.conseco.ad</value>
+        </property>
+        <property propertyDefinitionRef="propid-6">
+          <value>nslookup LXINFEDCAPD02.conseco.ad</value>
+        </property>
+        <property propertyDefinitionRef="propid-7">
+          <value>10.120.73.10</value>
+        </property>
+        <property propertyDefinitionRef="propid-8">
+          <value>10.120.41.13</value>
+        </property>
+        <property propertyDefinitionRef="propid-9">
+          <value>10.120.9.10</value>
+        </property>
+        <property propertyDefinitionRef="propid-10">
+          <value>rg-ccpa-prod-eu2</value>
+        </property>
+        <property propertyDefinitionRef="propid-11">
+          <value>rg-ccpa-uat-eu2</value>
+        </property>
+        <property propertyDefinitionRef="propid-12">
+          <value>rg-ccpa-dev-eu2</value>
+        </property>
+        <property propertyDefinitionRef="propid-13">
+          <value>D32a v4</value>
+        </property>
+        <property propertyDefinitionRef="propid-14">
+          <value>D32a v4</value>
+        </property>
+        <property propertyDefinitionRef="propid-15">
+          <value>D16a_v4</value>
+        </property>
+        <property propertyDefinitionRef="propid-16">
+          <value>RHEL 7.9</value>
+        </property>
+        <property propertyDefinitionRef="propid-17">
+          <value>RHEL 7.9</value>
+        </property>
+        <property propertyDefinitionRef="propid-18">
+          <value>RHEL 7.9</value>
+        </property>
+        <property propertyDefinitionRef="propid-19">
+          <value>32 core</value>
+        </property>
+        <property propertyDefinitionRef="propid-20">
+          <value>32 core</value>
+        </property>
+        <property propertyDefinitionRef="propid-21">
+          <value>16 core</value>
+        </property>
+        <property propertyDefinitionRef="propid-22">
+          <value>128GB</value>
+        </property>
+        <property propertyDefinitionRef="propid-23">
+          <value>128GB</value>
+        </property>
+        <property propertyDefinitionRef="propid-24">
+          <value>64GB</value>
+        </property>
+        <property propertyDefinitionRef="propid-25">
+          <value>Daily Once</value>
+        </property>
+        <property propertyDefinitionRef="propid-26">
+          <value>Daily Once</value>
+        </property>
+        <property propertyDefinitionRef="propid-27">
+          <value>Daily Once</value>
+        </property>
+        <property propertyDefinitionRef="propid-28">
+          <value>14 days</value>
+        </property>
+        <property propertyDefinitionRef="propid-29">
+          <value>7 days</value>
+        </property>
+        <property propertyDefinitionRef="propid-30">
+          <value>7 days</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-4d3bc1310202466c84cbfe32717063cf" xsi:type="Node">
+      <name>Hadoop Node01 - LXINFEDCHCP01 - E8a v4</name>
+      <documentation>Purpose: &#xD;
+&#xD;
+OS version need to be checked with INFA to RHEL 7.9&#xD;
+&#xD;
+1. Hbase - Stores the catalog and audit information&#xD;
+&#xD;
+2. Solr - Enables the search on catalog&#xD;
+&#xD;
+3. Spark - Enables ingestion of everything that goes into catalog.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-4">
+          <value>LXINFEDCHCP01.conseco.ad</value>
+        </property>
+        <property propertyDefinitionRef="propid-5">
+          <value>LXINFEDCHCM01.conseco.ad</value>
+        </property>
+        <property propertyDefinitionRef="propid-6">
+          <value>LXINFEDCHCD01.conseco.ad</value>
+        </property>
+        <property propertyDefinitionRef="propid-7">
+          <value>10.120.73.12</value>
+        </property>
+        <property propertyDefinitionRef="propid-8">
+          <value>10.120.41.14</value>
+        </property>
+        <property propertyDefinitionRef="propid-9">
+          <value>10.120.9.11</value>
+        </property>
+        <property propertyDefinitionRef="propid-10">
+          <value>rg-ccpa-prod-eu2</value>
+        </property>
+        <property propertyDefinitionRef="propid-11">
+          <value>rg-ccpa-uat-eu2</value>
+        </property>
+        <property propertyDefinitionRef="propid-12">
+          <value>rg-ccpa-dev-eu2</value>
+        </property>
+        <property propertyDefinitionRef="propid-13">
+          <value>E8a v4</value>
+        </property>
+        <property propertyDefinitionRef="propid-14">
+          <value>E8a v4</value>
+        </property>
+        <property propertyDefinitionRef="propid-15">
+          <value>E8a v4</value>
+        </property>
+        <property propertyDefinitionRef="propid-16">
+          <value>RHEL 7.9</value>
+        </property>
+        <property propertyDefinitionRef="propid-17">
+          <value>RHEL 7.9</value>
+        </property>
+        <property propertyDefinitionRef="propid-18">
+          <value>RHEL 7.9</value>
+        </property>
+        <property propertyDefinitionRef="propid-19">
+          <value>8 core</value>
+        </property>
+        <property propertyDefinitionRef="propid-20">
+          <value>8 core</value>
+        </property>
+        <property propertyDefinitionRef="propid-21">
+          <value>8 core</value>
+        </property>
+        <property propertyDefinitionRef="propid-22">
+          <value>64GB</value>
+        </property>
+        <property propertyDefinitionRef="propid-23">
+          <value>64GB</value>
+        </property>
+        <property propertyDefinitionRef="propid-24">
+          <value>64GB</value>
+        </property>
+        <property propertyDefinitionRef="propid-25">
+          <value>Daily Once</value>
+        </property>
+        <property propertyDefinitionRef="propid-26">
+          <value>Daily Once</value>
+        </property>
+        <property propertyDefinitionRef="propid-27">
+          <value>Daily Once</value>
+        </property>
+        <property propertyDefinitionRef="propid-28">
+          <value>14 days</value>
+        </property>
+        <property propertyDefinitionRef="propid-29">
+          <value>7 days</value>
+        </property>
+        <property propertyDefinitionRef="propid-30">
+          <value>7 days</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-9f8680122b954306ba3e3a0a1071b60f" xsi:type="TechnologyService">
+      <name>Domain Core Service-6005 (copy)</name>
+      <documentation>Purpose: TBD</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>6005</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-09984a192a9c4988a5bb984d1edfdd5d" xsi:type="TechnologyService">
+      <name>AdminConsole UI-8443 (copy)</name>
+      <properties>
+        <property propertyDefinitionRef="propid-2">
+          <value>The Administrator tool (Informatica Administrator) is the administration tool that you use to administer the Informatica domain and security. The Administrator tool is a thin or web client application.</value>
+        </property>
+        <property propertyDefinitionRef="propid-3">
+          <value>8443</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-0f5ac1631ea843e58bba0a139c3b8ab8" xsi:type="TechnologyService">
+      <name>Content Management Service-8505 (copy)</name>
+      <documentation>Purpose: The Content Management Service is an application service that manages reference data. It provides reference data information to the Data Integration Service and to the Developer and Analyst tools.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>8505</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-3460cb6dc31947ec838bb58363d25c02" xsi:type="TechnologyService">
+      <name>Informatica Hadoop Service-9475 (copy)</name>
+      <documentation>Purpose: connection to Hadoop Cluster Services (?)</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>9475</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-760a4067ef584f61b0d24ca3809e945d" xsi:type="TechnologyService">
+      <name>Catalog Adminconsole UI-9485 (copy)</name>
+      <documentation>Purpose: Use Catalog Administrator to consolidate the administrative tasks for resources, attributes, and schedules. You launch Catalog Administrator from Informatica Administrator to create resources and run the scans and linkage between resources.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>9485</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-447f392762694cdba0505500cac2b748" xsi:type="TechnologyService">
+      <name>Catalog UI &amp; Rest-9485 (copy)</name>
+      <documentation>Purpose: The catalog represents an indexed inventory of all the data assets in the enterprise that you configure in Catalog Administrator. Enterprise Data Catalog organizes all the enterprise metadata in the catalog and enables the users of external applications discover and understand the data.The catalog stores all the metadata extracted from external data sources. You can find metadata and statistical information, such as profile results, data domains, and data asset relationships, from the catalog.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>9485</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-d09a5bcd509e4c61950e9378b520c1f7" xsi:type="TechnologyService">
+      <name>Data Integration Service-8495 (copy)</name>
+      <documentation>Purpose: The Data Integration Service is an application service in the Informatica domain that performs data integration tasks for Informatica Analyst and Informatica Developer.The Data Integration Service is an application service in the Informatica domain that performs data integration tasks for Informatica Developer.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>8495</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-8059f790d59f45dfaaff86d1438ac63f" xsi:type="Node">
+      <name>Hadoop Node02 - LXINFEDCHCP02 - E8a V4</name>
+      <documentation>Purpose: &#xD;
+&#xD;
+OS version need to be checked with INFA to RHEL 7.9</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-4">
+          <value>LXINFEDCHCP02.conseco.ad</value>
+        </property>
+        <property propertyDefinitionRef="propid-5">
+          <value>LXINFEDCAPM01.conseco.ad</value>
+        </property>
+        <property propertyDefinitionRef="propid-6">
+          <value>LXINFEDCHCD02.conseco.ad</value>
+        </property>
+        <property propertyDefinitionRef="propid-7">
+          <value>10.120.73.13</value>
+        </property>
+        <property propertyDefinitionRef="propid-8">
+          <value>10.120.41.15</value>
+        </property>
+        <property propertyDefinitionRef="propid-9">
+          <value>10.120.9.12</value>
+        </property>
+        <property propertyDefinitionRef="propid-10">
+          <value>rg-ccpa-prod-eu2</value>
+        </property>
+        <property propertyDefinitionRef="propid-11">
+          <value>rg-ccpa-uat-eu2</value>
+        </property>
+        <property propertyDefinitionRef="propid-12">
+          <value>rg-ccpa-dev-eu2</value>
+        </property>
+        <property propertyDefinitionRef="propid-13">
+          <value>E8a v4</value>
+        </property>
+        <property propertyDefinitionRef="propid-14">
+          <value>E8a v4</value>
+        </property>
+        <property propertyDefinitionRef="propid-15">
+          <value>E8a v4</value>
+        </property>
+        <property propertyDefinitionRef="propid-16">
+          <value>RHEL 7.9</value>
+        </property>
+        <property propertyDefinitionRef="propid-17">
+          <value>RHEL 7.9</value>
+        </property>
+        <property propertyDefinitionRef="propid-18">
+          <value>RHEL 7.9</value>
+        </property>
+        <property propertyDefinitionRef="propid-19">
+          <value>8 core</value>
+        </property>
+        <property propertyDefinitionRef="propid-20">
+          <value>8 core</value>
+        </property>
+        <property propertyDefinitionRef="propid-21">
+          <value>8 core</value>
+        </property>
+        <property propertyDefinitionRef="propid-22">
+          <value>64GB</value>
+        </property>
+        <property propertyDefinitionRef="propid-23">
+          <value>64GB</value>
+        </property>
+        <property propertyDefinitionRef="propid-24">
+          <value>64GB</value>
+        </property>
+        <property propertyDefinitionRef="propid-25">
+          <value>Daily Once</value>
+        </property>
+        <property propertyDefinitionRef="propid-26">
+          <value>Daily Once</value>
+        </property>
+        <property propertyDefinitionRef="propid-27">
+          <value>Daily Once</value>
+        </property>
+        <property propertyDefinitionRef="propid-28">
+          <value>14 days</value>
+        </property>
+        <property propertyDefinitionRef="propid-29">
+          <value>7 days</value>
+        </property>
+        <property propertyDefinitionRef="propid-30">
+          <value>7 days</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-d43c0d43536f405c9ddf564baf638595" xsi:type="TechnologyService">
+      <name>Ambari UI-8080/8443 (copy)</name>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>8080/8443</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-9e31be54abed430ca81da4d9c6df265c" xsi:type="TechnologyService">
+      <name>Yarn RM UI -8088/8090 (copy)</name>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>8088/8090</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-0627f8aaa6a54940a03c88afebcd7643" xsi:type="TechnologyService">
+      <name>HDFS DataNode - 50075/50475 (copy)</name>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>50075/50475</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-53dfeecbc4304fd39fcb4cc036a8c380" xsi:type="TechnologyService">
+      <name>NodeManager UI - 8044 (copy)</name>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>8044</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-62c30ddafa2f4010b0c123c0c8718420" xsi:type="TechnologyService">
+      <name>Job History UI - 19888 (copy)</name>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>19888</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-93b4513806d640a0aa0b186aecb3607c" xsi:type="TechnologyService">
+      <name>NameNode UI-500070/50470 (copy)</name>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>500070/50470</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-3e5474c1e2a04bdf9cd17ee7b287caba" xsi:type="Node">
+      <name>Hadoop Node3 - LXINFEDCHCP03 - E8a V4</name>
+      <documentation>Purpose: &#xD;
+&#xD;
+OS version need to be checked with INFA to RHEL 7.9</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-4">
+          <value>LXINFEDCHCP03.conseco.ad</value>
+        </property>
+        <property propertyDefinitionRef="propid-5">
+          <value>LXINFEDCHCM03.conseco.ad</value>
+        </property>
+        <property propertyDefinitionRef="propid-6">
+          <value>LXINFEDCHCD03.conseco.ad</value>
+        </property>
+        <property propertyDefinitionRef="propid-7">
+          <value>10.120.73.14</value>
+        </property>
+        <property propertyDefinitionRef="propid-8">
+          <value>10.120.41.16</value>
+        </property>
+        <property propertyDefinitionRef="propid-9">
+          <value>10.120.9.13</value>
+        </property>
+        <property propertyDefinitionRef="propid-10">
+          <value>rg-ccpa-prod-eu2</value>
+        </property>
+        <property propertyDefinitionRef="propid-11">
+          <value>rg-ccpa-uat-eu2</value>
+        </property>
+        <property propertyDefinitionRef="propid-12">
+          <value>rg-ccpa-dev-eu2</value>
+        </property>
+        <property propertyDefinitionRef="propid-13">
+          <value>E8a v4</value>
+        </property>
+        <property propertyDefinitionRef="propid-14">
+          <value>E8a v4</value>
+        </property>
+        <property propertyDefinitionRef="propid-15">
+          <value>E8a v4</value>
+        </property>
+        <property propertyDefinitionRef="propid-16">
+          <value>RHEL 7.9</value>
+        </property>
+        <property propertyDefinitionRef="propid-17">
+          <value>RHEL 7.9</value>
+        </property>
+        <property propertyDefinitionRef="propid-18">
+          <value>RHEL 7.9</value>
+        </property>
+        <property propertyDefinitionRef="propid-19">
+          <value>8 core</value>
+        </property>
+        <property propertyDefinitionRef="propid-20">
+          <value>8 core</value>
+        </property>
+        <property propertyDefinitionRef="propid-21">
+          <value>8 core</value>
+        </property>
+        <property propertyDefinitionRef="propid-22">
+          <value>64GB</value>
+        </property>
+        <property propertyDefinitionRef="propid-23">
+          <value>64GB</value>
+        </property>
+        <property propertyDefinitionRef="propid-24">
+          <value>64GB</value>
+        </property>
+        <property propertyDefinitionRef="propid-25">
+          <value>Daily Once</value>
+        </property>
+        <property propertyDefinitionRef="propid-26">
+          <value>Daily Once</value>
+        </property>
+        <property propertyDefinitionRef="propid-27">
+          <value>Daily Once</value>
+        </property>
+        <property propertyDefinitionRef="propid-28">
+          <value>14 days</value>
+        </property>
+        <property propertyDefinitionRef="propid-29">
+          <value>7 days</value>
+        </property>
+        <property propertyDefinitionRef="propid-30">
+          <value>7 days</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-49873092cd1041c2b1e3617d267966c0" xsi:type="Node">
+      <name>Azure Sql DB</name>
+      <documentation>Purpose:</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-7">
+          <value>10.120.73.13</value>
+        </property>
+        <property propertyDefinitionRef="propid-8">
+          <value>10.120.43.9</value>
+        </property>
+        <property propertyDefinitionRef="propid-9">
+          <value>10.120.9.12</value>
+        </property>
+        <property propertyDefinitionRef="propid-10">
+          <value>rg-ccpa-prod-eu2</value>
+        </property>
+        <property propertyDefinitionRef="propid-11">
+          <value>rg-ccpa-uat-eu2</value>
+        </property>
+        <property propertyDefinitionRef="propid-12">
+          <value>rg-ccpa-dev-eu2</value>
+        </property>
+        <property propertyDefinitionRef="propid-13">
+          <value>E8a v4</value>
+        </property>
+        <property propertyDefinitionRef="propid-14">
+          <value>E8a v4</value>
+        </property>
+        <property propertyDefinitionRef="propid-15">
+          <value>E8a v4</value>
+        </property>
+        <property propertyDefinitionRef="propid-16">
+          <value>RHEL 7.9</value>
+        </property>
+        <property propertyDefinitionRef="propid-17">
+          <value>RHEL 7.9</value>
+        </property>
+        <property propertyDefinitionRef="propid-18">
+          <value>RHEL 7.9</value>
+        </property>
+        <property propertyDefinitionRef="propid-19">
+          <value>8</value>
+        </property>
+        <property propertyDefinitionRef="propid-20">
+          <value>8</value>
+        </property>
+        <property propertyDefinitionRef="propid-21">
+          <value>8</value>
+        </property>
+        <property propertyDefinitionRef="propid-22">
+          <value>64GB</value>
+        </property>
+        <property propertyDefinitionRef="propid-23">
+          <value>64GB</value>
+        </property>
+        <property propertyDefinitionRef="propid-24">
+          <value>64GB</value>
+        </property>
+        <property propertyDefinitionRef="propid-25">
+          <value>Daily Once</value>
+        </property>
+        <property propertyDefinitionRef="propid-26">
+          <value>Daily Once</value>
+        </property>
+        <property propertyDefinitionRef="propid-27">
+          <value>Daily Once</value>
+        </property>
+        <property propertyDefinitionRef="propid-28">
+          <value>14 days</value>
+        </property>
+        <property propertyDefinitionRef="propid-29">
+          <value>7 days</value>
+        </property>
+        <property propertyDefinitionRef="propid-30">
+          <value>7 days</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-9cbdcd45854d4481ad1e4d62224f5432" xsi:type="Node">
+      <name>Azure SQL DB</name>
+      <documentation>Purpose: ______________&#xD;
+&#xD;
+We have only one environment: PROD; no UAT or DEV -- correct ?&#xD;
+&#xD;
+Azure SQL DB  (PaaS)  (EDC)&#xD;
+&#xD;
+OS version need to be checked with INFA to RHEL 7.9</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-32">
+          <value>sqlinfccpadeu2</value>
+        </property>
+        <property propertyDefinitionRef="propid-33">
+          <value>Sql Server 2019</value>
+        </property>
+        <property propertyDefinitionRef="propid-7">
+          <value>10.120.12.10</value>
+        </property>
+        <property propertyDefinitionRef="propid-10">
+          <value>rg-ccpa-dev-eu2</value>
+        </property>
+        <property propertyDefinitionRef="propid-13">
+          <value>E8a v4</value>
+        </property>
+        <property propertyDefinitionRef="propid-16">
+          <value>RHEL 7.9</value>
+        </property>
+        <property propertyDefinitionRef="propid-19">
+          <value>8</value>
+        </property>
+        <property propertyDefinitionRef="propid-22">
+          <value>64GB</value>
+        </property>
+        <property propertyDefinitionRef="propid-25">
+          <value>Daily Once</value>
+        </property>
+        <property propertyDefinitionRef="propid-26">
+          <value>Daily Once</value>
+        </property>
+        <property propertyDefinitionRef="propid-27">
+          <value>Daily Once</value>
+        </property>
+        <property propertyDefinitionRef="propid-28">
+          <value>14 days</value>
+        </property>
+        <property propertyDefinitionRef="propid-29">
+          <value>7 days</value>
+        </property>
+        <property propertyDefinitionRef="propid-30">
+          <value>7 days</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-1a653d3b87934d70adddbb4fd12a1a93" xsi:type="Node">
+      <name>Azure SQL DB</name>
+      <documentation>Purpose: &#xD;
+&#xD;
+Version: SQL Server 2019&#xD;
+&#xD;
+CNO is still single region and multi-region will be explored</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-4">
+          <value>sqlinfccpapeu2.conseco.ad</value>
+        </property>
+        <property propertyDefinitionRef="propid-5">
+          <value>sqlinfccpameu2.conseco.ad</value>
+        </property>
+        <property propertyDefinitionRef="propid-6">
+          <value>sqlinfccpadeu2.conseco.ad</value>
+        </property>
+        <property propertyDefinitionRef="propid-7">
+          <value>10.120.75.7</value>
+        </property>
+        <property propertyDefinitionRef="propid-8">
+          <value>10.120.43.9</value>
+        </property>
+        <property propertyDefinitionRef="propid-9">
+          <value>10.120.12.10</value>
+        </property>
+        <property propertyDefinitionRef="propid-10">
+          <value>rg-ccpa-prod-eu2</value>
+        </property>
+        <property propertyDefinitionRef="propid-11">
+          <value>rg-ccpa-uat-eu2</value>
+        </property>
+        <property propertyDefinitionRef="propid-12">
+          <value>rg-ccpa-dev-eu2</value>
+        </property>
+        <property propertyDefinitionRef="propid-13">
+          <value>Gen 5 VCORE 8</value>
+        </property>
+        <property propertyDefinitionRef="propid-14">
+          <value>Gen 5 VCORE 8</value>
+        </property>
+        <property propertyDefinitionRef="propid-15">
+          <value>Gen 5 VCORE 8</value>
+        </property>
+        <property propertyDefinitionRef="propid-16">
+          <value>N/A ?</value>
+        </property>
+        <property propertyDefinitionRef="propid-17">
+          <value>N/A ?</value>
+        </property>
+        <property propertyDefinitionRef="propid-18">
+          <value>N/A ?</value>
+        </property>
+        <property propertyDefinitionRef="propid-19">
+          <value>8 core</value>
+        </property>
+        <property propertyDefinitionRef="propid-20">
+          <value>8 core</value>
+        </property>
+        <property propertyDefinitionRef="propid-21">
+          <value>8 core</value>
+        </property>
+        <property propertyDefinitionRef="propid-22">
+          <value>40GB</value>
+        </property>
+        <property propertyDefinitionRef="propid-23">
+          <value>40GB</value>
+        </property>
+        <property propertyDefinitionRef="propid-24">
+          <value>40GB</value>
+        </property>
+        <property propertyDefinitionRef="propid-25">
+          <value>Daily Once</value>
+        </property>
+        <property propertyDefinitionRef="propid-26">
+          <value>Daily Once</value>
+        </property>
+        <property propertyDefinitionRef="propid-27">
+          <value>Daily Once</value>
+        </property>
+        <property propertyDefinitionRef="propid-28">
+          <value>14 days</value>
+        </property>
+        <property propertyDefinitionRef="propid-29">
+          <value>7 days</value>
+        </property>
+        <property propertyDefinitionRef="propid-30">
+          <value>7 days</value>
+        </property>
+        <property propertyDefinitionRef="propid-34">
+          <value>Daily Full backup</value>
+        </property>
+        <property propertyDefinitionRef="propid-35">
+          <value>Daily Full backup</value>
+        </property>
+        <property propertyDefinitionRef="propid-36">
+          <value>Daily Full backup</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-cff2539dbcf54412bfe4a72e0075506b" xsi:type="Node">
+      <name>AXON NODE01 - LXINFAXONAPP01 (E8a V4) - Azure</name>
+      <documentation>Purpose: &#xD;
+Axon Overview Meeting 2-Apr-2021 -- Brian Bussing,  &lt;bbussing@informatica.com&gt; &#xD;
+https://informatica.zoom.us/rec/share/lDJpiSPn7Q7zBj1kKNcC5ppF4MnVJYQI4QHnmOEwBx68M22bVPlSAg5oi0x80EXP.kNwK-KRUaOBVQFgE&#xD;
+Access Passcode: #CNOInfa2021!&#xD;
+&#xD;
+Version: SQL Server 2019&#xD;
+&#xD;
+CNO is still single region and multi-region will be explored</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-4">
+          <value>axon.cnoinc.com</value>
+        </property>
+        <property propertyDefinitionRef="propid-5">
+          <value>axon-uat.cnoinc.com</value>
+        </property>
+        <property propertyDefinitionRef="propid-7">
+          <value>10.120.73.11</value>
+        </property>
+        <property propertyDefinitionRef="propid-8">
+          <value>10.120.41.11</value>
+        </property>
+        <property propertyDefinitionRef="propid-10">
+          <value />
+        </property>
+        <property propertyDefinitionRef="propid-11">
+          <value />
+        </property>
+        <property propertyDefinitionRef="propid-12">
+          <value />
+        </property>
+        <property propertyDefinitionRef="propid-13">
+          <value />
+        </property>
+        <property propertyDefinitionRef="propid-14">
+          <value />
+        </property>
+        <property propertyDefinitionRef="propid-15">
+          <value />
+        </property>
+        <property propertyDefinitionRef="propid-16">
+          <value />
+        </property>
+        <property propertyDefinitionRef="propid-17">
+          <value />
+        </property>
+        <property propertyDefinitionRef="propid-18">
+          <value />
+        </property>
+        <property propertyDefinitionRef="propid-19">
+          <value />
+        </property>
+        <property propertyDefinitionRef="propid-20">
+          <value />
+        </property>
+        <property propertyDefinitionRef="propid-21">
+          <value />
+        </property>
+        <property propertyDefinitionRef="propid-22">
+          <value />
+        </property>
+        <property propertyDefinitionRef="propid-23">
+          <value />
+        </property>
+        <property propertyDefinitionRef="propid-24">
+          <value />
+        </property>
+        <property propertyDefinitionRef="propid-25">
+          <value />
+        </property>
+        <property propertyDefinitionRef="propid-26">
+          <value />
+        </property>
+        <property propertyDefinitionRef="propid-27">
+          <value />
+        </property>
+        <property propertyDefinitionRef="propid-28">
+          <value />
+        </property>
+        <property propertyDefinitionRef="propid-29">
+          <value />
+        </property>
+        <property propertyDefinitionRef="propid-30">
+          <value />
+        </property>
+        <property propertyDefinitionRef="propid-34">
+          <value />
+        </property>
+        <property propertyDefinitionRef="propid-35">
+          <value />
+        </property>
+        <property propertyDefinitionRef="propid-36">
+          <value />
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-03684da37f7d4b7db343ff934d803324" xsi:type="TechnologyCollaboration">
+      <name>High Availability (copy)</name>
+      <documentation>exists only in Production Environment</documentation>
+    </element>
+    <element identifier="id-aaac5e85b1014e998c58b2c2fab733c1" xsi:type="Node">
+      <name>Azure SQL DB (Passive) (copy)</name>
+      <documentation>exists only in Production Environment</documentation>
+    </element>
+    <element identifier="id-c1d51bb747a84191aee1749dcd35595d" xsi:type="Node">
+      <name>Azure SQL DB (Active) (copy)</name>
+    </element>
+    <element identifier="id-8eb4a58329824cfdbb8968dd64d81f99" xsi:type="Node">
+      <name>IDQ Services - (on prem)</name>
+    </element>
+    <element identifier="id-c8e9b418b73c49d281e158903c6c87cc" xsi:type="TechnologyCollaboration">
+      <name>High-Availabiilty: F5 ASM WAF</name>
+      <documentation>High-Availabiilty F5 ASM WAF and IDQ Node02  do not exist in Development Environment&#xD;
+&#xD;
+https://devcentral.f5.com/s/articles/the-big-ip-application-security-manager-part-1-what-is-the-asm &#xD;
+&#xD;
+The BIG-IP Application Security Manager (ASM)  is a Layer 7 ICSA-certified Web Application Firewall (WAF) that provides application security in traditional, virtual, and private cloud environments.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-4">
+          <value>tbd</value>
+        </property>
+        <property propertyDefinitionRef="propid-5">
+          <value>tbd</value>
+        </property>
+        <property propertyDefinitionRef="propid-7">
+          <value>10.120.73.15</value>
+        </property>
+        <property propertyDefinitionRef="propid-8">
+          <value>10.120.41.18  -- (incorrect - same as EDC Service High-Availability)</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-026ba9c10b644a06995d36e2c3f7146c" xsi:type="Node">
+      <name>IDQ Node01</name>
+      <documentation>Is "IDQ Node01" the correct name?</documentation>
+    </element>
+    <element identifier="id-7a04d6f75f1b4a458b7a10ab58cbf817" xsi:type="Node">
+      <name>IDQ Node02</name>
+      <documentation>Is "IDQ Node01" the correct name?</documentation>
+    </element>
+    <element identifier="id-1f2cd47f8c2e4532baeb758b85a81b93" xsi:type="Node">
+      <name>IDQ Node1 - LXINFDQP04</name>
+      <documentation>Is "IDQ Node01" the correct name?</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-4">
+          <value>nslookup LXINFDQP04.conseco.ad</value>
+        </property>
+        <property propertyDefinitionRef="propid-5">
+          <value>nslookup LXINFDQM04.conseco.ad</value>
+        </property>
+        <property propertyDefinitionRef="propid-6">
+          <value>nslookup LXINFDQD04.conseco.ad</value>
+        </property>
+        <property propertyDefinitionRef="propid-7">
+          <value>192.168.193.228</value>
+        </property>
+        <property propertyDefinitionRef="propid-8">
+          <value>10.11.192.150</value>
+        </property>
+        <property propertyDefinitionRef="propid-9">
+          <value>10.11.190.85</value>
+        </property>
+        <property propertyDefinitionRef="propid-10">
+          <value>n/a on-prem</value>
+        </property>
+        <property propertyDefinitionRef="propid-11">
+          <value>n/a on-prem</value>
+        </property>
+        <property propertyDefinitionRef="propid-12">
+          <value>n/a on-prem</value>
+        </property>
+        <property propertyDefinitionRef="propid-13">
+          <value>n/a on-prem</value>
+        </property>
+        <property propertyDefinitionRef="propid-14">
+          <value>n/a on-prem</value>
+        </property>
+        <property propertyDefinitionRef="propid-15">
+          <value>n/a on-prem</value>
+        </property>
+        <property propertyDefinitionRef="propid-16">
+          <value>RHEL 7.9</value>
+        </property>
+        <property propertyDefinitionRef="propid-17">
+          <value>RHEL 7.9</value>
+        </property>
+        <property propertyDefinitionRef="propid-18">
+          <value>RHEL 7.9</value>
+        </property>
+        <property propertyDefinitionRef="propid-19">
+          <value>2 core</value>
+        </property>
+        <property propertyDefinitionRef="propid-20">
+          <value>2 core</value>
+        </property>
+        <property propertyDefinitionRef="propid-21">
+          <value>2 core</value>
+        </property>
+        <property propertyDefinitionRef="propid-22">
+          <value>32GB</value>
+        </property>
+        <property propertyDefinitionRef="propid-23">
+          <value>15GB</value>
+        </property>
+        <property propertyDefinitionRef="propid-24">
+          <value>17GB</value>
+        </property>
+        <property propertyDefinitionRef="propid-25">
+          <value>Daily</value>
+        </property>
+        <property propertyDefinitionRef="propid-26">
+          <value>Daily</value>
+        </property>
+        <property propertyDefinitionRef="propid-27">
+          <value>Daily</value>
+        </property>
+        <property propertyDefinitionRef="propid-28">
+          <value>14 days</value>
+        </property>
+        <property propertyDefinitionRef="propid-29">
+          <value>14 days</value>
+        </property>
+        <property propertyDefinitionRef="propid-30">
+          <value>14 days</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-c99a49b8a83b4806b4821ad963f9ee49" xsi:type="Node">
+      <name>IDQ Node 2 - LXINFDQP05</name>
+      <documentation>Is "IDQ Node02" the correct name?</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-4">
+          <value>nslookup LXINFDQP05.conseco.ad</value>
+        </property>
+        <property propertyDefinitionRef="propid-5">
+          <value>nslookup LXINFDQM05.conseco.ad</value>
+        </property>
+        <property propertyDefinitionRef="propid-6">
+          <value>nslookup LXINFDQD05.conseco.ad</value>
+        </property>
+        <property propertyDefinitionRef="propid-7">
+          <value>192.168.193.186</value>
+        </property>
+        <property propertyDefinitionRef="propid-8">
+          <value>10.11.192.149</value>
+        </property>
+        <property propertyDefinitionRef="propid-9">
+          <value>10.11.190.86</value>
+        </property>
+        <property propertyDefinitionRef="propid-10">
+          <value>n/a on-prem</value>
+        </property>
+        <property propertyDefinitionRef="propid-11">
+          <value>n/a on-prem</value>
+        </property>
+        <property propertyDefinitionRef="propid-12">
+          <value>n/a on-prem</value>
+        </property>
+        <property propertyDefinitionRef="propid-13">
+          <value>n/a on-prem</value>
+        </property>
+        <property propertyDefinitionRef="propid-14">
+          <value>n/a on-prem</value>
+        </property>
+        <property propertyDefinitionRef="propid-15">
+          <value>n/a on-prem</value>
+        </property>
+        <property propertyDefinitionRef="propid-16">
+          <value>RHEL 7.9</value>
+        </property>
+        <property propertyDefinitionRef="propid-17">
+          <value>RHEL 7.9</value>
+        </property>
+        <property propertyDefinitionRef="propid-18">
+          <value>RHEL 7.9</value>
+        </property>
+        <property propertyDefinitionRef="propid-19">
+          <value>2 core</value>
+        </property>
+        <property propertyDefinitionRef="propid-20">
+          <value>2 core</value>
+        </property>
+        <property propertyDefinitionRef="propid-21">
+          <value>2 core</value>
+        </property>
+        <property propertyDefinitionRef="propid-22">
+          <value>32GB</value>
+        </property>
+        <property propertyDefinitionRef="propid-23">
+          <value>13GB</value>
+        </property>
+        <property propertyDefinitionRef="propid-24">
+          <value>17GB</value>
+        </property>
+        <property propertyDefinitionRef="propid-25">
+          <value>tbd</value>
+        </property>
+        <property propertyDefinitionRef="propid-26">
+          <value>tbd</value>
+        </property>
+        <property propertyDefinitionRef="propid-27">
+          <value>tbd</value>
+        </property>
+        <property propertyDefinitionRef="propid-28">
+          <value>tbd</value>
+        </property>
+        <property propertyDefinitionRef="propid-29">
+          <value>tbd</value>
+        </property>
+        <property propertyDefinitionRef="propid-30">
+          <value>tbd</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-51c52574303d45b38e7e042bf0ed06b0" xsi:type="TechnologyService">
+      <name>UI Web App</name>
+    </element>
+    <element identifier="id-e4950b32807c41b7b7e9c60e6be427c9" xsi:type="TechnologyService">
+      <name>LDM Admin-9085</name>
+      <documentation>These two end points are connected via the Load Balancer&#xD;
+https://lxinfedcapp01.conseco.ad:9085/ldmadmin (Primary- EDC Node01)&#xD;
+https://lxinfedcapp02.conseco.ad:9085/ldmadmin (Secondary- EDC Node02)</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>9085</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-d6b39fab02454737a3af86162233932a" xsi:type="TechnologyService">
+      <name>LDM Catalog-9085</name>
+      <documentation>These two end points are connected via the Load Balancer&#xD;
+https://lxinfedcapp01.conseco.ad:9085/ldmcatalog (Primary- EDC Node01) &#xD;
+https://lxinfedcapp02.conseco.ad:9085/ldmcatalog (Secondary - EDC Node02)</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>9085</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-11142631d15a407f8529a8f6bd446dd6" xsi:type="CommunicationNetwork">
+      <name>Communication Network</name>
+      <documentation>work in progress</documentation>
+    </element>
+    <element identifier="id-8a9e66ccba4d47088f3c99a48f6ad996" xsi:type="Node">
+      <name>Linux Server Specs</name>
+      <documentation>https://teams.microsoft.com/_#/files/General?threadId=19%3A95cee131907b43589037d71617073bc2%40thread.tacv2&amp;ctx=channel&amp;context=LinuxServerSpecs&amp;rootfolder=%252Fsites%252FITDataManagementandDelivery%252FShared%2520Documents%252FGeneral%252FData%2520Management%2520EDC-IDQ-Axon%2520BigID%252FLinuxServerSpecs</documentation>
+    </element>
+    <element identifier="id-93acbe0a4d2943a6a80a4e0fd2ef656b" xsi:type="TechnologyService">
+      <name>Availability Zone 1</name>
+    </element>
+    <element identifier="id-e96475a893b04ad99e46ca159d5fb912" xsi:type="TechnologyService">
+      <name>Availability Zone 2</name>
+    </element>
+    <element identifier="id-6db6c65de4a44e44b7726112c054c21b" xsi:type="TechnologyService">
+      <name>rg-ccpa-prod-eu2</name>
+    </element>
+    <element identifier="id-cbc33dec5b68455ab5ec24c2a73a3fcb" xsi:type="TechnologyCollaboration">
+      <name>Availability Zone 2</name>
+    </element>
+    <element identifier="id-1d1aaf9d0f844b7a9efb443638ccba62" xsi:type="TechnologyService">
+      <name>Azure Load Balancer</name>
+    </element>
+    <element identifier="id-6debbaf9151d4b2fa7700f745941aadb" xsi:type="TechnologyService">
+      <name>Azure Load Balancer (copy)</name>
+    </element>
+    <element identifier="id-4a06d6db0da3452aaa1533f9949ab025" xsi:type="TechnologyCollaboration">
+      <name>Availability Zone 1</name>
+      <documentation>exists only in Production Environment</documentation>
+    </element>
+    <element identifier="id-a59a08d82b7048d08e01f3a7538174c1" xsi:type="Node">
+      <name>Azure SQL DB (Passive) (copy)</name>
+      <documentation>exists only in Production Environment</documentation>
+    </element>
+    <element identifier="id-4335f1a7baf74d01aedb2af95cdccc5c" xsi:type="Node">
+      <name>Azure SQL DB (Active)</name>
+    </element>
+    <element identifier="id-e6e8afb710a241c0b117f31e1239952e" xsi:type="TechnologyService">
+      <name>Azure Load Balancer (copy) (copy)</name>
+    </element>
+    <element identifier="id-88a4cbd05c5f4252852c7b147387385b" xsi:type="TechnologyService">
+      <name>AXON UI - 9443/9999</name>
+      <documentation>These two end points are connected via the Load Balancer&#xD;
+https://lxinfedcapp01.conseco.ad:9085/ldmadmin (Primary- EDC Node01)&#xD;
+https://lxinfedcapp02.conseco.ad:9085/ldmadmin (Secondary- EDC Node02)</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>9085</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-291dbde0884c4126a73b7f9a67aaa423" xsi:type="TechnologyService">
+      <name>Azure Cloud - Virtual Network</name>
+    </element>
+    <element identifier="id-9bd2e6ecf7ca42afba93066a27830c34" xsi:type="TechnologyCollaboration">
+      <name>Technology Collaboration</name>
+    </element>
+    <element identifier="id-65e316020b694ca39a2321f72075b417" xsi:type="TechnologyCollaboration">
+      <name>Azure Cloud - Virtual Network</name>
+      <properties>
+        <property propertyDefinitionRef="propid-38">
+          <value>rg-ccpa-prod-eu2</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-fb4b558a2827484ba682df5b295dc934" xsi:type="TechnologyService">
+      <name>Model Repository Service</name>
+      <documentation>Purpose: The Model Repository Service is an application service that manages model repository that stores metadata created by the Enterprise Data Catalog. MRS stores the underlying contents in a relational database to enable collaboration among the tools and services. Model repository primarily stores the resource configuration and data domain information. When you access a Model repository object from the Enterprise Data Catalog tools or the Data Integration Service, the client or service sends a request to the Model Repository Service. The Model Repository Service process fetches, inserts, and updates the metadata in the Model repository database tables.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>9485</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-af46fea7a5a04571bc6c51365917ac14" xsi:type="TechnologyService">
+      <name>Model Repository Service database (MRS)</name>
+      <documentation>Purpose: The Model Repository Service is an application service that manages model repository that stores metadata created by the Enterprise Data Catalog. MRS stores the underlying contents in a relational database to enable collaboration among the tools and services. Model repository primarily stores the resource configuration and data domain information. When you access a Model repository object from the Enterprise Data Catalog tools or the Data Integration Service, the client or service sends a request to the Model Repository Service. The Model Repository Service process fetches, inserts, and updates the metadata in the Model repository database tables.&#xD;
+&#xD;
+MRS stores all the configuration and connectivity information for EDC resources.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>9485</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-8f2682fbc95e414bafb3c7a6ce4def7e" xsi:type="TechnologyService">
+      <name>Profile warehouse database (PWH)</name>
+      <documentation>Purpose: Profile warehouse database (PWH) is used by the Data Integration services to store the profile statistics and value frequency are temporarily stored before being moved over to the HBase database by the Spark ingestion services.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>9485</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-4dab94584d064dcdb535664909e3de75" xsi:type="TechnologyService">
+      <name>Reference database (REF)</name>
+      <documentation>Purpose: Reference database  (REF) is used by the Content Management services to store reference data used for data discovery such as names, synonyms, location reference data, etc.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value>9485</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-26761c9b35bc411ba83560d1c8d84a6c" xsi:type="WorkPackage">
+      <name>Work Package</name>
+    </element>
+    <element identifier="id-6848a9bf16a046c9825a931220fdd8c4" xsi:type="ImplementationEvent">
+      <name>Implementation Event</name>
+    </element>
+    <element identifier="id-9399c6dbd8fd4a2992dec19dbfd5b1c4" xsi:type="WorkPackage">
+      <name>Resource group</name>
+    </element>
+  </elements>
+  <relationships>
+    <relationship identifier="id-266a1c7734b84dc9a5bf0b5ba87fe633" source="id-a51d03a6710b416ebd6f2cf9c94c57ef" target="id-061ca94c29be4d82bb50078d9c7eaf3b" xsi:type="Serving" />
+    <relationship identifier="id-c3e4c096470f410299ced42a393ea474" source="id-a51d03a6710b416ebd6f2cf9c94c57ef" target="id-262b292b6d0446bfa000ab88e6313d40" xsi:type="Serving" />
+    <relationship identifier="id-7d134e59a2fc4a67843473f5aab015c7" source="id-0318c251fd664fa88f0d37e3e5161108" target="id-a8f4316d226b466bb3c7f1b30631dce8" xsi:type="Serving" />
+    <relationship identifier="id-4d3c57dcd2d54c6f8d332a341364803e" source="id-34443813757b44e9bcec2fb2263cd018" target="id-97e72bd9e96d415abde9d5f3ae04aba8" xsi:type="Realization" />
+    <relationship identifier="id-d92f4268e3dd414f80865fa3dd62a595" source="id-061ca94c29be4d82bb50078d9c7eaf3b" target="id-97e72bd9e96d415abde9d5f3ae04aba8" xsi:type="Realization" />
+    <relationship identifier="id-7c95b193c31e482a923c5edc0e88e4ac" source="id-a8f4316d226b466bb3c7f1b30631dce8" target="id-97e72bd9e96d415abde9d5f3ae04aba8" xsi:type="Realization" />
+    <relationship identifier="id-e599f68363384a7a8ca4acae91f1cf5e" source="id-26761c9b35bc411ba83560d1c8d84a6c" target="id-a2305b9ea2f840c5837f301cdaf2f4f0" xsi:type="Realization" />
+    <relationship identifier="id-7240947560704e7d991df0817c658a19" source="id-26761c9b35bc411ba83560d1c8d84a6c" target="id-2f2331cfa27e49f5a63fe2d81e137f1f" xsi:type="Realization" />
+    <relationship identifier="id-3f0b2cdf1225483297f21b74aa822682" source="id-a2305b9ea2f840c5837f301cdaf2f4f0" target="id-2f2331cfa27e49f5a63fe2d81e137f1f" xsi:type="Flow" />
+    <relationship identifier="id-a71eaa1b47c24ffb835c1b85d5699b2c" source="id-a93020af920842db8f5eb9a5d38fdb46" target="id-109a5f27bfdb4d899d68bfde50e641f3" xsi:type="Serving" />
+    <relationship identifier="id-8371b64e3f46437f9794bb74c6bd049d" source="id-0318c251fd664fa88f0d37e3e5161108" target="id-17803b0031954996a27c7026b755c4be" xsi:type="Realization" />
+    <relationship identifier="id-b9ff055482f14a899ee90fa74a7a5bb6" source="id-0318c251fd664fa88f0d37e3e5161108" target="id-843ff24c40754dc8b274e543a4c9914e" xsi:type="Realization" />
+    <relationship identifier="id-5e37376b4ff04d9e9a08b502351dae03" source="id-17803b0031954996a27c7026b755c4be" target="id-843ff24c40754dc8b274e543a4c9914e" xsi:type="Flow" />
+    <relationship identifier="id-89aadc99653c4219b46c5aac62224a98" source="id-ebffdcaf8ac04bcd91f28f95ad2ee438" target="id-40acd5c869c542408fdf5ad7a4b9f672" xsi:type="Aggregation" />
+    <relationship identifier="id-d2891b8f13e941a98b560aa34a7ff30e" source="id-ebffdcaf8ac04bcd91f28f95ad2ee438" target="id-7a546b567f314ed1830e04b14665ec9b" xsi:type="Aggregation" />
+    <relationship identifier="id-6cbb4d955459407d9152c8e5601df5aa" source="id-40acd5c869c542408fdf5ad7a4b9f672" target="id-7a546b567f314ed1830e04b14665ec9b" xsi:type="Association" />
+    <relationship identifier="id-9dc5315933be4eb09b33e2b86ea5dcfd" source="id-c615ebcc6abd4687ab48d6c668de4de8" target="id-f721b29a47d14539b00a4fc0ef887fbb" xsi:type="Serving" />
+    <relationship identifier="id-bb2a5fd258884484b690c4d27757fb93" source="id-c615ebcc6abd4687ab48d6c668de4de8" target="id-f6d709faa3754b4abcd68e81f21ce693" xsi:type="Flow" />
+    <relationship identifier="id-880e7400daad41fa91556e799ef8490f" source="id-c615ebcc6abd4687ab48d6c668de4de8" target="id-f6d709faa3754b4abcd68e81f21ce693" xsi:type="Aggregation" />
+    <relationship identifier="id-e6ac1b8bac27460a9274317a6a3e29d4" source="id-f6d709faa3754b4abcd68e81f21ce693" target="id-4a06d6db0da3452aaa1533f9949ab025" xsi:type="Flow" />
+    <relationship identifier="id-ecdacad1d5ae4c7d81e2128d72b823af" source="id-f6d709faa3754b4abcd68e81f21ce693" target="id-0a7f8bf271474a679d919ab018d868a5" xsi:type="Realization" />
+    <relationship identifier="id-97d32a9a372a4573b57ae557e44741c9" source="id-f6d709faa3754b4abcd68e81f21ce693" target="id-deeb631bc15544339d87e0cb2546b06b" xsi:type="Realization" />
+    <relationship identifier="id-45a91f556b4c4dfd92dd2b3834d94f1d" source="id-f6d709faa3754b4abcd68e81f21ce693" target="id-cb7a649883be44cd9fd34606146cd652" xsi:type="Realization" />
+    <relationship identifier="id-b79a534653254976a7e4b957e573230e" source="id-f6d709faa3754b4abcd68e81f21ce693" target="id-eeef0e7bc82142aabb67ccca625f59e5" xsi:type="Realization" />
+    <relationship identifier="id-5b554c002503437ca28bb457ed30e5d1" source="id-f6d709faa3754b4abcd68e81f21ce693" target="id-fc6bfdc27c074142aaff97e861e6356c" xsi:type="Realization" />
+    <relationship identifier="id-8964b9dfd1f74051885ce8c05f7ae7a2" source="id-f6d709faa3754b4abcd68e81f21ce693" target="id-9a416aff655b492799e023628c7c6650" xsi:type="Realization" />
+    <relationship identifier="id-92461f5d7f454d5fafa813cb9a96eb77" source="id-f6d709faa3754b4abcd68e81f21ce693" target="id-2277ab1f63084977867a1725d62842ba" xsi:type="Realization" />
+    <relationship identifier="id-290ab84c899c43abbd08f1a28b9d0578" source="id-0318c251fd664fa88f0d37e3e5161108" target="id-035492aa093c4dc88ad59df78255829a" xsi:type="Realization" />
+    <relationship identifier="id-3776b54e149c46f1a28d1a9b85333ebc" source="id-97fdc45a3b8a4e239d2444c462083cc6" target="id-0318c251fd664fa88f0d37e3e5161108" xsi:type="Flow" />
+    <relationship identifier="id-05bab826511f421b952cbc03e84ba52a" source="id-cb7a649883be44cd9fd34606146cd652" target="id-97fdc45a3b8a4e239d2444c462083cc6" xsi:type="Triggering" />
+    <relationship identifier="id-9057b114b85140bd8de7a0058f72c568" source="id-1346f31862034439a6fc59906fc1dffd" target="id-97fdc45a3b8a4e239d2444c462083cc6" xsi:type="Flow">
+      <documentation>CNO has licensed 600 connections from Informatica. Each connection allows us to extract data from a source system.&#xD;
+Cameron: How is a resource related to a connection??</documentation>
+    </relationship>
+    <relationship identifier="id-4e0be14c9413488d9aef8a2f96b3e87c" source="id-0318c251fd664fa88f0d37e3e5161108" target="id-1c8267b4a0654d389952312bb28dd2af" xsi:type="Realization" />
+    <relationship identifier="id-a71c0097168e4955b4b8c64d6cf57538" source="id-0318c251fd664fa88f0d37e3e5161108" target="id-8e773ca1f6314e78b5c1c6ad1d6294ed" xsi:type="Realization" />
+    <relationship identifier="id-3d7b729e26ea4dfb89c48a755d387e68" source="id-0318c251fd664fa88f0d37e3e5161108" target="id-8b7a3d06007c4829a4419ce492f1fcb4" xsi:type="Realization" />
+    <relationship identifier="id-f4f179976afa4dc1b26828089d5d9f22" source="id-cab99a7a2333447ca8dbc1c76fa957e9" target="id-92727d358dad4a0da1c3ddfe4789b7c2" xsi:type="Realization" />
+    <relationship identifier="id-768155ff04ee4dabb175f26c021ed7cb" source="id-cab99a7a2333447ca8dbc1c76fa957e9" target="id-8b960a02da574c1b89a204cc59c4abac" xsi:type="Realization" />
+    <relationship identifier="id-83e36e463d3f436aa17ddffaee45867a" source="id-afabcf02281d49fe904f22156a06962a" target="id-0b88456a80ce489ebe4d4a798529f67d" xsi:type="Flow">
+      <name>https/ssl</name>
+      <documentation>http(s)/rpc/ssl</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-39">
+          <value>http/https or tcp/ip or http(s)/rpc/ssl</value>
+        </property>
+      </properties>
+    </relationship>
+    <relationship identifier="id-25a0e4d05c324773a17163e2705051d4" source="id-39d3470a0a3d4f87b9354f76a7a89a68" target="id-263042b48c3449ee898c0a7c8e35363c" xsi:type="Realization" />
+    <relationship identifier="id-496d00e7ee8c43d1a76c92d1d86a6bb2" source="id-263042b48c3449ee898c0a7c8e35363c" target="id-c6328c76585a4e3a881c4cf52386f224" xsi:type="Realization" />
+    <relationship identifier="id-19e9689bdb0c42e2affb0bf3893ee69c" source="id-263042b48c3449ee898c0a7c8e35363c" target="id-5bc77c713534493cb2cfa1a2cae3a864" xsi:type="Realization" />
+    <relationship identifier="id-f38d1bb192f144f5a00cef67074a4b62" source="id-263042b48c3449ee898c0a7c8e35363c" target="id-ee5bbc6fbddd42a9b8712784a5981665" xsi:type="Realization" />
+    <relationship identifier="id-22354c31ded94887bb06661a4f34821a" source="id-263042b48c3449ee898c0a7c8e35363c" target="id-a5be97498e6a4b7f8aab76c59112bc9c" xsi:type="Realization" />
+    <relationship identifier="id-2f0d42c678ec451197cdd8503f7548ea" source="id-263042b48c3449ee898c0a7c8e35363c" target="id-8f505c561f794ca6be105277360921a8" xsi:type="Realization" />
+    <relationship identifier="id-631291f0aae6488e83179624ef627ad5" source="id-263042b48c3449ee898c0a7c8e35363c" target="id-636f1fbd8e64438d895e9c857714fd80" xsi:type="Realization" />
+    <relationship identifier="id-e8131a41f932423c94a69c7a15136949" source="id-39d3470a0a3d4f87b9354f76a7a89a68" target="id-4b4026e8a8754fe389ce37ae753ee713" xsi:type="Realization" />
+    <relationship identifier="id-8fc28b0592074738b7ee818ad602282f" source="id-c615ebcc6abd4687ab48d6c668de4de8" target="id-e848b36f924747909bf472a6b70466f4" xsi:type="Realization" />
+    <relationship identifier="id-b3f4b81a11844974aef68aaa77f7c64c" source="id-4d3bc1310202466c84cbfe32717063cf" target="id-3460cb6dc31947ec838bb58363d25c02" xsi:type="Realization" />
+    <relationship identifier="id-5280036421834255a97f529f337347f9" source="id-4d3bc1310202466c84cbfe32717063cf" target="id-447f392762694cdba0505500cac2b748" xsi:type="Realization" />
+    <relationship identifier="id-f40eee8f38024048ba74871030f3a00e" source="id-4d3bc1310202466c84cbfe32717063cf" target="id-09984a192a9c4988a5bb984d1edfdd5d" xsi:type="Realization" />
+    <relationship identifier="id-715ef8998abd4dee8f911e8aebe7bf7b" source="id-4d3bc1310202466c84cbfe32717063cf" target="id-d09a5bcd509e4c61950e9378b520c1f7" xsi:type="Realization" />
+    <relationship identifier="id-415c865956194bd08f656906754b38f2" source="id-4d3bc1310202466c84cbfe32717063cf" target="id-760a4067ef584f61b0d24ca3809e945d" xsi:type="Realization" />
+    <relationship identifier="id-ddd81c3391ca48cdbc792946e2d94d32" source="id-4d3bc1310202466c84cbfe32717063cf" target="id-0f5ac1631ea843e58bba0a139c3b8ab8" xsi:type="Realization" />
+    <relationship identifier="id-4576aa327eee49029592c665fecd95ee" source="id-4d3bc1310202466c84cbfe32717063cf" target="id-9f8680122b954306ba3e3a0a1071b60f" xsi:type="Realization" />
+    <relationship identifier="id-959ab543e2864df1bf29de2020d89c82" source="id-39d3470a0a3d4f87b9354f76a7a89a68" target="id-4d3bc1310202466c84cbfe32717063cf" xsi:type="Realization" />
+    <relationship identifier="id-8b2e07eb29cd42e896d46f8d91e4493e" source="id-4d3bc1310202466c84cbfe32717063cf" target="id-c6328c76585a4e3a881c4cf52386f224" xsi:type="Realization" />
+    <relationship identifier="id-67cb70be68184bd3b1b986820fbb4947" source="id-4d3bc1310202466c84cbfe32717063cf" target="id-ee5bbc6fbddd42a9b8712784a5981665" xsi:type="Realization" />
+    <relationship identifier="id-945c6f54ab034151a1b6e7156692081e" source="id-4d3bc1310202466c84cbfe32717063cf" target="id-636f1fbd8e64438d895e9c857714fd80" xsi:type="Realization" />
+    <relationship identifier="id-9de5d2dc3a27419d9fdc5f8af2bc7da2" source="id-4d3bc1310202466c84cbfe32717063cf" target="id-a5be97498e6a4b7f8aab76c59112bc9c" xsi:type="Realization" />
+    <relationship identifier="id-f4202bb9a0e34bc2a4fab4708b6c7c35" source="id-4d3bc1310202466c84cbfe32717063cf" target="id-8f505c561f794ca6be105277360921a8" xsi:type="Realization" />
+    <relationship identifier="id-f022e41429fd402bb4dbb5634ac27c1d" source="id-4d3bc1310202466c84cbfe32717063cf" target="id-5bc77c713534493cb2cfa1a2cae3a864" xsi:type="Realization" />
+    <relationship identifier="id-745043f9c39f450587b8e92f37430336" source="id-8059f790d59f45dfaaff86d1438ac63f" target="id-93b4513806d640a0aa0b186aecb3607c" xsi:type="Realization" />
+    <relationship identifier="id-19aed2113b6a4bd3a038a68f3ea15dd2" source="id-8059f790d59f45dfaaff86d1438ac63f" target="id-9e31be54abed430ca81da4d9c6df265c" xsi:type="Realization" />
+    <relationship identifier="id-2c60dd64aab142629d9de91e69c21f29" source="id-8059f790d59f45dfaaff86d1438ac63f" target="id-0627f8aaa6a54940a03c88afebcd7643" xsi:type="Realization" />
+    <relationship identifier="id-653707ff8cdd4caabd7b658620b24174" source="id-8059f790d59f45dfaaff86d1438ac63f" target="id-53dfeecbc4304fd39fcb4cc036a8c380" xsi:type="Realization" />
+    <relationship identifier="id-f8cbc4972e8b4027ba781bd6e8e261bd" source="id-8059f790d59f45dfaaff86d1438ac63f" target="id-d43c0d43536f405c9ddf564baf638595" xsi:type="Realization" />
+    <relationship identifier="id-8055724c028d4047aa6c8d89717106c2" source="id-8059f790d59f45dfaaff86d1438ac63f" target="id-62c30ddafa2f4010b0c123c0c8718420" xsi:type="Realization" />
+    <relationship identifier="id-058a2a8e2f724cf9ba5cf1d15465a92e" source="id-39d3470a0a3d4f87b9354f76a7a89a68" target="id-8059f790d59f45dfaaff86d1438ac63f" xsi:type="Aggregation" />
+    <relationship identifier="id-d3ed453fec114d6c9bc7304cf21cb9ff" source="id-39d3470a0a3d4f87b9354f76a7a89a68" target="id-3e5474c1e2a04bdf9cd17ee7b287caba" xsi:type="Aggregation" />
+    <relationship identifier="id-73463d9d330c4a23ae0e3c77faf4f30a" source="id-ebffdcaf8ac04bcd91f28f95ad2ee438" target="id-49873092cd1041c2b1e3617d267966c0" xsi:type="Realization" />
+    <relationship identifier="id-dfd9dfb9334b459893154f466e8c7948" source="id-c1d51bb747a84191aee1749dcd35595d" target="id-aaac5e85b1014e998c58b2c2fab733c1" xsi:type="Association" />
+    <relationship identifier="id-c69b2186b992427b98bb45fd8348b603" source="id-03684da37f7d4b7db343ff934d803324" target="id-aaac5e85b1014e998c58b2c2fab733c1" xsi:type="Aggregation" />
+    <relationship identifier="id-b738073e71b64a0488679ecd7d08dd10" source="id-03684da37f7d4b7db343ff934d803324" target="id-c1d51bb747a84191aee1749dcd35595d" xsi:type="Aggregation" />
+    <relationship identifier="id-771cabd9a268460d81e815f960564954" source="id-cff2539dbcf54412bfe4a72e0075506b" target="id-a51d03a6710b416ebd6f2cf9c94c57ef" xsi:type="Serving" />
+    <relationship identifier="id-003afdcea3ca4e21b2e6ca7795dcf303" source="id-cb83200637304df9bade2fc2c3875aa2" target="id-a5edac1ff0c84632bcb0e80369d8163b" xsi:type="Realization" />
+    <relationship identifier="id-eb6d1095b7794780bf9a86a8ae81c6ea" source="id-cb83200637304df9bade2fc2c3875aa2" target="id-7b5ed25a82e84b19b8c5499d73814c68" xsi:type="Realization" />
+    <relationship identifier="id-0ade976f37d041d3944dc9fbcbd698c6" source="id-0318c251fd664fa88f0d37e3e5161108" target="id-40c42527b35a4985807953f3d2526e66" xsi:type="Flow" />
+    <relationship identifier="id-327e08e578da4f51a5bad34f26bf2658" source="id-cab99a7a2333447ca8dbc1c76fa957e9" target="id-40c42527b35a4985807953f3d2526e66" xsi:type="Flow" />
+    <relationship identifier="id-891595acd74847679dfacd7829726ee2" source="id-40c42527b35a4985807953f3d2526e66" target="id-cb83200637304df9bade2fc2c3875aa2" xsi:type="Flow" />
+    <relationship identifier="id-e985a9a9c3d845338f8e332a76005052" source="id-40c42527b35a4985807953f3d2526e66" target="id-0318c251fd664fa88f0d37e3e5161108" xsi:type="Flow" />
+    <relationship identifier="id-eb39e825e7c242cea3a35e95262af958" source="id-40c42527b35a4985807953f3d2526e66" target="id-cab99a7a2333447ca8dbc1c76fa957e9" xsi:type="Flow" />
+    <relationship identifier="id-b4c1a85b9242440888ba1df339e162e2" source="id-cb83200637304df9bade2fc2c3875aa2" target="id-40c42527b35a4985807953f3d2526e66" xsi:type="Flow" />
+    <relationship identifier="id-9090ac191a4141b491dd80e458c613c0" source="id-c8e9b418b73c49d281e158903c6c87cc" target="id-026ba9c10b644a06995d36e2c3f7146c" xsi:type="Realization" />
+    <relationship identifier="id-83a448ced87a46eda8e53b7f9b80c946" source="id-8eb4a58329824cfdbb8968dd64d81f99" target="id-cab99a7a2333447ca8dbc1c76fa957e9" xsi:type="Serving" />
+    <relationship identifier="id-0c9a32a2320d47578ad41ccb1ce7de36" source="id-c8e9b418b73c49d281e158903c6c87cc" target="id-7a04d6f75f1b4a458b7a10ab58cbf817" xsi:type="Realization" />
+    <relationship identifier="id-0caa376cfb2546b982f2070d0722cb0f" source="id-c8e9b418b73c49d281e158903c6c87cc" target="id-1f2cd47f8c2e4532baeb758b85a81b93" xsi:type="Realization" />
+    <relationship identifier="id-4e4b377003d043adaddb9cc9abcafb2f" source="id-c8e9b418b73c49d281e158903c6c87cc" target="id-c99a49b8a83b4806b4821ad963f9ee49" xsi:type="Realization" />
+    <relationship identifier="id-fbd177c05db7407caad0865219861ebe" source="id-cb83200637304df9bade2fc2c3875aa2" target="id-a51d03a6710b416ebd6f2cf9c94c57ef" xsi:type="Realization" />
+    <relationship identifier="id-33281edddb1d4c2b9f4dcd703e35b7af" source="id-cff2539dbcf54412bfe4a72e0075506b" target="id-51c52574303d45b38e7e042bf0ed06b0" xsi:type="Realization" />
+    <relationship identifier="id-bc2b0d7af6c24e9eb2f03646f975a015" source="id-a5edac1ff0c84632bcb0e80369d8163b" target="id-a51d03a6710b416ebd6f2cf9c94c57ef" xsi:type="Flow" />
+    <relationship identifier="id-a65b2164b5124783b0b9c02102e17b01" source="id-0318c251fd664fa88f0d37e3e5161108" target="id-b29897bb8d054b0198b356df00b6fd06" xsi:type="Realization" />
+    <relationship identifier="id-ed8b7ef81d4341e78633d976c3086566" source="id-0318c251fd664fa88f0d37e3e5161108" target="id-f721b29a47d14539b00a4fc0ef887fbb" xsi:type="Realization" />
+    <relationship identifier="id-42d6aa2867b7443eac11b2cb779cee3c" source="id-b29897bb8d054b0198b356df00b6fd06" target="id-f721b29a47d14539b00a4fc0ef887fbb" xsi:type="Specialization" />
+    <relationship identifier="id-4a9dedc75fcd43b9946301106417ae56" source="id-f721b29a47d14539b00a4fc0ef887fbb" target="id-b29897bb8d054b0198b356df00b6fd06" xsi:type="Composition" />
+    <relationship identifier="id-255d39f8dcfb4cd4b01412edf60ef41e" source="id-deeb631bc15544339d87e0cb2546b06b" target="id-b29897bb8d054b0198b356df00b6fd06" xsi:type="Serving" />
+    <relationship identifier="id-2a651a70cefb4dd294d7c185b55e8ebc" source="id-f6d709faa3754b4abcd68e81f21ce693" target="id-e4950b32807c41b7b7e9c60e6be427c9" xsi:type="Realization" />
+    <relationship identifier="id-040f68db16894d62b594e550604c462b" source="id-f721b29a47d14539b00a4fc0ef887fbb" target="id-85600da0e457409caca513cd1e4d6b1c" xsi:type="Composition" />
+    <relationship identifier="id-2c312a4c56bd40fab915f59af1c74870" source="id-e4950b32807c41b7b7e9c60e6be427c9" target="id-85600da0e457409caca513cd1e4d6b1c" xsi:type="Serving" />
+    <relationship identifier="id-7f60c47e1ee64342a60cbf0b71219f01" source="id-0bef37685c9f474ba7410e9a289a7d87" target="id-f721b29a47d14539b00a4fc0ef887fbb" xsi:type="Specialization" />
+    <relationship identifier="id-4f6cff1878a9447ba32e2d9a71fbaafa" source="id-f6d709faa3754b4abcd68e81f21ce693" target="id-d6b39fab02454737a3af86162233932a" xsi:type="Realization" />
+    <relationship identifier="id-90c56aed1c914ee898a353f5ba4efce2" source="id-d6b39fab02454737a3af86162233932a" target="id-0bef37685c9f474ba7410e9a289a7d87" xsi:type="Serving" />
+    <relationship identifier="id-04b352f27b634ee98d7e09b4e3722d7d" source="id-1f2cd47f8c2e4532baeb758b85a81b93" target="id-c99a49b8a83b4806b4821ad963f9ee49" xsi:type="Association" />
+    <relationship identifier="id-66f4287e056a476cacc2373cf6e2be4a" source="id-f6d709faa3754b4abcd68e81f21ce693" target="id-e848b36f924747909bf472a6b70466f4" xsi:type="Association" />
+    <relationship identifier="id-7bdc794ba3e8427daa0d98c850b3883a" source="id-34443813757b44e9bcec2fb2263cd018" target="id-e960173a3a1d487aad0f4bc591b90672" xsi:type="Flow" />
+    <relationship identifier="id-caac63618c9146dc899030d77234cc8d" source="id-c615ebcc6abd4687ab48d6c668de4de8" target="id-93acbe0a4d2943a6a80a4e0fd2ef656b" xsi:type="Assignment" />
+    <relationship identifier="id-c12df5c26e4346f985c5f440af67f8e5" source="id-c615ebcc6abd4687ab48d6c668de4de8" target="id-e96475a893b04ad99e46ca159d5fb912" xsi:type="Assignment" />
+    <relationship identifier="id-49826d65edeb450280c7bcfbda91f5d6" source="id-1d1aaf9d0f844b7a9efb443638ccba62" target="id-c615ebcc6abd4687ab48d6c668de4de8" xsi:type="Triggering" />
+    <relationship identifier="id-dfce5579b7ca402baf7d02a48286b469" source="id-4a06d6db0da3452aaa1533f9949ab025" target="id-4335f1a7baf74d01aedb2af95cdccc5c" xsi:type="Aggregation" />
+    <relationship identifier="id-8869ab377b89429fb67b8e538f62ab64" source="id-4335f1a7baf74d01aedb2af95cdccc5c" target="id-a59a08d82b7048d08e01f3a7538174c1" xsi:type="Association" />
+    <relationship identifier="id-962ea3be675d45d68597e64f6034a695" source="id-4a06d6db0da3452aaa1533f9949ab025" target="id-a59a08d82b7048d08e01f3a7538174c1" xsi:type="Aggregation" />
+    <relationship identifier="id-ccd55bcc8089417fa7749642eadebfef" source="id-4a06d6db0da3452aaa1533f9949ab025" target="id-ebffdcaf8ac04bcd91f28f95ad2ee438" xsi:type="Association" />
+    <relationship identifier="id-29886f72cc054e8291c82208e6ba02f3" source="id-39d3470a0a3d4f87b9354f76a7a89a68" target="id-cbc33dec5b68455ab5ec24c2a73a3fcb" xsi:type="Association" />
+    <relationship identifier="id-a144556d7526466ba86fadf01ec50ed5" source="id-0318c251fd664fa88f0d37e3e5161108" target="id-d379f600687d483a855775499ab53f0d" xsi:type="Realization" />
+    <relationship identifier="id-a44e09826259422f830d0e6d96ecd19b" source="id-4a06d6db0da3452aaa1533f9949ab025" target="id-af46fea7a5a04571bc6c51365917ac14" xsi:type="Realization" />
+    <relationship identifier="id-3bde87870eb840309b04e93b573b32bd" source="id-fc07620d234845b8800c6ca1ad7ce1e4" target="id-97fdc45a3b8a4e239d2444c462083cc6" xsi:type="Serving" />
+    <relationship identifier="id-e0b335540de747f883e13ebd54ab2705" source="id-fc07620d234845b8800c6ca1ad7ce1e4" target="id-fb4b558a2827484ba682df5b295dc934" xsi:type="Serving" />
+    <relationship identifier="id-2ef7bb4bff1c410a87e48c689db135da" source="id-cb83200637304df9bade2fc2c3875aa2" target="id-262b292b6d0446bfa000ab88e6313d40" xsi:type="Realization" />
+    <relationship identifier="id-2e0b4ec8c0e141e1962d4f2b1044a3c8" source="id-cb83200637304df9bade2fc2c3875aa2" target="id-34443813757b44e9bcec2fb2263cd018" xsi:type="Serving" />
+    <relationship identifier="id-854d748ccef245bdb8c46ddeb5a28534" source="id-0318c251fd664fa88f0d37e3e5161108" target="id-4e8836f74c86420dad287e38a1b132dd" xsi:type="Realization" />
+    <relationship identifier="id-25425d7fad1d48319a1b5118ace6cca9" source="id-0318c251fd664fa88f0d37e3e5161108" target="id-061ca94c29be4d82bb50078d9c7eaf3b" xsi:type="Serving" />
+    <relationship identifier="id-9f0c07d7548b468bab7afe01613685f6" source="id-0318c251fd664fa88f0d37e3e5161108" target="id-34443813757b44e9bcec2fb2263cd018" xsi:type="Serving" />
+    <relationship identifier="id-1e1831f134454199b38dd7662cbffe56" source="id-cab99a7a2333447ca8dbc1c76fa957e9" target="id-4e8836f74c86420dad287e38a1b132dd" xsi:type="Realization" />
+    <relationship identifier="id-5a8a9ac2a7be4d24a518a9761d9186e1" source="id-cb83200637304df9bade2fc2c3875aa2" target="id-061ca94c29be4d82bb50078d9c7eaf3b" xsi:type="Serving" />
+    <relationship identifier="id-cc3588cb57084396aad4fb9b3b6b2371" source="id-cb83200637304df9bade2fc2c3875aa2" target="id-ca0eb3a32cb648daa4d2af077c567a06" xsi:type="Realization" />
+    <relationship identifier="id-23630fc8cf6249dab43c036966a39047" source="id-cab99a7a2333447ca8dbc1c76fa957e9" target="id-e6ade059a9aa4a8d9c226b790626a141" xsi:type="Realization" />
+    <relationship identifier="id-0a3e21acd2f3494da91a5a70acb9f265" source="id-b0e5010f2af241bcb5dc07ef89c464bd" target="id-f721b29a47d14539b00a4fc0ef887fbb" xsi:type="Composition" />
+  </relationships>
+  <propertyDefinitions>
+    <propertyDefinition identifier="propid-37" type="string">
+      <name />
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-15" type="string">
+      <name>Azure Instance type-dev</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-13" type="string">
+      <name>Azure Instance type-prod</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-14" type="string">
+      <name>Azure Instance type-uat</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-38" type="string">
+      <name>Azure Resource Group</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-12" type="string">
+      <name>AzureResourceGroup-dev</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-10" type="string">
+      <name>AzureResourceGroup-prod</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-11" type="string">
+      <name>AzureResourceGroup-uat</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-30" type="string">
+      <name>Backup Retention-dev</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-28" type="string">
+      <name>Backup Retention-prod</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-29" type="string">
+      <name>Backup Retention-uat</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-1" type="string">
+      <name>Business Owner</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-21" type="string">
+      <name>CPU-dev</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-19" type="string">
+      <name>CPU-prod</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-20" type="string">
+      <name>CPU-uat</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-36" type="string">
+      <name>Database Backup-dev</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-34" type="string">
+      <name>Database Backup-prod</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-35" type="string">
+      <name>Database Backup-uat</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-32" type="string">
+      <name>FQDN</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-6" type="string">
+      <name>FQDN-dev</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-4" type="string">
+      <name>FQDN-prod</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-5" type="string">
+      <name>FQDN-uat</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-31" type="string">
+      <name>IT Owner</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-9" type="string">
+      <name>IpAddress-dev</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-7" type="string">
+      <name>IpAddress-prod</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-8" type="string">
+      <name>IpAddress-uat</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-39" type="string">
+      <name>Ntwk Connection Type</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-18" type="string">
+      <name>O/S dev</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-16" type="string">
+      <name>O/S prod</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-17" type="string">
+      <name>O/S uat</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-2" type="string">
+      <name>Purpose</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-24" type="string">
+      <name>RAM-dev</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-22" type="string">
+      <name>RAM-prod</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-23" type="string">
+      <name>RAM-uat</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-27" type="string">
+      <name>Snapshot-dev</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-25" type="string">
+      <name>Snapshot-prod</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-26" type="string">
+      <name>Snapshot-uat</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-3" type="string">
+      <name>TcpPort</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-33" type="string">
+      <name>Version</name>
+    </propertyDefinition>
+  </propertyDefinitions>
+  <views>
+    <diagrams>
+      <view identifier="id-e0f8f1b076354dc29c0095cf79627365" xsi:type="Diagram">
+        <name>EDC-IDQ-AXON Main View</name>
+        <node identifier="id-936f4bd158d94578802b128a11a59ec5" elementRef="id-65e316020b694ca39a2321f72075b417" xsi:type="Element" x="60" y="1380" w="2112" h="1296">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="13" style="bold">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-2420af20dd0142bab669bb6795a1d9a3" xsi:type="Label" x="1236" y="1668" w="844" h="168">
+            <label>For EDC Version 10.5, Hadoop will be replaced by:&#xD;
+ - MongoDb, PostGres, SoIR, and Elastic Search (DPM) for data storage, and&#xD;
+ - Nomad for orchestration and security&#xD;
+ - Java Native and Spark for compute</label>
+            <style>
+              <fillColor r="255" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Verdana" size="16">
+                <color r="255" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-a3afa72368bf4ae2b54a8fb4e6d4b7b7" xsi:type="Label" x="1727" y="2413" w="185" h="80">
+            <label>Cameron: Where is the metadata, inferred relationships, data lineage and PII stored?? 1. Azure or 2. Hadoop</label>
+            <style>
+              <fillColor r="255" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="id-6c8cbb30e2fd410ea323a50dbcbfaa15" elementRef="id-afabcf02281d49fe904f22156a06962a" xsi:type="Element" x="288" y="1416" w="781" h="630">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-247b2c477cde446f9e23d81666a46012" elementRef="id-c615ebcc6abd4687ab48d6c668de4de8" xsi:type="Element" x="319" y="1460" w="711" h="566">
+            <style>
+              <fillColor r="201" g="231" b="183" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+            <node identifier="id-66a431666e7d483087cc68b5d9ecd8ec" elementRef="id-e96475a893b04ad99e46ca159d5fb912" xsi:type="Element" x="703" y="1489" w="301" h="517">
+              <style>
+                <fillColor r="201" g="231" b="183" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+              <node identifier="id-caf0c6f39e8342b6aac240056815cadc" elementRef="id-e848b36f924747909bf472a6b70466f4" xsi:type="Element" x="727" y="1513" w="265" h="484">
+                <style>
+                  <fillColor r="201" g="231" b="183" a="100" />
+                  <lineColor r="92" g="92" b="92" a="100" />
+                  <font name="Lucida Grande" size="12">
+                    <color r="0" g="0" b="0" />
+                  </font>
+                </style>
+                <node identifier="id-3bad60092168478ca715720d333f7212" xsi:type="Label" x="775" y="1585" w="133" h="25">
+                  <label>Clone of EDC Node01</label>
+                  <style>
+                    <fillColor r="255" g="255" b="255" a="100" />
+                    <lineColor r="92" g="92" b="92" a="100" />
+                    <font name="Lucida Grande" size="12">
+                      <color r="0" g="0" b="0" />
+                    </font>
+                  </style>
+                </node>
+              </node>
+            </node>
+            <node identifier="id-d2dc233768f64ff3a1a454c797936c07" elementRef="id-93acbe0a4d2943a6a80a4e0fd2ef656b" xsi:type="Element" x="331" y="1484" w="313" h="517">
+              <style>
+                <fillColor r="201" g="231" b="183" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="id-b9f4292ff94f41a99773d5a31d521ac2" elementRef="id-f6d709faa3754b4abcd68e81f21ce693" xsi:type="Element" x="344" y="1504" w="265" h="488">
+              <style>
+                <fillColor r="201" g="231" b="183" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+              <node identifier="id-7abce2bef4104d8e8fc2e6ac11ce0f82" elementRef="id-0a7f8bf271474a679d919ab018d868a5" xsi:type="Element" x="392" y="1708" w="169" h="37">
+                <style>
+                  <fillColor r="201" g="231" b="183" a="100" />
+                  <lineColor r="92" g="92" b="92" a="100" />
+                  <font name="Lucida Grande" size="12">
+                    <color r="0" g="0" b="0" />
+                  </font>
+                </style>
+              </node>
+              <node identifier="id-0bd407a720494551b6df7e6bfde10429" elementRef="id-deeb631bc15544339d87e0cb2546b06b" xsi:type="Element" x="392" y="1552" w="169" h="49">
+                <style>
+                  <fillColor r="201" g="231" b="183" a="100" />
+                  <lineColor r="92" g="92" b="92" a="100" />
+                  <font name="Lucida Grande" size="12">
+                    <color r="0" g="0" b="0" />
+                  </font>
+                </style>
+                <node identifier="id-b25cebd106cf4726afe127db2979c990" xsi:type="Label" x="440" y="1576" w="73" h="25">
+                  <label>Catalog Service</label>
+                  <style>
+                    <fillColor r="255" g="255" b="255" a="100" />
+                    <lineColor r="92" g="92" b="92" a="100" />
+                    <font name="Arial Narrow" size="6">
+                      <color r="0" g="0" b="0" />
+                    </font>
+                  </style>
+                </node>
+              </node>
+              <node identifier="id-29fe6449dea64506b4f706178328459d" elementRef="id-eeef0e7bc82142aabb67ccca625f59e5" xsi:type="Element" x="392" y="1780" w="169" h="37">
+                <style>
+                  <fillColor r="201" g="231" b="183" a="100" />
+                  <lineColor r="92" g="92" b="92" a="100" />
+                  <font name="Lucida Grande" size="12">
+                    <color r="0" g="0" b="0" />
+                  </font>
+                </style>
+              </node>
+              <node identifier="id-ee900f416606423998edd1deac51c418" elementRef="id-fc6bfdc27c074142aaff97e861e6356c" xsi:type="Element" x="392" y="1816" w="169" h="37">
+                <style>
+                  <fillColor r="201" g="231" b="183" a="100" />
+                  <lineColor r="92" g="92" b="92" a="100" />
+                  <font name="Lucida Grande" size="12">
+                    <color r="0" g="0" b="0" />
+                  </font>
+                </style>
+              </node>
+              <node identifier="id-371589bce42c4f2980225be291c54081" elementRef="id-9a416aff655b492799e023628c7c6650" xsi:type="Element" x="392" y="1852" w="169" h="37">
+                <style>
+                  <fillColor r="201" g="231" b="183" a="100" />
+                  <lineColor r="92" g="92" b="92" a="100" />
+                  <font name="Lucida Grande" size="12">
+                    <color r="0" g="0" b="0" />
+                  </font>
+                </style>
+              </node>
+              <node identifier="id-22ec6f804f2440e2a6c4162d53877a5b" elementRef="id-2277ab1f63084977867a1725d62842ba" xsi:type="Element" x="392" y="1888" w="169" h="37">
+                <style>
+                  <fillColor r="201" g="231" b="183" a="100" />
+                  <lineColor r="92" g="92" b="92" a="100" />
+                  <font name="Lucida Grande" size="12">
+                    <color r="0" g="0" b="0" />
+                  </font>
+                </style>
+              </node>
+              <node identifier="id-83133868050c437eab2b371e931cf3c5" elementRef="id-cb7a649883be44cd9fd34606146cd652" xsi:type="Element" x="392" y="1744" w="169" h="37">
+                <style>
+                  <fillColor r="201" g="231" b="183" a="100" />
+                  <lineColor r="92" g="92" b="92" a="100" />
+                  <font name="Lucida Grande" size="12">
+                    <color r="0" g="0" b="0" />
+                  </font>
+                </style>
+              </node>
+              <node identifier="id-999aaebcd4854748a4e30eaf78d6d787" elementRef="id-e4950b32807c41b7b7e9c60e6be427c9" xsi:type="Element" x="395" y="1600" w="169" h="51">
+                <style>
+                  <fillColor r="201" g="231" b="183" a="100" />
+                  <lineColor r="92" g="92" b="92" a="100" />
+                  <font name="Lucida Grande" size="12">
+                    <color r="0" g="0" b="0" />
+                  </font>
+                </style>
+                <node identifier="id-06c44bfa6d6e4e60a594fde0999f441f" xsi:type="Label" x="443" y="1624" w="73" h="25">
+                  <label>Catalog Service</label>
+                  <style>
+                    <fillColor r="255" g="255" b="255" a="100" />
+                    <lineColor r="92" g="92" b="92" a="100" />
+                    <font name="Arial Narrow" size="6">
+                      <color r="0" g="0" b="0" />
+                    </font>
+                  </style>
+                </node>
+              </node>
+              <node identifier="id-6e72a29c00e544bd9c3b22a6894a034b" elementRef="id-d6b39fab02454737a3af86162233932a" xsi:type="Element" x="395" y="1650" w="169" h="47">
+                <style>
+                  <fillColor r="201" g="231" b="183" a="100" />
+                  <lineColor r="92" g="92" b="92" a="100" />
+                  <font name="Lucida Grande" size="12">
+                    <color r="0" g="0" b="0" />
+                  </font>
+                </style>
+                <node identifier="id-e601920907ea48aab70903f84670363d" xsi:type="Label" x="443" y="1674" w="73" h="25">
+                  <label>Catalog Service</label>
+                  <style>
+                    <fillColor r="255" g="255" b="255" a="100" />
+                    <lineColor r="92" g="92" b="92" a="100" />
+                    <font name="Arial Narrow" size="6">
+                      <color r="0" g="0" b="0" />
+                    </font>
+                  </style>
+                </node>
+              </node>
+              <node identifier="id-22feaf890dc04839a8c6b36dc4c0a0cf" elementRef="id-fb4b558a2827484ba682df5b295dc934" xsi:type="Element" x="392" y="1924" w="169" h="37">
+                <style>
+                  <fillColor r="201" g="231" b="183" a="100" />
+                  <lineColor r="92" g="92" b="92" a="100" />
+                  <font name="Lucida Grande" size="12">
+                    <color r="0" g="0" b="0" />
+                  </font>
+                </style>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node identifier="id-f39df5e664d44380b5912c5dbeac9976" elementRef="id-061ca94c29be4d82bb50078d9c7eaf3b" xsi:type="Element" x="1183" y="360" w="120" h="55">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-c636c7b30f2a417eb589dbbcce198176" elementRef="id-cb83200637304df9bade2fc2c3875aa2" xsi:type="Element" x="1740" y="774" w="331" h="169">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-0d34de5447034ef2b67bb54297795082" elementRef="id-a5edac1ff0c84632bcb0e80369d8163b" xsi:type="Element" x="1915" y="798" w="109" h="61">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-64e849ef5dff4d9fb21e580d763ef413" elementRef="id-7b5ed25a82e84b19b8c5499d73814c68" xsi:type="Element" x="1915" y="870" w="109" h="61">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-1260d941f4ed4cce810d51fc89d56f8b" elementRef="id-a51d03a6710b416ebd6f2cf9c94c57ef" xsi:type="Element" x="1763" y="810" w="85" h="25">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-057c748014f943b9b4d062798ed535dd" elementRef="id-ca0eb3a32cb648daa4d2af077c567a06" xsi:type="Element" x="1763" y="858" w="122" h="61">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="id-8731c7bbdca247509a574851156fe002" elementRef="id-34443813757b44e9bcec2fb2263cd018" xsi:type="Element" x="1464" y="360" w="120" h="55">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-e15cc07739524de7937fc5057409d822" elementRef="id-0318c251fd664fa88f0d37e3e5161108" xsi:type="Element" x="818" y="672" w="455" h="301">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-074b16391ca44a5f80fad0ca6ea81068" elementRef="id-035492aa093c4dc88ad59df78255829a" xsi:type="Element" x="1085" y="807" w="168" h="24">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-567a038cf2c147c2ae0e8f5b9942440e" elementRef="id-1c8267b4a0654d389952312bb28dd2af" xsi:type="Element" x="1085" y="843" w="168" h="48">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-9932401e720f49a1897d3af368ed2d40" elementRef="id-8e773ca1f6314e78b5c1c6ad1d6294ed" xsi:type="Element" x="1085" y="939" w="168" h="24">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-7d571ad1a8694b5782fa32babe83430e" elementRef="id-8b7a3d06007c4829a4419ce492f1fcb4" xsi:type="Element" x="1085" y="903" w="168" h="24">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-b1093cc7983b4aaa9270f86de4f8c255" elementRef="id-f721b29a47d14539b00a4fc0ef887fbb" xsi:type="Element" x="842" y="709" w="226" h="254">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+            <node identifier="id-00b3b289e3b04fc7aef3e557441ae677" elementRef="id-b29897bb8d054b0198b356df00b6fd06" xsi:type="Element" x="855" y="734" w="182" h="24">
+              <style>
+                <fillColor r="181" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="id-97a44fa57e2c4cc2ac9aabe0b3689f1b" elementRef="id-85600da0e457409caca513cd1e4d6b1c" xsi:type="Element" x="855" y="769" w="181" h="30">
+              <style>
+                <fillColor r="181" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="id-a9df0d9781da46a5b6e3a78eb39d9a39" elementRef="id-0bef37685c9f474ba7410e9a289a7d87" xsi:type="Element" x="855" y="817" w="181" h="30">
+              <style>
+                <fillColor r="181" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+          </node>
+          <node identifier="id-0e8f61fe87464a9ca1fb1c0a82a2d1fb" elementRef="id-d379f600687d483a855775499ab53f0d" xsi:type="Element" x="1085" y="776" w="166" h="25">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-807f7bbe0a644b68b13a8307db331c7e" xsi:type="Label" x="1085" y="697" w="168" h="60">
+            <label>Search and Understand data, it's lineage and relationships</label>
+            <style>
+              <fillColor r="255" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="id-3f26ffbd406740889ae890c4eecc62e5" elementRef="id-a8f4316d226b466bb3c7f1b30631dce8" xsi:type="Element" x="900" y="360" w="120" h="55">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-4bb04614f2d94eb48b991fa0a1773b8d" elementRef="id-97e72bd9e96d415abde9d5f3ae04aba8" xsi:type="Element" x="1104" y="160" w="277" h="55">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-8c3a81ca2c8f4941b0a2ec39bd06d6fa" elementRef="id-97fdc45a3b8a4e239d2444c462083cc6" xsi:type="Element" x="616" y="729" w="97" h="61">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-f3365e777cac43cba653af9bb89d4e3e" elementRef="id-1346f31862034439a6fc59906fc1dffd" xsi:type="Element" x="213" y="655" w="180" h="192">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-58f9810efe21429fb3b6d1888638fda9" xsi:type="Label" x="237" y="691" w="120" h="138">
+            <label>Core Systems (?)&#xD;
+Apps (?)&#xD;
+MDM&#xD;
+Cloud(?)&#xD;
+Data Lakes&#xD;
+Data Warehouse&#xD;
+BI/Analytics&#xD;
+Epsilon</label>
+            <style>
+              <fillColor r="255" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="id-b59be3028c0e476fa01a7a88d00ceaa1" elementRef="id-cab99a7a2333447ca8dbc1c76fa957e9" xsi:type="Element" x="1395" y="762" w="205" h="181">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-b95f85179c1c40a3815c765e89397d53" elementRef="id-92727d358dad4a0da1c3ddfe4789b7c2" xsi:type="Element" x="1431" y="798" w="133" h="25">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-d6ae60877b3f4300861d12e677e99d96" elementRef="id-8b960a02da574c1b89a204cc59c4abac" xsi:type="Element" x="1431" y="834" w="133" h="37">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-3ef2d0f7162140c9bc0608b54b5afb0a" elementRef="id-e6ade059a9aa4a8d9c226b790626a141" xsi:type="Element" x="1431" y="882" w="133" h="37">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="id-579c171a89e1490a9ef4b5c62d7f66f5" xsi:type="Label" x="46" y="219" w="758" h="399">
+          <label>In many projects the technical documentation is fragmented, with critical information strewn haphazardly across file servers, github repositories, web sites, wikis, … We are endeavoring to make the ArchiMate Solution Architect Diagram a one stop shop that shows EVERYTHING regarding:&#xD;
+  - EDC: Enterprise Data Catalog&#xD;
+  - IDQ: Informatica Data Quality, and&#xD;
+  - AXON&#xD;
+in a SINGLE diagram&#xD;
+&#xD;
+Docs integrated into this diagram:&#xD;
+  - CNO_DG_DEV from Abhi 2012-02-23.pdf&#xD;
+  - CNO_DG_UAT from Abhi 2012-02-23.pdf&#xD;
+  - CNO_DG_PROD from Abhi 2012-02-23.pdf&#xD;
+  - CNO_Informatica_Data Governance_Azure_Server Sizing_v2.3.xlsx</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Verdana" size="16">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-bd05500e78194d1582f46acf728b9d18" xsi:type="Label" x="2135" y="160" w="906" h="795">
+          <label>Outstanding Issues:&#xD;
+&#xD;
+ALL NETWORK TRAFFIC  must be encrypted to comply with ZERO TRUST NETWORKING principles&#xD;
+&#xD;
+CNO technologists&#xD;
+  - Data Team member(s) perform screen sharing session with Rachel Goreham or a &#xD;
+     member of her team to access all hosts/routers so we can verify entire configuration&#xD;
+&#xD;
+DG Resource Group  (currently defined in a Node/host property)&#xD;
+  - Virtual Network&#xD;
+     - Subnet&#xD;
+        - Network Security Group&#xD;
+           - Availability Zone 1&#xD;
+           - Availability Zone 2&#xD;
+&#xD;
+Server Locations (chicago, carmel, azure, ...)&#xD;
+&#xD;
+Disk capacity metrics from "CNO_Informatica_Data Governance_Azure_Server Sizing_v2.3.xlsx"&#xD;
+&#xD;
+Epsilon&#xD;
+&#xD;
+IDQ - expound application (blue) layer&#xD;
+Axon - expound application (blue) layer&#xD;
+&#xD;
+IDQ - technology (green) layer&#xD;
+Axon - technology (green) layer&#xD;
+&#xD;
+CyberArk</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Verdana" size="16">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-bab30943188e41f8844d27a3505ebb23" xsi:type="Label" x="30" y="28" w="441" h="133">
+          <label>Informatica EDC-IDQ-Axon &#xD;
+Solution Architect Diagram&#xD;
+One Stop Shop</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Nirmala UI" size="20" style="bold">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-dbef600c8a214c52ae0d76714ae46417" elementRef="id-cff2539dbcf54412bfe4a72e0075506b" xsi:type="Element" x="1776" y="1488" w="325" h="75">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-28b06947a85841d3bde13c7cd6ef9fd6" elementRef="id-88a4cbd05c5f4252852c7b147387385b" xsi:type="Element" x="1848" y="1524" w="169" h="25">
+            <style>
+              <fillColor r="201" g="231" b="183" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="id-baa4fde84e5540768fd674d24012fc2e" elementRef="id-40c42527b35a4985807953f3d2526e66" xsi:type="Element" x="1492" y="636" w="132" h="72">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-17a41f60638746b6af2fd0e72894c96c" xsi:type="Label" x="614" y="80" w="441" h="49">
+          <label>(Work in Process - 80% done)</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Nirmala UI" size="20" style="bold">
+              <color r="0" g="0" b="255" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-0acae12e279e4ba58e765b3d65d18b46" elementRef="id-8eb4a58329824cfdbb8968dd64d81f99" xsi:type="Element" x="1272" y="1008" w="296" h="285">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-c871cedfafa64c9395499a3792ed907d" elementRef="id-c8e9b418b73c49d281e158903c6c87cc" xsi:type="Element" x="1284" y="1056" w="240" h="229">
+            <style>
+              <fillColor r="201" g="231" b="183" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+            <node identifier="id-64d027de90a64738846ae5e05db70bef" elementRef="id-1f2cd47f8c2e4532baeb758b85a81b93" xsi:type="Element" x="1314" y="1091" w="180" h="69">
+              <style>
+                <fillColor r="201" g="231" b="183" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="id-1e4a5d678fb34bb09fb83ce35c310444" elementRef="id-c99a49b8a83b4806b4821ad963f9ee49" xsi:type="Element" x="1320" y="1200" w="180" h="73">
+              <style>
+                <fillColor r="201" g="231" b="183" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+              <node identifier="id-98c1a71ef4904ce5ab2b47bb572c294d" xsi:type="Label" x="1338" y="1236" w="133" h="25">
+                <label>Clone of IDQ Node01</label>
+                <style>
+                  <fillColor r="255" g="255" b="255" a="100" />
+                  <lineColor r="92" g="92" b="92" a="100" />
+                  <font name="Lucida Grande" size="12">
+                    <color r="0" g="0" b="0" />
+                  </font>
+                </style>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node identifier="id-624476a515f34a45a2b9f97638e9e081" xsi:type="Label" x="2218" y="1214" w="823" h="269">
+          <label>Resolved Issues:&#xD;
+&#xD;
+Cameron Gillette to work with Conrad on all Outstanding Issues (in process)&#xD;
+&#xD;
+CNO Archimate consistency/compliance&#xD;
+  - review entire diagram Mark Keeney to  to assure we are using Archimate &#xD;
+     consistently across the entire CNO enterprise (done- 10-Mar-2021)</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Verdana" size="16">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-d76f65656c2c4885b23fc9d53464e196" xsi:type="Label" x="1492" y="40" w="370" h="204">
+          <label>Network&#xD;
+ - Speeds/throughout&#xD;
+ - Competing loads&#xD;
+	1.	Bandwidth usage&#xD;
+	2.	Throughput&#xD;
+	3.	Latency&#xD;
+	4.	Packet loss&#xD;
+	5.	Retransmission&#xD;
+	6.	Availability&#xD;
+	7.	Connectivity</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-75e102f5cd5f4d1ba54d1d9bf810c1cb" elementRef="id-11142631d15a407f8529a8f6bd446dd6" xsi:type="Element" x="104" y="1072" w="120" h="55">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-3d7a012882634533acdb41e037560235" elementRef="id-8a9e66ccba4d47088f3c99a48f6ad996" xsi:type="Element" x="106" y="984" w="120" h="55">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-794baacf8fde47ea8048d780d11ae2ae" elementRef="id-0b88456a80ce489ebe4d4a798529f67d" xsi:type="Element" x="672" y="2112" w="1008" h="537">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-55ae91d401bc4282935cf5ecb6eef4d4" elementRef="id-cbc33dec5b68455ab5ec24c2a73a3fcb" xsi:type="Element" x="1296" y="2160" w="253" h="445">
+            <style>
+              <fillColor r="201" g="231" b="183" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+            <node identifier="id-2a7c760675384184bb153b19f5e32dd9" elementRef="id-3e5474c1e2a04bdf9cd17ee7b287caba" xsi:type="Element" x="1308" y="2196" w="217" h="397">
+              <style>
+                <fillColor r="201" g="231" b="183" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+              <node identifier="id-68129c8ab2f549f3b6be3cc0b0988c90" xsi:type="Label" x="1320" y="2256" w="157" h="25">
+                <label>Clone of Hadoop Node01</label>
+                <style>
+                  <fillColor r="255" g="255" b="255" a="100" />
+                  <lineColor r="92" g="92" b="92" a="100" />
+                  <font name="Lucida Grande" size="12">
+                    <color r="0" g="0" b="0" />
+                  </font>
+                </style>
+              </node>
+            </node>
+          </node>
+          <node identifier="id-7ebbd78cb1f64ea5a566ac768a688678" elementRef="id-39d3470a0a3d4f87b9354f76a7a89a68" xsi:type="Element" x="696" y="2160" w="505" h="445">
+            <style>
+              <fillColor r="201" g="231" b="183" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+            <node identifier="id-ab3f1bef5d1d4c8a8c372bc696edb39a" elementRef="id-4d3bc1310202466c84cbfe32717063cf" xsi:type="Element" x="708" y="2189" w="217" h="397">
+              <style>
+                <fillColor r="201" g="231" b="183" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+              <node identifier="id-8dca43f08da74f0fbc8216c270327491" elementRef="id-c6328c76585a4e3a881c4cf52386f224" xsi:type="Element" x="720" y="2249" w="180" h="24">
+                <style>
+                  <fillColor r="201" g="231" b="183" a="100" />
+                  <lineColor r="92" g="92" b="92" a="100" />
+                  <font name="Lucida Grande" size="12">
+                    <color r="0" g="0" b="0" />
+                  </font>
+                </style>
+              </node>
+              <node identifier="id-0bf0b945020842199bfb2ef159c19801" elementRef="id-ee5bbc6fbddd42a9b8712784a5981665" xsi:type="Element" x="720" y="2357" w="180" h="61">
+                <style>
+                  <fillColor r="201" g="231" b="183" a="100" />
+                  <lineColor r="92" g="92" b="92" a="100" />
+                  <font name="Lucida Grande" size="12">
+                    <color r="0" g="0" b="0" />
+                  </font>
+                </style>
+                <node identifier="id-2549811043564b9bbf6b4830376f6bfa" xsi:type="Label" x="768" y="2393" w="97" h="25">
+                  <label>(Exemplary definition)</label>
+                  <style>
+                    <fillColor r="255" g="255" b="255" a="100" />
+                    <lineColor r="92" g="92" b="92" a="100" />
+                    <font name="Arial Narrow" size="8">
+                      <color r="0" g="0" b="0" />
+                    </font>
+                  </style>
+                </node>
+              </node>
+              <node identifier="id-4fedbdc57c724f94a8a2f54b7eed9978" elementRef="id-636f1fbd8e64438d895e9c857714fd80" xsi:type="Element" x="720" y="2525" w="180" h="48">
+                <style>
+                  <fillColor r="201" g="231" b="183" a="100" />
+                  <lineColor r="92" g="92" b="92" a="100" />
+                  <font name="Lucida Grande" size="12">
+                    <color r="0" g="0" b="0" />
+                  </font>
+                </style>
+              </node>
+              <node identifier="id-7c9950479f804ca5a31ccb5f9db94f83" elementRef="id-a5be97498e6a4b7f8aab76c59112bc9c" xsi:type="Element" x="720" y="2429" w="180" h="36">
+                <style>
+                  <fillColor r="201" g="231" b="183" a="100" />
+                  <lineColor r="92" g="92" b="92" a="100" />
+                  <font name="Lucida Grande" size="12">
+                    <color r="0" g="0" b="0" />
+                  </font>
+                </style>
+              </node>
+              <node identifier="id-e1db7182722641eebed35353a8585335" elementRef="id-8f505c561f794ca6be105277360921a8" xsi:type="Element" x="720" y="2477" w="180" h="36">
+                <style>
+                  <fillColor r="201" g="231" b="183" a="100" />
+                  <lineColor r="92" g="92" b="92" a="100" />
+                  <font name="Lucida Grande" size="12">
+                    <color r="0" g="0" b="0" />
+                  </font>
+                </style>
+              </node>
+              <node identifier="id-5bea80c99ce24fdaae2cc1829ba5b702" elementRef="id-5bc77c713534493cb2cfa1a2cae3a864" xsi:type="Element" x="720" y="2285" w="180" h="48">
+                <style>
+                  <fillColor r="201" g="231" b="183" a="100" />
+                  <lineColor r="92" g="92" b="92" a="100" />
+                  <font name="Lucida Grande" size="12">
+                    <color r="0" g="0" b="0" />
+                  </font>
+                </style>
+              </node>
+            </node>
+            <node identifier="id-f2abe482dfc74aaeb16fbc203b6670bd" elementRef="id-8059f790d59f45dfaaff86d1438ac63f" xsi:type="Element" x="960" y="2189" w="217" h="397">
+              <style>
+                <fillColor r="201" g="231" b="183" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+              <node identifier="id-674b9400bb4f407bbbdcfea49901c959" xsi:type="Label" x="984" y="2249" w="157" h="25">
+                <label>Clone of Hadoop Node01</label>
+                <style>
+                  <fillColor r="255" g="255" b="255" a="100" />
+                  <lineColor r="92" g="92" b="92" a="100" />
+                  <font name="Lucida Grande" size="12">
+                    <color r="0" g="0" b="0" />
+                  </font>
+                </style>
+              </node>
+            </node>
+          </node>
+        </node>
+        <node identifier="id-04ee8de539e24f2da0ca16e12c676b2a" elementRef="id-1a653d3b87934d70adddbb4fd12a1a93" xsi:type="Element" x="132" y="2220" w="438" h="313">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-13510ab3a6574344bbaf63cccbeb47b7" elementRef="id-ebffdcaf8ac04bcd91f28f95ad2ee438" xsi:type="Element" x="377" y="2268" w="169" h="241">
+            <style>
+              <fillColor r="201" g="231" b="183" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+            <node identifier="id-e75ee5d7c6c64b4aa3bef43dc8c77c20" elementRef="id-7a546b567f314ed1830e04b14665ec9b" xsi:type="Element" x="401" y="2304" w="121" h="55">
+              <style>
+                <fillColor r="201" g="231" b="183" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+          </node>
+          <node identifier="id-7da23ad8c917478da702c3645c02d787" elementRef="id-4a06d6db0da3452aaa1533f9949ab025" xsi:type="Element" x="168" y="2268" w="169" h="241">
+            <style>
+              <fillColor r="201" g="231" b="183" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+            <node identifier="id-09ad483b524b4ac88735d6a03340f292" elementRef="id-4335f1a7baf74d01aedb2af95cdccc5c" xsi:type="Element" x="192" y="2304" w="121" h="55">
+              <style>
+                <fillColor r="201" g="231" b="183" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="id-2751835f2dbb4032ae119a222f7bd7c2" elementRef="id-af46fea7a5a04571bc6c51365917ac14" xsi:type="Element" x="180" y="2364" w="145" h="61">
+              <style>
+                <fillColor r="201" g="231" b="183" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="id-4d5ecba191f4488185b1d1c4c7a0e62b" elementRef="id-8f2682fbc95e414bafb3c7a6ce4def7e" xsi:type="Element" x="180" y="2424" w="145" h="37">
+              <style>
+                <fillColor r="201" g="231" b="183" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="id-b334709d632c401bb910c1aed045d109" elementRef="id-4dab94584d064dcdb535664909e3de75" xsi:type="Element" x="180" y="2460" w="145" h="37">
+              <style>
+                <fillColor r="201" g="231" b="183" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+          </node>
+        </node>
+        <node identifier="id-5474b872205b4d29bdef277fe5068496" elementRef="id-fc07620d234845b8800c6ca1ad7ce1e4" xsi:type="Element" x="264" y="984" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <connection identifier="id-0252bab879154513af719ad76f923bdc" relationshipRef="id-83e36e463d3f436aa17ddffaee45867a" xsi:type="Relationship" source="id-6c8cbb30e2fd410ea323a50dbcbfaa15" target="id-794baacf8fde47ea8048d780d11ae2ae">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-7a912f4d37bc451188815ceaf14948e5" relationshipRef="id-9dc5315933be4eb09b33e2b86ea5dcfd" xsi:type="Relationship" source="id-247b2c477cde446f9e23d81666a46012" target="id-b1093cc7983b4aaa9270f86de4f8c255">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-50d61c6f764c471894ca8e1fbe8d89a6" relationshipRef="id-66f4287e056a476cacc2373cf6e2be4a" xsi:type="Relationship" source="id-b9f4292ff94f41a99773d5a31d521ac2" target="id-caf0c6f39e8342b6aac240056815cadc">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-052d6b1d96d649ca9f6d977bb849946e" relationshipRef="id-e6ac1b8bac27460a9274317a6a3e29d4" xsi:type="Relationship" source="id-b9f4292ff94f41a99773d5a31d521ac2" target="id-7da23ad8c917478da702c3645c02d787">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-82bff4012168407db7506a1f916905da" relationshipRef="id-255d39f8dcfb4cd4b01412edf60ef41e" xsi:type="Relationship" source="id-0bd407a720494551b6df7e6bfde10429" target="id-00b3b289e3b04fc7aef3e557441ae677">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="488" y="1231" />
+        </connection>
+        <connection identifier="id-d734f01dfc9f498ca674938eb0a90363" relationshipRef="id-05bab826511f421b952cbc03e84ba52a" xsi:type="Relationship" source="id-83133868050c437eab2b371e931cf3c5" target="id-8c3a81ca2c8f4941b0a2ec39bd06d6fa">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="202" y="1517" />
+          <bendpoint x="456" y="1240" />
+        </connection>
+        <connection identifier="id-c40c33c9f37742d2a86d5ad3546ca97e" relationshipRef="id-2c312a4c56bd40fab915f59af1c74870" xsi:type="Relationship" source="id-999aaebcd4854748a4e30eaf78d6d787" target="id-97a44fa57e2c4cc2ac9aabe0b3689f1b">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="581" y="1232" />
+        </connection>
+        <connection identifier="id-030fbe9a50ab4c98b4e9bde93578346b" relationshipRef="id-90c56aed1c914ee898a353f5ba4efce2" xsi:type="Relationship" source="id-6e72a29c00e544bd9c3b22a6894a034b" target="id-a9df0d9781da46a5b6e3a78eb39d9a39">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="685" y="1246" />
+        </connection>
+        <connection identifier="id-169f9b8125fc45ccbfa3de8adec80cc9" relationshipRef="id-d92f4268e3dd414f80865fa3dd62a595" xsi:type="Relationship" source="id-f39df5e664d44380b5912c5dbeac9976" target="id-4bb04614f2d94eb48b991fa0a1773b8d">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-d389fa19ebd7499aa908353892452c9e" relationshipRef="id-b4c1a85b9242440888ba1df339e162e2" xsi:type="Relationship" source="id-c636c7b30f2a417eb589dbbcce198176" target="id-baa4fde84e5540768fd674d24012fc2e">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1668" y="759" />
+        </connection>
+        <connection identifier="id-655a931d720c43ff83e0d4febbb9dfe9" relationshipRef="id-5a8a9ac2a7be4d24a518a9761d9186e1" xsi:type="Relationship" source="id-c636c7b30f2a417eb589dbbcce198176" target="id-f39df5e664d44380b5912c5dbeac9976">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1884" y="564" />
+        </connection>
+        <connection identifier="id-c01a9ba745c545cc9062d3aa94457521" relationshipRef="id-2e0b4ec8c0e141e1962d4f2b1044a3c8" xsi:type="Relationship" source="id-c636c7b30f2a417eb589dbbcce198176" target="id-8731c7bbdca247509a574851156fe002">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1908" y="540" />
+        </connection>
+        <connection identifier="id-e9571d7ca26b49ed9a9ac675de5e1ad7" relationshipRef="id-bc2b0d7af6c24e9eb2f03646f975a015" xsi:type="Relationship" source="id-0d34de5447034ef2b67bb54297795082" target="id-1260d941f4ed4cce810d51fc89d56f8b">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-661ae0248d394c7faa2d3aaae302137a" relationshipRef="id-4d3c57dcd2d54c6f8d332a341364803e" xsi:type="Relationship" source="id-8731c7bbdca247509a574851156fe002" target="id-4bb04614f2d94eb48b991fa0a1773b8d">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-c906b8a223b94377ac7ee3fcfa8f39f0" relationshipRef="id-0ade976f37d041d3944dc9fbcbd698c6" xsi:type="Relationship" source="id-e15cc07739524de7937fc5057409d822" target="id-baa4fde84e5540768fd674d24012fc2e">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1340" y="702" />
+        </connection>
+        <connection identifier="id-f1debb7661324dc18109fc5c4968be98" relationshipRef="id-7d134e59a2fc4a67843473f5aab015c7" xsi:type="Relationship" source="id-e15cc07739524de7937fc5057409d822" target="id-3f26ffbd406740889ae890c4eecc62e5">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1006" y="576" />
+        </connection>
+        <connection identifier="id-5aa1d06efb6c4362bbf2600e57dc3738" relationshipRef="id-25425d7fad1d48319a1b5118ace6cca9" xsi:type="Relationship" source="id-e15cc07739524de7937fc5057409d822" target="id-f39df5e664d44380b5912c5dbeac9976">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-a50f78bc6cd941838b1147a66b1c99ce" relationshipRef="id-9f0c07d7548b468bab7afe01613685f6" xsi:type="Relationship" source="id-e15cc07739524de7937fc5057409d822" target="id-8731c7bbdca247509a574851156fe002">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-87d6fdfab2cf4f6bbe01d5ce9de2d4cc" relationshipRef="id-7c95b193c31e482a923c5edc0e88e4ac" xsi:type="Relationship" source="id-3f26ffbd406740889ae890c4eecc62e5" target="id-4bb04614f2d94eb48b991fa0a1773b8d">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-8627e178de354193b2d9c045366663c0" relationshipRef="id-3776b54e149c46f1a28d1a9b85333ebc" xsi:type="Relationship" source="id-8c3a81ca2c8f4941b0a2ec39bd06d6fa" target="id-e15cc07739524de7937fc5057409d822">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-28eb68a768ff4055848b4a4993cafe9c" relationshipRef="id-9057b114b85140bd8de7a0058f72c568" xsi:type="Relationship" source="id-f3365e777cac43cba653af9bb89d4e3e" target="id-8c3a81ca2c8f4941b0a2ec39bd06d6fa">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-30d374e9ea734af390d27c96ca9c3ab6" relationshipRef="id-327e08e578da4f51a5bad34f26bf2658" xsi:type="Relationship" source="id-b59be3028c0e476fa01a7a88d00ceaa1" target="id-baa4fde84e5540768fd674d24012fc2e">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1554" y="739" />
+        </connection>
+        <connection identifier="id-b6d5f44d74d94c2a94859171f366b20f" relationshipRef="id-771cabd9a268460d81e815f960564954" xsi:type="Relationship" source="id-dbef600c8a214c52ae0d76714ae46417" target="id-1260d941f4ed4cce810d51fc89d56f8b">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1886" y="1127" />
+        </connection>
+        <connection identifier="id-5ec01c51f0c348cfb0cf0bdf62a57d53" relationshipRef="id-891595acd74847679dfacd7829726ee2" xsi:type="Relationship" source="id-baa4fde84e5540768fd674d24012fc2e" target="id-c636c7b30f2a417eb589dbbcce198176">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1717" y="726" />
+          <bendpoint x="1879" y="730" />
+        </connection>
+        <connection identifier="id-39232c7a7be34ff8b2decfabb2ea484b" relationshipRef="id-e985a9a9c3d845338f8e332a76005052" xsi:type="Relationship" source="id-baa4fde84e5540768fd674d24012fc2e" target="id-e15cc07739524de7937fc5057409d822">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1292" y="681" />
+        </connection>
+        <connection identifier="id-18a70cf70b824cb1b98cbac144876481" relationshipRef="id-eb39e825e7c242cea3a35e95262af958" xsi:type="Relationship" source="id-baa4fde84e5540768fd674d24012fc2e" target="id-b59be3028c0e476fa01a7a88d00ceaa1">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1503" y="741" />
+        </connection>
+        <connection identifier="id-84b01b965c7c4daaaa75dbaa946cd905" relationshipRef="id-83a448ced87a46eda8e53b7f9b80c946" xsi:type="Relationship" source="id-0acae12e279e4ba58e765b3d65d18b46" target="id-b59be3028c0e476fa01a7a88d00ceaa1">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-56be0e7deadc461da3bcfb5530a3be98" relationshipRef="id-04b352f27b634ee98d7e09b4e3722d7d" xsi:type="Relationship" source="id-64d027de90a64738846ae5e05db70bef" target="id-1e4a5d678fb34bb09fb83ce35c310444">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-649fdb8508494f769ae01e478f048063" relationshipRef="id-29886f72cc054e8291c82208e6ba02f3" xsi:type="Relationship" source="id-7ebbd78cb1f64ea5a566ac768a688678" target="id-55ae91d401bc4282935cf5ecb6eef4d4">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-7152f915572f431ebd0bba8deb23028b" relationshipRef="id-ccd55bcc8089417fa7749642eadebfef" xsi:type="Relationship" source="id-7da23ad8c917478da702c3645c02d787" target="id-13510ab3a6574344bbaf63cccbeb47b7">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-abc9bb692f3a413f82905b505dfb3e97" relationshipRef="id-3bde87870eb840309b04e93b573b32bd" xsi:type="Relationship" source="id-5474b872205b4d29bdef277fe5068496" target="id-8c3a81ca2c8f4941b0a2ec39bd06d6fa">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-96c4e29925584586ad422cc197027356" relationshipRef="id-e0b335540de747f883e13ebd54ab2705" xsi:type="Relationship" source="id-5474b872205b4d29bdef277fe5068496" target="id-22feaf890dc04839a8c6b36dc4c0a0cf">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="130" y="1522" />
+        </connection>
+      </view>
+    </diagrams>
+  </views>
+</model>

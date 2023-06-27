@@ -1,0 +1,83 @@
+"ID","Type","Name","Documentation","Specialization"
+"id-36b3539fd2ba491ebe6261a883f3a4f1","ArchimateModel","Docker networking","",""
+"id-01f3ee5f55da42beb11cf7946f89bee4","ApplicationService","Swarm service 1","",""
+"id-1546b9cc9f7c4441b11d75f7fa0fcb0b","CommunicationNetwork","(default) bridge (e.g. 172.x.x.x)","The default bridge network is considered a legacy detail of Docker and is not recommended for production use.
+
+https://docs.docker.com/network/bridge/",""
+"id-fe02ca83e8894a42a3cea3dadd79e739","CommunicationNetwork","bridge (172.17.x.x)","The default network driver. If you don’t specify a driver, this is the type of network you are creating.
+Bridge networks are usually used when your applications run in standalone containers that need to communicate.
+
+https://docs.docker.com/network/bridge/
+
+    The private internal network created by default.
+    Every container is attached to this by default and gets an IP or range 172.17.*.*
+    Containers can also access each other using this IP if required.
+    For accessing internal IPs we need to map the port of the container to the docker host using the –p flag.
+
+    By default, Docker uses 172.17.0.0/16 subnet range.
+
+https://medium.com/codebrace/understanding-docker-networks-and-resolving-conflict-with-docker-subnet-ip-range-bfaad092a7ea",""
+"id-33f121aae62c44a79296a611c6f64453","CommunicationNetwork","docker_gwbridge (e.g. 172.x.x.x)","A bridge network which connects the individual Docker daemon to the other daemons participating in the swarm.
+
+https://docs.docker.com/network/overlay/",""
+"id-2ca572e4576243a2b94d7a001175c023","CommunicationNetwork","docker_gwbridge (e.g. 172.x.x.x)","",""
+"id-798accac014d4049853ee408b32e38c8","CommunicationNetwork","host","For standalone containers, remove network isolation between the container and the Docker host, and use the host’s networking directly.
+
+The host networking driver only works on Linux hosts, and is not supported on Docker Desktop for Mac, Docker Desktop for Windows, or Docker EE for Windows Server.
+
+Given that the container does not have its own IP-address when using host mode networking, port-mapping does not take effect, and the -p, --publish, -P, and --publish-all option are ignored, producing a warning instead.
+
+In swarm mode, control traffic (traffic related to managing the swarm and the service) is still sent across an overlay network, but the individual swarm service containers send data using the Docker daemon’s host network and ports.
+
+https://docs.docker.com/network/host/",""
+"id-c67b0f2a43154529840fcd86f1f8816f","CommunicationNetwork","ingress (e.g. 10.x.x.x)","An overlay network which handles the control and data traffic related to swarm services.
+When you create a swarm service and do not connect it to a user-defined overlay network, it connects to the ingress network by default.
+
+https://docs.docker.com/network/overlay/",""
+"id-9d1cda529e644725b6f02f18dc8280bc","CommunicationNetwork","ingress (e.g. 10.x.x.x)","",""
+"id-31c4b2a4d41a419c96fae46404723ae1","CommunicationNetwork","ipvlan","IPvlan networks give users total control over both IPv4 and IPv6 addressing.
+The VLAN driver builds on top of that in giving operators complete control of layer 2 VLAN tagging and even IPvlan L3 routing for users interested in underlay network integration.
+
+https://docs.docker.com/network/ipvlan/",""
+"id-0a52855e64c74b47a085090a27913e72","CommunicationNetwork","macvlan","Macvlan networks allow you to assign a MAC address to a container, making it appear as a physical device on your network.
+The Docker daemon routes traffic to containers by their MAC addresses.
+Using the macvlan driver is sometimes the best choice when dealing with legacy applications that expect to be directly connected to the physical network, rather than routed through the Docker host’s network stack.
+
+https://docs.docker.com/network/macvlan/",""
+"id-fb93e4bdf51c439b803a3b26daa04f8b","CommunicationNetwork","none / custom network driver","For this container, disable all networking.
+Usually used in conjunction with a custom network driver.
+none is not available for swarm services.
+
+https://docs.docker.com/network/none/",""
+"id-7b359bfc8fb14cb3a739dabab95f2eff","CommunicationNetwork","overlay","",""
+"id-2e1833e156a44cfcbe0c56c7d532f980","CommunicationNetwork","Physical network infrastructure","",""
+"id-8dab3a3a34d1477d86e4070a08396d88","CommunicationNetwork","user-defined bridge","",""
+"id-eb16addab9ca4e1f81d794971f3ab097","CommunicationNetwork","user-defined bridge (e.g. 172.x.x.x)","",""
+"id-c0933ae1499f42acbfbffa06d2c87e6c","CommunicationNetwork","user-defined overlay","Overlay networks connect multiple Docker daemons together and enable swarm services to communicate with each other.
+You can also use overlay networks to facilitate communication between a swarm service and a standalone container, or between two standalone containers on different Docker daemons.
+This strategy removes the need to do OS-level routing between these containers.
+
+https://docs.docker.com/network/bridge/",""
+"id-062fb8b25be44dc6ada6deecbe16013e","CommunicationNetwork","user-defined overlay","",""
+"id-7ebd5d37bdf94650b610e574cccde65c","Device","Host 1","",""
+"id-3fb837395f89463bbd2a21be7ab58634","Equipment","Network interface","",""
+"id-79716bf447214ac5afd64732bfdf1bdb","Equipment","Network interface","",""
+"id-0e9b3886625f457a84c388fe15fe4aa3","Node","Host 2","",""
+"id-8756b769f13a4059a337f822eaee75fe","Node","Service container 1","",""
+"id-5804f99d56b9450c99f51b094dcf91b4","Node","Service container 4","",""
+"id-10e623fe19734a1fad2795e330a0f1b8","Node","Standalone container 1","",""
+"id-f22ba1f882064226a86c9062913b2adc","Node","Standalone container 2","",""
+"id-8c53a936b87c488da7790fc581417289","Node","Standalone container 3","",""
+"id-1f2c1e38650849daa11793ff50c71fb8","SystemSoftware","Docker daemon","",""
+"id-adf30559513d4f1f93cfb360f538e4b1","SystemSoftware","Docker daemon","",""
+"id-b52c83f72d644dd08e9ddd469b82d56f","TechnologyInterface","[swarm] Container network discovery on TCP+UDP:7946","",""
+"id-1e95c08b2f4e4f4e91e4088ec64b9390","TechnologyInterface","[swarm] Container network discovery on TCP+UDP:7946","",""
+"id-ad98329e5d1d416ea03ddcb7e4d82734","TechnologyInterface","[swarm] Overlay network on UDP:4789","",""
+"id-3797acce9a7b4d3e9df13b62ffaee1e6","TechnologyInterface","[swarm] Overlay network on UDP:4789","",""
+"id-93b8d1fc13e04c2cb314b27a3f6514c9","TechnologyInterface","Default MAC address","",""
+"id-2cc30487144a4f17ab8c9cae2c1c9b92","TechnologyInterface","IPv4 / IPv6 layer","",""
+"id-e0a768b84ad84968854f8fedf861d4b2","TechnologyInterface","MAC address 2","",""
+"id-267d1c5cf30741d2aa4d8303eddfd45b","TechnologyService","Attach and detach container from network on the fly","",""
+"id-dc15f1d120874e73bb2f77c978abc4d3","TechnologyService","Automatic DNS resolution between containers","",""
+"id-06392b3d52ea4986b4898d124172dfc3","TechnologyService","Load balancing","",""
+"id-c06cdec6439444bfb549e5296a88e518","Grouping","Swarm","",""

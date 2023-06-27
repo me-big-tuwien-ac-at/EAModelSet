@@ -1,0 +1,1537 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archimate:model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:archimate="http://www.archimatetool.com/archimate" name="EDC-IDQ-Axon" id="id-4b9cc51f183f45c4830114a6b42a6cd6" version="4.6.0">
+  <folder name="Strategy" id="id-162ad2f1de64401e8e30d205b9a15aaa" type="strategy"/>
+  <folder name="Business" id="id-3a32c8bbaa674ade9e70330ec3b58ba0" type="business">
+    <element xsi:type="archimate:BusinessActor" name="Biz End  Users" id="id-061ca94c29be4d82bb50078d9c7eaf3b">
+      <documentation>Biz End Users and Data Stewards will primarily use Axon&#xD;
+Technologists will primarily use the Enterprise Data Catalog&#xD;
+</documentation>
+    </element>
+    <element xsi:type="archimate:BusinessActor" name="Data Stewards" id="id-34443813757b44e9bcec2fb2263cd018">
+      <documentation>Biz End Users and Data Stewards will primarily use Axon&#xD;
+Technologists will primarily use the Enterprise Data Catalog</documentation>
+    </element>
+    <element xsi:type="archimate:BusinessActor" name="Technologists" id="id-a8f4316d226b466bb3c7f1b30631dce8">
+      <documentation>Technologists will primarily use the Enterprise Data Catalog&#xD;
+Biz End Users and Data Stewards will primarily use Axon</documentation>
+    </element>
+    <element xsi:type="archimate:BusinessService" name="Data Analysis / Data Profiling" id="id-97e72bd9e96d415abde9d5f3ae04aba8">
+      <documentation>This is a manual process where Technologists, Biz End Users, and Data Stewards transform &quot;raw data&quot; into &quot;usable information&quot;.&#xD;
+&#xD;
+The &quot;usable information&quot; will be published in formal reports in Tableau, PowerBI, and other reporting tier components.</documentation>
+    </element>
+    <element xsi:type="archimate:BusinessService" name="Business Service" id="id-d8d8439bdf8b4331b38a7118660f1ce7"/>
+    <element xsi:type="archimate:BusinessService" name="Business Service" id="id-e960173a3a1d487aad0f4bc591b90672"/>
+  </folder>
+  <folder name="Application" id="id-e19133ce7275464d95eb0e9b55ce2b5e" type="application">
+    <element xsi:type="archimate:ApplicationComponent" name="Axon" id="id-cb83200637304df9bade2fc2c3875aa2">
+      <documentation>Axon integrates and makes available all information provided by EDC and IDQ&#xD;
+&#xD;
+Policies - are attached to each Axon data-set that specifies the Terms of Use&#xD;
+&#xD;
+Axon business glossary has 800 - 900 elements.&#xD;
+&#xD;
+</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="Enterprise Data Catalog - EDC" id="id-0318c251fd664fa88f0d37e3e5161108">
+      <documentation>Enterprise Data Catalog (EDC) primarily &#xD;
+ - identifies the types or catagories of data, and&#xD;
+ - data lineage&#xD;
+&#xD;
+Access Management:&#xD;
+&#xD;
+Authentication is SAML based using Microsoft AD&#xD;
+Authorization is Role based and is setup using &quot;Security&quot; console on EDC UI (https://edc-admin-console-uat.cnoinc.com/administrator/)&#xD;
+&#xD;
+User activity is logged under &quot;Audit&quot; console: https://edc-admin-console-uat.cnoinc.com/administrator/#log_UserActivity/ (Under Administration -> User Activity)&#xD;
+&#xD;
+Application logs: Application logs can be found under &quot;Logs&quot; console under &quot;Administrator&quot; (https://edc-admin-console-uat.cnoinc.com/administrator/) There are tabs for &quot;Domain&quot; and &quot;Service&quot;and &quot;Log Aggregator&quot;.&#xD;
+&#xD;
+Node/Service statistics can be viewed under https://edc-admin-console-uat.cnoinc.com/administrator/#admin_Domain. There are tabs for Domain, Services and Nodes, Connections and Schedules. &quot;Services and Nodes&quot; console shows details on various services and details such as properties, Resources, Permissions, Diagnostics, Plugs and Monitoring Configuration.&#xD;
+Monitor console provides real time and historical statistics at Summary and Execution levels (https://edc-admin-console-uat.cnoinc.com/administrator/#monitoring) - Ad Hoc Jobs, Deployed Mappings and Workflows, Requests and Connections and Resource usage. Resource usage shows graphs for CPU usage and Memory usage.&#xD;
+</documentation>
+      <property key="Business Owner" value="??"/>
+    </element>
+    <element xsi:type="archimate:ApplicationFunction" name="Application Function 1" id="id-17803b0031954996a27c7026b755c4be"/>
+    <element xsi:type="archimate:ApplicationFunction" name="Application Function 2" id="id-843ff24c40754dc8b274e543a4c9914e"/>
+    <element xsi:type="archimate:ApplicationFunction" name="Data Lineage" id="id-035492aa093c4dc88ad59df78255829a">
+      <documentation>The Data Lineage is captured for each data element.&#xD;
+Data Lineage is:  &#xD;
+(1) what Source System first captured the data, as well as &#xD;
+(2) any &amp; all of the downstream applications and data warehouse components where the data element resides</documentation>
+      <property key="Purpose" value="For each data element, the Data Lineage is specific, which is what Source System first captured the data, as well as all of the downstream applications and data warehouse components where the data element resides"/>
+    </element>
+    <element xsi:type="archimate:ApplicationEvent" name="Data Discovery Scans" id="id-97fdc45a3b8a4e239d2444c462083cc6"/>
+    <element xsi:type="archimate:ApplicationComponent" name="All CNO Source  systems" id="id-1346f31862034439a6fc59906fc1dffd">
+      <documentation>... represents any and all CNO source system whose data is pulled into the CNO Enterprise Data Warehouse.&#xD;
+&#xD;
+These ~500 CNO systems are defined in the Enterprise System Catalog:   http://tableau.cnoinc.com/views/EnterpriseSystemCatalog/Applications?:iid=1%22&amp;:isGuestRedirectFromVizportal=y&amp;:embed=y &#xD;
+&#xD;
+EDC/IDQ/Axon are focused on tracking Personal-Data to comply with CCPA/CPRA, the current location of ALL Personal-Data need to be tracked.&#xD;
+&#xD;
+Therefore &quot;All CNO Source systems&quot; includes both operational (day to day) source systems as well as data stores within the EDW.</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationFunction" name="Identify Data Elements by Type" id="id-1c8267b4a0654d389952312bb28dd2af">
+      <documentation>For example, any data element that fits the patterns 99999, 9999-9999, or 999999999 is a ZipCode</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationFunction" name="Infer Relationships" id="id-8e773ca1f6314e78b5c1c6ad1d6294ed">
+      <documentation>When source systems do not specify primary or foreign key relationships explicitly, they  are inferred by comparing the data values of columns from multiple tables</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationFunction" name="Identify PII and PHI" id="id-8b7a3d06007c4829a4419ce492f1fcb4">
+      <documentation>Identifies data elements that require a high degree of protection:&#xD;
+ - PII = personally identifyable information&#xD;
+ - PHI = protected health information&#xD;
+&#xD;
+Includes the MOVEMENT of sensitive data; this is essential when we are required to DELETE data as required by the CCPA/CPRA (California Consumer Privacy Act / California Privacy Rights Act )</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="Informatica Data Quality - IDQ" id="id-cab99a7a2333447ca8dbc1c76fa957e9">
+      <documentation>Informatic Data Quality (IDQ) primarily focuses upon:&#xD;
+ - DATA PROFILING: which provides statistical information of &#xD;
+   each data element VALUES, and&#xD;
+ - EXCEPTION MANAGEMENT: which identifies bad or suspiciously bad &#xD;
+   data that will require DATA CLEANSING&#xD;
+</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationFunction" name="Data Profiling" id="id-92727d358dad4a0da1c3ddfe4789b7c2">
+      <documentation>provides statistical information of each data element VALUES</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationFunction" name="Exception Management" id="id-8b960a02da574c1b89a204cc59c4abac">
+      <documentation>identifies bad or suspiciously bad data that will require Data Cleansing</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationFunction" name="Manage Business Glossary" id="id-a5edac1ff0c84632bcb0e80369d8163b"/>
+    <element xsi:type="archimate:ApplicationFunction" name="Natural Language Processor" id="id-7b5ed25a82e84b19b8c5499d73814c68">
+      <documentation>To Do:  needs description &amp; connection to _______</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationEvent" name="Data Transfer" id="id-40c42527b35a4985807953f3d2526e66"/>
+    <element xsi:type="archimate:ApplicationService" name="UI-9443" id="id-a51d03a6710b416ebd6f2cf9c94c57ef">
+      <documentation>UAT:&#xD;
+     https://lxinfaxonapm01.conseco.ad:9443/&#xD;
+     ToDo: create link to &quot;CNO_Informatica_Axon_User_Access_Guide_UAT.docx&quot;&#xD;
+&#xD;
+PROD:&#xD;
+     https://axon.cnoinc.com:9443/ or&#xD;
+     https://lxinfaxonapp01.conseco.ad:9443/&#xD;
+   ToDo: create link to &quot;CNO_Informatica_Axon_User_Access_Guide_PROD.pdf&quot;&#xD;
+&#xD;
+Authentication and Authorization: Authentication is done using CNO AD. Authorization is done using LDAP setup (ldapcml.conseco.ad) within Axon (https://axon.cnoinc.com:9443/admin/customizeconfig - LDAP Server). Roles are SuperAdmin, Admin, Webuser (Edit), Webuser (View only).&#xD;
+&#xD;
+Application Logs can be found under: https://axon.cnoinc.com:9443/admin/logs and https://axon.cnoinc.com:9443/admin/audit/view</documentation>
+      <property key="TcpPort" value="9443"/>
+    </element>
+    <element xsi:type="archimate:ApplicationService" name="Admin Console UI-8443" id="id-b29897bb8d054b0198b356df00b6fd06">
+      <documentation>UAT:https://LXINFEDCAPM01.conseco.ad:8443&#xD;
+PROD: https://LXINFEDCAPP01.conseco.ad:8443&#xD;
+&#xD;
+CONNECTIONS:&#xD;
+ - navigation: home page --> Manage --> Connections&#xD;
+ - definition: a Connection is an application (usually a Source System) that will be Scanned; &#xD;
+ - Scans: perform Data Discovery&#xD;
+ - The CNO contractual agreement allows 600.&#xD;
+ - Connection Naming Convention _____________&#xD;
+&#xD;
+LOGS:&#xD;
+ - navigation: home page --> Logs&#xD;
+ - definition: a Log records status and error information as Scans are processed&#xD;
+&#xD;
+SECURITY:&#xD;
+ - navigation: home page --> Security&#xD;
+ - definition: this set of web pages shows Users, Groups, Roles, and&#xD;
+    RBAC (role based access control): Membership, Privileges,  and Permissions &#xD;
+&#xD;
+SERVICES &amp; Nodes:&#xD;
+ - navigation: home page --> Manage --> Domains&#xD;
+ - navigation: home page --> Manage --> Services &amp; Nodes&#xD;
+ - definition: a Service is a process that provides various functionality within the EDC ecosystem&#xD;
+</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationService" name="UI Services" id="id-f721b29a47d14539b00a4fc0ef887fbb"/>
+    <element xsi:type="archimate:ApplicationService" name="LDM Admin-9085" id="id-85600da0e457409caca513cd1e4d6b1c">
+      <documentation>UAT: https://lxinfedcapm01.conseco.ad:9085/ldmadmin&#xD;
+PROD: https://edc-catalogadmin.cnoinc.com:9085/ldmadmin&#xD;
+&#xD;
+LDM = Live Data Map&#xD;
+&#xD;
+DEFINITIONS:&#xD;
+ - Asset is &#xD;
+ - Connection is an application (usually a Source System) that will be Scanned. &#xD;
+    The CNO contractual agreement allows 600.&#xD;
+    Connection Naming Convention _____________&#xD;
+ -  Resource are mostly Connections along with _____&#xD;
+ -  Task is a Scan job that has been run at a specific date and time (?)&#xD;
+ - Domain is an algorthim that discerns the data type of each data element within a Connection&#xD;
+    Examples of data types can be names, city, zip code&#xD;
+    Many algorithms are implemented as Regular Expressions&#xD;
+&#xD;
+OVERVIEW tab: Shows Assets, Resources, and Task statuses&#xD;
+&#xD;
+LIBRARY tab:  Shows Domains&#xD;
+&#xD;
+MONITORING tab: Shows all Tasks that have been run.</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationService" name="LDM Catalog-9085" id="id-0bef37685c9f474ba7410e9a289a7d87">
+      <documentation>UAT:   https://lxinfedcapm01.conseco.ad:9085/ldmcatalog&#xD;
+PROD:  https://edc-catalog.cnoinc.com:9085/ldmcatalog&#xD;
+&#xD;
+Home Page: &#xD;
+Displays 3 navigation items: Discovery tab, Analytics tab, Resources link&#xD;
+&#xD;
+DISCOVERY tab -- displays the RESOURCES link, which displays our Resources or Connections.  &#xD;
+  - The CNO contractual agreement allows 600 Resources/Connections.&#xD;
+  - .Connection Naming Convention _____________&#xD;
+Click on a Resource/Connection to provide detailed information regarding, such as Tables, Columns, and Relationships&#xD;
+&#xD;
+ANALYTICS tab - Dashboard:&#xD;
+ User Adoption tab:&#xD;
+ - displays metrics regarding aggregate usage&#xD;
+Data Asset Inventory tab:&#xD;
+ - displays information regarding our Resources/Connection&#xD;
+Data Asset Enrichment tab:&#xD;
+ - displays aggregate information regarding Business Terms, Domains, and Data Lineage&#xD;
+</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="Application Component" id="id-11b04caacb784e2fb83cb6d7e9da51f8"/>
+    <element xsi:type="archimate:ApplicationService" id="id-bb673a233de74716b38335be34910bc9"/>
+    <element xsi:type="archimate:ApplicationFunction" name="Basic Metadata" id="id-d379f600687d483a855775499ab53f0d">
+      <documentation>This is primarily table names, column names and declarative foreign keys.</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationService" name="Model Repository Service" id="id-fc07620d234845b8800c6ca1ad7ce1e4"/>
+    <element xsi:type="archimate:ApplicationService" name="Document and manage business glossary" id="id-262b292b6d0446bfa000ab88e6313d40"/>
+    <element xsi:type="archimate:ApplicationService" name="Search and Understand data, it's lineage and relationships" id="id-4e8836f74c86420dad287e38a1b132dd"/>
+    <element xsi:type="archimate:ApplicationFunction" name="Ask a question to data steward/owner" id="id-ca0eb3a32cb648daa4d2af077c567a06">
+      <documentation>Allows Q&amp;A to ask a question and receive responses.</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationFunction" name="IDQ Orphaned Foreign keys " id="id-e6ade059a9aa4a8d9c226b790626a141">
+      <documentation>Referential Integrity Analysis: if orphaned records are present, it denotes a violation of foreign key relationship (a corresponding record is not present in parent table).</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationService" name="Search and Understand data, it's lineage and relationships" id="id-b0e5010f2af241bcb5dc07ef89c464bd">
+      <documentation>UAT:   https://lxinfedcapm01.conseco.ad:9085/ldmcatalog&#xD;
+PROD:  https://edc-catalog.cnoinc.com:9085/ldmcatalog&#xD;
+&#xD;
+Home Page: &#xD;
+Displays 3 navigation items: Discovery tab, Analytics tab, Resources link&#xD;
+&#xD;
+DISCOVERY tab -- displays the RESOURCES link, which displays our Resources or Connections.  &#xD;
+  - The CNO contractual agreement allows 600 Resources/Connections.&#xD;
+  - .Connection Naming Convention _____________&#xD;
+Click on a Resource/Connection to provide detailed information regarding, such as Tables, Columns, and Relationships&#xD;
+&#xD;
+ANALYTICS tab - Dashboard:&#xD;
+ User Adoption tab:&#xD;
+ - displays metrics regarding aggregate usage&#xD;
+Data Asset Inventory tab:&#xD;
+ - displays information regarding our Resources/Connection&#xD;
+Data Asset Enrichment tab:&#xD;
+ - displays aggregate information regarding Business Terms, Domains, and Data Lineage&#xD;
+</documentation>
+    </element>
+  </folder>
+  <folder name="Technology &amp; Physical" id="id-a229f09c00eb4147ac34ee02f8cd0c1a" type="technology">
+    <element xsi:type="archimate:TechnologyFunction" name="Technology Function 1" id="id-a2305b9ea2f840c5837f301cdaf2f4f0"/>
+    <element xsi:type="archimate:TechnologyFunction" name="Technology Function2" id="id-2f2331cfa27e49f5a63fe2d81e137f1f"/>
+    <element xsi:type="archimate:TechnologyCollaboration" name="Technology Collaboration" id="id-a93020af920842db8f5eb9a5d38fdb46"/>
+    <element xsi:type="archimate:Node" name="Node/Host" id="id-109a5f27bfdb4d899d68bfde50e641f3"/>
+    <element xsi:type="archimate:Node" name="Azure SQL DB" id="id-90b698494708433d89ff6ecb4a435e71"/>
+    <element xsi:type="archimate:TechnologyCollaboration" name="Availability Zone 2" id="id-ebffdcaf8ac04bcd91f28f95ad2ee438">
+      <documentation>exists only in Production Environment</documentation>
+    </element>
+    <element xsi:type="archimate:Node" name="Azure SQL DB (Active)" id="id-40acd5c869c542408fdf5ad7a4b9f672"/>
+    <element xsi:type="archimate:Node" name="Azure SQL DB (Passive)" id="id-7a546b567f314ed1830e04b14665ec9b">
+      <documentation>exists only in Production Environment</documentation>
+    </element>
+    <element xsi:type="archimate:Node" name="EDC NODE01 - LXINFEDCAPP01 (D32a V4)" id="id-f6d709faa3754b4abcd68e81f21ce693">
+      <documentation>Purpose: The Administrator tool (Informatica Administrator) is the administration tool that you use to administer the Informatica domain and security. The Administrator tool is a thin or web client application.&#xD;
+&#xD;
+OS version need to be checked with INFA to RHEL 7.9&#xD;
+&#xD;
+For DEV: &#xD;
+   CNO recommends scale down for initial phase and expand to 32 core as needed.&#xD;
+</documentation>
+      <property key="FQDN-prod" value="nslookup LXINFEDCAPP01.conseco.ad"/>
+      <property key="FQDN-uat" value="nslookup LXINFEDCAPM01.conseco.ad"/>
+      <property key="FQDN-dev" value="nslookup LXINFEDCAPD01.conseco.ad"/>
+      <property key="IpAddress-prod" value="10.120.73.9"/>
+      <property key="IpAddress-uat" value="10.120.41.12"/>
+      <property key="IpAddress-dev" value="10.120.9.9"/>
+      <property key="AzureResourceGroup-prod" value="rg-ccpa-prod-eu2"/>
+      <property key="AzureResourceGroup-uat" value="rg-ccpa-uat-eu2"/>
+      <property key="AzureResourceGroup-dev" value="rg-ccpa-dev-eu2"/>
+      <property key="Azure Instance type-prod" value="D32a v4"/>
+      <property key="Azure Instance type-uat" value="D32a v4"/>
+      <property key="Azure Instance type-dev" value="D16a_v4"/>
+      <property key="O/S prod" value="RHEL 7.9"/>
+      <property key="O/S uat" value="RHEL 7.9"/>
+      <property key="O/S dev" value="RHEL 7.9"/>
+      <property key="CPU-prod" value="32 core"/>
+      <property key="CPU-uat" value="32 core"/>
+      <property key="CPU-dev" value="16 core"/>
+      <property key="RAM-prod" value="128GB"/>
+      <property key="RAM-uat" value="128GB"/>
+      <property key="RAM-dev" value="64GB"/>
+      <property key="Snapshot-prod" value="Daily Once"/>
+      <property key="Snapshot-uat" value="Daily Once"/>
+      <property key="Snapshot-dev" value="Daily Once"/>
+      <property key="Backup Retention-prod" value="14 days"/>
+      <property key="Backup Retention-uat" value="7 days"/>
+      <property key="Backup Retention-dev" value="7 days"/>
+    </element>
+    <element xsi:type="archimate:TechnologyCollaboration" name=" High-Availabiilty: F5 ASM WAF" id="id-c615ebcc6abd4687ab48d6c668de4de8">
+      <documentation>High-Availabiilty F5 ASM WAF and EDC Node02  do not exist in Development Environment&#xD;
+&#xD;
+https://devcentral.f5.com/s/articles/the-big-ip-application-security-manager-part-1-what-is-the-asm &#xD;
+&#xD;
+The BIG-IP Application Security Manager (ASM)  is a Layer 7 ICSA-certified Web Application Firewall (WAF) that provides application security in traditional, virtual, and private cloud environments.</documentation>
+      <property key="FQDN-prod" value="nslookup edc-catalogadmin.cnoinc.com"/>
+      <property key="FQDN-prod" value="nslookup edc-catalog.cnoinc.com"/>
+      <property key="IpAddress-prod" value="10.120.73.16"/>
+      <property key="FQDN-uat" value="nslookup edc-admin-console-uat.cnoinc.com"/>
+      <property key="IpAddress-uat" value="10.120.41.18"/>
+      <property key="FQDN-uat" value="nslookup edc-catalog-uat.cnoinc.com"/>
+      <property key="IpAddress-uat" value="10.120.41.19"/>
+    </element>
+    <element xsi:type="archimate:Node" name="EDC Services - (Azure) Region - EAST US 2" id="id-afabcf02281d49fe904f22156a06962a">
+      <property key="IT Owner" value="??"/>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="Domain Core Service-6005" id="id-0a7f8bf271474a679d919ab018d868a5">
+      <documentation>Purpose: TBD</documentation>
+      <property key="TcpPort" value="6005"/>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="AdminConsole UI-8443" id="id-deeb631bc15544339d87e0cb2546b06b">
+      <documentation>The Administrator tool (Informatica Administrator) is the administration tool that you use to administer the Informatica domain and security. The Administrator tool is a thin or web client application.</documentation>
+      <property key="TcpPort" value="8443"/>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="Data Integration Service-8495" id="id-cb7a649883be44cd9fd34606146cd652">
+      <documentation>Purpose: The Data Integration Service is an application service in the Informatica domain that &#xD;
+    performs data integration tasks for &#xD;
+    Informatica Analyst and Informatica Developer.&#xD;
+&#xD;
+In EDC whenever an user run scans on resources and view the metadata and profiling statistics in Enterprise Data Catalog, the client tool sends requests to the Data Integration Service to perform the enterprise data discovery.&#xD;
+The Data Integration Service execute data profiling and discovery.&#xD;
+Is used during data semantic discovery and basic profiling of data assets (% of Nulls, distinct values etc.)&#xD;
+</documentation>
+      <property key="TcpPort" value="8495"/>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="Content Management Service-8505" id="id-eeef0e7bc82142aabb67ccca625f59e5">
+      <documentation>Purpose: The Content Management Service is an application service that &#xD;
+     manages reference data. &#xD;
+    It provides reference data information &#xD;
+   to the Data Integration Service and to the &#xD;
+   Developer and Analyst tools.&#xD;
+&#xD;
+Content Management Service is an application service that manages reference data. A reference data object contains a set of data values that you can search while performing data quality operations on source data. The Content Management Service also compiles rule specifications into mapplets. Content Management Service uses the Data Integration Service to run mappings to transfer data between reference tables and external data sources. The Content Management Service also provides transformations, mapping specifications, and rule specifications with the following types of reference data:&#xD;
+Address reference data&#xD;
+Identity populations&#xD;
+Probabilistic models and classifier</documentation>
+      <property key="TcpPort" value="8505"/>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="Informatica Hadoop Service-9475" id="id-fc6bfdc27c074142aaff97e861e6356c">
+      <documentation>Purpose: connection to Hadoop Cluster Services (?)</documentation>
+      <property key="TcpPort" value="9475"/>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="Catalog Adminconsole UI-9485" id="id-9a416aff655b492799e023628c7c6650">
+      <documentation>Purpose: Use Catalog Administrator to &#xD;
+    consolidate the administrative tasks for resources, attributes, and schedules. &#xD;
+    You launch &#xD;
+        - Catalog Administrator &#xD;
+from Informatica Administrator to &#xD;
+            create resources and &#xD;
+            run the scans and linkage between resources. &#xD;
+&#xD;
+Catalog Service is needed to run the Enterprise data Catalog application and manage the connections between the Enterprise data Catalog components. You can configure the general, application service, and security properties of the Catalog Service</documentation>
+      <property key="TcpPort" value="9485"/>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="Catalog UI &amp; Rest-9485" id="id-2277ab1f63084977867a1725d62842ba">
+      <documentation>Purpose: The catalog represents an indexed inventory of all the data assets in the enterprise that you configure in Catalog Administrator. Enterprise Data Catalog organizes all the enterprise metadata in the catalog and enables the users of external applications discover and understand the data.The catalog stores all the metadata extracted from external data sources. You can find metadata and statistical information, such as profile results, data domains, and data asset relationships, from the catalog.&#xD;
+&#xD;
+The catalog service coordinates user interaction with catalog metadata stored on the Hadoop cluster. It is the bridge that connects Informatica domain to catalog cluster.</documentation>
+      <property key="TcpPort" value="9485"/>
+    </element>
+    <element xsi:type="archimate:Node" name="Hadoop Cluster Services" id="id-0b88456a80ce489ebe4d4a798529f67d">
+      <documentation>Hadoop Cluster services&#xD;
+ &#xD;
+&#xD;
+EDC relies on Hadoop technologies to achieve scalability, performance and flexibility of an enterprise class application that will hold millions of information and serve thousands of requests at the same time as user community will grow in your company. To that end we support different deployment types&#xD;
+&#xD;
+using an existing cluster if your organisation is familiar with the technology, it is the best option.&#xD;
+using an Informatica managed cluster, you just have to provision required hardware and the Informatica domain will take care of deploying the cluster for you.&#xD;
+ &#xD;
+&#xD;
+The Hadoop services that are leveraged by the catalog service are as follow:&#xD;
+&#xD;
+Zookeeper: Maintains the configuration of the Hadoop cluster services across all the cluster nodes&#xD;
+HDFS : EDC stores the catalog information in HDFS , to store the catalog contents a special HDFS directory is created. /Informatica/LDM/&lt;ServiceClusterName>. The directory needs to be owned by serviceuser name ( service principal In case of Kerberos)&#xD;
+Yarn: Stands for Yet Another Resource Negotiator, YARN uses a cluster wide resourcemanager and per node nodemanager daemons to manage Hadoop resource distribution and usage.When catalog service is started , it starts three applications in YARN&#xD;
+HBase: Manage and provide non SQL document storage capabilities on top of HDFS with scalability. This is where all the sources metadata will be stored.&#xD;
+SolR: Provide indexing and search capabilities, EDC build indexes of the metadata stored in HBase and allow fuzzy search and fast retrieve of the metadata&#xD;
+Spark: Ingest service used to collect, transform data and update HBase store and SolR indexes&#xD;
+Scanners: applications launched as batch job to extract metadata, run profiling and data discovery tasks and move the results over to the Catalog queue to be process by the ingestion service. The scanner application will pushdown the execution of the profiling and data discovery to the source application whenever possible (for databases, hadoop clusters, etc.)</documentation>
+    </element>
+    <element xsi:type="archimate:TechnologyCollaboration" name="Availability Zone 1" id="id-39d3470a0a3d4f87b9354f76a7a89a68">
+      <documentation>Load Balancer does not exist in Development Environment</documentation>
+    </element>
+    <element xsi:type="archimate:Node" name="Hadoop Node01 &amp; Node02 (Availability Set)" id="id-263042b48c3449ee898c0a7c8e35363c">
+      <documentation>Embedded Hadoop Cluster - HortonWorks</documentation>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="Ambari UI-8080/8443" id="id-c6328c76585a4e3a881c4cf52386f224">
+      <documentation>Ambari is a web based tool for provisioning, managing, and monitoring Apache Hadoop clusters    It supports HDFS, MapReduce, Hive, HCatalog, HBASE, ZooKeeper, Oozie, Pig, and Sqoop services.&#xD;
+&#xD;
+Used to start/stop Informatica cluster service using REST API.&#xD;
+Cluster service monitor the health of the Hadoop services using Ambari REST API.&#xD;
+Ambari provides status of the services via the Ambari Metrics service.</documentation>
+      <property key="TcpPort" value="8080/8443"/>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="NameNode UI-50070/50470" id="id-5bc77c713534493cb2cfa1a2cae3a864">
+      <documentation>NameNode Is a daemon that track meta data&#xD;
+•	File Name&#xD;
+•	Permissions&#xD;
+•	Ownership&#xD;
+•	File Location&#xD;
+ for each file in HDFS (Hadoop distributed file system).  Actual  file contents are stored in Data Nodes.&#xD;
+</documentation>
+      <property key="TcpPort" value="50070/50470"/>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="Yarn Resource Manager UI -8088/8090" id="id-ee5bbc6fbddd42a9b8712784a5981665">
+      <documentation>Yarn is a resource manager that facilitates MapReduce processes.  MapReduce is a software engineering pattern that splits VERY large jobs into segments that are run in parallel, thereby improving performance.&#xD;
+&#xD;
+Spark, HBase and Solr apps run on YARN.</documentation>
+      <property key="TcpPort" value="8088/8090"/>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="NodeManager UI - 8044" id="id-a5be97498e6a4b7f8aab76c59112bc9c">
+      <documentation>Node Manager manages, allocates, and monitors resource (cpu, ram, disk, ... and oversees the containers running MapReduce processes on a single node/host within a Hadoop cluster.</documentation>
+      <property key="TcpPort" value="8044"/>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="Job History UI - 19888" id="id-8f505c561f794ca6be105277360921a8">
+      <documentation>&#xD;
+https://hadoop.apache.org/docs/stable/hadoop-mapreduce-client/hadoop-mapreduce-client-hs/HistoryServerRest.html&#xD;
+&#xD;
+Job History allows the user to get status on finished applications.&#xD;
+</documentation>
+      <property key="TcpPort" value="19888"/>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="HDFS DataNode - 50075/50475" id="id-636f1fbd8e64438d895e9c857714fd80">
+      <documentation>Actual  file contents are stored in distributed Data Nodes.   The contents are split across multiple Data Node to take advantage of parallel processing which improves performance.&#xD;
+&#xD;
+Catalog information is stored in HDFS.</documentation>
+      <property key="TcpPort" value="50075/50475"/>
+    </element>
+    <element xsi:type="archimate:Node" name="Hadoop Node03" id="id-4b4026e8a8754fe389ce37ae753ee713">
+      <documentation>exists only in Production and User Acceptance Test Environments</documentation>
+    </element>
+    <element xsi:type="archimate:Node" name="EDC NODE02 - LXINFEDCAPP02 (D32a V4)" id="id-e848b36f924747909bf472a6b70466f4">
+      <documentation>Purpose: The Administrator tool (Informatica Administrator) is the administration tool that you use to administer the Informatica domain and security. The Administrator tool is a thin or web client application.&#xD;
+&#xD;
+OS version need to be checked with INFA to RHEL 7.9&#xD;
+&#xD;
+For DEV: &#xD;
+   CNO recommends scale down for initial phase and expand to 32 core as needed.</documentation>
+      <property key="FQDN-prod" value="nslookup LXINFEDCAPP02.conseco.ad"/>
+      <property key="FQDN-uat" value="nslookup LXINFEDCAPM02.conseco.ad"/>
+      <property key="FQDN-dev" value="nslookup LXINFEDCAPD02.conseco.ad"/>
+      <property key="IpAddress-prod" value="10.120.73.10"/>
+      <property key="IpAddress-uat" value="10.120.41.13"/>
+      <property key="IpAddress-dev" value="10.120.9.10"/>
+      <property key="AzureResourceGroup-prod" value="rg-ccpa-prod-eu2"/>
+      <property key="AzureResourceGroup-uat" value="rg-ccpa-uat-eu2"/>
+      <property key="AzureResourceGroup-dev" value="rg-ccpa-dev-eu2"/>
+      <property key="Azure Instance type-prod" value="D32a v4"/>
+      <property key="Azure Instance type-uat" value="D32a v4"/>
+      <property key="Azure Instance type-dev" value="D16a_v4"/>
+      <property key="O/S prod" value="RHEL 7.9"/>
+      <property key="O/S uat" value="RHEL 7.9"/>
+      <property key="O/S dev" value="RHEL 7.9"/>
+      <property key="CPU-prod" value="32 core"/>
+      <property key="CPU-uat" value="32 core"/>
+      <property key="CPU-dev" value="16 core"/>
+      <property key="RAM-prod" value="128GB"/>
+      <property key="RAM-uat" value="128GB"/>
+      <property key="RAM-dev" value="64GB"/>
+      <property key="Snapshot-prod" value="Daily Once"/>
+      <property key="Snapshot-uat" value="Daily Once"/>
+      <property key="Snapshot-dev" value="Daily Once"/>
+      <property key="Backup Retention-prod" value="14 days"/>
+      <property key="Backup Retention-uat" value="7 days"/>
+      <property key="Backup Retention-dev" value="7 days"/>
+    </element>
+    <element xsi:type="archimate:Node" name="Hadoop Node01 - LXINFEDCHCP01 - E8a v4" id="id-4d3bc1310202466c84cbfe32717063cf">
+      <documentation>Purpose: &#xD;
+&#xD;
+OS version need to be checked with INFA to RHEL 7.9&#xD;
+&#xD;
+1. Hbase - Stores the catalog and audit information&#xD;
+&#xD;
+2. Solr - Enables the search on catalog&#xD;
+&#xD;
+3. Spark - Enables ingestion of everything that goes into catalog.</documentation>
+      <property key="FQDN-prod" value="LXINFEDCHCP01.conseco.ad"/>
+      <property key="FQDN-uat" value="LXINFEDCHCM01.conseco.ad"/>
+      <property key="FQDN-dev" value="LXINFEDCHCD01.conseco.ad"/>
+      <property key="IpAddress-prod" value="10.120.73.12"/>
+      <property key="IpAddress-uat" value="10.120.41.14"/>
+      <property key="IpAddress-dev" value="10.120.9.11"/>
+      <property key="AzureResourceGroup-prod" value="rg-ccpa-prod-eu2"/>
+      <property key="AzureResourceGroup-uat" value="rg-ccpa-uat-eu2"/>
+      <property key="AzureResourceGroup-dev" value="rg-ccpa-dev-eu2"/>
+      <property key="Azure Instance type-prod" value="E8a v4"/>
+      <property key="Azure Instance type-uat" value="E8a v4"/>
+      <property key="Azure Instance type-dev" value="E8a v4"/>
+      <property key="O/S prod" value="RHEL 7.9"/>
+      <property key="O/S uat" value="RHEL 7.9"/>
+      <property key="O/S dev" value="RHEL 7.9"/>
+      <property key="CPU-prod" value="8 core"/>
+      <property key="CPU-uat" value="8 core"/>
+      <property key="CPU-dev" value="8 core"/>
+      <property key="RAM-prod" value="64GB"/>
+      <property key="RAM-uat" value="64GB"/>
+      <property key="RAM-dev" value="64GB"/>
+      <property key="Snapshot-prod" value="Daily Once"/>
+      <property key="Snapshot-uat" value="Daily Once"/>
+      <property key="Snapshot-dev" value="Daily Once"/>
+      <property key="Backup Retention-prod" value="14 days"/>
+      <property key="Backup Retention-uat" value="7 days"/>
+      <property key="Backup Retention-dev" value="7 days"/>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="Domain Core Service-6005 (copy)" id="id-9f8680122b954306ba3e3a0a1071b60f">
+      <documentation>Purpose: TBD</documentation>
+      <property key="TcpPort" value="6005"/>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="AdminConsole UI-8443 (copy)" id="id-09984a192a9c4988a5bb984d1edfdd5d">
+      <property key="Purpose" value="The Administrator tool (Informatica Administrator) is the administration tool that you use to administer the Informatica domain and security. The Administrator tool is a thin or web client application."/>
+      <property key="TcpPort" value="8443"/>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="Content Management Service-8505 (copy)" id="id-0f5ac1631ea843e58bba0a139c3b8ab8">
+      <documentation>Purpose: The Content Management Service is an application service that manages reference data. It provides reference data information to the Data Integration Service and to the Developer and Analyst tools.</documentation>
+      <property key="TcpPort" value="8505"/>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="Informatica Hadoop Service-9475 (copy)" id="id-3460cb6dc31947ec838bb58363d25c02">
+      <documentation>Purpose: connection to Hadoop Cluster Services (?)</documentation>
+      <property key="TcpPort" value="9475"/>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="Catalog Adminconsole UI-9485 (copy)" id="id-760a4067ef584f61b0d24ca3809e945d">
+      <documentation>Purpose: Use Catalog Administrator to consolidate the administrative tasks for resources, attributes, and schedules. You launch Catalog Administrator from Informatica Administrator to create resources and run the scans and linkage between resources. </documentation>
+      <property key="TcpPort" value="9485"/>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="Catalog UI &amp; Rest-9485 (copy)" id="id-447f392762694cdba0505500cac2b748">
+      <documentation>Purpose: The catalog represents an indexed inventory of all the data assets in the enterprise that you configure in Catalog Administrator. Enterprise Data Catalog organizes all the enterprise metadata in the catalog and enables the users of external applications discover and understand the data.The catalog stores all the metadata extracted from external data sources. You can find metadata and statistical information, such as profile results, data domains, and data asset relationships, from the catalog.</documentation>
+      <property key="TcpPort" value="9485"/>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="Data Integration Service-8495 (copy)" id="id-d09a5bcd509e4c61950e9378b520c1f7">
+      <documentation>Purpose: The Data Integration Service is an application service in the Informatica domain that performs data integration tasks for Informatica Analyst and Informatica Developer.The Data Integration Service is an application service in the Informatica domain that performs data integration tasks for Informatica Developer.</documentation>
+      <property key="TcpPort" value="8495"/>
+    </element>
+    <element xsi:type="archimate:Node" name="Hadoop Node02 - LXINFEDCHCP02 - E8a V4" id="id-8059f790d59f45dfaaff86d1438ac63f">
+      <documentation>Purpose: &#xD;
+&#xD;
+OS version need to be checked with INFA to RHEL 7.9</documentation>
+      <property key="FQDN-prod" value="LXINFEDCHCP02.conseco.ad"/>
+      <property key="FQDN-uat" value="LXINFEDCAPM01.conseco.ad"/>
+      <property key="FQDN-dev" value="LXINFEDCHCD02.conseco.ad"/>
+      <property key="IpAddress-prod" value="10.120.73.13"/>
+      <property key="IpAddress-uat" value="10.120.41.15"/>
+      <property key="IpAddress-dev" value="10.120.9.12"/>
+      <property key="AzureResourceGroup-prod" value="rg-ccpa-prod-eu2"/>
+      <property key="AzureResourceGroup-uat" value="rg-ccpa-uat-eu2"/>
+      <property key="AzureResourceGroup-dev" value="rg-ccpa-dev-eu2"/>
+      <property key="Azure Instance type-prod" value="E8a v4"/>
+      <property key="Azure Instance type-uat" value="E8a v4"/>
+      <property key="Azure Instance type-dev" value="E8a v4"/>
+      <property key="O/S prod" value="RHEL 7.9"/>
+      <property key="O/S uat" value="RHEL 7.9"/>
+      <property key="O/S dev" value="RHEL 7.9"/>
+      <property key="CPU-prod" value="8 core"/>
+      <property key="CPU-uat" value="8 core"/>
+      <property key="CPU-dev" value="8 core"/>
+      <property key="RAM-prod" value="64GB"/>
+      <property key="RAM-uat" value="64GB"/>
+      <property key="RAM-dev" value="64GB"/>
+      <property key="Snapshot-prod" value="Daily Once"/>
+      <property key="Snapshot-uat" value="Daily Once"/>
+      <property key="Snapshot-dev" value="Daily Once"/>
+      <property key="Backup Retention-prod" value="14 days"/>
+      <property key="Backup Retention-uat" value="7 days"/>
+      <property key="Backup Retention-dev" value="7 days"/>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="Ambari UI-8080/8443 (copy)" id="id-d43c0d43536f405c9ddf564baf638595">
+      <property key="TcpPort" value="8080/8443"/>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="Yarn RM UI -8088/8090 (copy)" id="id-9e31be54abed430ca81da4d9c6df265c">
+      <property key="TcpPort" value="8088/8090"/>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="HDFS DataNode - 50075/50475 (copy)" id="id-0627f8aaa6a54940a03c88afebcd7643">
+      <property key="TcpPort" value="50075/50475"/>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="NodeManager UI - 8044 (copy)" id="id-53dfeecbc4304fd39fcb4cc036a8c380">
+      <property key="TcpPort" value="8044"/>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="Job History UI - 19888 (copy)" id="id-62c30ddafa2f4010b0c123c0c8718420">
+      <property key="TcpPort" value="19888"/>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="NameNode UI-500070/50470 (copy)" id="id-93b4513806d640a0aa0b186aecb3607c">
+      <property key="TcpPort" value="500070/50470"/>
+    </element>
+    <element xsi:type="archimate:Node" name="Hadoop Node3 - LXINFEDCHCP03 - E8a V4" id="id-3e5474c1e2a04bdf9cd17ee7b287caba">
+      <documentation>Purpose: &#xD;
+&#xD;
+OS version need to be checked with INFA to RHEL 7.9</documentation>
+      <property key="FQDN-prod" value="LXINFEDCHCP03.conseco.ad"/>
+      <property key="FQDN-uat" value="LXINFEDCHCM03.conseco.ad"/>
+      <property key="FQDN-dev" value="LXINFEDCHCD03.conseco.ad"/>
+      <property key="IpAddress-prod" value="10.120.73.14"/>
+      <property key="IpAddress-uat" value="10.120.41.16"/>
+      <property key="IpAddress-dev" value="10.120.9.13"/>
+      <property key="AzureResourceGroup-prod" value="rg-ccpa-prod-eu2"/>
+      <property key="AzureResourceGroup-uat" value="rg-ccpa-uat-eu2"/>
+      <property key="AzureResourceGroup-dev" value="rg-ccpa-dev-eu2"/>
+      <property key="Azure Instance type-prod" value="E8a v4"/>
+      <property key="Azure Instance type-uat" value="E8a v4"/>
+      <property key="Azure Instance type-dev" value="E8a v4"/>
+      <property key="O/S prod" value="RHEL 7.9"/>
+      <property key="O/S uat" value="RHEL 7.9"/>
+      <property key="O/S dev" value="RHEL 7.9"/>
+      <property key="CPU-prod" value="8 core"/>
+      <property key="CPU-uat" value="8 core"/>
+      <property key="CPU-dev" value="8 core"/>
+      <property key="RAM-prod" value="64GB"/>
+      <property key="RAM-uat" value="64GB"/>
+      <property key="RAM-dev" value="64GB"/>
+      <property key="Snapshot-prod" value="Daily Once"/>
+      <property key="Snapshot-uat" value="Daily Once"/>
+      <property key="Snapshot-dev" value="Daily Once"/>
+      <property key="Backup Retention-prod" value="14 days"/>
+      <property key="Backup Retention-uat" value="7 days"/>
+      <property key="Backup Retention-dev" value="7 days"/>
+    </element>
+    <element xsi:type="archimate:Node" name="Azure Sql DB" id="id-49873092cd1041c2b1e3617d267966c0">
+      <documentation>Purpose: &#xD;
+&#xD;
+</documentation>
+      <property key="IpAddress-prod" value="10.120.73.13"/>
+      <property key="IpAddress-uat" value="10.120.43.9"/>
+      <property key="IpAddress-dev" value="10.120.9.12"/>
+      <property key="AzureResourceGroup-prod" value="rg-ccpa-prod-eu2"/>
+      <property key="AzureResourceGroup-uat" value="rg-ccpa-uat-eu2"/>
+      <property key="AzureResourceGroup-dev" value="rg-ccpa-dev-eu2"/>
+      <property key="Azure Instance type-prod" value="E8a v4"/>
+      <property key="Azure Instance type-uat" value="E8a v4"/>
+      <property key="Azure Instance type-dev" value="E8a v4"/>
+      <property key="O/S prod" value="RHEL 7.9"/>
+      <property key="O/S uat" value="RHEL 7.9"/>
+      <property key="O/S dev" value="RHEL 7.9"/>
+      <property key="CPU-prod" value="8"/>
+      <property key="CPU-uat" value="8"/>
+      <property key="CPU-dev" value="8"/>
+      <property key="RAM-prod" value="64GB"/>
+      <property key="RAM-uat" value="64GB"/>
+      <property key="RAM-dev" value="64GB"/>
+      <property key="Snapshot-prod" value="Daily Once"/>
+      <property key="Snapshot-uat" value="Daily Once"/>
+      <property key="Snapshot-dev" value="Daily Once"/>
+      <property key="Backup Retention-prod" value="14 days"/>
+      <property key="Backup Retention-uat" value="7 days"/>
+      <property key="Backup Retention-dev" value="7 days"/>
+    </element>
+    <element xsi:type="archimate:Node" name="Azure SQL DB" id="id-9cbdcd45854d4481ad1e4d62224f5432">
+      <documentation>Purpose: ______________&#xD;
+&#xD;
+We have only one environment: PROD; no UAT or DEV -- correct ?&#xD;
+&#xD;
+Azure SQL DB  (PaaS)  (EDC)&#xD;
+&#xD;
+OS version need to be checked with INFA to RHEL 7.9</documentation>
+      <property key="FQDN" value="sqlinfccpadeu2"/>
+      <property key="Version" value="Sql Server 2019"/>
+      <property key="IpAddress-prod" value="10.120.12.10"/>
+      <property key="AzureResourceGroup-prod" value="rg-ccpa-dev-eu2"/>
+      <property key="Azure Instance type-prod" value="E8a v4"/>
+      <property key="O/S prod" value="RHEL 7.9"/>
+      <property key="CPU-prod" value="8"/>
+      <property key="RAM-prod" value="64GB"/>
+      <property key="Snapshot-prod" value="Daily Once"/>
+      <property key="Snapshot-uat" value="Daily Once"/>
+      <property key="Snapshot-dev" value="Daily Once"/>
+      <property key="Backup Retention-prod" value="14 days"/>
+      <property key="Backup Retention-uat" value="7 days"/>
+      <property key="Backup Retention-dev" value="7 days"/>
+    </element>
+    <element xsi:type="archimate:Node" name="Azure SQL DB" id="id-1a653d3b87934d70adddbb4fd12a1a93">
+      <documentation>Purpose: &#xD;
+&#xD;
+Version: SQL Server 2019&#xD;
+&#xD;
+CNO is still single region and multi-region will be explored</documentation>
+      <property key="FQDN-prod" value="sqlinfccpapeu2.conseco.ad"/>
+      <property key="FQDN-uat" value="sqlinfccpameu2.conseco.ad"/>
+      <property key="FQDN-dev" value="sqlinfccpadeu2.conseco.ad"/>
+      <property key="IpAddress-prod" value="10.120.75.7"/>
+      <property key="IpAddress-uat" value="10.120.43.9"/>
+      <property key="IpAddress-dev" value="10.120.12.10"/>
+      <property key="AzureResourceGroup-prod" value="rg-ccpa-prod-eu2"/>
+      <property key="AzureResourceGroup-uat" value="rg-ccpa-uat-eu2"/>
+      <property key="AzureResourceGroup-dev" value="rg-ccpa-dev-eu2"/>
+      <property key="Azure Instance type-prod" value="Gen 5 VCORE 8"/>
+      <property key="Azure Instance type-uat" value="Gen 5 VCORE 8"/>
+      <property key="Azure Instance type-dev" value="Gen 5 VCORE 8"/>
+      <property key="O/S prod" value="N/A ?"/>
+      <property key="O/S uat" value="N/A ?"/>
+      <property key="O/S dev" value="N/A ?"/>
+      <property key="CPU-prod" value="8 core"/>
+      <property key="CPU-uat" value="8 core"/>
+      <property key="CPU-dev" value="8 core"/>
+      <property key="RAM-prod" value="40GB"/>
+      <property key="RAM-uat" value="40GB"/>
+      <property key="RAM-dev" value="40GB"/>
+      <property key="Snapshot-prod" value="Daily Once"/>
+      <property key="Snapshot-uat" value="Daily Once"/>
+      <property key="Snapshot-dev" value="Daily Once"/>
+      <property key="Backup Retention-prod" value="14 days"/>
+      <property key="Backup Retention-uat" value="7 days"/>
+      <property key="Backup Retention-dev" value="7 days"/>
+      <property key="Database Backup-prod" value="Daily Full backup"/>
+      <property key="Database Backup-uat" value="Daily Full backup"/>
+      <property key="Database Backup-dev" value="Daily Full backup"/>
+    </element>
+    <element xsi:type="archimate:Node" name="AXON NODE01 - LXINFAXONAPP01 (E8a V4) - Azure" id="id-cff2539dbcf54412bfe4a72e0075506b">
+      <documentation>Purpose: &#xD;
+Axon Overview Meeting 2-Apr-2021 -- Brian Bussing,  &lt;bbussing@informatica.com> &#xD;
+https://informatica.zoom.us/rec/share/lDJpiSPn7Q7zBj1kKNcC5ppF4MnVJYQI4QHnmOEwBx68M22bVPlSAg5oi0x80EXP.kNwK-KRUaOBVQFgE&#xD;
+Access Passcode: #CNOInfa2021!&#xD;
+&#xD;
+Version: SQL Server 2019&#xD;
+&#xD;
+CNO is still single region and multi-region will be explored</documentation>
+      <property key="FQDN-prod" value="axon.cnoinc.com"/>
+      <property key="FQDN-uat" value="axon-uat.cnoinc.com"/>
+      <property key="IpAddress-prod" value="10.120.73.11"/>
+      <property key="IpAddress-uat" value="10.120.41.11"/>
+      <property key="AzureResourceGroup-prod"/>
+      <property key="AzureResourceGroup-uat"/>
+      <property key="AzureResourceGroup-dev"/>
+      <property key="Azure Instance type-prod"/>
+      <property key="Azure Instance type-uat"/>
+      <property key="Azure Instance type-dev"/>
+      <property key="O/S prod"/>
+      <property key="O/S uat"/>
+      <property key="O/S dev"/>
+      <property key="CPU-prod"/>
+      <property key="CPU-uat"/>
+      <property key="CPU-dev"/>
+      <property key="RAM-prod"/>
+      <property key="RAM-uat"/>
+      <property key="RAM-dev"/>
+      <property key="Snapshot-prod"/>
+      <property key="Snapshot-uat"/>
+      <property key="Snapshot-dev"/>
+      <property key="Backup Retention-prod"/>
+      <property key="Backup Retention-uat"/>
+      <property key="Backup Retention-dev"/>
+      <property key="Database Backup-prod"/>
+      <property key="Database Backup-uat"/>
+      <property key="Database Backup-dev"/>
+    </element>
+    <element xsi:type="archimate:TechnologyCollaboration" name="High Availability (copy)" id="id-03684da37f7d4b7db343ff934d803324">
+      <documentation>exists only in Production Environment</documentation>
+    </element>
+    <element xsi:type="archimate:Node" name="Azure SQL DB (Passive) (copy)" id="id-aaac5e85b1014e998c58b2c2fab733c1">
+      <documentation>exists only in Production Environment</documentation>
+    </element>
+    <element xsi:type="archimate:Node" name="Azure SQL DB (Active) (copy)" id="id-c1d51bb747a84191aee1749dcd35595d"/>
+    <element xsi:type="archimate:Node" name="IDQ Services - (on prem)" id="id-8eb4a58329824cfdbb8968dd64d81f99"/>
+    <element xsi:type="archimate:TechnologyCollaboration" name=" High-Availabiilty: F5 ASM WAF" id="id-c8e9b418b73c49d281e158903c6c87cc">
+      <documentation>High-Availabiilty F5 ASM WAF and IDQ Node02  do not exist in Development Environment&#xD;
+&#xD;
+https://devcentral.f5.com/s/articles/the-big-ip-application-security-manager-part-1-what-is-the-asm &#xD;
+&#xD;
+The BIG-IP Application Security Manager (ASM)  is a Layer 7 ICSA-certified Web Application Firewall (WAF) that provides application security in traditional, virtual, and private cloud environments.</documentation>
+      <property key="FQDN-prod" value="tbd"/>
+      <property key="FQDN-uat" value="tbd"/>
+      <property key="IpAddress-prod" value="10.120.73.15"/>
+      <property key="IpAddress-uat" value="10.120.41.18  -- (incorrect - same as EDC Service High-Availability)"/>
+    </element>
+    <element xsi:type="archimate:Node" name="IDQ Node01" id="id-026ba9c10b644a06995d36e2c3f7146c">
+      <documentation>Is &quot;IDQ Node01&quot; the correct name?</documentation>
+    </element>
+    <element xsi:type="archimate:Node" name="IDQ Node02" id="id-7a04d6f75f1b4a458b7a10ab58cbf817">
+      <documentation>Is &quot;IDQ Node01&quot; the correct name?</documentation>
+    </element>
+    <element xsi:type="archimate:Node" name="IDQ Node1 - LXINFDQP04" id="id-1f2cd47f8c2e4532baeb758b85a81b93">
+      <documentation>Is &quot;IDQ Node01&quot; the correct name?</documentation>
+      <property key="FQDN-prod" value="nslookup LXINFDQP04.conseco.ad"/>
+      <property key="FQDN-uat" value="nslookup LXINFDQM04.conseco.ad"/>
+      <property key="FQDN-dev" value="nslookup LXINFDQD04.conseco.ad"/>
+      <property key="IpAddress-prod" value="192.168.193.228"/>
+      <property key="IpAddress-uat" value="10.11.192.150"/>
+      <property key="IpAddress-dev" value="10.11.190.85"/>
+      <property key="AzureResourceGroup-prod" value="n/a on-prem"/>
+      <property key="AzureResourceGroup-uat" value="n/a on-prem"/>
+      <property key="AzureResourceGroup-dev" value="n/a on-prem"/>
+      <property key="Azure Instance type-prod" value="n/a on-prem"/>
+      <property key="Azure Instance type-uat" value="n/a on-prem"/>
+      <property key="Azure Instance type-dev" value="n/a on-prem"/>
+      <property key="O/S prod" value="RHEL 7.9"/>
+      <property key="O/S uat" value="RHEL 7.9"/>
+      <property key="O/S dev" value="RHEL 7.9"/>
+      <property key="CPU-prod" value="2 core"/>
+      <property key="CPU-uat" value="2 core"/>
+      <property key="CPU-dev" value="2 core"/>
+      <property key="RAM-prod" value="32GB"/>
+      <property key="RAM-uat" value="15GB"/>
+      <property key="RAM-dev" value="17GB"/>
+      <property key="Snapshot-prod" value="Daily"/>
+      <property key="Snapshot-uat" value="Daily"/>
+      <property key="Snapshot-dev" value="Daily"/>
+      <property key="Backup Retention-prod" value="14 days"/>
+      <property key="Backup Retention-uat" value="14 days"/>
+      <property key="Backup Retention-dev" value="14 days"/>
+    </element>
+    <element xsi:type="archimate:Node" name="IDQ Node 2 - LXINFDQP05" id="id-c99a49b8a83b4806b4821ad963f9ee49">
+      <documentation>Is &quot;IDQ Node02&quot; the correct name?</documentation>
+      <property key="FQDN-prod" value="nslookup LXINFDQP05.conseco.ad"/>
+      <property key="FQDN-uat" value="nslookup LXINFDQM05.conseco.ad"/>
+      <property key="FQDN-dev" value="nslookup LXINFDQD05.conseco.ad"/>
+      <property key="IpAddress-prod" value="192.168.193.186"/>
+      <property key="IpAddress-uat" value="10.11.192.149"/>
+      <property key="IpAddress-dev" value="10.11.190.86"/>
+      <property key="AzureResourceGroup-prod" value="n/a on-prem"/>
+      <property key="AzureResourceGroup-uat" value="n/a on-prem"/>
+      <property key="AzureResourceGroup-dev" value="n/a on-prem"/>
+      <property key="Azure Instance type-prod" value="n/a on-prem"/>
+      <property key="Azure Instance type-uat" value="n/a on-prem"/>
+      <property key="Azure Instance type-dev" value="n/a on-prem"/>
+      <property key="O/S prod" value="RHEL 7.9"/>
+      <property key="O/S uat" value="RHEL 7.9"/>
+      <property key="O/S dev" value="RHEL 7.9"/>
+      <property key="CPU-prod" value="2 core"/>
+      <property key="CPU-uat" value="2 core"/>
+      <property key="CPU-dev" value="2 core"/>
+      <property key="RAM-prod" value="32GB"/>
+      <property key="RAM-uat" value="13GB"/>
+      <property key="RAM-dev" value="17GB"/>
+      <property key="Snapshot-prod" value="tbd"/>
+      <property key="Snapshot-uat" value="tbd"/>
+      <property key="Snapshot-dev" value="tbd"/>
+      <property key="Backup Retention-prod" value="tbd"/>
+      <property key="Backup Retention-uat" value="tbd"/>
+      <property key="Backup Retention-dev" value="tbd"/>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="UI Web App" id="id-51c52574303d45b38e7e042bf0ed06b0"/>
+    <element xsi:type="archimate:TechnologyService" name="LDM Admin-9085" id="id-e4950b32807c41b7b7e9c60e6be427c9">
+      <documentation>These two end points are connected via the Load Balancer&#xD;
+https://lxinfedcapp01.conseco.ad:9085/ldmadmin (Primary- EDC Node01)&#xD;
+https://lxinfedcapp02.conseco.ad:9085/ldmadmin (Secondary- EDC Node02)</documentation>
+      <property key="TcpPort" value="9085"/>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="LDM Catalog-9085" id="id-d6b39fab02454737a3af86162233932a">
+      <documentation>These two end points are connected via the Load Balancer&#xD;
+https://lxinfedcapp01.conseco.ad:9085/ldmcatalog (Primary- EDC Node01) &#xD;
+https://lxinfedcapp02.conseco.ad:9085/ldmcatalog (Secondary - EDC Node02)</documentation>
+      <property key="TcpPort" value="9085"/>
+    </element>
+    <element xsi:type="archimate:CommunicationNetwork" name="Communication Network" id="id-11142631d15a407f8529a8f6bd446dd6">
+      <documentation>&#xD;
+work in progress</documentation>
+      <property/>
+    </element>
+    <element xsi:type="archimate:Node" name="Linux Server Specs" id="id-8a9e66ccba4d47088f3c99a48f6ad996">
+      <documentation>&#xD;
+https://teams.microsoft.com/_#/files/General?threadId=19%3A95cee131907b43589037d71617073bc2%40thread.tacv2&amp;ctx=channel&amp;context=LinuxServerSpecs&amp;rootfolder=%252Fsites%252FITDataManagementandDelivery%252FShared%2520Documents%252FGeneral%252FData%2520Management%2520EDC-IDQ-Axon%2520BigID%252FLinuxServerSpecs&#xD;
+&#xD;
+</documentation>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="Availability Zone 1" id="id-93acbe0a4d2943a6a80a4e0fd2ef656b"/>
+    <element xsi:type="archimate:TechnologyService" name="Availability Zone 2" id="id-e96475a893b04ad99e46ca159d5fb912"/>
+    <element xsi:type="archimate:TechnologyService" name="rg-ccpa-prod-eu2" id="id-6db6c65de4a44e44b7726112c054c21b"/>
+    <element xsi:type="archimate:TechnologyCollaboration" name="Availability Zone 2" id="id-cbc33dec5b68455ab5ec24c2a73a3fcb"/>
+    <element xsi:type="archimate:TechnologyService" name="Azure Load Balancer" id="id-1d1aaf9d0f844b7a9efb443638ccba62"/>
+    <element xsi:type="archimate:TechnologyService" name="Azure Load Balancer (copy)" id="id-6debbaf9151d4b2fa7700f745941aadb"/>
+    <element xsi:type="archimate:TechnologyCollaboration" name="Availability Zone 1" id="id-4a06d6db0da3452aaa1533f9949ab025">
+      <documentation>exists only in Production Environment</documentation>
+    </element>
+    <element xsi:type="archimate:Node" name="Azure SQL DB (Passive) (copy)" id="id-a59a08d82b7048d08e01f3a7538174c1">
+      <documentation>exists only in Production Environment</documentation>
+    </element>
+    <element xsi:type="archimate:Node" name="Azure SQL DB (Active)" id="id-4335f1a7baf74d01aedb2af95cdccc5c"/>
+    <element xsi:type="archimate:TechnologyService" name="Azure Load Balancer (copy) (copy)" id="id-e6e8afb710a241c0b117f31e1239952e"/>
+    <element xsi:type="archimate:TechnologyService" name="AXON UI - 9443/9999" id="id-88a4cbd05c5f4252852c7b147387385b">
+      <documentation>These two end points are connected via the Load Balancer&#xD;
+https://lxinfedcapp01.conseco.ad:9085/ldmadmin (Primary- EDC Node01)&#xD;
+https://lxinfedcapp02.conseco.ad:9085/ldmadmin (Secondary- EDC Node02)</documentation>
+      <property key="TcpPort" value="9085"/>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="Azure Cloud - Virtual Network" id="id-291dbde0884c4126a73b7f9a67aaa423"/>
+    <element xsi:type="archimate:TechnologyCollaboration" name="Technology Collaboration" id="id-9bd2e6ecf7ca42afba93066a27830c34"/>
+    <element xsi:type="archimate:TechnologyCollaboration" name="Azure Cloud - Virtual Network" id="id-65e316020b694ca39a2321f72075b417">
+      <property key="Azure Resource Group" value="rg-ccpa-prod-eu2"/>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="Model Repository Service" id="id-fb4b558a2827484ba682df5b295dc934">
+      <documentation>Purpose: The Model Repository Service is an application service that manages model repository that stores metadata created by the Enterprise Data Catalog. MRS stores the underlying contents in a relational database to enable collaboration among the tools and services. Model repository primarily stores the resource configuration and data domain information. When you access a Model repository object from the Enterprise Data Catalog tools or the Data Integration Service, the client or service sends a request to the Model Repository Service. The Model Repository Service process fetches, inserts, and updates the metadata in the Model repository database tables.</documentation>
+      <property key="TcpPort" value="9485"/>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="Model Repository Service database (MRS)" id="id-af46fea7a5a04571bc6c51365917ac14">
+      <documentation>Purpose: The Model Repository Service is an application service that manages model repository that stores metadata created by the Enterprise Data Catalog. MRS stores the underlying contents in a relational database to enable collaboration among the tools and services. Model repository primarily stores the resource configuration and data domain information. When you access a Model repository object from the Enterprise Data Catalog tools or the Data Integration Service, the client or service sends a request to the Model Repository Service. The Model Repository Service process fetches, inserts, and updates the metadata in the Model repository database tables.&#xD;
+&#xD;
+MRS stores all the configuration and connectivity information for EDC resources.</documentation>
+      <property key="TcpPort" value="9485"/>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="Profile warehouse database (PWH)" id="id-8f2682fbc95e414bafb3c7a6ce4def7e">
+      <documentation>Purpose: Profile warehouse database (PWH) is used by the Data Integration services to store the profile statistics and value frequency are temporarily stored before being moved over to the HBase database by the Spark ingestion services.</documentation>
+      <property key="TcpPort" value="9485"/>
+    </element>
+    <element xsi:type="archimate:TechnologyService" name="Reference database (REF)" id="id-4dab94584d064dcdb535664909e3de75">
+      <documentation>Purpose: Reference database  (REF) is used by the Content Management services to store reference data used for data discovery such as names, synonyms, location reference data, etc.</documentation>
+      <property key="TcpPort" value="9485"/>
+    </element>
+  </folder>
+  <folder name="Motivation" id="id-9026547a49be454ab721293394768cea" type="motivation"/>
+  <folder name="Implementation &amp; Migration" id="id-e10a9b6d112f47e58f12f5b3890f6b25" type="implementation_migration">
+    <element xsi:type="archimate:WorkPackage" name="Work Package" id="id-26761c9b35bc411ba83560d1c8d84a6c"/>
+    <element xsi:type="archimate:ImplementationEvent" name="Implementation Event" id="id-6848a9bf16a046c9825a931220fdd8c4"/>
+    <element xsi:type="archimate:WorkPackage" name="Resource group" id="id-9399c6dbd8fd4a2992dec19dbfd5b1c4"/>
+  </folder>
+  <folder name="Other" id="id-4ce429c5ac824364a64d38e231492a30" type="other"/>
+  <folder name="Relations" id="id-dfa2a432781645e1ae47d84c378df04e" type="relations">
+    <element xsi:type="archimate:ServingRelationship" id="id-266a1c7734b84dc9a5bf0b5ba87fe633" source="id-a51d03a6710b416ebd6f2cf9c94c57ef" target="id-061ca94c29be4d82bb50078d9c7eaf3b"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-c3e4c096470f410299ced42a393ea474" source="id-a51d03a6710b416ebd6f2cf9c94c57ef" target="id-262b292b6d0446bfa000ab88e6313d40"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-7d134e59a2fc4a67843473f5aab015c7" source="id-0318c251fd664fa88f0d37e3e5161108" target="id-a8f4316d226b466bb3c7f1b30631dce8"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-4d3c57dcd2d54c6f8d332a341364803e" source="id-34443813757b44e9bcec2fb2263cd018" target="id-97e72bd9e96d415abde9d5f3ae04aba8"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-d92f4268e3dd414f80865fa3dd62a595" source="id-061ca94c29be4d82bb50078d9c7eaf3b" target="id-97e72bd9e96d415abde9d5f3ae04aba8"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-7c95b193c31e482a923c5edc0e88e4ac" source="id-a8f4316d226b466bb3c7f1b30631dce8" target="id-97e72bd9e96d415abde9d5f3ae04aba8"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-e599f68363384a7a8ca4acae91f1cf5e" source="id-26761c9b35bc411ba83560d1c8d84a6c" target="id-a2305b9ea2f840c5837f301cdaf2f4f0"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-7240947560704e7d991df0817c658a19" source="id-26761c9b35bc411ba83560d1c8d84a6c" target="id-2f2331cfa27e49f5a63fe2d81e137f1f"/>
+    <element xsi:type="archimate:FlowRelationship" id="id-3f0b2cdf1225483297f21b74aa822682" source="id-a2305b9ea2f840c5837f301cdaf2f4f0" target="id-2f2331cfa27e49f5a63fe2d81e137f1f"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-a71eaa1b47c24ffb835c1b85d5699b2c" source="id-a93020af920842db8f5eb9a5d38fdb46" target="id-109a5f27bfdb4d899d68bfde50e641f3"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-8371b64e3f46437f9794bb74c6bd049d" source="id-0318c251fd664fa88f0d37e3e5161108" target="id-17803b0031954996a27c7026b755c4be"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-b9ff055482f14a899ee90fa74a7a5bb6" source="id-0318c251fd664fa88f0d37e3e5161108" target="id-843ff24c40754dc8b274e543a4c9914e"/>
+    <element xsi:type="archimate:FlowRelationship" id="id-5e37376b4ff04d9e9a08b502351dae03" source="id-17803b0031954996a27c7026b755c4be" target="id-843ff24c40754dc8b274e543a4c9914e"/>
+    <element xsi:type="archimate:AggregationRelationship" id="id-89aadc99653c4219b46c5aac62224a98" source="id-ebffdcaf8ac04bcd91f28f95ad2ee438" target="id-40acd5c869c542408fdf5ad7a4b9f672"/>
+    <element xsi:type="archimate:AggregationRelationship" id="id-d2891b8f13e941a98b560aa34a7ff30e" source="id-ebffdcaf8ac04bcd91f28f95ad2ee438" target="id-7a546b567f314ed1830e04b14665ec9b"/>
+    <element xsi:type="archimate:AssociationRelationship" id="id-6cbb4d955459407d9152c8e5601df5aa" source="id-40acd5c869c542408fdf5ad7a4b9f672" target="id-7a546b567f314ed1830e04b14665ec9b"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-9dc5315933be4eb09b33e2b86ea5dcfd" source="id-c615ebcc6abd4687ab48d6c668de4de8" target="id-f721b29a47d14539b00a4fc0ef887fbb"/>
+    <element xsi:type="archimate:FlowRelationship" id="id-bb2a5fd258884484b690c4d27757fb93" source="id-c615ebcc6abd4687ab48d6c668de4de8" target="id-f6d709faa3754b4abcd68e81f21ce693"/>
+    <element xsi:type="archimate:AggregationRelationship" id="id-880e7400daad41fa91556e799ef8490f" source="id-c615ebcc6abd4687ab48d6c668de4de8" target="id-f6d709faa3754b4abcd68e81f21ce693"/>
+    <element xsi:type="archimate:FlowRelationship" id="id-e6ac1b8bac27460a9274317a6a3e29d4" source="id-f6d709faa3754b4abcd68e81f21ce693" target="id-4a06d6db0da3452aaa1533f9949ab025"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-ecdacad1d5ae4c7d81e2128d72b823af" source="id-f6d709faa3754b4abcd68e81f21ce693" target="id-0a7f8bf271474a679d919ab018d868a5"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-97d32a9a372a4573b57ae557e44741c9" source="id-f6d709faa3754b4abcd68e81f21ce693" target="id-deeb631bc15544339d87e0cb2546b06b"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-45a91f556b4c4dfd92dd2b3834d94f1d" source="id-f6d709faa3754b4abcd68e81f21ce693" target="id-cb7a649883be44cd9fd34606146cd652"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-b79a534653254976a7e4b957e573230e" source="id-f6d709faa3754b4abcd68e81f21ce693" target="id-eeef0e7bc82142aabb67ccca625f59e5"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-5b554c002503437ca28bb457ed30e5d1" source="id-f6d709faa3754b4abcd68e81f21ce693" target="id-fc6bfdc27c074142aaff97e861e6356c"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-8964b9dfd1f74051885ce8c05f7ae7a2" source="id-f6d709faa3754b4abcd68e81f21ce693" target="id-9a416aff655b492799e023628c7c6650"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-92461f5d7f454d5fafa813cb9a96eb77" source="id-f6d709faa3754b4abcd68e81f21ce693" target="id-2277ab1f63084977867a1725d62842ba"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-290ab84c899c43abbd08f1a28b9d0578" source="id-0318c251fd664fa88f0d37e3e5161108" target="id-035492aa093c4dc88ad59df78255829a"/>
+    <element xsi:type="archimate:FlowRelationship" id="id-3776b54e149c46f1a28d1a9b85333ebc" source="id-97fdc45a3b8a4e239d2444c462083cc6" target="id-0318c251fd664fa88f0d37e3e5161108"/>
+    <element xsi:type="archimate:TriggeringRelationship" id="id-05bab826511f421b952cbc03e84ba52a" source="id-cb7a649883be44cd9fd34606146cd652" target="id-97fdc45a3b8a4e239d2444c462083cc6"/>
+    <element xsi:type="archimate:FlowRelationship" id="id-9057b114b85140bd8de7a0058f72c568" source="id-1346f31862034439a6fc59906fc1dffd" target="id-97fdc45a3b8a4e239d2444c462083cc6">
+      <documentation>CNO has licensed 600 connections from Informatica. Each connection allows us to extract data from a source system.&#xD;
+Cameron: How is a resource related to a connection??</documentation>
+    </element>
+    <element xsi:type="archimate:RealizationRelationship" id="id-4e0be14c9413488d9aef8a2f96b3e87c" source="id-0318c251fd664fa88f0d37e3e5161108" target="id-1c8267b4a0654d389952312bb28dd2af"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-a71c0097168e4955b4b8c64d6cf57538" source="id-0318c251fd664fa88f0d37e3e5161108" target="id-8e773ca1f6314e78b5c1c6ad1d6294ed"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-3d7b729e26ea4dfb89c48a755d387e68" source="id-0318c251fd664fa88f0d37e3e5161108" target="id-8b7a3d06007c4829a4419ce492f1fcb4"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-f4f179976afa4dc1b26828089d5d9f22" source="id-cab99a7a2333447ca8dbc1c76fa957e9" target="id-92727d358dad4a0da1c3ddfe4789b7c2"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-768155ff04ee4dabb175f26c021ed7cb" source="id-cab99a7a2333447ca8dbc1c76fa957e9" target="id-8b960a02da574c1b89a204cc59c4abac"/>
+    <element xsi:type="archimate:FlowRelationship" name="https/ssl" id="id-83e36e463d3f436aa17ddffaee45867a" source="id-afabcf02281d49fe904f22156a06962a" target="id-0b88456a80ce489ebe4d4a798529f67d">
+      <documentation>http(s)/rpc/ssl</documentation>
+      <property key="Ntwk Connection Type" value="http/https or tcp/ip or http(s)/rpc/ssl"/>
+    </element>
+    <element xsi:type="archimate:RealizationRelationship" id="id-25a0e4d05c324773a17163e2705051d4" source="id-39d3470a0a3d4f87b9354f76a7a89a68" target="id-263042b48c3449ee898c0a7c8e35363c"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-496d00e7ee8c43d1a76c92d1d86a6bb2" source="id-263042b48c3449ee898c0a7c8e35363c" target="id-c6328c76585a4e3a881c4cf52386f224"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-19e9689bdb0c42e2affb0bf3893ee69c" source="id-263042b48c3449ee898c0a7c8e35363c" target="id-5bc77c713534493cb2cfa1a2cae3a864"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-f38d1bb192f144f5a00cef67074a4b62" source="id-263042b48c3449ee898c0a7c8e35363c" target="id-ee5bbc6fbddd42a9b8712784a5981665"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-22354c31ded94887bb06661a4f34821a" source="id-263042b48c3449ee898c0a7c8e35363c" target="id-a5be97498e6a4b7f8aab76c59112bc9c"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-2f0d42c678ec451197cdd8503f7548ea" source="id-263042b48c3449ee898c0a7c8e35363c" target="id-8f505c561f794ca6be105277360921a8"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-631291f0aae6488e83179624ef627ad5" source="id-263042b48c3449ee898c0a7c8e35363c" target="id-636f1fbd8e64438d895e9c857714fd80"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-e8131a41f932423c94a69c7a15136949" source="id-39d3470a0a3d4f87b9354f76a7a89a68" target="id-4b4026e8a8754fe389ce37ae753ee713"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-8fc28b0592074738b7ee818ad602282f" source="id-c615ebcc6abd4687ab48d6c668de4de8" target="id-e848b36f924747909bf472a6b70466f4"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-b3f4b81a11844974aef68aaa77f7c64c" source="id-4d3bc1310202466c84cbfe32717063cf" target="id-3460cb6dc31947ec838bb58363d25c02"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-5280036421834255a97f529f337347f9" source="id-4d3bc1310202466c84cbfe32717063cf" target="id-447f392762694cdba0505500cac2b748"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-f40eee8f38024048ba74871030f3a00e" source="id-4d3bc1310202466c84cbfe32717063cf" target="id-09984a192a9c4988a5bb984d1edfdd5d"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-715ef8998abd4dee8f911e8aebe7bf7b" source="id-4d3bc1310202466c84cbfe32717063cf" target="id-d09a5bcd509e4c61950e9378b520c1f7"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-415c865956194bd08f656906754b38f2" source="id-4d3bc1310202466c84cbfe32717063cf" target="id-760a4067ef584f61b0d24ca3809e945d"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-ddd81c3391ca48cdbc792946e2d94d32" source="id-4d3bc1310202466c84cbfe32717063cf" target="id-0f5ac1631ea843e58bba0a139c3b8ab8"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-4576aa327eee49029592c665fecd95ee" source="id-4d3bc1310202466c84cbfe32717063cf" target="id-9f8680122b954306ba3e3a0a1071b60f"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-959ab543e2864df1bf29de2020d89c82" source="id-39d3470a0a3d4f87b9354f76a7a89a68" target="id-4d3bc1310202466c84cbfe32717063cf"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-8b2e07eb29cd42e896d46f8d91e4493e" source="id-4d3bc1310202466c84cbfe32717063cf" target="id-c6328c76585a4e3a881c4cf52386f224"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-67cb70be68184bd3b1b986820fbb4947" source="id-4d3bc1310202466c84cbfe32717063cf" target="id-ee5bbc6fbddd42a9b8712784a5981665"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-945c6f54ab034151a1b6e7156692081e" source="id-4d3bc1310202466c84cbfe32717063cf" target="id-636f1fbd8e64438d895e9c857714fd80"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-9de5d2dc3a27419d9fdc5f8af2bc7da2" source="id-4d3bc1310202466c84cbfe32717063cf" target="id-a5be97498e6a4b7f8aab76c59112bc9c"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-f4202bb9a0e34bc2a4fab4708b6c7c35" source="id-4d3bc1310202466c84cbfe32717063cf" target="id-8f505c561f794ca6be105277360921a8"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-f022e41429fd402bb4dbb5634ac27c1d" source="id-4d3bc1310202466c84cbfe32717063cf" target="id-5bc77c713534493cb2cfa1a2cae3a864"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-745043f9c39f450587b8e92f37430336" source="id-8059f790d59f45dfaaff86d1438ac63f" target="id-93b4513806d640a0aa0b186aecb3607c"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-19aed2113b6a4bd3a038a68f3ea15dd2" source="id-8059f790d59f45dfaaff86d1438ac63f" target="id-9e31be54abed430ca81da4d9c6df265c"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-2c60dd64aab142629d9de91e69c21f29" source="id-8059f790d59f45dfaaff86d1438ac63f" target="id-0627f8aaa6a54940a03c88afebcd7643"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-653707ff8cdd4caabd7b658620b24174" source="id-8059f790d59f45dfaaff86d1438ac63f" target="id-53dfeecbc4304fd39fcb4cc036a8c380"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-f8cbc4972e8b4027ba781bd6e8e261bd" source="id-8059f790d59f45dfaaff86d1438ac63f" target="id-d43c0d43536f405c9ddf564baf638595"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-8055724c028d4047aa6c8d89717106c2" source="id-8059f790d59f45dfaaff86d1438ac63f" target="id-62c30ddafa2f4010b0c123c0c8718420"/>
+    <element xsi:type="archimate:AggregationRelationship" id="id-058a2a8e2f724cf9ba5cf1d15465a92e" source="id-39d3470a0a3d4f87b9354f76a7a89a68" target="id-8059f790d59f45dfaaff86d1438ac63f"/>
+    <element xsi:type="archimate:AggregationRelationship" id="id-d3ed453fec114d6c9bc7304cf21cb9ff" source="id-39d3470a0a3d4f87b9354f76a7a89a68" target="id-3e5474c1e2a04bdf9cd17ee7b287caba"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-73463d9d330c4a23ae0e3c77faf4f30a" source="id-ebffdcaf8ac04bcd91f28f95ad2ee438" target="id-49873092cd1041c2b1e3617d267966c0"/>
+    <element xsi:type="archimate:AssociationRelationship" id="id-dfd9dfb9334b459893154f466e8c7948" source="id-c1d51bb747a84191aee1749dcd35595d" target="id-aaac5e85b1014e998c58b2c2fab733c1"/>
+    <element xsi:type="archimate:AggregationRelationship" id="id-c69b2186b992427b98bb45fd8348b603" source="id-03684da37f7d4b7db343ff934d803324" target="id-aaac5e85b1014e998c58b2c2fab733c1"/>
+    <element xsi:type="archimate:AggregationRelationship" id="id-b738073e71b64a0488679ecd7d08dd10" source="id-03684da37f7d4b7db343ff934d803324" target="id-c1d51bb747a84191aee1749dcd35595d"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-771cabd9a268460d81e815f960564954" source="id-cff2539dbcf54412bfe4a72e0075506b" target="id-a51d03a6710b416ebd6f2cf9c94c57ef"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-003afdcea3ca4e21b2e6ca7795dcf303" source="id-cb83200637304df9bade2fc2c3875aa2" target="id-a5edac1ff0c84632bcb0e80369d8163b"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-eb6d1095b7794780bf9a86a8ae81c6ea" source="id-cb83200637304df9bade2fc2c3875aa2" target="id-7b5ed25a82e84b19b8c5499d73814c68"/>
+    <element xsi:type="archimate:FlowRelationship" id="id-0ade976f37d041d3944dc9fbcbd698c6" source="id-0318c251fd664fa88f0d37e3e5161108" target="id-40c42527b35a4985807953f3d2526e66"/>
+    <element xsi:type="archimate:FlowRelationship" id="id-327e08e578da4f51a5bad34f26bf2658" source="id-cab99a7a2333447ca8dbc1c76fa957e9" target="id-40c42527b35a4985807953f3d2526e66"/>
+    <element xsi:type="archimate:FlowRelationship" id="id-891595acd74847679dfacd7829726ee2" source="id-40c42527b35a4985807953f3d2526e66" target="id-cb83200637304df9bade2fc2c3875aa2"/>
+    <element xsi:type="archimate:FlowRelationship" id="id-e985a9a9c3d845338f8e332a76005052" source="id-40c42527b35a4985807953f3d2526e66" target="id-0318c251fd664fa88f0d37e3e5161108"/>
+    <element xsi:type="archimate:FlowRelationship" id="id-eb39e825e7c242cea3a35e95262af958" source="id-40c42527b35a4985807953f3d2526e66" target="id-cab99a7a2333447ca8dbc1c76fa957e9"/>
+    <element xsi:type="archimate:FlowRelationship" id="id-b4c1a85b9242440888ba1df339e162e2" source="id-cb83200637304df9bade2fc2c3875aa2" target="id-40c42527b35a4985807953f3d2526e66"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-9090ac191a4141b491dd80e458c613c0" source="id-c8e9b418b73c49d281e158903c6c87cc" target="id-026ba9c10b644a06995d36e2c3f7146c"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-83a448ced87a46eda8e53b7f9b80c946" source="id-8eb4a58329824cfdbb8968dd64d81f99" target="id-cab99a7a2333447ca8dbc1c76fa957e9"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-0c9a32a2320d47578ad41ccb1ce7de36" source="id-c8e9b418b73c49d281e158903c6c87cc" target="id-7a04d6f75f1b4a458b7a10ab58cbf817"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-0caa376cfb2546b982f2070d0722cb0f" source="id-c8e9b418b73c49d281e158903c6c87cc" target="id-1f2cd47f8c2e4532baeb758b85a81b93"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-4e4b377003d043adaddb9cc9abcafb2f" source="id-c8e9b418b73c49d281e158903c6c87cc" target="id-c99a49b8a83b4806b4821ad963f9ee49"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-fbd177c05db7407caad0865219861ebe" source="id-cb83200637304df9bade2fc2c3875aa2" target="id-a51d03a6710b416ebd6f2cf9c94c57ef"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-33281edddb1d4c2b9f4dcd703e35b7af" source="id-cff2539dbcf54412bfe4a72e0075506b" target="id-51c52574303d45b38e7e042bf0ed06b0"/>
+    <element xsi:type="archimate:FlowRelationship" id="id-bc2b0d7af6c24e9eb2f03646f975a015" source="id-a5edac1ff0c84632bcb0e80369d8163b" target="id-a51d03a6710b416ebd6f2cf9c94c57ef"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-a65b2164b5124783b0b9c02102e17b01" source="id-0318c251fd664fa88f0d37e3e5161108" target="id-b29897bb8d054b0198b356df00b6fd06"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-ed8b7ef81d4341e78633d976c3086566" source="id-0318c251fd664fa88f0d37e3e5161108" target="id-f721b29a47d14539b00a4fc0ef887fbb"/>
+    <element xsi:type="archimate:SpecializationRelationship" id="id-42d6aa2867b7443eac11b2cb779cee3c" source="id-b29897bb8d054b0198b356df00b6fd06" target="id-f721b29a47d14539b00a4fc0ef887fbb"/>
+    <element xsi:type="archimate:CompositionRelationship" id="id-4a9dedc75fcd43b9946301106417ae56" source="id-f721b29a47d14539b00a4fc0ef887fbb" target="id-b29897bb8d054b0198b356df00b6fd06"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-255d39f8dcfb4cd4b01412edf60ef41e" source="id-deeb631bc15544339d87e0cb2546b06b" target="id-b29897bb8d054b0198b356df00b6fd06"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-2a651a70cefb4dd294d7c185b55e8ebc" source="id-f6d709faa3754b4abcd68e81f21ce693" target="id-e4950b32807c41b7b7e9c60e6be427c9"/>
+    <element xsi:type="archimate:CompositionRelationship" id="id-040f68db16894d62b594e550604c462b" source="id-f721b29a47d14539b00a4fc0ef887fbb" target="id-85600da0e457409caca513cd1e4d6b1c"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-2c312a4c56bd40fab915f59af1c74870" source="id-e4950b32807c41b7b7e9c60e6be427c9" target="id-85600da0e457409caca513cd1e4d6b1c"/>
+    <element xsi:type="archimate:SpecializationRelationship" id="id-7f60c47e1ee64342a60cbf0b71219f01" source="id-0bef37685c9f474ba7410e9a289a7d87" target="id-f721b29a47d14539b00a4fc0ef887fbb"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-4f6cff1878a9447ba32e2d9a71fbaafa" source="id-f6d709faa3754b4abcd68e81f21ce693" target="id-d6b39fab02454737a3af86162233932a"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-90c56aed1c914ee898a353f5ba4efce2" source="id-d6b39fab02454737a3af86162233932a" target="id-0bef37685c9f474ba7410e9a289a7d87"/>
+    <element xsi:type="archimate:AssociationRelationship" id="id-04b352f27b634ee98d7e09b4e3722d7d" source="id-1f2cd47f8c2e4532baeb758b85a81b93" target="id-c99a49b8a83b4806b4821ad963f9ee49"/>
+    <element xsi:type="archimate:AssociationRelationship" id="id-66f4287e056a476cacc2373cf6e2be4a" source="id-f6d709faa3754b4abcd68e81f21ce693" target="id-e848b36f924747909bf472a6b70466f4"/>
+    <element xsi:type="archimate:FlowRelationship" id="id-7bdc794ba3e8427daa0d98c850b3883a" source="id-34443813757b44e9bcec2fb2263cd018" target="id-e960173a3a1d487aad0f4bc591b90672"/>
+    <element xsi:type="archimate:AssignmentRelationship" id="id-caac63618c9146dc899030d77234cc8d" source="id-c615ebcc6abd4687ab48d6c668de4de8" target="id-93acbe0a4d2943a6a80a4e0fd2ef656b"/>
+    <element xsi:type="archimate:AssignmentRelationship" id="id-c12df5c26e4346f985c5f440af67f8e5" source="id-c615ebcc6abd4687ab48d6c668de4de8" target="id-e96475a893b04ad99e46ca159d5fb912"/>
+    <element xsi:type="archimate:TriggeringRelationship" id="id-49826d65edeb450280c7bcfbda91f5d6" source="id-1d1aaf9d0f844b7a9efb443638ccba62" target="id-c615ebcc6abd4687ab48d6c668de4de8"/>
+    <element xsi:type="archimate:AggregationRelationship" id="id-dfce5579b7ca402baf7d02a48286b469" source="id-4a06d6db0da3452aaa1533f9949ab025" target="id-4335f1a7baf74d01aedb2af95cdccc5c"/>
+    <element xsi:type="archimate:AssociationRelationship" id="id-8869ab377b89429fb67b8e538f62ab64" source="id-4335f1a7baf74d01aedb2af95cdccc5c" target="id-a59a08d82b7048d08e01f3a7538174c1"/>
+    <element xsi:type="archimate:AggregationRelationship" id="id-962ea3be675d45d68597e64f6034a695" source="id-4a06d6db0da3452aaa1533f9949ab025" target="id-a59a08d82b7048d08e01f3a7538174c1"/>
+    <element xsi:type="archimate:AssociationRelationship" id="id-ccd55bcc8089417fa7749642eadebfef" source="id-4a06d6db0da3452aaa1533f9949ab025" target="id-ebffdcaf8ac04bcd91f28f95ad2ee438"/>
+    <element xsi:type="archimate:AssociationRelationship" id="id-29886f72cc054e8291c82208e6ba02f3" source="id-39d3470a0a3d4f87b9354f76a7a89a68" target="id-cbc33dec5b68455ab5ec24c2a73a3fcb"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-a144556d7526466ba86fadf01ec50ed5" source="id-0318c251fd664fa88f0d37e3e5161108" target="id-d379f600687d483a855775499ab53f0d"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-a44e09826259422f830d0e6d96ecd19b" source="id-4a06d6db0da3452aaa1533f9949ab025" target="id-af46fea7a5a04571bc6c51365917ac14"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-3bde87870eb840309b04e93b573b32bd" source="id-fc07620d234845b8800c6ca1ad7ce1e4" target="id-97fdc45a3b8a4e239d2444c462083cc6"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-e0b335540de747f883e13ebd54ab2705" source="id-fc07620d234845b8800c6ca1ad7ce1e4" target="id-fb4b558a2827484ba682df5b295dc934"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-2ef7bb4bff1c410a87e48c689db135da" source="id-cb83200637304df9bade2fc2c3875aa2" target="id-262b292b6d0446bfa000ab88e6313d40"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-2e0b4ec8c0e141e1962d4f2b1044a3c8" source="id-cb83200637304df9bade2fc2c3875aa2" target="id-34443813757b44e9bcec2fb2263cd018"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-854d748ccef245bdb8c46ddeb5a28534" source="id-0318c251fd664fa88f0d37e3e5161108" target="id-4e8836f74c86420dad287e38a1b132dd"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-25425d7fad1d48319a1b5118ace6cca9" source="id-0318c251fd664fa88f0d37e3e5161108" target="id-061ca94c29be4d82bb50078d9c7eaf3b"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-9f0c07d7548b468bab7afe01613685f6" source="id-0318c251fd664fa88f0d37e3e5161108" target="id-34443813757b44e9bcec2fb2263cd018"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-1e1831f134454199b38dd7662cbffe56" source="id-cab99a7a2333447ca8dbc1c76fa957e9" target="id-4e8836f74c86420dad287e38a1b132dd"/>
+    <element xsi:type="archimate:ServingRelationship" id="id-5a8a9ac2a7be4d24a518a9761d9186e1" source="id-cb83200637304df9bade2fc2c3875aa2" target="id-061ca94c29be4d82bb50078d9c7eaf3b"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-cc3588cb57084396aad4fb9b3b6b2371" source="id-cb83200637304df9bade2fc2c3875aa2" target="id-ca0eb3a32cb648daa4d2af077c567a06"/>
+    <element xsi:type="archimate:RealizationRelationship" id="id-23630fc8cf6249dab43c036966a39047" source="id-cab99a7a2333447ca8dbc1c76fa957e9" target="id-e6ade059a9aa4a8d9c226b790626a141"/>
+    <element xsi:type="archimate:CompositionRelationship" id="id-0a3e21acd2f3494da91a5a70acb9f265" source="id-b0e5010f2af241bcb5dc07ef89c464bd" target="id-f721b29a47d14539b00a4fc0ef887fbb"/>
+  </folder>
+  <folder name="Views" id="id-6b8e5ecf4c5f4f9e985e906c0f7baab7" type="diagrams">
+    <element xsi:type="archimate:ArchimateDiagramModel" name="EDC-IDQ-AXON Main View" id="id-e0f8f1b076354dc29c0095cf79627365">
+      <child xsi:type="archimate:DiagramObject" id="id-936f4bd158d94578802b128a11a59ec5" font="1|Segoe UI|13.8|1|WINDOWS|1|-23|0|0|0|700|0|0|0|0|3|2|1|34|Segoe UI" archimateElement="id-65e316020b694ca39a2321f72075b417">
+        <bounds x="60" y="1380" width="2112" height="1296"/>
+        <feature name="gradient" value="2"/>
+        <child xsi:type="archimate:Note" id="id-2420af20dd0142bab669bb6795a1d9a3" font="1|Verdana|16.2|0|WINDOWS|1|-27|0|0|0|400|0|0|0|0|3|2|1|34|Verdana" fontColor="#ff0000" textAlignment="1" borderType="2">
+          <bounds x="1176" y="288" width="844" height="168"/>
+          <content>For EDC Version 10.5, Hadoop will be replaced by:&#xD;
+ - MongoDb, PostGres, SoIR, and Elastic Search (DPM) for data storage, and&#xD;
+ - Nomad for orchestration and security&#xD;
+ - Java Native and Spark for compute</content>
+        </child>
+        <child xsi:type="archimate:Note" id="id-a3afa72368bf4ae2b54a8fb4e6d4b7b7" textAlignment="1">
+          <bounds x="1667" y="1033" width="185" height="80"/>
+          <content>Cameron: Where is the metadata, inferred relationships, data lineage and PII stored?? 1. Azure or 2. Hadoop</content>
+        </child>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-6c8cbb30e2fd410ea323a50dbcbfaa15" archimateElement="id-afabcf02281d49fe904f22156a06962a">
+        <bounds x="288" y="1416" width="781" height="630"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-0252bab879154513af719ad76f923bdc" source="id-6c8cbb30e2fd410ea323a50dbcbfaa15" target="id-794baacf8fde47ea8048d780d11ae2ae" archimateRelationship="id-83e36e463d3f436aa17ddffaee45867a">
+          <feature name="labelExpression" value="https/ssl&#xD;&#xA;__GBs/__GBs"/>
+        </sourceConnection>
+        <child xsi:type="archimate:DiagramObject" id="id-247b2c477cde446f9e23d81666a46012" archimateElement="id-c615ebcc6abd4687ab48d6c668de4de8">
+          <bounds x="31" y="44" width="711" height="566"/>
+          <feature name="labelExpression" value=" High-Availabiilty: F5 ASM WAF"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-6dc6b98376ef4133972dbe803947b0cf" source="id-247b2c477cde446f9e23d81666a46012" target="id-b9f4292ff94f41a99773d5a31d521ac2" archimateRelationship="id-bb2a5fd258884484b690c4d27757fb93"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-b8b36516870c4bdda5f7d70f31272cf4" source="id-247b2c477cde446f9e23d81666a46012" target="id-b9f4292ff94f41a99773d5a31d521ac2" archimateRelationship="id-880e7400daad41fa91556e799ef8490f"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-7a912f4d37bc451188815ceaf14948e5" source="id-247b2c477cde446f9e23d81666a46012" target="id-b1093cc7983b4aaa9270f86de4f8c255" archimateRelationship="id-9dc5315933be4eb09b33e2b86ea5dcfd">
+            <feature name="labelExpression" value="Serves&#xD;&#xA;__GBs/__GBs"/>
+          </sourceConnection>
+          <sourceConnection xsi:type="archimate:Connection" id="id-2d9a94124c904a70ba99374c958cd510" source="id-247b2c477cde446f9e23d81666a46012" target="id-d2dc233768f64ff3a1a454c797936c07" archimateRelationship="id-caac63618c9146dc899030d77234cc8d"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-d73e35175f1f4ceb95e9e4d2328a349a" source="id-247b2c477cde446f9e23d81666a46012" target="id-66a431666e7d483087cc68b5d9ecd8ec" archimateRelationship="id-c12df5c26e4346f985c5f440af67f8e5"/>
+          <child xsi:type="archimate:DiagramObject" id="id-66a431666e7d483087cc68b5d9ecd8ec" targetConnections="id-d73e35175f1f4ceb95e9e4d2328a349a" archimateElement="id-e96475a893b04ad99e46ca159d5fb912">
+            <bounds x="384" y="29" width="301" height="517"/>
+            <child xsi:type="archimate:DiagramObject" id="id-caf0c6f39e8342b6aac240056815cadc" targetConnections="id-50d61c6f764c471894ca8e1fbe8d89a6" archimateElement="id-e848b36f924747909bf472a6b70466f4">
+              <bounds x="24" y="24" width="265" height="484"/>
+              <child xsi:type="archimate:Note" id="id-3bad60092168478ca715720d333f7212" textAlignment="1">
+                <bounds x="48" y="72" width="133" height="25"/>
+                <content>Clone of EDC Node01</content>
+              </child>
+            </child>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="id-d2dc233768f64ff3a1a454c797936c07" targetConnections="id-2d9a94124c904a70ba99374c958cd510" archimateElement="id-93acbe0a4d2943a6a80a4e0fd2ef656b">
+            <bounds x="12" y="24" width="313" height="517"/>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="id-b9f4292ff94f41a99773d5a31d521ac2" targetConnections="id-6dc6b98376ef4133972dbe803947b0cf id-b8b36516870c4bdda5f7d70f31272cf4" archimateElement="id-f6d709faa3754b4abcd68e81f21ce693">
+            <bounds x="25" y="44" width="265" height="488"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-44c830f2f5d74772a70d23e3a6df419f" source="id-b9f4292ff94f41a99773d5a31d521ac2" target="id-7abce2bef4104d8e8fc2e6ac11ce0f82" archimateRelationship="id-ecdacad1d5ae4c7d81e2128d72b823af"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-8cb558225a624114a70e27dd6e9e2c13" source="id-b9f4292ff94f41a99773d5a31d521ac2" target="id-0bd407a720494551b6df7e6bfde10429" archimateRelationship="id-97d32a9a372a4573b57ae557e44741c9"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-c0f7db6b471a4bdb999551f5d15c08b0" source="id-b9f4292ff94f41a99773d5a31d521ac2" target="id-83133868050c437eab2b371e931cf3c5" archimateRelationship="id-45a91f556b4c4dfd92dd2b3834d94f1d"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-543755b8d92b40c090427bd190624f35" source="id-b9f4292ff94f41a99773d5a31d521ac2" target="id-29fe6449dea64506b4f706178328459d" archimateRelationship="id-b79a534653254976a7e4b957e573230e"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-209a0c23c0dd47838506f91d0a6cc802" source="id-b9f4292ff94f41a99773d5a31d521ac2" target="id-ee900f416606423998edd1deac51c418" archimateRelationship="id-5b554c002503437ca28bb457ed30e5d1"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-6b29ed8d9c824adf92ec19f53612a06b" source="id-b9f4292ff94f41a99773d5a31d521ac2" target="id-371589bce42c4f2980225be291c54081" archimateRelationship="id-8964b9dfd1f74051885ce8c05f7ae7a2"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-ae083158c281418ea0b3d65b2890f0a5" source="id-b9f4292ff94f41a99773d5a31d521ac2" target="id-22ec6f804f2440e2a6c4162d53877a5b" archimateRelationship="id-92461f5d7f454d5fafa813cb9a96eb77"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-9b53c10edaf04d4aa6d7c77b3baa0a75" source="id-b9f4292ff94f41a99773d5a31d521ac2" target="id-999aaebcd4854748a4e30eaf78d6d787" archimateRelationship="id-2a651a70cefb4dd294d7c185b55e8ebc"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-ff69c18a606d40868192785762ba9a6d" source="id-b9f4292ff94f41a99773d5a31d521ac2" target="id-6e72a29c00e544bd9c3b22a6894a034b" archimateRelationship="id-4f6cff1878a9447ba32e2d9a71fbaafa"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-50d61c6f764c471894ca8e1fbe8d89a6" source="id-b9f4292ff94f41a99773d5a31d521ac2" target="id-caf0c6f39e8342b6aac240056815cadc" archimateRelationship="id-66f4287e056a476cacc2373cf6e2be4a">
+              <feature name="labelExpression" value="Fail&#xD;&#xA;Over"/>
+            </sourceConnection>
+            <sourceConnection xsi:type="archimate:Connection" id="id-052d6b1d96d649ca9f6d977bb849946e" source="id-b9f4292ff94f41a99773d5a31d521ac2" target="id-7da23ad8c917478da702c3645c02d787" archimateRelationship="id-e6ac1b8bac27460a9274317a6a3e29d4">
+              <feature name="labelExpression" value="Flows to/from&#xD;&#xA;jdbc 1433&#xD;&#xA;&#xD;&#xA;__GBs/__GBs"/>
+            </sourceConnection>
+            <child xsi:type="archimate:DiagramObject" id="id-7abce2bef4104d8e8fc2e6ac11ce0f82" targetConnections="id-44c830f2f5d74772a70d23e3a6df419f" archimateElement="id-0a7f8bf271474a679d919ab018d868a5">
+              <bounds x="48" y="204" width="169" height="37"/>
+            </child>
+            <child xsi:type="archimate:DiagramObject" id="id-0bd407a720494551b6df7e6bfde10429" targetConnections="id-8cb558225a624114a70e27dd6e9e2c13" archimateElement="id-deeb631bc15544339d87e0cb2546b06b">
+              <bounds x="48" y="48" width="169" height="49"/>
+              <sourceConnection xsi:type="archimate:Connection" id="id-82bff4012168407db7506a1f916905da" source="id-0bd407a720494551b6df7e6bfde10429" target="id-00b3b289e3b04fc7aef3e557441ae677" archimateRelationship="id-255d39f8dcfb4cd4b01412edf60ef41e">
+                <feature name="labelExpression" value="Serves&#xD;&#xA;50GBs/10GBs"/>
+                <bendpoint startX="-51" startY="-161" endX="-394" endY="301"/>
+              </sourceConnection>
+              <child xsi:type="archimate:Note" id="id-b25cebd106cf4726afe127db2979c990" font="1|Arial Narrow|6.0|0|WINDOWS|1|-10|0|0|0|400|0|0|0|0|3|2|1|34|Arial Narrow" textAlignment="1">
+                <bounds x="48" y="24" width="73" height="25"/>
+                <content>Catalog Service</content>
+              </child>
+            </child>
+            <child xsi:type="archimate:DiagramObject" id="id-29fe6449dea64506b4f706178328459d" targetConnections="id-543755b8d92b40c090427bd190624f35" archimateElement="id-eeef0e7bc82142aabb67ccca625f59e5">
+              <bounds x="48" y="276" width="169" height="37"/>
+            </child>
+            <child xsi:type="archimate:DiagramObject" id="id-ee900f416606423998edd1deac51c418" targetConnections="id-209a0c23c0dd47838506f91d0a6cc802" archimateElement="id-fc6bfdc27c074142aaff97e861e6356c">
+              <bounds x="48" y="312" width="169" height="37"/>
+            </child>
+            <child xsi:type="archimate:DiagramObject" id="id-371589bce42c4f2980225be291c54081" targetConnections="id-6b29ed8d9c824adf92ec19f53612a06b" archimateElement="id-9a416aff655b492799e023628c7c6650">
+              <bounds x="48" y="348" width="169" height="37"/>
+            </child>
+            <child xsi:type="archimate:DiagramObject" id="id-22ec6f804f2440e2a6c4162d53877a5b" targetConnections="id-ae083158c281418ea0b3d65b2890f0a5" archimateElement="id-2277ab1f63084977867a1725d62842ba">
+              <bounds x="48" y="384" width="169" height="37"/>
+            </child>
+            <child xsi:type="archimate:DiagramObject" id="id-83133868050c437eab2b371e931cf3c5" targetConnections="id-c0f7db6b471a4bdb999551f5d15c08b0" archimateElement="id-cb7a649883be44cd9fd34606146cd652">
+              <bounds x="48" y="240" width="169" height="37"/>
+              <sourceConnection xsi:type="archimate:Connection" id="id-d734f01dfc9f498ca674938eb0a90363" source="id-83133868050c437eab2b371e931cf3c5" target="id-8c3a81ca2c8f4941b0a2ec39bd06d6fa" archimateRelationship="id-05bab826511f421b952cbc03e84ba52a">
+                <feature name="labelExpression" value="Triggers(?)&#xD;&#xA;50GBs/50GBs"/>
+                <bendpoint startX="-275" startY="-230" endX="-460" endY="729"/>
+                <bendpoint startX="-20" startY="-394" endX="-208" endY="417"/>
+              </sourceConnection>
+            </child>
+            <child xsi:type="archimate:DiagramObject" id="id-999aaebcd4854748a4e30eaf78d6d787" targetConnections="id-9b53c10edaf04d4aa6d7c77b3baa0a75" archimateElement="id-e4950b32807c41b7b7e9c60e6be427c9">
+              <bounds x="51" y="96" width="169" height="51"/>
+              <sourceConnection xsi:type="archimate:Connection" id="id-c40c33c9f37742d2a86d5ad3546ca97e" source="id-999aaebcd4854748a4e30eaf78d6d787" target="id-97a44fa57e2c4cc2ac9aabe0b3689f1b" archimateRelationship="id-2c312a4c56bd40fab915f59af1c74870">
+                <feature name="labelExpression" value="Serves&#xD;&#xA;__GBs/__GBs"/>
+                <bendpoint startX="125" startY="-395" endX="-387" endY="451"/>
+              </sourceConnection>
+              <child xsi:type="archimate:Note" id="id-06c44bfa6d6e4e60a594fde0999f441f" font="1|Arial Narrow|6.0|0|WINDOWS|1|-10|0|0|0|400|0|0|0|0|3|2|1|34|Arial Narrow" textAlignment="1">
+                <bounds x="48" y="24" width="73" height="25"/>
+                <content>Catalog Service</content>
+              </child>
+            </child>
+            <child xsi:type="archimate:DiagramObject" id="id-6e72a29c00e544bd9c3b22a6894a034b" targetConnections="id-ff69c18a606d40868192785762ba9a6d" archimateElement="id-d6b39fab02454737a3af86162233932a">
+              <bounds x="51" y="146" width="169" height="47"/>
+              <sourceConnection xsi:type="archimate:Connection" id="id-030fbe9a50ab4c98b4e9bde93578346b" source="id-6e72a29c00e544bd9c3b22a6894a034b" target="id-a9df0d9781da46a5b6e3a78eb39d9a39" archimateRelationship="id-90c56aed1c914ee898a353f5ba4efce2">
+                <feature name="labelExpression" value="Serves&#xD;&#xA;__GBs/__GBs"/>
+                <bendpoint startX="230" startY="-434" endX="-284" endY="422"/>
+              </sourceConnection>
+              <child xsi:type="archimate:Note" id="id-e601920907ea48aab70903f84670363d" font="1|Arial Narrow|6.0|0|WINDOWS|1|-10|0|0|0|400|0|0|0|0|3|2|1|34|Arial Narrow" textAlignment="1">
+                <bounds x="48" y="24" width="73" height="25"/>
+                <content>Catalog Service</content>
+              </child>
+            </child>
+            <child xsi:type="archimate:DiagramObject" id="id-22feaf890dc04839a8c6b36dc4c0a0cf" targetConnections="id-96c4e29925584586ad422cc197027356" archimateElement="id-fb4b558a2827484ba682df5b295dc934">
+              <bounds x="48" y="420" width="169" height="37"/>
+            </child>
+          </child>
+        </child>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-f39df5e664d44380b5912c5dbeac9976" targetConnections="id-5aa1d06efb6c4362bbf2600e57dc3738 id-655a931d720c43ff83e0d4febbb9dfe9" archimateElement="id-061ca94c29be4d82bb50078d9c7eaf3b">
+        <bounds x="1183" y="360" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-169f9b8125fc45ccbfa3de8adec80cc9" source="id-f39df5e664d44380b5912c5dbeac9976" target="id-4bb04614f2d94eb48b991fa0a1773b8d" archimateRelationship="id-d92f4268e3dd414f80865fa3dd62a595">
+          <feature name="labelExpression" value="Realizes"/>
+        </sourceConnection>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-c636c7b30f2a417eb589dbbcce198176" targetConnections="id-5ec01c51f0c348cfb0cf0bdf62a57d53" archimateElement="id-cb83200637304df9bade2fc2c3875aa2">
+        <bounds x="1740" y="774" width="331" height="169"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-331b265ab4da4b89822470ddaecd9967" source="id-c636c7b30f2a417eb589dbbcce198176" target="id-0d34de5447034ef2b67bb54297795082" archimateRelationship="id-003afdcea3ca4e21b2e6ca7795dcf303"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-262f263974404566a684ebc5c34744a3" source="id-c636c7b30f2a417eb589dbbcce198176" target="id-64e849ef5dff4d9fb21e580d763ef413" archimateRelationship="id-eb6d1095b7794780bf9a86a8ae81c6ea"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-d389fa19ebd7499aa908353892452c9e" source="id-c636c7b30f2a417eb589dbbcce198176" target="id-baa4fde84e5540768fd674d24012fc2e" archimateRelationship="id-b4c1a85b9242440888ba1df339e162e2">
+          <feature name="labelExpression" value="Flows To"/>
+          <bendpoint startX="-276" startY="-108" endX="150" endY="96"/>
+        </sourceConnection>
+        <sourceConnection xsi:type="archimate:Connection" id="id-24f90965b856437c9ae911e2e1bc2bcf" source="id-c636c7b30f2a417eb589dbbcce198176" target="id-1260d941f4ed4cce810d51fc89d56f8b" archimateRelationship="id-fbd177c05db7407caad0865219861ebe"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-922219294dd04e14b4ac885600bd849f" source="id-c636c7b30f2a417eb589dbbcce198176" target="id-057c748014f943b9b4d062798ed535dd" archimateRelationship="id-cc3588cb57084396aad4fb9b3b6b2371"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-655a931d720c43ff83e0d4febbb9dfe9" source="id-c636c7b30f2a417eb589dbbcce198176" target="id-f39df5e664d44380b5912c5dbeac9976" archimateRelationship="id-5a8a9ac2a7be4d24a518a9761d9186e1">
+          <feature name="labelExpression" value="Serves"/>
+          <bendpoint startX="-21" startY="-294" endX="641" endY="177"/>
+        </sourceConnection>
+        <sourceConnection xsi:type="archimate:Connection" id="id-c01a9ba745c545cc9062d3aa94457521" source="id-c636c7b30f2a417eb589dbbcce198176" target="id-8731c7bbdca247509a574851156fe002" archimateRelationship="id-2e0b4ec8c0e141e1962d4f2b1044a3c8">
+          <feature name="labelExpression" value="Serves"/>
+          <bendpoint startX="3" startY="-318" endX="384" endY="153"/>
+        </sourceConnection>
+        <child xsi:type="archimate:DiagramObject" id="id-0d34de5447034ef2b67bb54297795082" targetConnections="id-331b265ab4da4b89822470ddaecd9967" archimateElement="id-a5edac1ff0c84632bcb0e80369d8163b">
+          <bounds x="175" y="24" width="109" height="61"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-e9571d7ca26b49ed9a9ac675de5e1ad7" source="id-0d34de5447034ef2b67bb54297795082" target="id-1260d941f4ed4cce810d51fc89d56f8b" archimateRelationship="id-bc2b0d7af6c24e9eb2f03646f975a015">
+            <feature name="labelExpression" value="Flows To"/>
+          </sourceConnection>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-64e849ef5dff4d9fb21e580d763ef413" targetConnections="id-262f263974404566a684ebc5c34744a3" archimateElement="id-7b5ed25a82e84b19b8c5499d73814c68">
+          <bounds x="175" y="96" width="109" height="61"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-1260d941f4ed4cce810d51fc89d56f8b" targetConnections="id-24f90965b856437c9ae911e2e1bc2bcf id-e9571d7ca26b49ed9a9ac675de5e1ad7 id-b6d5f44d74d94c2a94859171f366b20f" archimateElement="id-a51d03a6710b416ebd6f2cf9c94c57ef">
+          <bounds x="23" y="36" width="85" height="25"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-057c748014f943b9b4d062798ed535dd" targetConnections="id-922219294dd04e14b4ac885600bd849f" archimateElement="id-ca0eb3a32cb648daa4d2af077c567a06">
+          <bounds x="23" y="84" width="122" height="61"/>
+        </child>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-8731c7bbdca247509a574851156fe002" targetConnections="id-a50f78bc6cd941838b1147a66b1c99ce id-c01a9ba745c545cc9062d3aa94457521" archimateElement="id-34443813757b44e9bcec2fb2263cd018">
+        <bounds x="1464" y="360" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-661ae0248d394c7faa2d3aaae302137a" source="id-8731c7bbdca247509a574851156fe002" target="id-4bb04614f2d94eb48b991fa0a1773b8d" archimateRelationship="id-4d3c57dcd2d54c6f8d332a341364803e">
+          <feature name="labelExpression" value="Realizes"/>
+        </sourceConnection>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-e15cc07739524de7937fc5057409d822" targetConnections="id-8627e178de354193b2d9c045366663c0 id-39232c7a7be34ff8b2decfabb2ea484b" archimateElement="id-0318c251fd664fa88f0d37e3e5161108">
+        <bounds x="818" y="672" width="455" height="301"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-8e363ebf27be4e2fa0e7e171f208e40d" source="id-e15cc07739524de7937fc5057409d822" target="id-074b16391ca44a5f80fad0ca6ea81068" archimateRelationship="id-290ab84c899c43abbd08f1a28b9d0578"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-36b7fa2350214ee884097780675ad8c1" source="id-e15cc07739524de7937fc5057409d822" target="id-567a038cf2c147c2ae0e8f5b9942440e" archimateRelationship="id-4e0be14c9413488d9aef8a2f96b3e87c"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-e7f1c464ac4043a0b30c5f8ea3b1e1b3" source="id-e15cc07739524de7937fc5057409d822" target="id-9932401e720f49a1897d3af368ed2d40" archimateRelationship="id-a71c0097168e4955b4b8c64d6cf57538"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-cae66972d31d4c12b910a735a9194f2a" source="id-e15cc07739524de7937fc5057409d822" target="id-7d571ad1a8694b5782fa32babe83430e" archimateRelationship="id-3d7b729e26ea4dfb89c48a755d387e68"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-c906b8a223b94377ac7ee3fcfa8f39f0" source="id-e15cc07739524de7937fc5057409d822" target="id-baa4fde84e5540768fd674d24012fc2e" archimateRelationship="id-0ade976f37d041d3944dc9fbcbd698c6">
+          <feature name="labelExpression" value="Flows To"/>
+          <bendpoint startX="156" startY="-174" endX="-78" endY="84"/>
+        </sourceConnection>
+        <sourceConnection xsi:type="archimate:Connection" id="id-1cc9b1427800416d8d1f8f3bbb2cb047" source="id-e15cc07739524de7937fc5057409d822" target="id-b1093cc7983b4aaa9270f86de4f8c255" archimateRelationship="id-ed8b7ef81d4341e78633d976c3086566"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-31c5b79f1b8447c98d0d23fb9ca8378c" source="id-e15cc07739524de7937fc5057409d822" target="id-0e8f61fe87464a9ca1fb1c0a82a2d1fb" archimateRelationship="id-a144556d7526466ba86fadf01ec50ed5"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-f1debb7661324dc18109fc5c4968be98" source="id-e15cc07739524de7937fc5057409d822" target="id-3f26ffbd406740889ae890c4eecc62e5" archimateRelationship="id-7d134e59a2fc4a67843473f5aab015c7">
+          <feature name="labelExpression" value="Serves"/>
+          <bendpoint startX="-6" startY="-188" endX="14" endY="131"/>
+        </sourceConnection>
+        <sourceConnection xsi:type="archimate:Connection" id="id-5aa1d06efb6c4362bbf2600e57dc3738" source="id-e15cc07739524de7937fc5057409d822" target="id-f39df5e664d44380b5912c5dbeac9976" archimateRelationship="id-25425d7fad1d48319a1b5118ace6cca9">
+          <feature name="labelExpression" value="Serves"/>
+        </sourceConnection>
+        <sourceConnection xsi:type="archimate:Connection" id="id-a50f78bc6cd941838b1147a66b1c99ce" source="id-e15cc07739524de7937fc5057409d822" target="id-8731c7bbdca247509a574851156fe002" archimateRelationship="id-9f0c07d7548b468bab7afe01613685f6"/>
+        <child xsi:type="archimate:DiagramObject" id="id-074b16391ca44a5f80fad0ca6ea81068" targetConnections="id-8e363ebf27be4e2fa0e7e171f208e40d" archimateElement="id-035492aa093c4dc88ad59df78255829a">
+          <bounds x="267" y="135" width="168" height="24"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-567a038cf2c147c2ae0e8f5b9942440e" targetConnections="id-36b7fa2350214ee884097780675ad8c1" archimateElement="id-1c8267b4a0654d389952312bb28dd2af">
+          <bounds x="267" y="171" width="168" height="48"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-9932401e720f49a1897d3af368ed2d40" targetConnections="id-e7f1c464ac4043a0b30c5f8ea3b1e1b3" archimateElement="id-8e773ca1f6314e78b5c1c6ad1d6294ed">
+          <bounds x="267" y="267" width="168" height="24"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-7d571ad1a8694b5782fa32babe83430e" targetConnections="id-cae66972d31d4c12b910a735a9194f2a" archimateElement="id-8b7a3d06007c4829a4419ce492f1fcb4">
+          <bounds x="267" y="231" width="168" height="24"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-b1093cc7983b4aaa9270f86de4f8c255" targetConnections="id-1cc9b1427800416d8d1f8f3bbb2cb047 id-70e43035c71f47019bbfb4c90c5e325e id-7a912f4d37bc451188815ceaf14948e5 id-810fea6970ef45ab9d244d1653cd99b1" archimateElement="id-f721b29a47d14539b00a4fc0ef887fbb">
+          <bounds x="24" y="37" width="226" height="254"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-ab3c0958adcb481ba3ddba8616c72eec" source="id-b1093cc7983b4aaa9270f86de4f8c255" target="id-00b3b289e3b04fc7aef3e557441ae677" archimateRelationship="id-4a9dedc75fcd43b9946301106417ae56"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-ba2ca719ce5b447c8a4f2aadeb082157" source="id-b1093cc7983b4aaa9270f86de4f8c255" target="id-97a44fa57e2c4cc2ac9aabe0b3689f1b" archimateRelationship="id-040f68db16894d62b594e550604c462b"/>
+          <child xsi:type="archimate:DiagramObject" id="id-00b3b289e3b04fc7aef3e557441ae677" targetConnections="id-ab3c0958adcb481ba3ddba8616c72eec id-82bff4012168407db7506a1f916905da" archimateElement="id-b29897bb8d054b0198b356df00b6fd06">
+            <bounds x="13" y="25" width="182" height="24"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-70e43035c71f47019bbfb4c90c5e325e" source="id-00b3b289e3b04fc7aef3e557441ae677" target="id-b1093cc7983b4aaa9270f86de4f8c255" archimateRelationship="id-42d6aa2867b7443eac11b2cb779cee3c"/>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="id-97a44fa57e2c4cc2ac9aabe0b3689f1b" targetConnections="id-ba2ca719ce5b447c8a4f2aadeb082157 id-c40c33c9f37742d2a86d5ad3546ca97e" archimateElement="id-85600da0e457409caca513cd1e4d6b1c">
+            <bounds x="13" y="60" width="181" height="30"/>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="id-a9df0d9781da46a5b6e3a78eb39d9a39" targetConnections="id-030fbe9a50ab4c98b4e9bde93578346b" archimateElement="id-0bef37685c9f474ba7410e9a289a7d87">
+            <bounds x="13" y="108" width="181" height="30"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-810fea6970ef45ab9d244d1653cd99b1" source="id-a9df0d9781da46a5b6e3a78eb39d9a39" target="id-b1093cc7983b4aaa9270f86de4f8c255" archimateRelationship="id-7f60c47e1ee64342a60cbf0b71219f01"/>
+          </child>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-0e8f61fe87464a9ca1fb1c0a82a2d1fb" targetConnections="id-31c5b79f1b8447c98d0d23fb9ca8378c" archimateElement="id-d379f600687d483a855775499ab53f0d">
+          <bounds x="267" y="104" width="166" height="25"/>
+        </child>
+        <child xsi:type="archimate:Note" id="id-807f7bbe0a644b68b13a8307db331c7e" textAlignment="1">
+          <bounds x="267" y="25" width="168" height="60"/>
+          <content>Search and Understand data, it's lineage and relationships</content>
+        </child>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-3f26ffbd406740889ae890c4eecc62e5" targetConnections="id-f1debb7661324dc18109fc5c4968be98" archimateElement="id-a8f4316d226b466bb3c7f1b30631dce8">
+        <bounds x="900" y="360" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-87d6fdfab2cf4f6bbe01d5ce9de2d4cc" source="id-3f26ffbd406740889ae890c4eecc62e5" target="id-4bb04614f2d94eb48b991fa0a1773b8d" archimateRelationship="id-7c95b193c31e482a923c5edc0e88e4ac">
+          <feature name="labelExpression" value="Realizes"/>
+        </sourceConnection>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-4bb04614f2d94eb48b991fa0a1773b8d" targetConnections="id-661ae0248d394c7faa2d3aaae302137a id-169f9b8125fc45ccbfa3de8adec80cc9 id-87d6fdfab2cf4f6bbe01d5ce9de2d4cc" archimateElement="id-97e72bd9e96d415abde9d5f3ae04aba8">
+        <bounds x="1104" y="160" width="277" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-8c3a81ca2c8f4941b0a2ec39bd06d6fa" targetConnections="id-28eb68a768ff4055848b4a4993cafe9c id-abc9bb692f3a413f82905b505dfb3e97 id-d734f01dfc9f498ca674938eb0a90363" archimateElement="id-97fdc45a3b8a4e239d2444c462083cc6">
+        <bounds x="616" y="729" width="97" height="61"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-8627e178de354193b2d9c045366663c0" source="id-8c3a81ca2c8f4941b0a2ec39bd06d6fa" target="id-e15cc07739524de7937fc5057409d822" archimateRelationship="id-3776b54e149c46f1a28d1a9b85333ebc">
+          <feature name="labelExpression" value="Flows To"/>
+        </sourceConnection>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-f3365e777cac43cba653af9bb89d4e3e" archimateElement="id-1346f31862034439a6fc59906fc1dffd">
+        <bounds x="213" y="655" width="180" height="192"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-28eb68a768ff4055848b4a4993cafe9c" source="id-f3365e777cac43cba653af9bb89d4e3e" target="id-8c3a81ca2c8f4941b0a2ec39bd06d6fa" archimateRelationship="id-9057b114b85140bd8de7a0058f72c568">
+          <feature name="labelExpression" value="Flows To"/>
+        </sourceConnection>
+        <child xsi:type="archimate:Note" id="id-58f9810efe21429fb3b6d1888638fda9" textAlignment="1">
+          <bounds x="24" y="36" width="120" height="138"/>
+          <content>Core Systems (?)&#xD;
+Apps (?)&#xD;
+MDM&#xD;
+Cloud(?)&#xD;
+Data Lakes&#xD;
+Data Warehouse&#xD;
+BI/Analytics&#xD;
+Epsilon</content>
+        </child>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-b59be3028c0e476fa01a7a88d00ceaa1" targetConnections="id-18a70cf70b824cb1b98cbac144876481 id-84b01b965c7c4daaaa75dbaa946cd905" archimateElement="id-cab99a7a2333447ca8dbc1c76fa957e9">
+        <bounds x="1395" y="762" width="205" height="181"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-2d188e4afec648749431c346fea5d6b8" source="id-b59be3028c0e476fa01a7a88d00ceaa1" target="id-b95f85179c1c40a3815c765e89397d53" archimateRelationship="id-f4f179976afa4dc1b26828089d5d9f22"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-6fce46e78dbc4555abc85a4504e90e70" source="id-b59be3028c0e476fa01a7a88d00ceaa1" target="id-d6ae60877b3f4300861d12e677e99d96" archimateRelationship="id-768155ff04ee4dabb175f26c021ed7cb"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-30d374e9ea734af390d27c96ca9c3ab6" source="id-b59be3028c0e476fa01a7a88d00ceaa1" target="id-baa4fde84e5540768fd674d24012fc2e" archimateRelationship="id-327e08e578da4f51a5bad34f26bf2658">
+          <feature name="labelExpression" value="Flows To"/>
+          <bendpoint startX="9" startY="-128" endX="45" endY="82"/>
+        </sourceConnection>
+        <sourceConnection xsi:type="archimate:Connection" id="id-350f8317523c4571a67b820175861ab4" source="id-b59be3028c0e476fa01a7a88d00ceaa1" target="id-3ef2d0f7162140c9bc0608b54b5afb0a" archimateRelationship="id-23630fc8cf6249dab43c036966a39047"/>
+        <child xsi:type="archimate:DiagramObject" id="id-b95f85179c1c40a3815c765e89397d53" targetConnections="id-2d188e4afec648749431c346fea5d6b8" archimateElement="id-92727d358dad4a0da1c3ddfe4789b7c2">
+          <bounds x="36" y="36" width="133" height="25"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-d6ae60877b3f4300861d12e677e99d96" targetConnections="id-6fce46e78dbc4555abc85a4504e90e70" archimateElement="id-8b960a02da574c1b89a204cc59c4abac">
+          <bounds x="36" y="72" width="133" height="37"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-3ef2d0f7162140c9bc0608b54b5afb0a" targetConnections="id-350f8317523c4571a67b820175861ab4" archimateElement="id-e6ade059a9aa4a8d9c226b790626a141">
+          <bounds x="36" y="120" width="133" height="37"/>
+        </child>
+      </child>
+      <child xsi:type="archimate:Note" id="id-579c171a89e1490a9ef4b5c62d7f66f5" font="1|Verdana|16.0|0|WINDOWS|1|-32|0|0|0|400|0|0|0|0|3|2|1|34|Verdana" textAlignment="1">
+        <bounds x="46" y="219" width="758" height="399"/>
+        <content>In many projects the technical documentation is fragmented, with critical information strewn haphazardly across file servers, github repositories, web sites, wikis, … We are endeavoring to make the ArchiMate Solution Architect Diagram a one stop shop that shows EVERYTHING regarding:&#xD;
+  - EDC: Enterprise Data Catalog&#xD;
+  - IDQ: Informatica Data Quality, and&#xD;
+  - AXON&#xD;
+in a SINGLE diagram&#xD;
+&#xD;
+Docs integrated into this diagram:&#xD;
+  - CNO_DG_DEV from Abhi 2012-02-23.pdf&#xD;
+  - CNO_DG_UAT from Abhi 2012-02-23.pdf&#xD;
+  - CNO_DG_PROD from Abhi 2012-02-23.pdf&#xD;
+  - CNO_Informatica_Data Governance_Azure_Server Sizing_v2.3.xlsx</content>
+      </child>
+      <child xsi:type="archimate:Note" id="id-bd05500e78194d1582f46acf728b9d18" font="1|Verdana|16.0|0|WINDOWS|1|-32|0|0|0|400|0|0|0|0|3|2|1|34|Verdana" textAlignment="1">
+        <bounds x="2135" y="160" width="906" height="795"/>
+        <content>Outstanding Issues:&#xD;
+&#xD;
+ALL NETWORK TRAFFIC  must be encrypted to comply with ZERO TRUST NETWORKING principles&#xD;
+&#xD;
+CNO technologists&#xD;
+  - Data Team member(s) perform screen sharing session with Rachel Goreham or a &#xD;
+     member of her team to access all hosts/routers so we can verify entire configuration&#xD;
+&#xD;
+DG Resource Group  (currently defined in a Node/host property)&#xD;
+  - Virtual Network&#xD;
+     - Subnet&#xD;
+        - Network Security Group&#xD;
+           - Availability Zone 1&#xD;
+           - Availability Zone 2&#xD;
+&#xD;
+Server Locations (chicago, carmel, azure, ...)&#xD;
+&#xD;
+Disk capacity metrics from &quot;CNO_Informatica_Data Governance_Azure_Server Sizing_v2.3.xlsx&quot;&#xD;
+&#xD;
+Epsilon&#xD;
+&#xD;
+IDQ - expound application (blue) layer&#xD;
+Axon - expound application (blue) layer&#xD;
+&#xD;
+IDQ - technology (green) layer&#xD;
+Axon - technology (green) layer&#xD;
+&#xD;
+CyberArk</content>
+      </child>
+      <child xsi:type="archimate:Note" id="id-bab30943188e41f8844d27a3505ebb23" font="1|Nirmala UI|20.0|1|WINDOWS|1|-40|0|0|0|700|0|0|0|0|3|2|1|34|Nirmala UI" fontColor="#ff0000" textAlignment="1">
+        <bounds x="30" y="28" width="441" height="133"/>
+        <content>Informatica EDC-IDQ-Axon &#xD;
+Solution Architect Diagram&#xD;
+One Stop Shop</content>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-dbef600c8a214c52ae0d76714ae46417" archimateElement="id-cff2539dbcf54412bfe4a72e0075506b">
+        <bounds x="1776" y="1488" width="325" height="75"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-b6d5f44d74d94c2a94859171f366b20f" source="id-dbef600c8a214c52ae0d76714ae46417" target="id-1260d941f4ed4cce810d51fc89d56f8b" archimateRelationship="id-771cabd9a268460d81e815f960564954">
+          <feature name="labelExpression" value="Serves&#xD;&#xA;__GBs/__GBs"/>
+          <bendpoint startX="-99" startY="-283" endX="129" endY="191"/>
+        </sourceConnection>
+        <child xsi:type="archimate:DiagramObject" id="id-28b06947a85841d3bde13c7cd6ef9fd6" archimateElement="id-88a4cbd05c5f4252852c7b147387385b">
+          <bounds x="72" y="36" width="169" height="25"/>
+        </child>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-baa4fde84e5540768fd674d24012fc2e" targetConnections="id-c906b8a223b94377ac7ee3fcfa8f39f0 id-30d374e9ea734af390d27c96ca9c3ab6 id-d389fa19ebd7499aa908353892452c9e" archimateElement="id-40c42527b35a4985807953f3d2526e66">
+        <bounds x="1492" y="636" width="132" height="72"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-5ec01c51f0c348cfb0cf0bdf62a57d53" source="id-baa4fde84e5540768fd674d24012fc2e" target="id-c636c7b30f2a417eb589dbbcce198176" archimateRelationship="id-891595acd74847679dfacd7829726ee2">
+          <feature name="labelExpression" value="Flows To"/>
+          <bendpoint startX="186" startY="60" endX="-240" endY="-144"/>
+          <bendpoint startX="503" startY="128" endX="-117" endY="-162"/>
+        </sourceConnection>
+        <sourceConnection xsi:type="archimate:Connection" id="id-39232c7a7be34ff8b2decfabb2ea484b" source="id-baa4fde84e5540768fd674d24012fc2e" target="id-e15cc07739524de7937fc5057409d822" archimateRelationship="id-e985a9a9c3d845338f8e332a76005052">
+          <feature name="labelExpression" value="Flows To"/>
+          <bendpoint startX="-126" startY="48" endX="108" endY="-180"/>
+        </sourceConnection>
+        <sourceConnection xsi:type="archimate:Connection" id="id-18a70cf70b824cb1b98cbac144876481" source="id-baa4fde84e5540768fd674d24012fc2e" target="id-b59be3028c0e476fa01a7a88d00ceaa1" archimateRelationship="id-eb39e825e7c242cea3a35e95262af958">
+          <feature name="labelExpression" value="Flows To"/>
+          <bendpoint startX="-6" startY="84" endX="-42" endY="-126"/>
+        </sourceConnection>
+      </child>
+      <child xsi:type="archimate:Note" id="id-17a41f60638746b6af2fd0e72894c96c" font="1|Nirmala UI|20.0|1|WINDOWS|1|-40|0|0|0|700|0|0|0|0|3|2|1|34|Nirmala UI" fontColor="#0000ff" textAlignment="1">
+        <bounds x="614" y="80" width="441" height="49"/>
+        <content>(Work in Process - 80% done)</content>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-0acae12e279e4ba58e765b3d65d18b46" archimateElement="id-8eb4a58329824cfdbb8968dd64d81f99">
+        <bounds x="1272" y="1008" width="296" height="285"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-84b01b965c7c4daaaa75dbaa946cd905" source="id-0acae12e279e4ba58e765b3d65d18b46" target="id-b59be3028c0e476fa01a7a88d00ceaa1" archimateRelationship="id-83a448ced87a46eda8e53b7f9b80c946">
+          <feature name="labelExpression" value="Serves&#xD;&#xA;__GBs/__GBs"/>
+        </sourceConnection>
+        <child xsi:type="archimate:DiagramObject" id="id-c871cedfafa64c9395499a3792ed907d" archimateElement="id-c8e9b418b73c49d281e158903c6c87cc">
+          <bounds x="12" y="48" width="240" height="229"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-21fc216a5f04418a89db65b4ee1b772c" source="id-c871cedfafa64c9395499a3792ed907d" target="id-1e4a5d678fb34bb09fb83ce35c310444" archimateRelationship="id-4e4b377003d043adaddb9cc9abcafb2f"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-d292631fae884e6981fe769ca91d47ec" source="id-c871cedfafa64c9395499a3792ed907d" target="id-64d027de90a64738846ae5e05db70bef" archimateRelationship="id-0caa376cfb2546b982f2070d0722cb0f"/>
+          <child xsi:type="archimate:DiagramObject" id="id-64d027de90a64738846ae5e05db70bef" targetConnections="id-d292631fae884e6981fe769ca91d47ec" archimateElement="id-1f2cd47f8c2e4532baeb758b85a81b93">
+            <bounds x="30" y="35" width="180" height="69"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-56be0e7deadc461da3bcfb5530a3be98" source="id-64d027de90a64738846ae5e05db70bef" target="id-1e4a5d678fb34bb09fb83ce35c310444" archimateRelationship="id-04b352f27b634ee98d7e09b4e3722d7d">
+              <feature name="labelExpression" value="Fail Over"/>
+            </sourceConnection>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="id-1e4a5d678fb34bb09fb83ce35c310444" targetConnections="id-21fc216a5f04418a89db65b4ee1b772c id-56be0e7deadc461da3bcfb5530a3be98" archimateElement="id-c99a49b8a83b4806b4821ad963f9ee49">
+            <bounds x="36" y="144" width="180" height="73"/>
+            <child xsi:type="archimate:Note" id="id-98c1a71ef4904ce5ab2b47bb572c294d" textAlignment="1">
+              <bounds x="18" y="36" width="133" height="25"/>
+              <content>Clone of IDQ Node01</content>
+            </child>
+          </child>
+        </child>
+      </child>
+      <child xsi:type="archimate:Note" id="id-624476a515f34a45a2b9f97638e9e081" font="1|Verdana|16.2|0|WINDOWS|1|-27|0|0|0|400|0|0|0|0|3|2|1|34|Verdana" textAlignment="1">
+        <bounds x="2218" y="1214" width="823" height="269"/>
+        <content>Resolved Issues:&#xD;
+&#xD;
+Cameron Gillette to work with Conrad on all Outstanding Issues (in process)&#xD;
+&#xD;
+CNO Archimate consistency/compliance&#xD;
+  - review entire diagram Mark Keeney to  to assure we are using Archimate &#xD;
+     consistently across the entire CNO enterprise (done- 10-Mar-2021)&#xD;
+</content>
+      </child>
+      <child xsi:type="archimate:Note" id="id-d76f65656c2c4885b23fc9d53464e196" textAlignment="1">
+        <bounds x="1492" y="40" width="370" height="204"/>
+        <content>&#xD;
+Network&#xD;
+ - Speeds/throughout&#xD;
+ - Competing loads&#xD;
+	1.	Bandwidth usage&#xD;
+	2.	Throughput&#xD;
+	3.	Latency&#xD;
+	4.	Packet loss&#xD;
+	5.	Retransmission&#xD;
+	6.	Availability&#xD;
+	7.	Connectivity</content>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-75e102f5cd5f4d1ba54d1d9bf810c1cb" archimateElement="id-11142631d15a407f8529a8f6bd446dd6">
+        <bounds x="104" y="1072" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-3d7a012882634533acdb41e037560235" archimateElement="id-8a9e66ccba4d47088f3c99a48f6ad996">
+        <bounds x="106" y="984" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-794baacf8fde47ea8048d780d11ae2ae" targetConnections="id-0252bab879154513af719ad76f923bdc" archimateElement="id-0b88456a80ce489ebe4d4a798529f67d">
+        <bounds x="672" y="2112" width="1008" height="537"/>
+        <child xsi:type="archimate:DiagramObject" id="id-55ae91d401bc4282935cf5ecb6eef4d4" targetConnections="id-649fdb8508494f769ae01e478f048063" archimateElement="id-cbc33dec5b68455ab5ec24c2a73a3fcb">
+          <bounds x="624" y="48" width="253" height="445"/>
+          <child xsi:type="archimate:DiagramObject" id="id-2a7c760675384184bb153b19f5e32dd9" archimateElement="id-3e5474c1e2a04bdf9cd17ee7b287caba">
+            <bounds x="12" y="36" width="217" height="397"/>
+            <child xsi:type="archimate:Note" id="id-68129c8ab2f549f3b6be3cc0b0988c90" textAlignment="1">
+              <bounds x="12" y="60" width="157" height="25"/>
+              <content>Clone of Hadoop Node01</content>
+            </child>
+          </child>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-7ebbd78cb1f64ea5a566ac768a688678" archimateElement="id-39d3470a0a3d4f87b9354f76a7a89a68">
+          <bounds x="24" y="48" width="505" height="445"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-e4605a76e2e74913b0deaa73c013102d" source="id-7ebbd78cb1f64ea5a566ac768a688678" target="id-ab3f1bef5d1d4c8a8c372bc696edb39a" archimateRelationship="id-959ab543e2864df1bf29de2020d89c82"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-d3c42cf3daf24f02a3690da25827e25a" source="id-7ebbd78cb1f64ea5a566ac768a688678" target="id-f2abe482dfc74aaeb16fbc203b6670bd" archimateRelationship="id-058a2a8e2f724cf9ba5cf1d15465a92e"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-649fdb8508494f769ae01e478f048063" source="id-7ebbd78cb1f64ea5a566ac768a688678" target="id-55ae91d401bc4282935cf5ecb6eef4d4" archimateRelationship="id-29886f72cc054e8291c82208e6ba02f3">
+            <feature name="labelExpression" value="Fail&#xD;&#xA;Over&#xD;&#xA;"/>
+          </sourceConnection>
+          <child xsi:type="archimate:DiagramObject" id="id-ab3f1bef5d1d4c8a8c372bc696edb39a" targetConnections="id-e4605a76e2e74913b0deaa73c013102d" archimateElement="id-4d3bc1310202466c84cbfe32717063cf">
+            <bounds x="12" y="29" width="217" height="397"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-8bd5246c84ce4363815c468f7baf1c23" source="id-ab3f1bef5d1d4c8a8c372bc696edb39a" target="id-8dca43f08da74f0fbc8216c270327491" archimateRelationship="id-8b2e07eb29cd42e896d46f8d91e4493e"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-9d5c8b2fea88485e948b1246aa72bba9" source="id-ab3f1bef5d1d4c8a8c372bc696edb39a" target="id-0bf0b945020842199bfb2ef159c19801" archimateRelationship="id-67cb70be68184bd3b1b986820fbb4947"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-d31598c9b2174e4892c8f6d6ad7eee07" source="id-ab3f1bef5d1d4c8a8c372bc696edb39a" target="id-4fedbdc57c724f94a8a2f54b7eed9978" archimateRelationship="id-945c6f54ab034151a1b6e7156692081e"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-4cb1cf644b574549b5bb94f418dd2307" source="id-ab3f1bef5d1d4c8a8c372bc696edb39a" target="id-7c9950479f804ca5a31ccb5f9db94f83" archimateRelationship="id-9de5d2dc3a27419d9fdc5f8af2bc7da2"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-652f844fb34a4305bfcaf0becfb938c6" source="id-ab3f1bef5d1d4c8a8c372bc696edb39a" target="id-e1db7182722641eebed35353a8585335" archimateRelationship="id-f4202bb9a0e34bc2a4fab4708b6c7c35"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-570356ed6b67443ba1c6c235cbdea2cf" source="id-ab3f1bef5d1d4c8a8c372bc696edb39a" target="id-5bea80c99ce24fdaae2cc1829ba5b702" archimateRelationship="id-f022e41429fd402bb4dbb5634ac27c1d"/>
+            <child xsi:type="archimate:DiagramObject" id="id-8dca43f08da74f0fbc8216c270327491" targetConnections="id-8bd5246c84ce4363815c468f7baf1c23" archimateElement="id-c6328c76585a4e3a881c4cf52386f224">
+              <bounds x="12" y="60" width="180" height="24"/>
+            </child>
+            <child xsi:type="archimate:DiagramObject" id="id-0bf0b945020842199bfb2ef159c19801" targetConnections="id-9d5c8b2fea88485e948b1246aa72bba9" archimateElement="id-ee5bbc6fbddd42a9b8712784a5981665">
+              <bounds x="12" y="168" width="180" height="61"/>
+              <child xsi:type="archimate:Note" id="id-2549811043564b9bbf6b4830376f6bfa" font="1|Arial Narrow|8.0|0|WINDOWS|1|-16|0|0|0|400|0|0|0|0|3|2|1|34|Arial Narrow" textAlignment="1">
+                <bounds x="48" y="36" width="97" height="25"/>
+                <feature name="gradient" value="1"/>
+                <content>(Exemplary definition)</content>
+              </child>
+            </child>
+            <child xsi:type="archimate:DiagramObject" id="id-4fedbdc57c724f94a8a2f54b7eed9978" targetConnections="id-d31598c9b2174e4892c8f6d6ad7eee07" archimateElement="id-636f1fbd8e64438d895e9c857714fd80">
+              <bounds x="12" y="336" width="180" height="48"/>
+            </child>
+            <child xsi:type="archimate:DiagramObject" id="id-7c9950479f804ca5a31ccb5f9db94f83" targetConnections="id-4cb1cf644b574549b5bb94f418dd2307" archimateElement="id-a5be97498e6a4b7f8aab76c59112bc9c">
+              <bounds x="12" y="240" width="180" height="36"/>
+            </child>
+            <child xsi:type="archimate:DiagramObject" id="id-e1db7182722641eebed35353a8585335" targetConnections="id-652f844fb34a4305bfcaf0becfb938c6" archimateElement="id-8f505c561f794ca6be105277360921a8">
+              <bounds x="12" y="288" width="180" height="36"/>
+            </child>
+            <child xsi:type="archimate:DiagramObject" id="id-5bea80c99ce24fdaae2cc1829ba5b702" targetConnections="id-570356ed6b67443ba1c6c235cbdea2cf" archimateElement="id-5bc77c713534493cb2cfa1a2cae3a864">
+              <bounds x="12" y="96" width="180" height="48"/>
+            </child>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="id-f2abe482dfc74aaeb16fbc203b6670bd" targetConnections="id-d3c42cf3daf24f02a3690da25827e25a" archimateElement="id-8059f790d59f45dfaaff86d1438ac63f">
+            <bounds x="264" y="29" width="217" height="397"/>
+            <child xsi:type="archimate:Note" id="id-674b9400bb4f407bbbdcfea49901c959" textAlignment="1">
+              <bounds x="24" y="60" width="157" height="25"/>
+              <content>Clone of Hadoop Node01</content>
+            </child>
+          </child>
+        </child>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-04ee8de539e24f2da0ca16e12c676b2a" archimateElement="id-1a653d3b87934d70adddbb4fd12a1a93">
+        <bounds x="132" y="2220" width="438" height="313"/>
+        <child xsi:type="archimate:DiagramObject" id="id-13510ab3a6574344bbaf63cccbeb47b7" targetConnections="id-7152f915572f431ebd0bba8deb23028b" archimateElement="id-ebffdcaf8ac04bcd91f28f95ad2ee438">
+          <bounds x="245" y="48" width="169" height="241"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-f347206e632e403cbceee1693495ed0d" source="id-13510ab3a6574344bbaf63cccbeb47b7" target="id-e75ee5d7c6c64b4aa3bef43dc8c77c20" archimateRelationship="id-d2891b8f13e941a98b560aa34a7ff30e"/>
+          <child xsi:type="archimate:DiagramObject" id="id-e75ee5d7c6c64b4aa3bef43dc8c77c20" targetConnections="id-f347206e632e403cbceee1693495ed0d" archimateElement="id-7a546b567f314ed1830e04b14665ec9b">
+            <bounds x="24" y="36" width="121" height="55"/>
+          </child>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-7da23ad8c917478da702c3645c02d787" targetConnections="id-052d6b1d96d649ca9f6d977bb849946e" archimateElement="id-4a06d6db0da3452aaa1533f9949ab025">
+          <bounds x="36" y="48" width="169" height="241"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-9eeac5135f0a4fa28070281743449d9f" source="id-7da23ad8c917478da702c3645c02d787" target="id-09ad483b524b4ac88735d6a03340f292" archimateRelationship="id-dfce5579b7ca402baf7d02a48286b469"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-7152f915572f431ebd0bba8deb23028b" source="id-7da23ad8c917478da702c3645c02d787" target="id-13510ab3a6574344bbaf63cccbeb47b7" archimateRelationship="id-ccd55bcc8089417fa7749642eadebfef">
+            <feature name="labelExpression" value="Fail&#xD;&#xA;Over"/>
+          </sourceConnection>
+          <sourceConnection xsi:type="archimate:Connection" id="id-8e3cb3ec7cdb4089b2851396f6a7bf40" source="id-7da23ad8c917478da702c3645c02d787" target="id-2751835f2dbb4032ae119a222f7bd7c2" archimateRelationship="id-a44e09826259422f830d0e6d96ecd19b"/>
+          <child xsi:type="archimate:DiagramObject" id="id-09ad483b524b4ac88735d6a03340f292" targetConnections="id-9eeac5135f0a4fa28070281743449d9f" archimateElement="id-4335f1a7baf74d01aedb2af95cdccc5c">
+            <bounds x="24" y="36" width="121" height="55"/>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="id-2751835f2dbb4032ae119a222f7bd7c2" targetConnections="id-8e3cb3ec7cdb4089b2851396f6a7bf40" archimateElement="id-af46fea7a5a04571bc6c51365917ac14">
+            <bounds x="12" y="96" width="145" height="61"/>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="id-4d5ecba191f4488185b1d1c4c7a0e62b" archimateElement="id-8f2682fbc95e414bafb3c7a6ce4def7e">
+            <bounds x="12" y="156" width="145" height="37"/>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="id-b334709d632c401bb910c1aed045d109" archimateElement="id-4dab94584d064dcdb535664909e3de75">
+            <bounds x="12" y="192" width="145" height="37"/>
+          </child>
+        </child>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-5474b872205b4d29bdef277fe5068496" archimateElement="id-fc07620d234845b8800c6ca1ad7ce1e4">
+        <bounds x="264" y="984" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-abc9bb692f3a413f82905b505dfb3e97" source="id-5474b872205b4d29bdef277fe5068496" target="id-8c3a81ca2c8f4941b0a2ec39bd06d6fa" archimateRelationship="id-3bde87870eb840309b04e93b573b32bd">
+          <feature name="labelExpression" value="Serves"/>
+        </sourceConnection>
+        <sourceConnection xsi:type="archimate:Connection" id="id-96c4e29925584586ad422cc197027356" source="id-5474b872205b4d29bdef277fe5068496" target="id-22feaf890dc04839a8c6b36dc4c0a0cf" archimateRelationship="id-e0b335540de747f883e13ebd54ab2705">
+          <feature name="labelExpression" value="Serves"/>
+          <bendpoint startX="-192" startY="489" endX="-347" endY="-398"/>
+        </sourceConnection>
+      </child>
+    </element>
+  </folder>
+</archimate:model>

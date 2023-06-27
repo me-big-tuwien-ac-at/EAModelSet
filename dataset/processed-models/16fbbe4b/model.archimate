@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archimate:model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:archimate="http://www.archimatetool.com/archimate" name="CQRS An Architecture of a Bounded Context" id="16fbbe4b" version="4.0.1">
+  <folder name="Strategy" id="8c53c336" type="strategy"/>
+  <folder name="Business" id="8f7b1512" type="business"/>
+  <folder name="Application" id="b3765822" type="application">
+    <element xsi:type="archimate:ApplicationEvent" name="command" id="3004a266-e7ea-45c1-ac67-f8a49fc0e35b"/>
+    <element xsi:type="archimate:ApplicationEvent" name="Query" id="1a9265e8-6435-4f42-abed-3c253157a70e"/>
+    <element xsi:type="archimate:ApplicationFunction" name="command" id="99f84b0b-23b9-407e-ab95-bf7649bbf603"/>
+    <element xsi:type="archimate:ApplicationFunction" name="Query" id="9418a39e-88ed-4f3b-9fc8-6273eef2d629"/>
+  </folder>
+  <folder name="Technology &amp; Physical" id="ab3b36f8" type="technology"/>
+  <folder name="Motivation" id="633d96d6" type="motivation"/>
+  <folder name="Implementation &amp; Migration" id="ab9fbbc4" type="implementation_migration"/>
+  <folder name="Other" id="c4e2ab26" type="other">
+    <element xsi:type="archimate:Grouping" name="user interface" id="8106433b-e9c0-452b-bd4e-19309e8b053e"/>
+    <element xsi:type="archimate:Grouping" name="Logic" id="ff8bcce4-2fea-480a-a183-701b616fe5e6"/>
+    <element xsi:type="archimate:Grouping" name="data access" id="f0bbdd8a-95aa-4833-8d17-543997536089"/>
+  </folder>
+  <folder name="Relations" id="cabb7f2b" type="relations">
+    <element xsi:type="archimate:FlowRelationship" id="358e9c2c-efd7-4681-803c-a8cd54ae0460" source="8106433b-e9c0-452b-bd4e-19309e8b053e" target="ff8bcce4-2fea-480a-a183-701b616fe5e6"/>
+    <element xsi:type="archimate:TriggeringRelationship" id="6efffe56-e295-4dda-9de0-360c3f0859a3" source="ff8bcce4-2fea-480a-a183-701b616fe5e6" target="f0bbdd8a-95aa-4833-8d17-543997536089"/>
+    <element xsi:type="archimate:FlowRelationship" id="378d53b6-4527-484b-929c-4a77799b8f25" source="f0bbdd8a-95aa-4833-8d17-543997536089" target="ff8bcce4-2fea-480a-a183-701b616fe5e6"/>
+    <element xsi:type="archimate:FlowRelationship" id="61eb0027-f869-4b96-ac99-4503d028beca" source="8106433b-e9c0-452b-bd4e-19309e8b053e" target="f0bbdd8a-95aa-4833-8d17-543997536089"/>
+    <element xsi:type="archimate:FlowRelationship" id="60ad946e-9727-44bf-a6a0-b602665a062e" source="f0bbdd8a-95aa-4833-8d17-543997536089" target="8106433b-e9c0-452b-bd4e-19309e8b053e"/>
+  </folder>
+  <folder name="Views" id="1fe5bb5d" type="diagrams">
+    <element xsi:type="archimate:ArchimateDiagramModel" name="CQRS: An Architecture of a Bounded Context" id="94ad43f7">
+      <child xsi:type="archimate:Group" id="fea3739f-aec6-4831-90be-ddff703ed836" name="layer" textAlignment="1">
+        <bounds x="569" y="337" width="962" height="284"/>
+        <child xsi:type="archimate:DiagramObject" id="fc880a35-bbc3-4c7f-8dff-805a8a91bdc3" targetConnections="fd05d34f-886c-40aa-960a-9dfdf7c85afd" archimateElement="8106433b-e9c0-452b-bd4e-19309e8b053e">
+          <bounds x="240" y="70" width="400" height="140"/>
+          <sourceConnection xsi:type="archimate:Connection" id="6f54d8aa-8183-4569-82a1-64d1b31cda17" source="fc880a35-bbc3-4c7f-8dff-805a8a91bdc3" target="cb1fb975-6d03-4787-9bf8-d0488b9fb177" archimateRelationship="358e9c2c-efd7-4681-803c-a8cd54ae0460"/>
+          <sourceConnection xsi:type="archimate:Connection" id="b4597164-fdff-4286-9102-72315278da68" source="fc880a35-bbc3-4c7f-8dff-805a8a91bdc3" target="c4bb3c76-b908-48c3-8e43-0ef63cf8aa32" archimateRelationship="61eb0027-f869-4b96-ac99-4503d028beca">
+            <bendpoint startX="101" startY="323" endX="87" endY="-320"/>
+          </sourceConnection>
+        </child>
+      </child>
+      <child xsi:type="archimate:Group" id="85dc3409-7a98-4958-9a97-e9e4e881be9c" name="command layer" textAlignment="1" fillColor="#b0b0b0">
+        <bounds x="569" y="644" width="492" height="284"/>
+        <child xsi:type="archimate:DiagramObject" id="cb1fb975-6d03-4787-9bf8-d0488b9fb177" targetConnections="6f54d8aa-8183-4569-82a1-64d1b31cda17 a187bc1b-c75b-47c7-88c0-7b1a99e72127" archimateElement="ff8bcce4-2fea-480a-a183-701b616fe5e6">
+          <bounds x="250" y="100" width="175" height="140"/>
+          <sourceConnection xsi:type="archimate:Connection" id="b6d5faac-a66a-43ea-b1e4-cc871b836b2a" source="cb1fb975-6d03-4787-9bf8-d0488b9fb177" target="c4bb3c76-b908-48c3-8e43-0ef63cf8aa32" archimateRelationship="6efffe56-e295-4dda-9de0-360c3f0859a3"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="9241d4cc-e291-4005-aaf7-b3de15e9f9ed" archimateElement="3004a266-e7ea-45c1-ac67-f8a49fc0e35b">
+          <bounds x="282" y="20" width="120" height="55"/>
+        </child>
+      </child>
+      <child xsi:type="archimate:Group" id="c1bbbe99-82fe-44a1-966d-7d01fd63f610" name="query layer" textAlignment="1" fillColor="#888888">
+        <bounds x="569" y="950" width="962" height="284"/>
+        <child xsi:type="archimate:DiagramObject" id="c4bb3c76-b908-48c3-8e43-0ef63cf8aa32" targetConnections="b6d5faac-a66a-43ea-b1e4-cc871b836b2a b4597164-fdff-4286-9102-72315278da68" archimateElement="f0bbdd8a-95aa-4833-8d17-543997536089">
+          <bounds x="254" y="100" width="400" height="140"/>
+          <sourceConnection xsi:type="archimate:Connection" id="a187bc1b-c75b-47c7-88c0-7b1a99e72127" source="c4bb3c76-b908-48c3-8e43-0ef63cf8aa32" target="cb1fb975-6d03-4787-9bf8-d0488b9fb177" archimateRelationship="378d53b6-4527-484b-929c-4a77799b8f25">
+            <bendpoint startX="-93" startY="-110" endX="24" endY="196"/>
+          </sourceConnection>
+          <sourceConnection xsi:type="archimate:Connection" id="fd05d34f-886c-40aa-960a-9dfdf7c85afd" source="c4bb3c76-b908-48c3-8e43-0ef63cf8aa32" target="fc880a35-bbc3-4c7f-8dff-805a8a91bdc3" archimateRelationship="60ad946e-9727-44bf-a6a0-b602665a062e">
+            <bendpoint startX="117" startY="-200" endX="131" endY="443"/>
+          </sourceConnection>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="a5391a63-2ef8-4b9c-b4c3-ea54708837b2" archimateElement="1a9265e8-6435-4f42-abed-3c253157a70e">
+          <bounds x="500" y="30" width="120" height="55"/>
+        </child>
+      </child>
+      <child xsi:type="archimate:Note" id="41fe9fd2" textAlignment="1">
+        <bounds x="450" y="240" width="271" height="80"/>
+        <content>Command Query Responsibility&#xD;
+Segregation (CQRS) 
+Different layers for Commands and Queries</content>
+      </child>
+      <child xsi:type="archimate:Note" id="1edb88a1-a77c-449e-9076-4071ac5eb691" textAlignment="1">
+        <bounds x="1190" y="749" width="185" height="80"/>
+        <content>Assymetric layers: 3 in the case of cpmmand and 2 in case of query</content>
+      </child>
+    </element>
+    <element xsi:type="archimate:ArchimateDiagramModel" name="CQS" id="7c7461bf-9947-4b4f-aa26-b9f5c3aeaa85">
+      <child xsi:type="archimate:Note" id="0d7c612c-4773-4b9b-be4a-2c036bde098f" textAlignment="1">
+        <bounds x="340" y="173" width="185" height="80"/>
+        <content>CQS Command/Query Separation
+</content>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="740e3bfd-5cd7-420a-95ad-1472bb8f87d8" archimateElement="99f84b0b-23b9-407e-ab95-bf7649bbf603">
+        <bounds x="480" y="272" width="251" height="169"/>
+        <child xsi:type="archimate:Note" id="befdba4b-9b0a-438c-b627-a8931fbe9181" textAlignment="1">
+          <bounds x="27" y="47" width="185" height="80"/>
+          <content>- only input args
+- empty return result
+- side effects/change state</content>
+        </child>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="78d5fdb4-c808-483e-b0e3-d9380fdf3a8f" archimateElement="9418a39e-88ed-4f3b-9fc8-6273eef2d629">
+        <bounds x="850" y="272" width="251" height="169"/>
+        <child xsi:type="archimate:Note" id="1f421a71-9db5-4be8-97b2-3e537653f124" textAlignment="1">
+          <bounds x="32" y="44" width="185" height="80"/>
+          <content>- return results
+- not side effects / no chanfge state</content>
+        </child>
+      </child>
+    </element>
+  </folder>
+</archimate:model>

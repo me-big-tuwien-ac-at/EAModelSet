@@ -1,0 +1,124 @@
+"ID","Type","Name","Documentation","Specialization"
+"545a38a6","ArchimateModel","5 value-objects","",""
+"6eb9058b","BusinessObject","value object 1","",""
+"94fe9cae","ApplicationComponent","Application Component","",""
+"a7ca97a9","ApplicationComponent","Application Component","",""
+"9acf22f5","ApplicationComponent","class 1","",""
+"4ff2bc00","ApplicationComponent","class value object 1","",""
+"7e61a483","ApplicationComponent","value type 1","public abstract class ValueObject<T> where T : ValueObject<T>
+{
+protected abstract IEnumerable<object> GetAttributesToIncludeInEqualityCheck();
+public override bool Equals(object other)
+{
+return Equals(other as T);
+}
+public bool Equals(T other)
+{
+if (other == null)
+{
+return false;
+}
+return GetAttributesToIncludeInEqualityCheck()
+.SequenceEqual(other.GetAttributesToIncludeInEqualityCheck());
+}
+public static bool operator ==(ValueObject<T> left, ValueObject<T> right)
+{
+return Equals(left, right);
+}
+public static bool operator !=(ValueObject<T> left, ValueObject<T> right)
+{
+return !(left == right);
+}
+public override int GetHashCode()
+{
+int hash = 17;
+foreach (var obj in this.GetAttributesToIncludeInEqualityCheck())
+hash = hash * 31 + (obj == null ? 0 : obj.GetHashCode());
+return hash;
+}
+}
+
+
+
+public class Meters : ValueObject<Meters>
+{
+...
+protected override IEnumerable<object>
+GetAttributesToIncludeInEqualityCheck()
+{
+return new List<Object> { DistanceInMeters };
+}
+}
+
+
+public class Money : ValueObject<Money>
+{
+protected readonly decimal Value;
+public Money() : this(0m)
+{
+}
+public Money(decimal value)
+{
+Value = value;
+}
+public Money Add(Money money)
+{
+return new Money(Value + money.Value);
+}
+public Money Subtract(Money money)
+{
+return new Money(Value - money.Value);
+}
+protected override IEnumerable<object> GetAttributesToIncludeInEqualityCheck()
+{
+return new List<Object>() { Value };
+}
+}
+",""
+"4ed67510","ApplicationFunction","!= (object 1, object 2)","",""
+"9d8e0260","ApplicationFunction","* (object 1, object 2)","",""
+"ce27b31b","ApplicationFunction","+ (object 1, object 2)","",""
+"5ebfbe2e","ApplicationFunction","- (object 1, object 2)","",""
+"d2e0dc9c","ApplicationFunction","/ (object 1, object 2)","",""
+"3b7a833f","ApplicationFunction","= (object 1, object 2)","",""
+"dfefd030","ApplicationFunction","check rule 1(param 1, param2)","",""
+"306bd69e","ApplicationFunction","check rule 2 (param 3, param4)","",""
+"982e917d","ApplicationFunction","equals (object of class 1)","",""
+"3861a506","ApplicationFunction","equals (object of value type 1) ","",""
+"795f0cc1","ApplicationFunction","equals (object of value type 1)  ","",""
+"f3b43508","ApplicationFunction","equals (some object)","",""
+"f3e80a50","ApplicationFunction","equals (some object) ","",""
+"7f7407b6","ApplicationFunction","equals (some object)  ","",""
+"467670ce","ApplicationFunction","Get Attributes To Include In Equality Check ()","",""
+"984666c5","ApplicationFunction","Get Attributes To Include In Equality Check () ","",""
+"6efeff54","ApplicationFunction","GetHashCode()","",""
+"e7b676d5","ApplicationFunction","Identify the identity with (object)","",""
+"aea7f763","ApplicationFunction","some function","",""
+"6a976486","ApplicationFunction","static factory method (params)","",""
+"772ab029","ApplicationFunction","validate(params)","",""
+"1edab4d1","ApplicationFunction","validate(params) (copy)","",""
+"824ae875","ApplicationFunction","validate(params) (copy) (copy)","",""
+"faff1be9","ApplicationFunction","validate(params) (copy) (copy) (copy)","",""
+"f83fbb40","ApplicationInterface","value object","",""
+"b5d1af68","ApplicationProcess","check that the object of type class 1","",""
+"ccad49c8","ApplicationProcess","check that the object of type value type 1 ","",""
+"70cb293b","ApplicationProcess","check that the object of type value type 1  ","",""
+"fc0680fc","ApplicationProcess","Compare that attributes are equal ","",""
+"10d93fd0","ApplicationProcess","Compare that attributes are equal  ","",""
+"d548697f","ApplicationProcess","Compare that identifiers are equal","",""
+"cc78c5a5","ApplicationProcess","return new instance of value type 1","",""
+"d880babf","ApplicationProcess","return new instance of value type 1","",""
+"60adf9f8","ApplicationProcess","return new instance of value type 1","",""
+"b151e731","ApplicationProcess","return new instance of value type 1","",""
+"b52e8ce5","ApplicationProcess","return new instance of value type 1","",""
+"67bae2ac","ApplicationProcess","return new instance of value type 1","",""
+"ca83f15a","ApplicationProcess","validate input params","",""
+"6e46a2f5","DataObject","attributes","",""
+"c3859673","DataObject","attributes ","",""
+"70059bdb","DataObject","id","",""
+"c45f91a8","DataObject","id","",""
+"ac58f772","Meaning","no identity in the domain","",""
+"fe018721","Meaning","side effect free","",""
+"461f7ae1","Requirement","Identifier unchanged for the object","",""
+"3b340d91","Requirement","immutable (the value can be assigned only once)","",""
+"a905101d","Requirement","unique value within the system","",""
