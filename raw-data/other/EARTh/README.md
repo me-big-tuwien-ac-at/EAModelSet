@@ -1,1 +1,0 @@
-Source: https://git.rwth-aachen.de/EARTh/example-model/-/blob/master/CentralModel.xml
