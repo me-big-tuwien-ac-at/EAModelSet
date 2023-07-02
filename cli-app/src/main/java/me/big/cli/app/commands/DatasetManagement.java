@@ -86,8 +86,6 @@ public class DatasetManagement {
         System.out.printf("dataset_stats.json exported to %s %n", targetFile.getAbsolutePath());
     }
 
-
-
     public Availability availabilityCheck() {
         return modelLoaded
                 ? Availability.available()
