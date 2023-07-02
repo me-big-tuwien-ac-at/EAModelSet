@@ -8,7 +8,7 @@ EA ModelSet uses two different JSON schemas:
 2. **Model Schema** `archimate-model.schema.json` - contains a concrete ArchiMate EA model with its metadata, annotations, elements, relationships and views.
 
 
-### 1. Dataset
+## 1. Dataset
 
 <details>
 <summary>Example</summary>
@@ -45,7 +45,7 @@ EA ModelSet uses two different JSON schemas:
 <details>
 <summary>Schema Documentation</summary>
 
-#### Dataset
+### Dataset
 
 | Name | Description | Data Type | Cardinality | Example Value |
 |---|---|---|---|---|
@@ -56,7 +56,7 @@ EA ModelSet uses two different JSON schemas:
 | **`modelInfos`** | List of models included in the dataset with brief information  | list of  object | 1 | `[]`  |
 
 
-#### ModelInfo
+### ModelInfo
 
 | Name | Description | Data Type | Cardinality | Example Value |
 |---|---|---|---|---|
@@ -72,7 +72,7 @@ EA ModelSet uses two different JSON schemas:
 
 </details>
 
-### 2. Model
+## 2. Model
 
 <details>
 <summary>Example</summary>
@@ -136,7 +136,7 @@ EA ModelSet uses two different JSON schemas:
 <details>
 <summary>Schema Documentation</summary>
 
-#### Model
+### Model
 
 | Name | Description | Data Type | Cardinality | Example Value |
 |---|---|---|---|---|
@@ -152,7 +152,7 @@ EA ModelSet uses two different JSON schemas:
 | **`duplicates`** | List of duplicate models with references to their files in `raw-data/`  | list of string | 1 | `[]` |
 | **`language`** | Language of the model (if known) | `string` | 0 or 1 | `en` |
 
-#### Element
+### Element
 
 | Name | Description | Data Type | Cardinality | Example Value |
 |---|---|---|---|---|
@@ -162,7 +162,7 @@ EA ModelSet uses two different JSON schemas:
 | `type` | Element type | string | exactly 1 |   |
 | `layer` | Layer of the element (computed through type) | string | exactly 1 |   |
 
-#### Relationship
+### Relationship
 
 | Name | Description | Data Type | Cardinality | Example Value |
 |---|---|---|---|---|
@@ -173,7 +173,7 @@ EA ModelSet uses two different JSON schemas:
 | `name` |  | string | 0 or 1 |   |
 | `documentation` | Additional information about the relationship | string | 0 or 1 (optional) |   |
 
-#### View
+### View
 
 | Name | Description | Data Type | Cardinality | Example Value |
 |---|---|---|---|---|
