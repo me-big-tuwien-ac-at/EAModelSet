@@ -10,6 +10,7 @@ setup(
     packages=['eamodelset'],
     install_requires=[
         'pandas',
+        'numpy'
     ],
     package_data={"eamodelset":["dataset.zip"]}
 )
