@@ -1,4 +1,4 @@
-cd neo4j && docker run \
+cd ../neo4j && docker run \
     --publish=7474:7474 \
     --publish=7687:7687 \
     --volume=$(pwd)/conf:/conf \
