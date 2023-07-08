@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +15,7 @@ import java.util.List;
 public class Dataset {
     private String title;
     private String version;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date lastUpdated;
     private Long modelCount;
     private List<ModelInfo> modelInfos;

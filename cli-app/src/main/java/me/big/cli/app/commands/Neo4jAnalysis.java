@@ -27,7 +27,7 @@ public class Neo4jAnalysis {
     public void connect() throws IOException {
         Neo4jLoader loader = new Neo4jLoader();
         // loader.removeData();
-        loader.loadData(modelService.findAll());
+        // loader.loadData(modelService.findAll());
     }
 
     public Availability availabilityCheck() {

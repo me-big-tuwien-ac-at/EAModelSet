@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.util.Date;
 
 @Data
@@ -24,6 +23,14 @@ public class DatasetStats {
     private Long totalElements;
     private Long totalRelationships;
     private Long totalViews;
+
+    // TODO
+    private Long minElements;
+    private Long minRelationships;
+    private Long minViews;
+    private Long maxElements;
+    private Long maxRelationships;
+    private Long maxViews;
 
     private Double avgElements;
     private Double avgRelationships;

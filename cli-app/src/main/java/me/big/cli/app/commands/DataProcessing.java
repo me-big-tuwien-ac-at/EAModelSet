@@ -1,246 +1,201 @@
 package me.big.cli.app.commands;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.pemistahl.lingua.api.Language;
-import com.github.pemistahl.lingua.api.LanguageDetector;
-import com.github.pemistahl.lingua.api.LanguageDetectorBuilder;
-import me.big.cli.app.model.ArchimateElement;
-import me.big.cli.app.model.ArchimateModel;
+import me.big.cli.app.model.ArchimateModelNew;
 import me.big.cli.app.model.ParsedModel;
 import me.big.cli.app.parser.ModelParser;
+import me.big.cli.app.service.ModelService;
+import me.big.cli.app.util.ArchiCliUtils;
 import me.big.cli.app.util.FileUtils;
+import me.big.cli.app.util.ModelUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.shell.Availability;
 import org.springframework.shell.command.annotation.Option;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
-
+import org.springframework.shell.standard.ShellMethodAvailability;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.*;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.List;
 
-@ShellComponent()
+@ShellComponent
 public class DataProcessing {
 
-    @ShellMethod(value = "Process raw model data into the dataset structure", key = "process")
-    public void process(@Option String sourceFolder, @Option String targetFolder) {
-        Path path = Paths.get(sourceFolder);
-        // get raw model files (ending in .archimate or .xml)
-        List<File> rawDataFiles = FileUtils.mergeFiles(
-                FileUtils.findFiles(path, ".xml"),
-                FileUtils.findFiles(path, ".archimate")
-        );
-        System.out.printf("%d models found in folder '%s'%n", rawDataFiles.size(), sourceFolder);
+    private final ModelService modelService;
+    private boolean loaded = false;
 
-        Set<String> storedIds = new HashSet<>();
-        AtomicInteger count = new AtomicInteger(0);
-        for (File file : rawDataFiles) {
-            System.out.printf("Processing file #%d / %d': '%s'...", count.incrementAndGet(), rawDataFiles.size(), file.getName());
-            // parse model
-            ParsedModel parsedModel = ModelParser.parseModel(file);
-            if (parsedModel == null) {
-                System.err.printf("Error while parsing model! Skipping file: '%s'", file.getPath());
-                continue;
-            }
-            if (parsedModel.getElements().size() < 10) {
-                System.out.println("Model has less than 10 elements, skipping file!");
-                continue;
-            }
-            File modelDir = new File(targetFolder + "/" + parsedModel.getId() + "/");
+    // access to relevant dataset files for dependant classes (once loaded == true)
+    private File datasetDirFile;
+    private File datasetJsonFile;
+    private File processedModelsDirFile;
 
-            // CHECK DUPLICATE ID
-            if (storedIds.contains(parsedModel.getId())) {
-                ArchimateModel dupModel = getJsonModel(modelDir);
-                if (dupModel != null) {
-                    dupModel.getDuplicates().add(formatFileName(parsedModel.getFile()));
-                    dupModel.getTags().add("DUPLICATE");
-                    storeJsonModelFile(modelDir, dupModel);
-                }
-                continue;
-            }
-
-            // create model directory
-            if (!modelDir.exists()) {
-                boolean createdDir = modelDir.mkdirs();
-                if (!createdDir) {
-                    System.err.println("Error creating directory!");
-                    continue;
-                }
-            }
-
-            // store source model (i.e. .xml or .archimate)
-            storeSourceModel(modelDir, parsedModel, file);
-            // export to other archimate format (i.e. archimate -> xml, xml -> archimate) and CSV
-            exportModel(modelDir, parsedModel, file);
-
-            // initialize JSON model
-            ArchimateModel jsonModel = ArchimateModel.builder()
-                    .identifier("https://me.big.tuwien.ac.at/EAModelSet/" + parsedModel.getId())
-                    .archimateId(parsedModel.getId())
-                    .name(parsedModel.getName())
-                    .description(parsedModel.getDocumentation())
-                    .formats(new HashSet<>(Set.of("JSON")))
-                    .source("")
-                    .sourceFile(formatFileName(parsedModel.getFile()))
-                    .sourceFormat(parsedModel.getFormat())
-                    .timestamp(new Date())
-                    .tags(new HashSet<>())
-                    .duplicates(new HashSet<>())
-                    .language("")
-                    .elements(parsedModel.getElements())
-                    .relationships(parsedModel.getRelationships())
-                    .views(parsedModel.getViews())
-                    .build();
-            // infer additional properties
-            setSource(jsonModel, file);
-            setFormats(jsonModel, modelDir);
-            if (parsedModel.isHasWarning()) {
-                jsonModel.getTags().add("WARNING");
-            }
-            setLanguage(jsonModel);
-
-            File jsonFile = storeJsonModelFile(modelDir, jsonModel);
-            if (jsonFile != null) {
-                storedIds.add(parsedModel.getId());
-            }
-        }
+    @Autowired
+    public DataProcessing(ModelService modelService) {
+        this.modelService = modelService;
     }
 
-    private void setSource(ArchimateModel model, File file) {
-        try {
-            if (file.getCanonicalPath().contains("/github/")) {
-                model.setSource("GitHub");
-            } else if (file.getCanonicalPath().contains("/genmymodel/")) {
-                model.setSource("GenMyModel");
-            } else if (file.getCanonicalPath().contains("/other/")) {
-                model.setSource("Other");
-            } else {
-                model.setSource("Unknown");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    @ShellMethod(value = "Load the given dataset directory into MongoDB", key = "load")
+    public void load(@Option(required = true) String datasetDir) throws IOException {
 
-    private void setFormats(ArchimateModel model, File modelDir) {
-        // check if files are present and add corresponding format to list
-        File[] archimateFile = modelDir.listFiles(f -> f.getName().equals("model.archimate"));
-        if (archimateFile != null && archimateFile.length > 0) {
-            model.getFormats().add("ARCHIMATE");
-        }
-        File[] xmlFile = modelDir.listFiles(f -> f.getName().equals("model.xml"));
-        if (xmlFile != null && xmlFile.length > 0) {
-            model.getFormats().add("XML");
-        }
-        File csvDir = new File(modelDir.getAbsolutePath() + "/csv");
-        if (csvDir.exists() && csvDir.listFiles() != null) {
-            model.getFormats().add("CSV");
-        }
-    }
+        // get relevant files from dataset
+        datasetDirFile = FileUtils.getDirFile(datasetDir);
+        datasetJsonFile = FileUtils.getRelativeFile(datasetDirFile, "dataset.json");
+        processedModelsDirFile = FileUtils.getRelativeDir(datasetDirFile, "processed-models");
+        List<File> modelDirs = FileUtils.getDirs(processedModelsDirFile.getAbsolutePath());
 
-    private void setLanguage(ArchimateModel model) {
-        String mergedText = "";
-        for (ArchimateElement element : model.getElements()) {
-            mergedText += element.getName() + " ";
-        }
-        final LanguageDetector detector = LanguageDetectorBuilder.fromAllLanguages().build();
-        final Language detectedLanguage = detector.detectLanguageOf(mergedText);
-        model.setLanguage(String.valueOf(detectedLanguage.getIsoCode639_1()).toLowerCase());
-        // final Map<Language, Double> confidenceValues = detector.computeLanguageConfidenceValues(mergedText);
-    }
+        // reset DB
+        modelService.deleteAll();
 
-    private void storeSourceModel(File modelDir, ParsedModel parsedModel, File sourceFile) {
-        try {
-            File modelFile = new File(modelDir.getCanonicalPath() + "/model." + parsedModel.getFormat().toLowerCase());
-            org.apache.commons.io.FileUtils.copyFile(sourceFile, modelFile);
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.err.println("Error copying source model file to model directory!");
-        }
-    }
-
-    private void exportModel(File modelDir, ParsedModel parsedModel, File file) {
-        try {
-            // Process process = null;
-            if (parsedModel.getFormat().equals("ARCHIMATE")) {
-                Runtime.getRuntime().exec("/Applications/Archi.app/Contents/MacOS/Archi -application com.archimatetool.commandline.app -consoleLog -nosplash --loadModel \""
-                        + file.getAbsolutePath() + "\" "
-                        + "--xmlexchange.export \"" + modelDir.getAbsolutePath() + "/model.xml\" "
-                        + "--csv.export \"" + modelDir.getAbsolutePath() + "/csv/\" ");
-            } else if (parsedModel.getFormat().equals("XML")) {
-                System.out.println(parsedModel.getName());
-                Runtime.getRuntime().exec("/Applications/Archi.app/Contents/MacOS/Archi -application com.archimatetool.commandline.app -consoleLog -nosplash --xmlexchange.import \""
-                        + file.getAbsolutePath() + "\" "
-                        + "--saveModel \"" + modelDir.getAbsolutePath() + "/model.archimate\" "
-                        + "--csv.export \"" + modelDir.getAbsolutePath() + "/csv/\" ");
-            }
-            /*if (process != null) {
-                BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
-                String inputLine;
-                while ((inputLine = in.readLine()) != null) {
-                    System.out.println(inputLine);
-                }
-                in.close();
-            }*/
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    private File storeJsonModelFile(File modelDir, ArchimateModel model) {
-        if (!validateDirectory(modelDir)) {
-            return null;
-        }
+        // from each model directory (i.e. processed-models/<id>/): read model.json and store in DB
         ObjectMapper mapper = new ObjectMapper();
-        try {
-            File jsonFile = new File(modelDir.getCanonicalPath() + "/model.json");
-            // serialize Java object into JSON file
-            mapper.writeValue(jsonFile, model);
-            return jsonFile;
-        } catch (IOException e) {
-            e.printStackTrace();
+        for (File file : modelDirs) {
+            // in case an exception is thrown while reading a model, the whole process is stopped
+            File jsonFile = FileUtils.getRelativeFile(file, "model.json");
+            ArchimateModelNew jsonModel = mapper.readValue(jsonFile, ArchimateModelNew.class);
+            modelService.save(jsonModel);
         }
-        return null;
+
+        // verify models were added to DB and set 'loaded' to true/false, making remaining commands available/un-available
+        Long count = modelService.getTotalModels();
+        if (count > 0) {
+            System.out.printf("%d models loaded into database%n", count);
+            loaded = true;
+        } else {
+            System.err.println("ERROR: no models loaded into database!");
+            loaded = false;
+        }
     }
 
-    private ArchimateModel getJsonModel(File modelDir) {
-        if (!validateDirectory(modelDir)) {
+    @ShellMethod(value = "Add a model to the loaded dataset", key = "addModel")
+    @ShellMethodAvailability("availabilityCheck")
+    public void addModel(@Option(required = true) String modelFilePath) throws IOException {
+        if (!modelFilePath.endsWith(".xml") && !modelFilePath.endsWith(".archimate")) {
+            throw new IllegalArgumentException("ERROR: invalid file extension! Should end in '.xml' or '.archimate'");
+        }
+        File modelFile = FileUtils.getFile(modelFilePath);
+
+        ParsedModel parsedModel = ModelParser.parseModel(modelFile);
+        if (!isValid(parsedModel)) {
+            return;
+        }
+
+        // check DB if ID already exists
+        // TODO: add to duplicates list
+        if (modelService.getModelById(parsedModel.getId()).isPresent()) {
+            System.err.printf("ERROR: model with id '%s' already exists!%n", parsedModel.getId());
+            return;
+        }
+        File modelDir = createModelDir(processedModelsDirFile, parsedModel);
+        // store source .xml/.archimate model (i.e. the one being processed)
+        FileUtils.storeSourceModel(modelDir, parsedModel, modelFile);
+        // export to other archimate format (i.e. archimate -> xml, xml -> archimate) + CSV
+        ArchiCliUtils.exportModel(modelDir, parsedModel, modelFile);
+        // create JSON model
+        ArchimateModelNew jsonModel = ModelUtils.createJsonModelFrom(parsedModel);
+
+        // set additional properties
+        ModelUtils.setSource(jsonModel, modelFile);
+        ModelUtils.setFormats(jsonModel, modelDir);
+        ModelUtils.setLanguage(jsonModel);
+        if (parsedModel.isHasWarning()) {
+            jsonModel.getTags().add("WARNING");
+        }
+
+        File file = FileUtils.storeJsonModelFile(modelDir, jsonModel);
+        if (file != null) {
+            modelService.save(jsonModel);
+            System.out.println("Model successfully stored in DB!");
+        } else {
+            System.err.println("ERROR: failed to store JSON model!");
+        }
+    }
+
+    @ShellMethod(value = "Process a model to the given dataset folder", key = "addModelDir")
+    public void processModel(
+            @Option(longNames = "modelPath", shortNames = 'm', required = true) String modelPath,
+            @Option(longNames = "datasetDirPath", shortNames = 'd', required = true) String datasetDirPath
+    ) throws IOException {
+        // verify provided model file and set up files for processing
+        if (!modelPath.endsWith(".xml") && !modelPath.endsWith(".archimate")) {
+            throw new IllegalArgumentException("ERROR: invalid file extension! Should end in '.xml' or '.archimate'");
+        }
+        File modelFile = FileUtils.getFile(modelPath);
+        File datasetDir = FileUtils.getDirFile(datasetDirPath);
+        // File datasetJsonFile = FileUtils.getRelativeFile(datasetDir, "dataset.json");
+        File processedModelsDir = FileUtils.getRelativeDir(datasetDir, "processed-models");
+
+        ParsedModel parsedModel = ModelParser.parseModel(modelFile);
+        if (!isValid(parsedModel)) {
+            return;
+        }
+
+        File modelDir = createModelDir(processedModelsDir, parsedModel);
+        FileUtils.storeSourceModel(modelDir, parsedModel, modelFile);
+        ArchiCliUtils.exportModel(modelDir, parsedModel, modelFile);
+        ArchimateModelNew jsonModel = ModelUtils.createJsonModelFrom(parsedModel);
+
+        ModelUtils.setSource(jsonModel, modelFile);
+        ModelUtils.setFormats(jsonModel, modelDir);
+        ModelUtils.setLanguage(jsonModel);
+        if (parsedModel.isHasWarning()) {
+            jsonModel.getTags().add("WARNING");
+        }
+        File file = FileUtils.storeJsonModelFile(modelDir, jsonModel);
+        if (file != null) {
+            System.out.println("Model successfully added to dataset!");
+        } else {
+            System.err.println("ERROR: failed to create JSON file!");
+        }
+    }
+
+    public boolean isLoaded() {
+        return loaded;
+    }
+
+    public Availability availabilityCheck() {
+        return loaded
+                ? Availability.available()
+                : Availability.unavailable("Model is not loaded into database!");
+    }
+
+    public File getDatasetDir() {
+        return datasetDirFile;
+    }
+
+    public File getDatasetJsonFile() {
+        return datasetJsonFile;
+    }
+
+    public File getProcessedModelsDirFile() {
+        return processedModelsDirFile;
+    }
+
+    private boolean isValid(ParsedModel parsedModel) {
+        if (parsedModel == null) {
+            System.err.println("ERROR: could not parse model!");
+            return false;
+        } else if (parsedModel.getElements().size() < 10) {
+            System.err.println("ERROR: model has less than 10 elements!");
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    private File createModelDir(File processedModelsDir, ParsedModel parsedModel) {
+        File modelDir = new File(processedModelsDir, parsedModel.getId());
+        // check if model ID already exists
+        if (modelDir.exists() || modelDir.isDirectory()) {
+            // TODO: add to duplicates list
+            System.err.printf("ERROR: model with id '%s' already exists!%n", parsedModel.getId());
             return null;
         }
-        File[] files = modelDir.listFiles(f -> f.getName().equals("model.json"));
-        if (files != null && files.length == 1) {
-            ObjectMapper objectMapper = new ObjectMapper();
-            try {
-                return objectMapper.readValue(files[0], ArchimateModel.class);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            System.err.println("No model.json file found!");
+        // create the directory
+        boolean createdDir = modelDir.mkdirs();
+        if (!createdDir) {
+            System.err.println("ERROR, could not create model directory!");
+            return null;
         }
-        return null;
+        return modelDir;
     }
-
-    private boolean validateDirectory(File dir) {
-        if (!dir.exists()) {
-            System.err.printf("Directory '%s' does not exist!", dir);
-            return false;
-        }
-        if (!dir.isDirectory()) {
-            System.err.printf("Not a directory '%s'!", dir);
-            return false;
-        }
-        return true;
-    }
-
-    private String formatFileName(String file) {
-        if (file.contains("/raw-data")) {
-            return file.substring(file.indexOf("/raw-data") + 1);
-        } else {
-            return file;
-        }
-    }
-
 }

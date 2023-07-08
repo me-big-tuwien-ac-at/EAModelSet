@@ -2,7 +2,6 @@ package me.big.cli.app.parser;
 
 import lombok.extern.slf4j.Slf4j;
 import me.big.cli.app.model.ParsedModel;
-
 import java.io.File;
 
 @Slf4j

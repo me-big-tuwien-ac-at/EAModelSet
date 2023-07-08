@@ -1,0 +1,187 @@
+{
+  "$id": "https://me.big.tuwien.ac.at/schemas/ea-model.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ArchimateModel",
+  "type": "object",
+  "required": [
+    "identifier",
+    "archimateId",
+    "name",
+    "description",
+    "formats",
+    "source",
+    "repository",
+    "license",
+    "sourceFile",
+    "sourceFormat",
+    "timestamp",
+    "tags",
+    "duplicates",
+    "language",
+    "elements",
+    "relationships",
+    "views"
+  ],
+  "properties": {
+    "identifier": {
+      "type": "string",
+      "format": "uri",
+      "description": "Unique URI identifier to access the model"
+    },
+    "archimateId": {
+      "type": "string",
+      "description": "ArchiMate ID from the source file of the model"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the model"
+    },
+    "description": {
+      "type": "string",
+      "description": "Additional information about the model (e.g. description, purpose, scope)"
+    },
+    "formats": {
+      "type": "array",
+      "description": "Available, downloadable formats of the model",
+      "items": {
+        "type": "string",
+        "enum": [ "JSON", "ARCHIMATE", "XML", "CSV", "PNG" ]
+      }
+    },
+    "source": {
+      "type": "string",
+      "description": "Source where the model was downloaded from",
+      "enum": [ "GitHub", "GenMyModel", "Other", "Unknown" ]
+    },
+    "repository": {
+      "type": "string",
+      "description": "Specific repository location of the source model"
+    },
+    "license": {
+      "type": "string",
+      "description": "License for the model"
+    },
+    "sourceFile": {
+      "type": "string",
+      "description": "Relative file path of the parsed model file"
+    },
+    "sourceFormat": {
+      "type": "string",
+      "description": "Source format of the original downloaded model",
+      "enum": [ "ARCHIMATE", "XML" ]
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "tags": {
+      "type": "array",
+      "description": "Additional tags to classify the model",
+      "items": {
+        "type": "string",
+        "enum": [ "DUPLICATE", "WARNING" ]
+      }
+    },
+    "duplicates": {
+      "type": "array",
+      "description": "Relative file path of detected duplicates (e.g. same ID)",
+      "items": {
+        "type": "string"
+      }
+    },
+    "language": {
+      "type": "string",
+      "description": "Language of the model",
+      "enum": [
+        "aa", "ab", "ae", "af", "ak", "am", "an", "ar", "as", "av", "ay", "az", "ba", "be", "bg", "bi",
+        "bm", "bn", "bo", "br", "bs", "ca", "ce", "ch", "co", "cr", "cs", "cu", "cv", "cy", "da", "de",
+        "dv", "dz", "ee", "el", "en", "eo", "es", "et", "eu", "fa", "ff", "fi", "fj", "fo", "fr", "fy",
+        "ga", "gd", "gl", "gn", "gu", "gv", "ha", "he", "hi", "ho", "hr", "ht", "hu", "hy", "hz", "ia",
+        "id", "ie", "ig", "ii", "ik", "io", "is", "it", "iu", "ja", "jv", "ka", "kg", "ki", "kj", "kk",
+        "kl", "km", "kn", "ko", "kr", "ks", "ku", "kv", "kw", "ky", "la", "lb", "lg", "li", "ln", "lo",
+        "lt", "lu", "lv", "mg", "mh", "mi", "mk", "ml", "mn", "mr", "ms", "mt", "my", "na", "nb", "nd",
+        "ne", "ng", "nl", "nn", "no", "nr", "nv", "ny", "oc", "oj", "om", "or", "os", "pa", "pi", "pl",
+        "ps", "pt", "qu", "rm", "rn", "ro", "ru", "rw", "sa", "sc", "sd", "se", "sg", "sh", "si", "sk",
+        "sl", "sm", "sn", "so", "sq", "sr", "ss", "st", "su", "sv", "sw", "ta", "te", "tg", "th", "ti",
+        "tk", "tl", "tn", "to", "tr", "ts", "tt", "tw", "ty", "ug", "uk", "ur", "uz", "ve", "vi", "vo",
+        "wa", "wo", "xh", "yi", "yo", "za", "zh", "zu"
+      ]
+    },
+    "elements": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/element" }
+    },
+    "relationships": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/relationship" }
+    },
+    "views": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/view" }
+    }
+  },
+  "$defs": {
+    "element": {
+      "type": "object",
+      "required": [ "id", "name", "type", "layer" ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the element"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the element"
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of the element"
+        },
+        "layer": {
+          "type": "string",
+          "description": "Layer of the element (computed through type)"
+        }
+      }
+    },
+    "relationship": {
+      "type": "object",
+      "required": [ "id", "sourceId", "targetId", "type" ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the element"
+        },
+        "sourceId": {
+          "type": "string",
+          "description": "ID of the source element"
+        },
+        "targetId": {
+          "type": "string",
+          "description": "ID of the target element"
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of the element"
+        }
+      }
+    },
+    "view": {
+      "type": "object",
+      "required": [ "id", "name", "viewpoint"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the view"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the element"
+        },
+        "viewpoint": {
+          "type": "string",
+          "description": ""
+        }
+      }
+    }
+  }
+}
