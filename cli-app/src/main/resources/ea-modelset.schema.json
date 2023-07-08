@@ -1,5 +1,5 @@
 {
-    "$id": "https://me.big.tuwien.ac.at/ea-modelset.schema.json",
+    "$id": "https://me.big.tuwien.ac.at/EAModelSet/schemas/ea-modelset.schema.json",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "title": "EA ModelSet Schema",
     "description": "A representation of EA ModelSet including brief information of its data",
@@ -14,9 +14,12 @@
         },
         "version": {
             "type": "string",
+            "pattern": "^(v)?\\d+\\.\\d+\\.\\d+$",
             "description": "Current version of the dataset",
             "examples": [
-                "0.0.1"
+                "0.0.1",
+                "v0.1.0",
+                "7.0.5"
             ]
         },
         "lastUpdated": {
@@ -28,10 +31,12 @@
         },
         "modelCount": {
             "type": "integer",
+            "description": "Amount of models included in the dataset",
             "minimum": 0
         },
         "modelInfos": {
             "type": "array",
+            "description": "Brief information about each model in the dataset",
             "items": {
                 "$ref": "#/$defs/ModelInfo"
             }
@@ -49,7 +54,7 @@
             "title": "EA ModelSet",
             "version": "0.0.1",
             "lastUpdated": "2023-06-30",
-            "modelCount": 1009,
+            "modelCount": 1,
             "modelInfos": [
                 {
                     "id": "id-48fb3807bfa249a9bae607b6a92cc390",
@@ -98,7 +103,8 @@
                     "type": "string"
                 },
                 "source": {
-                    "type": "string"
+                    "type": "string",
+                    "enum": [ "GitHub", "GenMyModel", "Other", "Unknown" ]
                 },
                 "repository": {
                     "type": "string"
@@ -107,31 +113,51 @@
                     "type": "string"
                 },
                 "language": {
-                    "type": "string"
+                    "type": "string",
+                    "enum": [
+                        "aa", "ab", "ae", "af", "ak", "am", "an", "ar", "as", "av", "ay", "az", "ba", "be", "bg", "bi",
+                        "bm", "bn", "bo", "br", "bs", "ca", "ce", "ch", "co", "cr", "cs", "cu", "cv", "cy", "da", "de",
+                        "dv", "dz", "ee", "el", "en", "eo", "es", "et", "eu", "fa", "ff", "fi", "fj", "fo", "fr", "fy",
+                        "ga", "gd", "gl", "gn", "gu", "gv", "ha", "he", "hi", "ho", "hr", "ht", "hu", "hy", "hz", "ia",
+                        "id", "ie", "ig", "ii", "ik", "io", "is", "it", "iu", "ja", "jv", "ka", "kg", "ki", "kj", "kk",
+                        "kl", "km", "kn", "ko", "kr", "ks", "ku", "kv", "kw", "ky", "la", "lb", "lg", "li", "ln", "lo",
+                        "lt", "lu", "lv", "mg", "mh", "mi", "mk", "ml", "mn", "mr", "ms", "mt", "my", "na", "nb", "nd",
+                        "ne", "ng", "nl", "nn", "no", "nr", "nv", "ny", "oc", "oj", "om", "or", "os", "pa", "pi", "pl",
+                        "ps", "pt", "qu", "rm", "rn", "ro", "ru", "rw", "sa", "sc", "sd", "se", "sg", "sh", "si", "sk",
+                        "sl", "sm", "sn", "so", "sq", "sr", "ss", "st", "su", "sv", "sw", "ta", "te", "tg", "th", "ti",
+                        "tk", "tl", "tn", "to", "tr", "ts", "tt", "tw", "ty", "ug", "uk", "ur", "uz", "ve", "vi", "vo",
+                        "wa", "wo", "xh", "yi", "yo", "za", "zh", "zu"
+                    ]
                 },
                 "formats": {
                     "type": "array",
                     "items": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": [ "JSON", "ARCHIMATE", "XML", "CSV", "PNG" ]
                     }
                 },
                 "tags": {
                     "type": "array",
                     "items": {
-                        "type": "string"
+                        "type": "string",
+                        "enum": [ "DUPLICATE", "WARNING" ]
                     }
                 },
                 "duplicateCount": {
-                    "type": "integer"
+                    "type": "integer",
+                    "minimum": 0
                 },
                 "elementCount": {
-                    "type": "integer"
+                    "type": "integer",
+                    "minimum": 10
                 },
                 "relationshipCount": {
-                    "type": "integer"
+                    "type": "integer",
+                    "minimum": 0
                 },
                 "viewCount": {
-                    "type": "integer"
+                    "type": "integer",
+                    "minimum": 0
                 }
             }
         }

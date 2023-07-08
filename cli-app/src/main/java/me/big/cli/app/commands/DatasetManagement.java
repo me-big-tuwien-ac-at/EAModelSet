@@ -83,7 +83,10 @@ public class DatasetManagement {
     }
 
     private SchemaGenerator setupSchemaGenerator() {
-        SchemaGeneratorConfigBuilder configBuilder = new SchemaGeneratorConfigBuilder(SchemaVersion.DRAFT_2020_12, OptionPreset.PLAIN_JSON);
+        SchemaGeneratorConfigBuilder configBuilder = new SchemaGeneratorConfigBuilder(
+                SchemaVersion.DRAFT_2020_12,
+                OptionPreset.PLAIN_JSON
+        );
         SchemaGeneratorConfig config = configBuilder.build();
         return new SchemaGenerator(config);
     }

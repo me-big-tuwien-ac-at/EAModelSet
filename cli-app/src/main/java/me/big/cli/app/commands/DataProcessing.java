@@ -148,6 +148,27 @@ public class DataProcessing {
         }
     }
 
+    @ShellMethod(value = "Remove Model", key = "removeModel")
+    public void removeModel(
+            @Option(required = true) String datasetDirPath,
+            @Option(required = true) String modelId
+    ) throws IOException {
+        File datasetDir = FileUtils.getDirFile(datasetDirPath);
+        File processedModelsDir = FileUtils.getRelativeDir(datasetDir, "processed-models");
+        File modelDir = FileUtils.getRelativeDir(processedModelsDir, modelId);
+        File jsonFile = FileUtils.getRelativeFile(modelDir, "model.json");
+        ObjectMapper mapper = new ObjectMapper();
+        ArchimateModelNew jsonModel = mapper.readValue(jsonFile, ArchimateModelNew.class);
+        File sourceFile = FileUtils.getRelativeFile(datasetDir.getParentFile(), jsonModel.getSourceFile());
+        boolean deleted = sourceFile.delete();
+        if (!deleted) {
+            System.err.printf("Error: failed to delete source file!%n");
+        }
+        System.out.printf("Deleting model directory for '%s'...%n", modelDir.getName());
+        org.apache.commons.io.FileUtils.deleteDirectory(modelDir);
+        System.out.println("Deleted!");
+    }
+
     public boolean isLoaded() {
         return loaded;
     }

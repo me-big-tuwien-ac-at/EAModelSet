@@ -1,38 +1,94 @@
 {
-  "$id": "https://example.com/archimate-model.schema.json",
+  "$id": "https://me.big.tuwien.ac.at/EAModelSet/schemas/ea-model.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "ArchimateModel",
+  "description": "A representation of an EA Model including its elements, relationships, and views",
   "type": "object",
-  "required": ["id", "name"],
+  "required": [
+    "identifier",
+    "archimateId",
+    "name",
+    "description",
+    "formats",
+    "source",
+    "repository",
+    "license",
+    "sourceFile",
+    "sourceFormat",
+    "timestamp",
+    "tags",
+    "duplicates",
+    "language",
+    "elements",
+    "relationships",
+    "views"
+  ],
   "properties": {
-    "id": {
+    "identifier": {
       "type": "string",
-      "description": "Unique identifier of the model"
+      "format": "uri",
+      "description": "Unique URI identifier to access the model"
+    },
+    "archimateId": {
+      "type": "string",
+      "description": "ArchiMate ID from the source file of the model"
     },
     "name": {
       "type": "string",
       "description": "Name of the model"
     },
-    "documentation": {
+    "description": {
       "type": "string",
-      "description": "Additional information about the model (i.e. description, purpose)"
+      "description": "Additional information about the model (e.g. description, purpose, scope)"
     },
-    "file": {
-      "type": "string",
-      "description": "Relative file path of the parsed model file"
-    },
-    "format": {
-      "type": "string",
-      "description": "Format of the parsed file (i.e., file extension)",
-      "enum": [ "ARCHIMATE", "XML" ]
+    "formats": {
+      "type": "array",
+      "description": "Available, downloadable formats of the model",
+      "items": {
+        "type": "string",
+        "enum": [ "JSON", "ARCHIMATE", "XML", "CSV", "PNG" ]
+      }
     },
     "source": {
       "type": "string",
-      "description": "Source of the model"
+      "description": "Source where the model was downloaded from",
+      "enum": [ "GitHub", "GenMyModel", "Other", "Unknown" ]
+    },
+    "repository": {
+      "type": "string",
+      "description": "Specific repository location of the source model"
+    },
+    "license": {
+      "type": "string",
+      "description": "License for the model"
+    },
+    "sourceFile": {
+      "type": "string",
+      "description": "Relative file path of the parsed model file"
+    },
+    "sourceFormat": {
+      "type": "string",
+      "description": "Source format of the original downloaded model",
+      "enum": [ "ARCHIMATE", "XML" ]
     },
     "timestamp": {
       "type": "string",
       "format": "date-time"
+    },
+    "tags": {
+      "type": "array",
+      "description": "Additional tags to classify the model",
+      "items": {
+        "type": "string",
+        "enum": [ "DUPLICATE", "WARNING" ]
+      }
+    },
+    "duplicates": {
+      "type": "array",
+      "description": "Relative file path of detected duplicates (e.g. same ID)",
+      "items": {
+        "type": "string"
+      }
     },
     "language": {
       "type": "string",
@@ -85,10 +141,6 @@
         "layer": {
           "type": "string",
           "description": "Layer of the element (computed through type)"
-        },
-        "documentation": {
-          "type": "string",
-          "description": "Additional documentation of the element"
         }
       }
     },
@@ -111,20 +163,12 @@
         "type": {
           "type": "string",
           "description": "Type of the element"
-        },
-        "name": {
-          "type": "string",
-          "description": "Name of the element"
-        },
-        "documentation": {
-          "type": "string",
-          "description": "Additional documentation of the relationships"
         }
       }
     },
     "view": {
       "type": "object",
-      "required": [ "id", "name", "viewpoint", "documentation" ],
+      "required": [ "id", "name", "viewpoint"],
       "properties": {
         "id": {
           "type": "string",
@@ -136,11 +180,7 @@
         },
         "viewpoint": {
           "type": "string",
-          "description": ""
-        },
-        "documentation": {
-          "type": "string",
-          "description": ""
+          "description": "Associated viewpoint to the view (optional)"
         }
       }
     }
