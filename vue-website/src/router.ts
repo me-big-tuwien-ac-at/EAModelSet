@@ -34,7 +34,7 @@ const routes: Array<RouteRecordRaw> = [
 
 // TODO: change this for live website
 const router = createRouter({
-    history: createWebHistory('/eamodelset/'),
+    history: createWebHistory('/EAModelSet/'),
     routes,
 });
 
