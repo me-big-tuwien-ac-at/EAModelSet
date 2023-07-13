@@ -28,7 +28,7 @@ public class ZipCommands {
     @ShellMethodAvailability("availabilityCheck")
     public void zip(@Option String targetFilePath) throws IOException {
         File datasetDir = dataProcessing.getDatasetDir();
-        zip(datasetDir.getCanonicalPath(), targetFilePath);
+        zip(targetFilePath, datasetDir.getCanonicalPath());
     }
 
     @ShellMethod(value = "Create a ZIP archive of a give directory", key = "zipDir")
