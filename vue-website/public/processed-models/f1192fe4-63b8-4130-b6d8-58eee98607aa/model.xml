@@ -1,0 +1,2980 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://www.opengroup.org/xsd/archimate/3.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengroup.org/xsd/archimate/3.0/ http://www.opengroup.org/xsd/archimate/3.1/archimate3_Diagram.xsd" identifier="f1192fe4-63b8-4130-b6d8-58eee98607aa">
+  <name xml:lang="en">9 Trading Packages</name>
+  <elements>
+    <element identifier="bcbf28f7" xsi:type="BusinessObject">
+      <name xml:lang="en">amount</name>
+    </element>
+    <element identifier="e29a2a24" xsi:type="BusinessObject">
+      <name xml:lang="en">party</name>
+    </element>
+    <element identifier="id-9d7a21cc" xsi:type="BusinessObject">
+      <name xml:lang="en">contract</name>
+    </element>
+    <element identifier="b45e67c5" xsi:type="BusinessObject">
+      <name xml:lang="en">short [derived]</name>
+      <documentation xml:lang="en">seller</documentation>
+    </element>
+    <element identifier="id-35950b20" xsi:type="BusinessObject">
+      <name xml:lang="en">long [derived]</name>
+      <documentation xml:lang="en">buyer</documentation>
+    </element>
+    <element identifier="beace333" xsi:type="BusinessObject">
+      <name xml:lang="en">price</name>
+    </element>
+    <element identifier="b9cebc65" xsi:type="BusinessObject">
+      <name xml:lang="en">money</name>
+    </element>
+    <element identifier="id-877f967d" xsi:type="BusinessObject">
+      <name xml:lang="en">portfolio</name>
+      <documentation xml:lang="en">- portfolio is a collection of contracts
+- A portfolio is a collection of contracts that can be valued as a whole.
+- Portfolios are commonly formed from a number of properties of contracts, including counterparty, dealer (the primary party), instrument, and dates of the deal
+
+- Portfolios can be transient or persistent.</documentation>
+    </element>
+    <element identifier="c744d88c" xsi:type="BusinessObject">
+      <name xml:lang="en">portfolio filter</name>
+      <documentation xml:lang="en">pattern strategy:
+мы можем выбрать любой фильтр
+-  filter is only used for selection purposes.
+-We can easily add other portfolio filters.
+- - This allows us to use the contract selector for simple cases and use a range of hard-coded fiiters for more complex situations.</documentation>
+    </element>
+    <element identifier="id-18d341af" xsi:type="BusinessObject">
+      <name xml:lang="en">contract filter</name>
+      <documentation xml:lang="en">This allows us to use the contract selector for simple cases</documentation>
+    </element>
+    <element identifier="dd64380c" xsi:type="BusinessObject">
+      <name xml:lang="en">hard coded filter</name>
+      <documentation xml:lang="en">use a range of hard-coded fiiters for more complex situations.</documentation>
+    </element>
+    <element identifier="f43dfa34" xsi:type="BusinessObject">
+      <name xml:lang="en">set filter</name>
+    </element>
+    <element identifier="id-51e74750" xsi:type="BusinessObject">
+      <name xml:lang="en">Date</name>
+    </element>
+    <element identifier="c2d52bc2" xsi:type="BusinessObject">
+      <name xml:lang="en">boolean routine</name>
+    </element>
+    <element identifier="id-288264c4" xsi:type="BusinessObject">
+      <name xml:lang="en">set operation</name>
+    </element>
+    <element identifier="a8245a38" xsi:type="BusinessFunction">
+      <name xml:lang="en">is included (contract)</name>
+      <documentation xml:lang="en">- Subclasses of the portfolio filter override isIncluded to provide their specific behaviors.</documentation>
+    </element>
+    <element identifier="a323d9b9" xsi:type="BusinessFunction">
+      <name xml:lang="en">select contracts (collection of contracts)</name>
+      <documentation xml:lang="en">- The select operation on the portfolio filter takes a collection of contracts and returns another collection of contracts
+- For each contract in the input collection, the select operation evaluates isIncluded and, if true, adds it to the result.</documentation>
+    </element>
+    <element identifier="id-3c88830c" xsi:type="BusinessProcess">
+      <name xml:lang="en">for each contract in collection</name>
+    </element>
+    <element identifier="id-001559ac" xsi:type="BusinessProcess">
+      <name xml:lang="en">call , and add to result if yes</name>
+    </element>
+    <element identifier="dd16ae1c" xsi:type="BusinessFunction">
+      <name xml:lang="en">value (scenario)</name>
+      <documentation xml:lang="en">- позволяет рассчитать ценность всего пакета целиком 
+- в простом случае равен сумме всех входящих контрактов</documentation>
+    </element>
+    <element identifier="b85045ea" xsi:type="BusinessFunction">
+      <name xml:lang="en">value (scenario)</name>
+    </element>
+    <element identifier="id-9bc924ac" xsi:type="BusinessObject">
+      <name xml:lang="en">quote</name>
+      <documentation xml:lang="en">- котировка
+-  quote is a fundamental type</documentation>
+    </element>
+    <element identifier="id-559e383d" xsi:type="BusinessObject">
+      <name xml:lang="en">two-way quote</name>
+    </element>
+    <element identifier="ca70d370" xsi:type="BusinessObject">
+      <name xml:lang="en">one-way quote</name>
+    </element>
+    <element identifier="id-0068c68e" xsi:type="BusinessObject">
+      <name xml:lang="en">bid</name>
+      <documentation xml:lang="en">- the price to buy (the bid предложение цены)</documentation>
+    </element>
+    <element identifier="fbe431b0" xsi:type="BusinessObject">
+      <name xml:lang="en">offer</name>
+      <documentation xml:lang="en">-  the price to sell (the offer).</documentation>
+    </element>
+    <element identifier="id-33f61e22" xsi:type="BusinessObject">
+      <name xml:lang="en">mid</name>
+    </element>
+    <element identifier="aa4d1df1" xsi:type="BusinessObject">
+      <name xml:lang="en">spread</name>
+      <documentation xml:lang="en">- spread—the difference between the bid and the offer</documentation>
+    </element>
+    <element identifier="id-0e83d100" xsi:type="BusinessObject">
+      <name xml:lang="en">scenario element /price</name>
+    </element>
+    <element identifier="id-79514adf" xsi:type="BusinessObject">
+      <name xml:lang="en">sourced scenario element</name>
+      <documentation xml:lang="en">origins of a price: publication by some body that is widely quoted in the market,</documentation>
+    </element>
+    <element identifier="id-86814cd5" xsi:type="BusinessObject">
+      <name xml:lang="en">calculated scenario element</name>
+      <documentation xml:lang="en">- calculation from other prices or market characteristics
+- In this case the calculated scenario element has a list of scenario elements as arguments and a formula</documentation>
+    </element>
+    <element identifier="id-9496d9bc" xsi:type="BusinessObject">
+      <name xml:lang="en">scenario</name>
+      <documentation xml:lang="en">- The scenario represents the state of the market at a certain point in time, and the elements within the scenario represent the prices at that point</documentation>
+    </element>
+    <element identifier="dae4395e" xsi:type="BusinessObject">
+      <name xml:lang="en">timepoint</name>
+      <documentation xml:lang="en">We need to be able to show how prices can change over time and to keep a history of those changes</documentation>
+    </element>
+    <element identifier="id-220c9731" xsi:type="BusinessObject">
+      <name xml:lang="en">market indicator</name>
+      <documentation xml:lang="en">-  market indicator as a supertype of instrument. This reflects the fact that scenarios can contain things other than instruments (for example, a market indicator includes volatilities, as well as all instruments)</documentation>
+    </element>
+    <element identifier="id-9054a234" xsi:type="BusinessObject">
+      <name xml:lang="en">instrument</name>
+      <documentation xml:lang="en">all instruments are exchange rates</documentation>
+    </element>
+    <element identifier="f10fbc9b" xsi:type="BusinessObject">
+      <name xml:lang="en">source index</name>
+    </element>
+    <element identifier="id-21d951ce" xsi:type="BusinessObject">
+      <name xml:lang="en">information source</name>
+      <documentation xml:lang="en">Typically these instructions come from a source, such as Reuters, that tells where to look for information (for example, "Page 3, second column of the row starting IBM")</documentation>
+    </element>
+    <element identifier="fea3cfb9" xsi:type="BusinessObject">
+      <name xml:lang="en">formula</name>
+      <documentation xml:lang="en">We can build an interpreter [1] that recognizes a simple range of formulaic expressions. This technique is familiar to any user who has used spreadsheets</documentation>
+    </element>
+    <element identifier="e65c7fe6" xsi:type="BusinessObject">
+      <name xml:lang="en">contract</name>
+    </element>
+    <element identifier="id-2fd7d9e5" xsi:type="BusinessObject">
+      <name xml:lang="en">option</name>
+      <documentation xml:lang="en">We can sell an option to sell money,&#xD;
+sell an option to buy money, buy an option to sell money, or buy an option to&#xD;
+buy money. &#xD;
+&#xD;
+- опцион это как купон на льготную цену&#xD;
+- An option gives the buyer the right to buy dollars at a&#xD;
+prearranged exchange rate if the holder wishes&#xD;
+&#xD;
+- in the money  LingvoEconomics - &#xD;
+бирж. ситуация, при которой цена использования опциона выгоднее рыночной&#xD;
+&#xD;
+prearranged price /  назначенная цена</documentation>
+    </element>
+    <element identifier="c21e5d1b" xsi:type="BusinessObject">
+      <name xml:lang="en">call [derived]</name>
+      <documentation xml:lang="en">- Call and put are terms derived from the longs and shorts.&#xD;
+&#xD;
+- A call is an option to buy (that is, a&#xD;
+long contract),</documentation>
+    </element>
+    <element identifier="id-77a8b960" xsi:type="BusinessObject">
+      <name xml:lang="en">put [derived]</name>
+      <documentation xml:lang="en">put is an option to sell (a short contract).</documentation>
+    </element>
+    <element identifier="ab66af61" xsi:type="BusinessObject">
+      <name xml:lang="en">knock-in call</name>
+    </element>
+    <element identifier="id-98d8fed9" xsi:type="BusinessObject">
+      <name xml:lang="en">tenor</name>
+      <documentation xml:lang="en">- срок действия&#xD;
+- The tenor is the period between the trade date and the delivery&#xD;
+date&#xD;
+- The tenor is based on the difference between trade and delivery dates</documentation>
+    </element>
+    <element identifier="ec1db2f0" xsi:type="BusinessObject">
+      <name xml:lang="en">trade date</name>
+    </element>
+    <element identifier="e0bf139d" xsi:type="BusinessObject">
+      <name xml:lang="en">delivery date</name>
+      <documentation xml:lang="en">Without considering holidays,&#xD;
+we can determine the delivery date by a simple calculation between date and&#xD;
+tenor</documentation>
+    </element>
+    <element identifier="cc2dfd81" xsi:type="BusinessObject">
+      <name xml:lang="en">instrument</name>
+    </element>
+    <element identifier="a63c5476" xsi:type="BusinessObject">
+      <name xml:lang="en">amount</name>
+    </element>
+    <element identifier="id-53a6949e" xsi:type="BusinessObject">
+      <name xml:lang="en">price</name>
+    </element>
+    <element identifier="id-524f7675" xsi:type="BusinessObject">
+      <name xml:lang="en">money</name>
+    </element>
+    <element identifier="id-8de6be68" xsi:type="BusinessFunction">
+      <name xml:lang="en">value(scenario)</name>
+      <documentation xml:lang="en">The value of a spot contract is easy to understand because it&#xD;
+is simply the result of applying the spot exchange rate in the provided scenario&#xD;
+to the amount of the contract</documentation>
+    </element>
+    <element identifier="id-4a473f21" xsi:type="BusinessObject">
+      <name xml:lang="en">long</name>
+      <documentation xml:lang="en">contract can be long (buy) or short (sell).</documentation>
+    </element>
+    <element identifier="id-449bd2a1" xsi:type="BusinessObject">
+      <name xml:lang="en">short</name>
+    </element>
+    <element identifier="id-179402d0" xsi:type="BusinessObject">
+      <name xml:lang="en">long option</name>
+    </element>
+    <element identifier="id-24ab6ce0" xsi:type="BusinessObject">
+      <name xml:lang="en">short option</name>
+    </element>
+    <element identifier="id-83c4ac3b" xsi:type="BusinessObject">
+      <name xml:lang="en">expire date</name>
+    </element>
+    <element identifier="e8f7a301" xsi:type="BusinessObject">
+      <name xml:lang="en">premium date</name>
+    </element>
+    <element identifier="ba15398c" xsi:type="BusinessObject">
+      <name xml:lang="en">premium</name>
+    </element>
+    <element identifier="id-7044c4ec" xsi:type="BusinessFunction">
+      <name xml:lang="en">value(scenario)</name>
+      <documentation xml:lang="en">- A key feature of the option structure is the polymorphic operation&#xD;
+value (Scenario). &#xD;
+- technique Black-Scholes analysis</documentation>
+    </element>
+    <element identifier="d38bc6a4" xsi:type="BusinessObject">
+      <name xml:lang="en">delivery date</name>
+      <documentation xml:lang="en">Without considering holidays,&#xD;
+we can determine the delivery date by a simple calculation between date and&#xD;
+tenor</documentation>
+    </element>
+    <element identifier="id-49f205d2" xsi:type="BusinessObject">
+      <name xml:lang="en">product</name>
+      <documentation xml:lang="en">The key difference between a product and a contract is that the product&#xD;
+represents the customer's intention while the contract refers to what actually gets&#xD;
+traded between the counter and primary parties</documentation>
+    </element>
+    <element identifier="id-8c4cab64" xsi:type="BusinessObject">
+      <name xml:lang="en">combination product</name>
+      <documentation xml:lang="en">- combination options can be seen as a composite of other options.</documentation>
+    </element>
+    <element identifier="id-8ef2439e" xsi:type="BusinessObject">
+      <name xml:lang="en">risk reversal</name>
+    </element>
+    <element identifier="id-3d052c82" xsi:type="BusinessObject">
+      <name xml:lang="en">strangle</name>
+    </element>
+    <element identifier="f05fae74" xsi:type="BusinessObject">
+      <name xml:lang="en">straddle</name>
+      <documentation xml:lang="en">- straddles двойной опцион</documentation>
+    </element>
+    <element identifier="id-6c61e43a" xsi:type="BusinessObject">
+      <name xml:lang="en">spread</name>
+      <documentation xml:lang="en">-  spread is two&#xD;
+options, but both options are the same direction (that is, two calls or two puts)&#xD;
+at different prices.</documentation>
+    </element>
+    <element identifier="id-9c2cc263" xsi:type="BusinessObject">
+      <name xml:lang="en">put spread</name>
+    </element>
+    <element identifier="id-2df36448" xsi:type="BusinessObject">
+      <name xml:lang="en">call spread</name>
+    </element>
+    <element identifier="id-76737e82" xsi:type="BusinessObject">
+      <name xml:lang="en">party</name>
+    </element>
+    <element identifier="id-890dd5cf" xsi:type="BusinessObject">
+      <name xml:lang="en">barrier</name>
+    </element>
+    <element identifier="id-36bef834" xsi:type="ApplicationComponent">
+      <name xml:lang="en">portfolio package</name>
+    </element>
+    <element identifier="id-231cf37f" xsi:type="ApplicationComponent">
+      <name xml:lang="en">scenario package</name>
+    </element>
+    <element identifier="bb31f9e9" xsi:type="ApplicationComponent">
+      <name xml:lang="en">market indicators package</name>
+    </element>
+    <element identifier="a8635da6" xsi:type="ApplicationComponent">
+      <name xml:lang="en">scenario structure package</name>
+    </element>
+    <element identifier="id-50e9edfb" xsi:type="ApplicationComponent">
+      <name xml:lang="en">risk management package</name>
+    </element>
+    <element identifier="df70d644" xsi:type="ApplicationComponent">
+      <name xml:lang="en">scenario management application</name>
+    </element>
+    <element identifier="id-98eef0b3" xsi:type="ApplicationComponent">
+      <name xml:lang="en">product package</name>
+    </element>
+    <element identifier="fde8365e" xsi:type="ApplicationComponent">
+      <name xml:lang="en">party package</name>
+    </element>
+    <element identifier="c96d1e44" xsi:type="ApplicationComponent">
+      <name xml:lang="en">contract package</name>
+    </element>
+    <element identifier="d20d3c84" xsi:type="ApplicationComponent">
+      <name xml:lang="en">risk management  package</name>
+    </element>
+    <element identifier="id-9b8821d0" xsi:type="ApplicationComponent">
+      <name xml:lang="en">contract management package</name>
+    </element>
+    <element identifier="id-98db5e3d" xsi:type="ApplicationComponent">
+      <name xml:lang="en">pricing package</name>
+    </element>
+    <element identifier="da07efe4" xsi:type="Requirement">
+      <name xml:lang="en">spread = bid-offer</name>
+    </element>
+    <element identifier="id-0b34c103" xsi:type="Requirement">
+      <name xml:lang="en">mid=(bid+offer)/2</name>
+    </element>
+    <element identifier="id-90e18c56" xsi:type="Constraint">
+      <name xml:lang="en">bid==offer</name>
+    </element>
+    <element identifier="fb9c9398" xsi:type="Requirement">
+      <name xml:lang="en">delivery date = trade date + tenor + next working day</name>
+    </element>
+    <element identifier="id-2ac7b66b" xsi:type="Requirement">
+      <name xml:lang="en">long option + long contract or short option + short contract</name>
+    </element>
+    <element identifier="id-39812dcb" xsi:type="Requirement">
+      <name xml:lang="en">long option + short contract or short option + long contract</name>
+    </element>
+    <element identifier="id-4e602be9" xsi:type="Requirement">
+      <name xml:lang="en">delivery date = expiration date + spot</name>
+    </element>
+    <element identifier="a0485f7d" xsi:type="Constraint">
+      <name xml:lang="en">strike prices of legs are the same</name>
+    </element>
+    <element identifier="id-975831c7" xsi:type="Constraint">
+      <name xml:lang="en">2 legs: 1 long  1 short, of wich 1 call, 1 put</name>
+    </element>
+    <element identifier="c9f6d0af" xsi:type="Constraint">
+      <name xml:lang="en">2 legs: 1 call  1 put, both long OR both short</name>
+    </element>
+    <element identifier="ea3b30fb" xsi:type="Constraint">
+      <name xml:lang="en">all legs calls OR all legs puts</name>
+    </element>
+    <element identifier="id-4d65937d" xsi:type="Constraint">
+      <name xml:lang="en">2 legs, both puts with same expiry</name>
+    </element>
+    <element identifier="e427fd70" xsi:type="Constraint">
+      <name xml:lang="en">2 legs, both calls with same expiry</name>
+    </element>
+    <element identifier="id-1e51b0b2" xsi:type="Grouping">
+      <name xml:lang="en">.</name>
+    </element>
+    <element identifier="b89931d6" xsi:type="Grouping">
+      <name xml:lang="en">portfolio</name>
+    </element>
+    <element identifier="id-2c173537" xsi:type="Grouping">
+      <name xml:lang="en">scenario</name>
+    </element>
+    <element identifier="e3e513b1" xsi:type="Grouping">
+      <name xml:lang="en">market indicators</name>
+    </element>
+    <element identifier="id-93be3a34" xsi:type="OrJunction">
+      <name xml:lang="en">Junction</name>
+    </element>
+    <element identifier="id-49751e97" xsi:type="OrJunction">
+      <name xml:lang="en">Junction</name>
+    </element>
+    <element identifier="id-6148b14f" xsi:type="Grouping">
+      <name xml:lang="en">product</name>
+    </element>
+    <element identifier="id-53d3e0dd" xsi:type="Grouping">
+      <name xml:lang="en">party</name>
+    </element>
+    <element identifier="id-4c7d5a73" xsi:type="Grouping">
+      <name xml:lang="en">contract</name>
+    </element>
+  </elements>
+  <relationships>
+    <relationship identifier="id-70d4c82e" source="id-9bc924ac" target="id-559e383d" xsi:type="Composition" />
+    <relationship identifier="id-53b8c991" source="a323d9b9" target="c744d88c" xsi:type="Association" />
+    <relationship identifier="id-13b77a20" source="id-0e83d100" target="id-220c9731" xsi:type="Association">
+      <name xml:lang="en">N|0 - 1</name>
+    </relationship>
+    <relationship identifier="id-7f81b217" source="f43dfa34" target="id-288264c4" xsi:type="Association">
+      <name xml:lang="en">N|0 - 1</name>
+    </relationship>
+    <relationship identifier="id-9334eaf8" source="aa4d1df1" target="da07efe4" xsi:type="Association" />
+    <relationship identifier="id-4b4648c8" source="id-877f967d" target="c744d88c" xsi:type="Association">
+      <name xml:lang="en">N|0 - 1</name>
+    </relationship>
+    <relationship identifier="a662a3c5" source="id-0e83d100" target="id-1e51b0b2" xsi:type="Composition" />
+    <relationship identifier="id-7323d783" source="id-35950b20" target="id-9d7a21cc" xsi:type="Specialization" />
+    <relationship identifier="id-65de4632" source="a8245a38" target="c744d88c" xsi:type="Association" />
+    <relationship identifier="id-1cfb754c" source="id-9d7a21cc" target="e29a2a24" xsi:type="Association">
+      <name xml:lang="en">N|0 - 1 short</name>
+    </relationship>
+    <relationship identifier="id-5cc3e4d0" source="dd64380c" target="c744d88c" xsi:type="Specialization" />
+    <relationship identifier="id-772bfaa7" source="id-877f967d" target="id-9d7a21cc" xsi:type="Association">
+      <name xml:lang="en">N|0 - N|0    [selected by filter]</name>
+    </relationship>
+    <relationship identifier="cf9de408" source="f10fbc9b" target="id-21d951ce" xsi:type="Association">
+      <name xml:lang="en">N|0 - 1</name>
+    </relationship>
+    <relationship identifier="b3c2fdcd" source="id-0e83d100" target="id-9496d9bc" xsi:type="Association">
+      <name xml:lang="en">N|0 - 1</name>
+    </relationship>
+    <relationship identifier="b2cc7784" source="f43dfa34" target="id-877f967d" xsi:type="Association">
+      <name xml:lang="en">N|0 - N|0</name>
+    </relationship>
+    <relationship identifier="id-4052b8b9" source="id-86814cd5" target="fea3cfb9" xsi:type="Association">
+      <name xml:lang="en">N|0 - 1</name>
+    </relationship>
+    <relationship identifier="id-55edba1a" source="id-9d7a21cc" target="e29a2a24" xsi:type="Association">
+      <name xml:lang="en">N|0 - 1 primary party [derived]</name>
+    </relationship>
+    <relationship identifier="d4df79b5" source="f43dfa34" target="c744d88c" xsi:type="Specialization" />
+    <relationship identifier="id-8d4ac17d" source="id-33f61e22" target="id-0b34c103" xsi:type="Association" />
+    <relationship identifier="id-75a3cc63" source="id-18d341af" target="id-51e74750" xsi:type="Association">
+      <name xml:lang="en">N|0 - 1 end</name>
+    </relationship>
+    <relationship identifier="id-5330ffc4" source="id-9496d9bc" target="e29a2a24" xsi:type="Association">
+      <name xml:lang="en">N|0 - 1 publisher</name>
+      <documentation xml:lang="en">- We also need to consider markets that do not have a single publisher for a price, such as the foreign exchange market.
+In such cases we need to add the party that is publishing the price to the model.</documentation>
+    </relationship>
+    <relationship identifier="id-3bb62f4a" source="id-9bc924ac" target="id-33f61e22" xsi:type="Composition" />
+    <relationship identifier="id-83bc43e2" source="id-9d7a21cc" target="id-9054a234" xsi:type="Association">
+      <name xml:lang="en">N|0 - 1</name>
+    </relationship>
+    <relationship identifier="id-153740dd" source="b45e67c5" target="id-9d7a21cc" xsi:type="Specialization" />
+    <relationship identifier="id-8a8a0a3d" source="ca70d370" target="id-90e18c56" xsi:type="Association" />
+    <relationship identifier="id-06273c56" source="id-001559ac" target="a8245a38" xsi:type="Flow" />
+    <relationship identifier="a6ee09cf" source="id-18d341af" target="id-9054a234" xsi:type="Association">
+      <name xml:lang="en">N|0 - N|0</name>
+    </relationship>
+    <relationship identifier="id-3bd9d020" source="a323d9b9" target="id-3c88830c" xsi:type="Composition" />
+    <relationship identifier="c280af0f" source="id-9d7a21cc" target="bcbf28f7" xsi:type="Composition" />
+    <relationship identifier="id-2c4bc180" source="id-0e83d100" target="id-9bc924ac" xsi:type="Association">
+      <name xml:lang="en">N|0 - 1</name>
+    </relationship>
+    <relationship identifier="id-4377aa96" source="id-18d341af" target="c744d88c" xsi:type="Specialization" />
+    <relationship identifier="id-63c4a3ed" source="ca70d370" target="id-9bc924ac" xsi:type="Specialization" />
+    <relationship identifier="id-2aa159ba" source="id-1e51b0b2" target="id-79514adf" xsi:type="Composition" />
+    <relationship identifier="e2ee50f7" source="id-1e51b0b2" target="id-86814cd5" xsi:type="Composition" />
+    <relationship identifier="id-89b06fd7" source="id-18d341af" target="e29a2a24" xsi:type="Association">
+      <name xml:lang="en">N|0 - N|0 counterparties</name>
+    </relationship>
+    <relationship identifier="ea514d26" source="id-9d7a21cc" target="e29a2a24" xsi:type="Association">
+      <name xml:lang="en">N|0 - 1 long</name>
+    </relationship>
+    <relationship identifier="d5acad02" source="id-9d7a21cc" target="b85045ea" xsi:type="Association" />
+    <relationship identifier="id-79ce2cc7" source="id-9bc924ac" target="aa4d1df1" xsi:type="Composition" />
+    <relationship identifier="c9029da7" source="id-18d341af" target="id-51e74750" xsi:type="Association">
+      <name xml:lang="en">N|0 - 1 start</name>
+    </relationship>
+    <relationship identifier="e3fbbf48" source="id-3c88830c" target="id-001559ac" xsi:type="Composition" />
+    <relationship identifier="df8af857" source="dd64380c" target="c2d52bc2" xsi:type="Association">
+      <name xml:lang="en">N|0 - 1</name>
+    </relationship>
+    <relationship identifier="e404096e" source="id-18d341af" target="e29a2a24" xsi:type="Association">
+      <name xml:lang="en">N|0 - N|0 primary parties</name>
+    </relationship>
+    <relationship identifier="id-5fc10fa8" source="id-9496d9bc" target="dae4395e" xsi:type="Association">
+      <name xml:lang="en">N|0 - 1</name>
+    </relationship>
+    <relationship identifier="id-349dc125" source="id-79514adf" target="f10fbc9b" xsi:type="Association">
+      <name xml:lang="en">N|0 - 1</name>
+    </relationship>
+    <relationship identifier="d1cdaed9" source="id-9bc924ac" target="fbe431b0" xsi:type="Composition" />
+    <relationship identifier="id-90cc58de" source="id-9054a234" target="id-220c9731" xsi:type="Specialization" />
+    <relationship identifier="ab3bc742" source="beace333" target="b9cebc65" xsi:type="Aggregation" />
+    <relationship identifier="id-7c49d94f" source="id-9bc924ac" target="id-0068c68e" xsi:type="Composition" />
+    <relationship identifier="id-1f42fd75" source="id-9d7a21cc" target="beace333" xsi:type="Composition" />
+    <relationship identifier="fc5d27bf" source="id-877f967d" target="dd16ae1c" xsi:type="Association" />
+    <relationship identifier="id-9c28d319" source="id-9d7a21cc" target="e29a2a24" xsi:type="Association">
+      <name xml:lang="en">N|0 - 1 counter party [derived]</name>
+    </relationship>
+    <relationship identifier="id-058fba93" source="id-86814cd5" target="id-0e83d100" xsi:type="Association">
+      <name xml:lang="en">N|0 - N ordered lis of arguments</name>
+    </relationship>
+    <relationship identifier="a9f6bf46" source="b89931d6" target="id-9d7a21cc" xsi:type="Composition" />
+    <relationship identifier="id-4ee6a2ac" source="b89931d6" target="beace333" xsi:type="Composition" />
+    <relationship identifier="f1428f3b" source="b89931d6" target="a323d9b9" xsi:type="Composition" />
+    <relationship identifier="id-35a3bc67" source="b89931d6" target="b85045ea" xsi:type="Composition" />
+    <relationship identifier="id-3d93c4a5" source="b89931d6" target="id-288264c4" xsi:type="Composition" />
+    <relationship identifier="id-7360cdab" source="b89931d6" target="c744d88c" xsi:type="Composition" />
+    <relationship identifier="id-9d02298a" source="b89931d6" target="id-51e74750" xsi:type="Composition" />
+    <relationship identifier="id-06fdb0d2" source="b89931d6" target="id-877f967d" xsi:type="Composition" />
+    <relationship identifier="dfd48b96" source="b89931d6" target="dd16ae1c" xsi:type="Composition" />
+    <relationship identifier="d0d91971" source="b89931d6" target="b9cebc65" xsi:type="Composition" />
+    <relationship identifier="id-0f5fbdc8" source="b89931d6" target="bcbf28f7" xsi:type="Composition" />
+    <relationship identifier="id-1dca77cc" source="b89931d6" target="e29a2a24" xsi:type="Composition" />
+    <relationship identifier="b40c3f37" source="b89931d6" target="a8245a38" xsi:type="Composition" />
+    <relationship identifier="id-2b7b5c69" source="b89931d6" target="c2d52bc2" xsi:type="Composition" />
+    <relationship identifier="b4b5a39c" source="e3e513b1" target="id-220c9731" xsi:type="Composition" />
+    <relationship identifier="id-4c7a7fc9" source="id-2c173537" target="id-21d951ce" xsi:type="Composition" />
+    <relationship identifier="id-5c4afaa6" source="id-2c173537" target="aa4d1df1" xsi:type="Composition" />
+    <relationship identifier="id-7b814cd3" source="id-2c173537" target="id-0e83d100" xsi:type="Composition" />
+    <relationship identifier="id-4b549acb" source="id-2c173537" target="f10fbc9b" xsi:type="Composition" />
+    <relationship identifier="id-649c15ad" source="id-2c173537" target="id-90e18c56" xsi:type="Composition" />
+    <relationship identifier="fa753721" source="id-2c173537" target="da07efe4" xsi:type="Composition" />
+    <relationship identifier="e0f76a1f" source="id-2c173537" target="fbe431b0" xsi:type="Composition" />
+    <relationship identifier="id-28cff134" source="id-2c173537" target="fea3cfb9" xsi:type="Composition" />
+    <relationship identifier="id-972f60ba" source="id-2c173537" target="id-0b34c103" xsi:type="Composition" />
+    <relationship identifier="id-289ab4f9" source="id-2c173537" target="dae4395e" xsi:type="Composition" />
+    <relationship identifier="id-3e7db6fa" source="id-2c173537" target="id-0068c68e" xsi:type="Composition" />
+    <relationship identifier="id-3d014fe0" source="id-2c173537" target="id-33f61e22" xsi:type="Composition" />
+    <relationship identifier="ca38fd3e" source="id-2c173537" target="id-9496d9bc" xsi:type="Composition" />
+    <relationship identifier="id-2866e066" source="id-2c173537" target="id-9bc924ac" xsi:type="Composition" />
+    <relationship identifier="id-0bae2e64" source="id-36bef834" target="b89931d6" xsi:type="Serving" />
+    <relationship identifier="id-0b5ae1e8" source="a8635da6" target="id-2c173537" xsi:type="Serving" />
+    <relationship identifier="id-8a5bd6c7" source="id-231cf37f" target="id-2c173537" xsi:type="Serving" />
+    <relationship identifier="e52fc6f0" source="id-36bef834" target="id-231cf37f" xsi:type="Flow" />
+    <relationship identifier="b5f56abb" source="a8635da6" target="id-231cf37f" xsi:type="Flow" />
+    <relationship identifier="aff97a3c" source="bb31f9e9" target="e3e513b1" xsi:type="Serving" />
+    <relationship identifier="id-98eea6a0" source="id-50e9edfb" target="id-36bef834" xsi:type="Flow" />
+    <relationship identifier="c6491c50" source="id-50e9edfb" target="id-231cf37f" xsi:type="Flow" />
+    <relationship identifier="id-3c7a5511" source="df70d644" target="id-231cf37f" xsi:type="Flow" />
+    <relationship identifier="a6bd6d57" source="df70d644" target="a8635da6" xsi:type="Flow" />
+    <relationship identifier="id-11351e7a" source="id-8c4cab64" target="id-3d052c82" xsi:type="Specialization" />
+    <relationship identifier="e394d24c" source="id-2fd7d9e5" target="id-83c4ac3b" xsi:type="Composition" />
+    <relationship identifier="id-97091f66" source="id-6c61e43a" target="id-9c2cc263" xsi:type="Specialization" />
+    <relationship identifier="b58065ad" source="id-3d052c82" target="c9f6d0af" xsi:type="Association" />
+    <relationship identifier="cb5945a9" source="id-49f205d2" target="id-8c4cab64" xsi:type="Specialization" />
+    <relationship identifier="id-0415dfe6" source="id-890dd5cf" target="id-524f7675" xsi:type="Association" />
+    <relationship identifier="c76948d0" source="id-2fd7d9e5" target="ab66af61" xsi:type="Specialization" />
+    <relationship identifier="c30b7180" source="e65c7fe6" target="ec1db2f0" xsi:type="Composition" />
+    <relationship identifier="id-7ee9dce5" source="id-9c2cc263" target="id-4d65937d" xsi:type="Association" />
+    <relationship identifier="id-3b985eef" source="f05fae74" target="a0485f7d" xsi:type="Association" />
+    <relationship identifier="id-5ddff46b" source="id-6c61e43a" target="id-2df36448" xsi:type="Specialization" />
+    <relationship identifier="id-73660038" source="id-53a6949e" target="id-524f7675" xsi:type="Association" />
+    <relationship identifier="id-2a83a284" source="e65c7fe6" target="id-53a6949e" xsi:type="Composition" />
+    <relationship identifier="id-17e1b5bc" source="id-2fd7d9e5" target="ba15398c" xsi:type="Composition" />
+    <relationship identifier="f002242f" source="id-2fd7d9e5" target="id-7044c4ec" xsi:type="Association" />
+    <relationship identifier="id-2d815131" source="id-3d052c82" target="f05fae74" xsi:type="Specialization" />
+    <relationship identifier="ca408892" source="e65c7fe6" target="e0bf139d" xsi:type="Composition" />
+    <relationship identifier="id-9bf16406" source="id-77a8b960" target="id-39812dcb" xsi:type="Association" />
+    <relationship identifier="c2934665" source="e65c7fe6" target="id-93be3a34" xsi:type="Realization" />
+    <relationship identifier="id-95f348c7" source="id-9d7a21cc" target="id-49f205d2" xsi:type="Association">
+      <name xml:lang="en">N|0 - 1 legs</name>
+    </relationship>
+    <relationship identifier="id-3f1115de" source="id-93be3a34" target="id-449bd2a1" xsi:type="Realization" />
+    <relationship identifier="ca232f6f" source="id-2fd7d9e5" target="id-77a8b960" xsi:type="Specialization" />
+    <relationship identifier="id-39b5c596" source="id-2fd7d9e5" target="id-49751e97" xsi:type="Realization" />
+    <relationship identifier="id-05d3409a" source="e65c7fe6" target="id-2fd7d9e5" xsi:type="Specialization" />
+    <relationship identifier="b7a98900" source="id-2fd7d9e5" target="d38bc6a4" xsi:type="Composition" />
+    <relationship identifier="id-3726c24c" source="id-93be3a34" target="id-4a473f21" xsi:type="Realization" />
+    <relationship identifier="a743f851" source="id-2df36448" target="e427fd70" xsi:type="Association" />
+    <relationship identifier="f27d2ea1" source="id-8c4cab64" target="id-6c61e43a" xsi:type="Specialization" />
+    <relationship identifier="eaed7fe9" source="e0bf139d" target="fb9c9398" xsi:type="Association" />
+    <relationship identifier="id-2b9d4d2c" source="e65c7fe6" target="cc2dfd81" xsi:type="Aggregation" />
+    <relationship identifier="id-90eb3e7c" source="e65c7fe6" target="id-98d8fed9" xsi:type="Association">
+      <name xml:lang="en">N|0 - 1</name>
+    </relationship>
+    <relationship identifier="id-46041307" source="e65c7fe6" target="id-8de6be68" xsi:type="Association" />
+    <relationship identifier="id-7e077c74" source="id-49751e97" target="id-24ab6ce0" xsi:type="Realization" />
+    <relationship identifier="id-5933720d" source="e65c7fe6" target="a63c5476" xsi:type="Composition" />
+    <relationship identifier="f66f6afd" source="id-49f205d2" target="e29a2a24" xsi:type="Association">
+      <name xml:lang="en">N|0 - 1 counterparty</name>
+    </relationship>
+    <relationship identifier="id-3cd73fa3" source="id-49f205d2" target="e29a2a24" xsi:type="Association">
+      <name xml:lang="en">N|0 - 1 primary party</name>
+    </relationship>
+    <relationship identifier="id-35b06d8a" source="id-6c61e43a" target="ea3b30fb" xsi:type="Association" />
+    <relationship identifier="a0f98750" source="id-8ef2439e" target="id-975831c7" xsi:type="Association" />
+    <relationship identifier="cc9a64c0" source="id-49751e97" target="id-179402d0" xsi:type="Realization" />
+    <relationship identifier="id-6419e1a4" source="id-2fd7d9e5" target="e8f7a301" xsi:type="Composition" />
+    <relationship identifier="dca6d27a" source="c21e5d1b" target="id-2ac7b66b" xsi:type="Association" />
+    <relationship identifier="id-1f60c84a" source="id-4e602be9" target="d38bc6a4" xsi:type="Association" />
+    <relationship identifier="id-6d88e08e" source="id-2fd7d9e5" target="c21e5d1b" xsi:type="Specialization" />
+    <relationship identifier="id-93d9a62b" source="ba15398c" target="id-524f7675" xsi:type="Association" />
+    <relationship identifier="de652b77" source="ab66af61" target="id-890dd5cf" xsi:type="Composition" />
+    <relationship identifier="id-0197acc5" source="id-8c4cab64" target="id-8ef2439e" xsi:type="Specialization" />
+    <relationship identifier="b15029ac" source="id-6148b14f" target="id-49f205d2" xsi:type="Composition" />
+    <relationship identifier="ee6bd147" source="id-53d3e0dd" target="e29a2a24" xsi:type="Composition" />
+    <relationship identifier="id-85e96175" source="id-4c7d5a73" target="id-9d7a21cc" xsi:type="Composition" />
+    <relationship identifier="id-5b858c4f" source="id-4c7d5a73" target="bcbf28f7" xsi:type="Composition" />
+    <relationship identifier="a6eb98a6" source="id-4c7d5a73" target="beace333" xsi:type="Composition" />
+    <relationship identifier="id-3bc626ed" source="id-4c7d5a73" target="b85045ea" xsi:type="Composition" />
+    <relationship identifier="id-26fd40db" source="id-4c7d5a73" target="b9cebc65" xsi:type="Composition" />
+    <relationship identifier="cec94390" source="id-98eef0b3" target="id-6148b14f" xsi:type="Serving" />
+    <relationship identifier="id-4d9f311f" source="fde8365e" target="id-53d3e0dd" xsi:type="Serving" />
+    <relationship identifier="cea5470d" source="c96d1e44" target="id-4c7d5a73" xsi:type="Serving" />
+    <relationship identifier="id-67142db5" source="id-9b8821d0" target="fde8365e" xsi:type="Flow" />
+    <relationship identifier="c09b693c" source="fde8365e" target="id-98eef0b3" xsi:type="Flow" />
+    <relationship identifier="f50558b2" source="id-98eef0b3" target="fde8365e" xsi:type="Flow">
+      <name xml:lang="en">mutual visibility</name>
+    </relationship>
+    <relationship identifier="a0a28d67" source="id-98eef0b3" target="c96d1e44" xsi:type="Flow" />
+    <relationship identifier="id-54cf265a" source="c96d1e44" target="id-98eef0b3" xsi:type="Flow">
+      <name xml:lang="en">mutual visibility</name>
+    </relationship>
+    <relationship identifier="id-25bd1572" source="fde8365e" target="c96d1e44" xsi:type="Flow" />
+    <relationship identifier="id-639ac11f" source="c96d1e44" target="fde8365e" xsi:type="Flow">
+      <name xml:lang="en">mutual visibility</name>
+    </relationship>
+    <relationship identifier="id-56b9f5ae" source="id-36bef834" target="fde8365e" xsi:type="Flow" />
+    <relationship identifier="d7d2d0fa" source="id-36bef834" target="c96d1e44" xsi:type="Flow" />
+    <relationship identifier="f0054ae4" source="id-50e9edfb" target="fde8365e" xsi:type="Flow" />
+    <relationship identifier="b2ef607f" source="id-50e9edfb" target="c96d1e44" xsi:type="Flow" />
+    <relationship identifier="c113ac82" source="id-98db5e3d" target="id-98eef0b3" xsi:type="Flow" />
+    <relationship identifier="id-701d64c6" source="id-98db5e3d" target="fde8365e" xsi:type="Flow" />
+    <relationship identifier="aadd99cd" source="id-98db5e3d" target="c96d1e44" xsi:type="Flow" />
+  </relationships>
+  <organizations>
+    <item>
+      <label xml:lang="en">Business</label>
+      <item identifierRef="bcbf28f7" />
+      <item identifierRef="e29a2a24" />
+      <item identifierRef="id-9d7a21cc" />
+      <item identifierRef="b45e67c5" />
+      <item identifierRef="id-35950b20" />
+      <item identifierRef="beace333" />
+      <item identifierRef="b9cebc65" />
+      <item identifierRef="id-877f967d" />
+      <item identifierRef="c744d88c" />
+      <item identifierRef="id-18d341af" />
+      <item identifierRef="dd64380c" />
+      <item identifierRef="f43dfa34" />
+      <item identifierRef="id-51e74750" />
+      <item identifierRef="c2d52bc2" />
+      <item identifierRef="id-288264c4" />
+      <item identifierRef="a8245a38" />
+      <item identifierRef="a323d9b9" />
+      <item identifierRef="id-3c88830c" />
+      <item identifierRef="id-001559ac" />
+      <item identifierRef="dd16ae1c" />
+      <item identifierRef="b85045ea" />
+      <item identifierRef="id-9bc924ac" />
+      <item identifierRef="id-559e383d" />
+      <item identifierRef="ca70d370" />
+      <item identifierRef="id-0068c68e" />
+      <item identifierRef="fbe431b0" />
+      <item identifierRef="id-33f61e22" />
+      <item identifierRef="aa4d1df1" />
+      <item identifierRef="id-0e83d100" />
+      <item identifierRef="id-79514adf" />
+      <item identifierRef="id-86814cd5" />
+      <item identifierRef="id-9496d9bc" />
+      <item identifierRef="dae4395e" />
+      <item identifierRef="id-220c9731" />
+      <item identifierRef="id-9054a234" />
+      <item identifierRef="f10fbc9b" />
+      <item identifierRef="id-21d951ce" />
+      <item identifierRef="fea3cfb9" />
+      <item identifierRef="e65c7fe6" />
+      <item identifierRef="id-2fd7d9e5" />
+      <item identifierRef="c21e5d1b" />
+      <item identifierRef="id-77a8b960" />
+      <item identifierRef="ab66af61" />
+      <item identifierRef="id-98d8fed9" />
+      <item identifierRef="ec1db2f0" />
+      <item identifierRef="e0bf139d" />
+      <item identifierRef="cc2dfd81" />
+      <item identifierRef="a63c5476" />
+      <item identifierRef="id-53a6949e" />
+      <item identifierRef="id-524f7675" />
+      <item identifierRef="id-8de6be68" />
+      <item identifierRef="id-4a473f21" />
+      <item identifierRef="id-449bd2a1" />
+      <item identifierRef="id-179402d0" />
+      <item identifierRef="id-24ab6ce0" />
+      <item identifierRef="id-83c4ac3b" />
+      <item identifierRef="e8f7a301" />
+      <item identifierRef="ba15398c" />
+      <item identifierRef="id-7044c4ec" />
+      <item identifierRef="d38bc6a4" />
+      <item identifierRef="id-49f205d2" />
+      <item identifierRef="id-8c4cab64" />
+      <item identifierRef="id-8ef2439e" />
+      <item identifierRef="id-3d052c82" />
+      <item identifierRef="f05fae74" />
+      <item identifierRef="id-6c61e43a" />
+      <item identifierRef="id-9c2cc263" />
+      <item identifierRef="id-2df36448" />
+      <item identifierRef="id-76737e82" />
+      <item identifierRef="id-890dd5cf" />
+    </item>
+    <item>
+      <label xml:lang="en">Application</label>
+      <item identifierRef="id-36bef834" />
+      <item identifierRef="id-231cf37f" />
+      <item identifierRef="bb31f9e9" />
+      <item identifierRef="a8635da6" />
+      <item identifierRef="id-50e9edfb" />
+      <item identifierRef="df70d644" />
+      <item identifierRef="id-98eef0b3" />
+      <item identifierRef="fde8365e" />
+      <item identifierRef="c96d1e44" />
+      <item identifierRef="d20d3c84" />
+      <item identifierRef="id-9b8821d0" />
+      <item identifierRef="id-98db5e3d" />
+    </item>
+    <item>
+      <label xml:lang="en">Motivation</label>
+      <item identifierRef="da07efe4" />
+      <item identifierRef="id-0b34c103" />
+      <item identifierRef="id-90e18c56" />
+      <item identifierRef="fb9c9398" />
+      <item identifierRef="id-2ac7b66b" />
+      <item identifierRef="id-39812dcb" />
+      <item identifierRef="id-4e602be9" />
+      <item identifierRef="a0485f7d" />
+      <item identifierRef="id-975831c7" />
+      <item identifierRef="c9f6d0af" />
+      <item identifierRef="ea3b30fb" />
+      <item identifierRef="id-4d65937d" />
+      <item identifierRef="e427fd70" />
+    </item>
+    <item>
+      <label xml:lang="en">Other</label>
+      <item identifierRef="id-1e51b0b2" />
+      <item identifierRef="b89931d6" />
+      <item identifierRef="id-2c173537" />
+      <item identifierRef="e3e513b1" />
+      <item identifierRef="id-93be3a34" />
+      <item identifierRef="id-49751e97" />
+      <item identifierRef="id-6148b14f" />
+      <item identifierRef="id-53d3e0dd" />
+      <item identifierRef="id-4c7d5a73" />
+    </item>
+    <item>
+      <label xml:lang="en">Relations</label>
+      <item identifierRef="id-70d4c82e" />
+      <item identifierRef="id-53b8c991" />
+      <item identifierRef="id-13b77a20" />
+      <item identifierRef="id-7f81b217" />
+      <item identifierRef="id-9334eaf8" />
+      <item identifierRef="id-4b4648c8" />
+      <item identifierRef="a662a3c5" />
+      <item identifierRef="id-7323d783" />
+      <item identifierRef="id-65de4632" />
+      <item identifierRef="id-1cfb754c" />
+      <item identifierRef="id-5cc3e4d0" />
+      <item identifierRef="id-772bfaa7" />
+      <item identifierRef="cf9de408" />
+      <item identifierRef="b3c2fdcd" />
+      <item identifierRef="b2cc7784" />
+      <item identifierRef="id-4052b8b9" />
+      <item identifierRef="id-55edba1a" />
+      <item identifierRef="d4df79b5" />
+      <item identifierRef="id-8d4ac17d" />
+      <item identifierRef="id-75a3cc63" />
+      <item identifierRef="id-5330ffc4" />
+      <item identifierRef="id-3bb62f4a" />
+      <item identifierRef="id-83bc43e2" />
+      <item identifierRef="id-153740dd" />
+      <item identifierRef="id-8a8a0a3d" />
+      <item identifierRef="id-06273c56" />
+      <item identifierRef="a6ee09cf" />
+      <item identifierRef="id-3bd9d020" />
+      <item identifierRef="c280af0f" />
+      <item identifierRef="id-2c4bc180" />
+      <item identifierRef="id-4377aa96" />
+      <item identifierRef="id-63c4a3ed" />
+      <item identifierRef="id-2aa159ba" />
+      <item identifierRef="e2ee50f7" />
+      <item identifierRef="id-89b06fd7" />
+      <item identifierRef="ea514d26" />
+      <item identifierRef="d5acad02" />
+      <item identifierRef="id-79ce2cc7" />
+      <item identifierRef="c9029da7" />
+      <item identifierRef="e3fbbf48" />
+      <item identifierRef="df8af857" />
+      <item identifierRef="e404096e" />
+      <item identifierRef="id-5fc10fa8" />
+      <item identifierRef="id-349dc125" />
+      <item identifierRef="d1cdaed9" />
+      <item identifierRef="id-90cc58de" />
+      <item identifierRef="ab3bc742" />
+      <item identifierRef="id-7c49d94f" />
+      <item identifierRef="id-1f42fd75" />
+      <item identifierRef="fc5d27bf" />
+      <item identifierRef="id-9c28d319" />
+      <item identifierRef="id-058fba93" />
+      <item identifierRef="a9f6bf46" />
+      <item identifierRef="id-4ee6a2ac" />
+      <item identifierRef="f1428f3b" />
+      <item identifierRef="id-35a3bc67" />
+      <item identifierRef="id-3d93c4a5" />
+      <item identifierRef="id-7360cdab" />
+      <item identifierRef="id-9d02298a" />
+      <item identifierRef="id-06fdb0d2" />
+      <item identifierRef="dfd48b96" />
+      <item identifierRef="d0d91971" />
+      <item identifierRef="id-0f5fbdc8" />
+      <item identifierRef="id-1dca77cc" />
+      <item identifierRef="b40c3f37" />
+      <item identifierRef="id-2b7b5c69" />
+      <item identifierRef="b4b5a39c" />
+      <item identifierRef="id-4c7a7fc9" />
+      <item identifierRef="id-5c4afaa6" />
+      <item identifierRef="id-7b814cd3" />
+      <item identifierRef="id-4b549acb" />
+      <item identifierRef="id-649c15ad" />
+      <item identifierRef="fa753721" />
+      <item identifierRef="e0f76a1f" />
+      <item identifierRef="id-28cff134" />
+      <item identifierRef="id-972f60ba" />
+      <item identifierRef="id-289ab4f9" />
+      <item identifierRef="id-3e7db6fa" />
+      <item identifierRef="id-3d014fe0" />
+      <item identifierRef="ca38fd3e" />
+      <item identifierRef="id-2866e066" />
+      <item identifierRef="id-0bae2e64" />
+      <item identifierRef="id-0b5ae1e8" />
+      <item identifierRef="id-8a5bd6c7" />
+      <item identifierRef="e52fc6f0" />
+      <item identifierRef="b5f56abb" />
+      <item identifierRef="aff97a3c" />
+      <item identifierRef="id-98eea6a0" />
+      <item identifierRef="c6491c50" />
+      <item identifierRef="id-3c7a5511" />
+      <item identifierRef="a6bd6d57" />
+      <item identifierRef="id-11351e7a" />
+      <item identifierRef="e394d24c" />
+      <item identifierRef="id-97091f66" />
+      <item identifierRef="b58065ad" />
+      <item identifierRef="cb5945a9" />
+      <item identifierRef="id-0415dfe6" />
+      <item identifierRef="c76948d0" />
+      <item identifierRef="c30b7180" />
+      <item identifierRef="id-7ee9dce5" />
+      <item identifierRef="id-3b985eef" />
+      <item identifierRef="id-5ddff46b" />
+      <item identifierRef="id-73660038" />
+      <item identifierRef="id-2a83a284" />
+      <item identifierRef="id-17e1b5bc" />
+      <item identifierRef="f002242f" />
+      <item identifierRef="id-2d815131" />
+      <item identifierRef="ca408892" />
+      <item identifierRef="id-9bf16406" />
+      <item identifierRef="c2934665" />
+      <item identifierRef="id-95f348c7" />
+      <item identifierRef="id-3f1115de" />
+      <item identifierRef="ca232f6f" />
+      <item identifierRef="id-39b5c596" />
+      <item identifierRef="id-05d3409a" />
+      <item identifierRef="b7a98900" />
+      <item identifierRef="id-3726c24c" />
+      <item identifierRef="a743f851" />
+      <item identifierRef="f27d2ea1" />
+      <item identifierRef="eaed7fe9" />
+      <item identifierRef="id-2b9d4d2c" />
+      <item identifierRef="id-90eb3e7c" />
+      <item identifierRef="id-46041307" />
+      <item identifierRef="id-7e077c74" />
+      <item identifierRef="id-5933720d" />
+      <item identifierRef="f66f6afd" />
+      <item identifierRef="id-3cd73fa3" />
+      <item identifierRef="id-35b06d8a" />
+      <item identifierRef="a0f98750" />
+      <item identifierRef="cc9a64c0" />
+      <item identifierRef="id-6419e1a4" />
+      <item identifierRef="dca6d27a" />
+      <item identifierRef="id-1f60c84a" />
+      <item identifierRef="id-6d88e08e" />
+      <item identifierRef="id-93d9a62b" />
+      <item identifierRef="de652b77" />
+      <item identifierRef="id-0197acc5" />
+      <item identifierRef="b15029ac" />
+      <item identifierRef="ee6bd147" />
+      <item identifierRef="id-85e96175" />
+      <item identifierRef="id-5b858c4f" />
+      <item identifierRef="a6eb98a6" />
+      <item identifierRef="id-3bc626ed" />
+      <item identifierRef="id-26fd40db" />
+      <item identifierRef="cec94390" />
+      <item identifierRef="id-4d9f311f" />
+      <item identifierRef="cea5470d" />
+      <item identifierRef="id-67142db5" />
+      <item identifierRef="c09b693c" />
+      <item identifierRef="f50558b2" />
+      <item identifierRef="a0a28d67" />
+      <item identifierRef="id-54cf265a" />
+      <item identifierRef="id-25bd1572" />
+      <item identifierRef="id-639ac11f" />
+      <item identifierRef="id-56b9f5ae" />
+      <item identifierRef="d7d2d0fa" />
+      <item identifierRef="f0054ae4" />
+      <item identifierRef="b2ef607f" />
+      <item identifierRef="c113ac82" />
+      <item identifierRef="id-701d64c6" />
+      <item identifierRef="aadd99cd" />
+    </item>
+    <item>
+      <label xml:lang="en">Views</label>
+      <item identifierRef="ac9803b0-f98a-44da-9079-24ab360987e2" />
+      <item identifierRef="d6d4043a-99c0-4bad-af92-d90d82f26129" />
+      <item identifierRef="ff8912dc-da82-4819-8ea3-a9d74d894058" />
+      <item identifierRef="id-25b121ca" />
+    </item>
+  </organizations>
+  <views>
+    <diagrams>
+      <view identifier="ac9803b0-f98a-44da-9079-24ab360987e2" xsi:type="Diagram">
+        <name xml:lang="en">Trading Packages</name>
+        <node identifier="id-2972c94a" elementRef="b89931d6" xsi:type="Element" x="2085" y="3277" w="868" h="844">
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="b3c2dbda" elementRef="a323d9b9" xsi:type="Element" x="2610" y="3617" w="210" h="150">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+            <node identifier="b65775d5" elementRef="id-3c88830c" xsi:type="Element" x="2650" y="3657" w="160" h="100">
+              <style>
+                <fillColor r="255" g="255" b="181" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+              <node identifier="id-232dda01" elementRef="id-001559ac" xsi:type="Element" x="2692" y="3701" w="120" h="55">
+                <style>
+                  <fillColor r="255" g="255" b="181" a="100" />
+                  <lineColor r="92" g="92" b="92" a="100" />
+                  <font name="Lucida Grande" size="12">
+                    <color r="0" g="0" b="0" />
+                  </font>
+                </style>
+              </node>
+            </node>
+          </node>
+          <node identifier="id-8ff0e2cd" elementRef="id-288264c4" xsi:type="Element" x="2610" y="3777" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-4cff9821" elementRef="c744d88c" xsi:type="Element" x="2130" y="3687" w="311" h="340">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+            <node identifier="id-8b94423a" elementRef="id-18d341af" xsi:type="Element" x="2210" y="3937" w="120" h="55">
+              <style>
+                <fillColor r="255" g="255" b="181" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="id-56957cc3" elementRef="dd64380c" xsi:type="Element" x="2210" y="3837" w="120" h="55">
+              <style>
+                <fillColor r="255" g="255" b="181" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="id-38dba702" elementRef="f43dfa34" xsi:type="Element" x="2210" y="3747" w="120" h="55">
+              <style>
+                <fillColor r="255" g="255" b="181" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+          </node>
+          <node identifier="id-0142e99e" elementRef="id-51e74750" xsi:type="Element" x="2610" y="3927" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-438698e0" elementRef="id-877f967d" xsi:type="Element" x="2130" y="3347" w="311" h="144">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-312c8aff" elementRef="dd16ae1c" xsi:type="Element" x="2610" y="3367" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-9ba3d199" elementRef="a8245a38" xsi:type="Element" x="2610" y="3547" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="a73c918f" elementRef="c2d52bc2" xsi:type="Element" x="2610" y="3857" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="id-0b4cc78a" elementRef="id-2c173537" xsi:type="Element" x="3025" y="2135" w="1760" h="1104">
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-55a8dd87" elementRef="id-21d951ce" xsi:type="Element" x="3055" y="2425" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="f7645b27" elementRef="aa4d1df1" xsi:type="Element" x="4427" y="3148" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="f9424a44" elementRef="id-0e83d100" xsi:type="Element" x="3445" y="2315" w="560" h="330">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+            <node identifier="id-80eec313" elementRef="id-1e51b0b2" xsi:type="Element" x="3455" y="2375" w="531" h="170">
+              <style>
+                <fillColor r="254" g="254" b="181" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+              <node identifier="id-2d68d65f" elementRef="id-79514adf" xsi:type="Element" x="3525" y="2425" w="120" h="55">
+                <style>
+                  <fillColor r="255" g="255" b="181" a="100" />
+                  <lineColor r="92" g="92" b="92" a="100" />
+                  <font name="Lucida Grande" size="12">
+                    <color r="0" g="0" b="0" />
+                  </font>
+                </style>
+              </node>
+              <node identifier="c757b085" elementRef="id-86814cd5" xsi:type="Element" x="3795" y="2425" w="120" h="55">
+                <style>
+                  <fillColor r="255" g="255" b="181" a="100" />
+                  <lineColor r="92" g="92" b="92" a="100" />
+                  <font name="Lucida Grande" size="12">
+                    <color r="0" g="0" b="0" />
+                  </font>
+                </style>
+              </node>
+            </node>
+          </node>
+          <node identifier="id-730866b8" elementRef="f10fbc9b" xsi:type="Element" x="3240" y="2425" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-920349d1" elementRef="id-90e18c56" xsi:type="Element" x="4179" y="3018" w="120" h="55">
+            <style>
+              <fillColor r="204" g="204" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-9d887243" elementRef="da07efe4" xsi:type="Element" x="4605" y="3148" w="120" h="55">
+            <style>
+              <fillColor r="204" g="204" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-438fbc49" elementRef="fbe431b0" xsi:type="Element" x="4427" y="2986" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-92ea4a52" elementRef="fea3cfb9" xsi:type="Element" x="4179" y="2425" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="a883625e" elementRef="id-0b34c103" xsi:type="Element" x="4607" y="3068" w="120" h="55">
+            <style>
+              <fillColor r="204" g="204" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="e54f0f30" elementRef="dae4395e" xsi:type="Element" x="4179" y="2185" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="f281309f" elementRef="id-0068c68e" xsi:type="Element" x="4427" y="2900" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-036555cb" elementRef="id-33f61e22" xsi:type="Element" x="4427" y="3068" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-5139ac2a" elementRef="id-9496d9bc" xsi:type="Element" x="3601" y="2185" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-95b49fbd" elementRef="id-9bc924ac" xsi:type="Element" x="3995" y="2833" w="311" h="144">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+            <node identifier="id-00415732" elementRef="id-559e383d" xsi:type="Element" x="4025" y="2897" w="120" h="55">
+              <style>
+                <fillColor r="255" g="255" b="181" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="id-1327fe38" elementRef="ca70d370" xsi:type="Element" x="4175" y="2897" w="120" h="55">
+              <style>
+                <fillColor r="255" g="255" b="181" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+          </node>
+        </node>
+        <node identifier="id-66d8a054" elementRef="e3e513b1" xsi:type="Element" x="3320" y="3593" w="776" h="528">
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="de257713" elementRef="id-220c9731" xsi:type="Element" x="3440" y="3793" w="420" h="256">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+            <node identifier="id-843661b5" elementRef="id-9054a234" xsi:type="Element" x="3480" y="3863" w="311" h="144">
+              <style>
+                <fillColor r="255" g="255" b="181" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+          </node>
+        </node>
+        <node identifier="id-44f1d2d4" elementRef="id-50e9edfb" xsi:type="Element" x="1885" y="4375" w="304" h="243">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="bbf62547" elementRef="id-6148b14f" xsi:type="Element" x="915" y="2730" w="776" h="436">
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="bbcb9e5b" elementRef="id-49f205d2" xsi:type="Element" x="980" y="2805" w="605" h="268">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+            <node identifier="id-99dd5e15" elementRef="id-8c4cab64" xsi:type="Element" x="1000" y="2850" w="558" h="157">
+              <style>
+                <fillColor r="255" g="255" b="181" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+          </node>
+        </node>
+        <node identifier="d8b41d0c" elementRef="id-53d3e0dd" xsi:type="Element" x="650" y="3685" w="776" h="436">
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="e0ded55d" elementRef="e29a2a24" xsi:type="Element" x="895" y="3895" w="311" h="144">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="id-79b6cfce" elementRef="id-4c7d5a73" xsi:type="Element" x="2064" y="2790" w="776" h="436">
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-8ead96bd" elementRef="id-9d7a21cc" xsi:type="Element" x="2104" y="2820" w="311" h="144">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+            <node identifier="id-62ff4775" elementRef="b45e67c5" xsi:type="Element" x="2124" y="2878" w="120" h="55">
+              <style>
+                <fillColor r="255" g="255" b="181" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="153" g="153" b="153" />
+                </font>
+              </style>
+            </node>
+            <node identifier="id-8d3f036f" elementRef="id-35950b20" xsi:type="Element" x="2275" y="2878" w="120" h="55">
+              <style>
+                <fillColor r="255" g="255" b="181" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="153" g="153" b="153" />
+                </font>
+              </style>
+            </node>
+          </node>
+          <node identifier="ea30d071" elementRef="bcbf28f7" xsi:type="Element" x="2243" y="3000" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-3ccdbebc" elementRef="beace333" xsi:type="Element" x="2243" y="3080" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-97e64124" elementRef="b85045ea" xsi:type="Element" x="2243" y="3160" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="d6d1397c" elementRef="b9cebc65" xsi:type="Element" x="2584" y="3087" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="id-3140ec02" elementRef="id-9b8821d0" xsi:type="Element" x="80" y="5900" w="304" h="243">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-79c392ec" elementRef="id-98db5e3d" xsi:type="Element" x="1960" y="6945" w="304" h="243">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-47f7df88" x="525" y="4785" w="4160" h="1944" xsi:type="Container">
+          <label xml:lang="en">app domain model</label>
+          <style>
+            <fillColor r="210" g="215" b="215" a="100" />
+            <lineColor r="255" g="0" b="0" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="c17414aa" elementRef="fde8365e" xsi:type="Element" x="640" y="5830" w="656" h="480">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-5fb00aaf" elementRef="id-98eef0b3" xsi:type="Element" x="1685" y="5830" w="656" h="480">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-74d98d2a" elementRef="id-36bef834" xsi:type="Element" x="1885" y="4910" w="656" h="480">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="bf12f584" elementRef="c96d1e44" xsi:type="Element" x="2705" y="5830" w="656" h="480">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-15e91c0d" elementRef="id-231cf37f" xsi:type="Element" x="2955" y="4910" w="656" h="480">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-93bdd774" elementRef="bb31f9e9" xsi:type="Element" x="3895" y="4910" w="656" h="480">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <connection identifier="id-2fa27962" relationshipRef="id-53b8c991" xsi:type="Relationship" source="b3c2dbda" target="id-4cff9821">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-1bb36efc" relationshipRef="id-06273c56" xsi:type="Relationship" source="id-232dda01" target="id-9ba3d199">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-821ba2cb" relationshipRef="c9029da7" xsi:type="Relationship" source="id-8b94423a" target="id-0142e99e">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="2470" y="3977" />
+        </connection>
+        <connection identifier="id-023c43c5" relationshipRef="a6ee09cf" xsi:type="Relationship" source="id-8b94423a" target="id-843661b5">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="2900" y="4009" />
+        </connection>
+        <connection identifier="id-9fef4879" relationshipRef="id-89b06fd7" xsi:type="Relationship" source="id-8b94423a" target="e0ded55d">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1714" y="3959" />
+        </connection>
+        <connection identifier="id-35598f05" relationshipRef="id-75a3cc63" xsi:type="Relationship" source="id-8b94423a" target="id-0142e99e">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="2470" y="3948" />
+        </connection>
+        <connection identifier="id-53a08580" relationshipRef="e404096e" xsi:type="Relationship" source="id-8b94423a" target="e0ded55d">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1970" y="3993" />
+        </connection>
+        <connection identifier="id-9254739f" relationshipRef="df8af857" xsi:type="Relationship" source="id-56957cc3" target="a73c918f">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-42fa278b" relationshipRef="b2cc7784" xsi:type="Relationship" source="id-38dba702" target="id-438698e0">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="2230" y="3616" />
+        </connection>
+        <connection identifier="f238f2ed" relationshipRef="id-7f81b217" xsi:type="Relationship" source="id-38dba702" target="id-8ff0e2cd">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-357aaef0" relationshipRef="id-772bfaa7" xsi:type="Relationship" source="id-438698e0" target="id-8ead96bd">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="2208" y="3159" />
+        </connection>
+        <connection identifier="id-02eb89f0" relationshipRef="id-4b4648c8" xsi:type="Relationship" source="id-438698e0" target="id-4cff9821">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-67f584ee" relationshipRef="fc5d27bf" xsi:type="Relationship" source="id-438698e0" target="id-312c8aff">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-59bf1ca1" relationshipRef="id-65de4632" xsi:type="Relationship" source="id-9ba3d199" target="id-4cff9821">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-9e2a2964" relationshipRef="id-9334eaf8" xsi:type="Relationship" source="f7645b27" target="id-9d887243">
+          <style>
+            <lineColor r="153" g="153" b="153" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="af5fae53" relationshipRef="b3c2fdcd" xsi:type="Relationship" source="f9424a44" target="id-5139ac2a">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="e900f7d2" relationshipRef="id-2c4bc180" xsi:type="Relationship" source="f9424a44" target="id-95b49fbd">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="4177" y="2554" />
+        </connection>
+        <connection identifier="id-110fba51" relationshipRef="id-13b77a20" xsi:type="Relationship" source="f9424a44" target="de257713">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="3499" y="3218" />
+        </connection>
+        <connection identifier="id-7f653377" relationshipRef="id-349dc125" xsi:type="Relationship" source="id-2d68d65f" target="id-730866b8">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-4d95d2b6" relationshipRef="id-058fba93" xsi:type="Relationship" source="c757b085" target="f9424a44">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="3895" y="2715" />
+          <bendpoint x="3875" y="2715" />
+        </connection>
+        <connection identifier="id-3293f6c6" relationshipRef="id-4052b8b9" xsi:type="Relationship" source="c757b085" target="id-92ea4a52">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-37334ef2" relationshipRef="cf9de408" xsi:type="Relationship" source="id-730866b8" target="id-55a8dd87">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="ee7e67b8" relationshipRef="id-8d4ac17d" xsi:type="Relationship" source="id-036555cb" target="a883625e">
+          <style>
+            <lineColor r="153" g="153" b="153" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="f489979c" relationshipRef="id-5330ffc4" xsi:type="Relationship" source="id-5139ac2a" target="e0ded55d">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="909" y="2221" />
+        </connection>
+        <connection identifier="dc697e22" relationshipRef="id-5fc10fa8" xsi:type="Relationship" source="id-5139ac2a" target="e54f0f30">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-0516e66f" relationshipRef="d1cdaed9" xsi:type="Relationship" source="id-95b49fbd" target="id-438fbc49">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-342d1ef9" relationshipRef="id-3bb62f4a" xsi:type="Relationship" source="id-95b49fbd" target="id-036555cb">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="b6ed037a" relationshipRef="id-7c49d94f" xsi:type="Relationship" source="id-95b49fbd" target="f281309f">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="caf59e4f" relationshipRef="id-79ce2cc7" xsi:type="Relationship" source="id-95b49fbd" target="f7645b27">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-2cd682b7" relationshipRef="id-8a8a0a3d" xsi:type="Relationship" source="id-1327fe38" target="id-920349d1">
+          <style>
+            <lineColor r="153" g="153" b="153" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="ad1525c7" relationshipRef="id-98eea6a0" xsi:type="Relationship" source="id-44f1d2d4" target="id-74d98d2a">
+          <style>
+            <lineColor r="128" g="128" b="128" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-4d46e25c" relationshipRef="f0054ae4" xsi:type="Relationship" source="id-44f1d2d4" target="c17414aa">
+          <style>
+            <lineColor r="128" g="128" b="128" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="b961cd54" relationshipRef="b2ef607f" xsi:type="Relationship" source="id-44f1d2d4" target="bf12f584">
+          <style>
+            <lineColor r="128" g="128" b="128" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-15ab2954" relationshipRef="c6491c50" xsi:type="Relationship" source="id-44f1d2d4" target="id-15e91c0d">
+          <style>
+            <lineColor r="128" g="128" b="128" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="3038" y="4511" />
+        </connection>
+        <connection identifier="id-910e7eb3" relationshipRef="f66f6afd" xsi:type="Relationship" source="bbcb9e5b" target="e0ded55d">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="df485b43" relationshipRef="id-3cd73fa3" xsi:type="Relationship" source="bbcb9e5b" target="e0ded55d">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1166" y="3667" />
+        </connection>
+        <connection identifier="id-068ba0af" relationshipRef="id-9c28d319" xsi:type="Relationship" source="id-8ead96bd" target="e0ded55d">
+          <style>
+            <lineColor r="153" g="153" b="153" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1870" y="3564" />
+        </connection>
+        <connection identifier="id-367e0024" relationshipRef="c280af0f" xsi:type="Relationship" source="id-8ead96bd" target="ea30d071">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-4dd10c0c" relationshipRef="id-1cfb754c" xsi:type="Relationship" source="id-8ead96bd" target="e0ded55d">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1570" y="3390" />
+        </connection>
+        <connection identifier="id-3c6c7d61" relationshipRef="id-1f42fd75" xsi:type="Relationship" source="id-8ead96bd" target="id-3ccdbebc">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="2284" y="3027" />
+        </connection>
+        <connection identifier="id-518dd534" relationshipRef="d5acad02" xsi:type="Relationship" source="id-8ead96bd" target="id-97e64124">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="2264" y="3071" />
+        </connection>
+        <connection identifier="d11f26f5" relationshipRef="ea514d26" xsi:type="Relationship" source="id-8ead96bd" target="e0ded55d">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1744" y="3540" />
+        </connection>
+        <connection identifier="id-3a7ebddd" relationshipRef="id-83bc43e2" xsi:type="Relationship" source="id-8ead96bd" target="id-843661b5">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="a265504f" relationshipRef="id-55edba1a" xsi:type="Relationship" source="id-8ead96bd" target="e0ded55d">
+          <style>
+            <lineColor r="153" g="153" b="153" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1444" y="3300" />
+        </connection>
+        <connection identifier="id-229bec1a" relationshipRef="id-95f348c7" xsi:type="Relationship" source="id-8ead96bd" target="bbcb9e5b">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-5e3bbb02" relationshipRef="ab3bc742" xsi:type="Relationship" source="id-3ccdbebc" target="d6d1397c">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-08106618" relationshipRef="id-67142db5" xsi:type="Relationship" source="id-3140ec02" target="c17414aa">
+          <style>
+            <lineColor r="128" g="128" b="128" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="ed9ab577" relationshipRef="c113ac82" xsi:type="Relationship" source="id-79c392ec" target="id-5fb00aaf">
+          <style>
+            <lineColor r="128" g="128" b="128" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="f65eda51" relationshipRef="id-701d64c6" xsi:type="Relationship" source="id-79c392ec" target="c17414aa">
+          <style>
+            <lineColor r="128" g="128" b="128" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-7242bca0" relationshipRef="aadd99cd" xsi:type="Relationship" source="id-79c392ec" target="bf12f584">
+          <style>
+            <lineColor r="128" g="128" b="128" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="b6f017c7" relationshipRef="id-4d9f311f" xsi:type="Relationship" source="c17414aa" target="d8b41d0c">
+          <style lineWidth="3">
+            <lineColor r="128" g="128" b="128" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-9b6b67fb" relationshipRef="c09b693c" xsi:type="Relationship" source="c17414aa" target="id-5fb00aaf">
+          <style>
+            <lineColor r="255" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1500" y="6094" />
+        </connection>
+        <connection identifier="id-7157fecd" relationshipRef="id-25bd1572" xsi:type="Relationship" source="c17414aa" target="bf12f584">
+          <style>
+            <lineColor r="255" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1028" y="6510" />
+          <bendpoint x="3024" y="6506" />
+        </connection>
+        <connection identifier="e6918c98" relationshipRef="cec94390" xsi:type="Relationship" source="id-5fb00aaf" target="bbf62547">
+          <style lineWidth="3">
+            <lineColor r="128" g="128" b="128" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="d1fa58f3" relationshipRef="f50558b2" xsi:type="Relationship" source="id-5fb00aaf" target="c17414aa">
+          <style>
+            <lineColor r="255" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1484" y="6064" />
+        </connection>
+        <connection identifier="eb9d4c1a" relationshipRef="a0a28d67" xsi:type="Relationship" source="id-5fb00aaf" target="bf12f584">
+          <style>
+            <lineColor r="255" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="2521" y="6100" />
+        </connection>
+        <connection identifier="id-18f1f75e" relationshipRef="id-0bae2e64" xsi:type="Relationship" source="id-74d98d2a" target="id-2972c94a">
+          <style lineWidth="3">
+            <lineColor r="128" g="128" b="128" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="b454f758" relationshipRef="id-56b9f5ae" xsi:type="Relationship" source="id-74d98d2a" target="c17414aa">
+          <style>
+            <lineColor r="255" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1228" y="5342" />
+        </connection>
+        <connection identifier="id-17768001" relationshipRef="d7d2d0fa" xsi:type="Relationship" source="id-74d98d2a" target="bf12f584">
+          <style>
+            <lineColor r="255" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="2761" y="5370" />
+        </connection>
+        <connection identifier="e3ec446a" relationshipRef="e52fc6f0" xsi:type="Relationship" source="id-74d98d2a" target="id-15e91c0d">
+          <style>
+            <lineColor r="255" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-706c241f" relationshipRef="cea5470d" xsi:type="Relationship" source="bf12f584" target="id-79b6cfce">
+          <style lineWidth="3">
+            <lineColor r="128" g="128" b="128" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="2798" y="4559" />
+        </connection>
+        <connection identifier="d0dcf208" relationshipRef="id-54cf265a" xsi:type="Relationship" source="bf12f584" target="id-5fb00aaf">
+          <style>
+            <lineColor r="255" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="e2976ba3" relationshipRef="id-639ac11f" xsi:type="Relationship" source="bf12f584" target="c17414aa">
+          <style>
+            <lineColor r="255" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="3060" y="6534" />
+          <bendpoint x="988" y="6550" />
+        </connection>
+        <connection identifier="f96295fa" relationshipRef="id-8a5bd6c7" xsi:type="Relationship" source="id-15e91c0d" target="id-0b4cc78a">
+          <style lineWidth="3">
+            <lineColor r="128" g="128" b="128" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="3206" y="4070" />
+        </connection>
+        <connection identifier="ce64372c" relationshipRef="aff97a3c" xsi:type="Relationship" source="id-93bdd774" target="id-66d8a054">
+          <style lineWidth="3">
+            <lineColor r="128" g="128" b="128" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="4039" y="4515" />
+        </connection>
+      </view>
+      <view identifier="d6d4043a-99c0-4bad-af92-d90d82f26129" xsi:type="Diagram">
+        <name xml:lang="en">2 Mutual Visibility</name>
+        <node identifier="bcb2b75d" xsi:type="Label" x="945" y="2700" w="501" h="201">
+          <label xml:lang="en">Example, mutual visibility between a party, a contract, a product&#xD;
+&#xD;
+- mutual visibility undesirable, because &#xD;
+   - it increases the coupling between the two types, &#xD;
+   - it is the simplest case of a cycle&#xD;
+&#xD;
+- we have three variants:&#xD;
+   - decouple the types by making the associations one-way &#xD;
+   - put the types into a single large package &#xD;
+   - nothing to do. We have two mutually visible packages</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="f96cb4a6" elementRef="id-50e9edfb" xsi:type="Element" x="2309" y="2640" w="304" h="243">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-8bbb1e3a" elementRef="id-9b8821d0" xsi:type="Element" x="504" y="4165" w="304" h="243">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-124be966" elementRef="id-98db5e3d" xsi:type="Element" x="2384" y="5210" w="304" h="243">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="a6f76102" x="949" y="3050" w="4160" h="1944" xsi:type="Container">
+          <label xml:lang="en">app domain model</label>
+          <style>
+            <fillColor r="210" g="215" b="215" a="100" />
+            <lineColor r="255" g="0" b="0" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-0c449332" elementRef="fde8365e" xsi:type="Element" x="1064" y="4095" w="656" h="480">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-4b0eb7e0" elementRef="id-98eef0b3" xsi:type="Element" x="2109" y="4095" w="656" h="480">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-280c518c" elementRef="id-36bef834" xsi:type="Element" x="2309" y="3175" w="656" h="480">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="cb304403" elementRef="c96d1e44" xsi:type="Element" x="3129" y="4095" w="656" h="480">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-67c1b420" elementRef="id-231cf37f" xsi:type="Element" x="3379" y="3175" w="656" h="480">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-40928354" elementRef="bb31f9e9" xsi:type="Element" x="4319" y="3175" w="656" h="480">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <connection identifier="f2037ea7" relationshipRef="f0054ae4" xsi:type="Relationship" source="f96cb4a6" target="id-0c449332">
+          <style>
+            <lineColor r="128" g="128" b="128" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-84d7c7a0" relationshipRef="b2ef607f" xsi:type="Relationship" source="f96cb4a6" target="cb304403">
+          <style>
+            <lineColor r="128" g="128" b="128" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="cceac312" relationshipRef="c6491c50" xsi:type="Relationship" source="f96cb4a6" target="id-67c1b420">
+          <style>
+            <lineColor r="128" g="128" b="128" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="a1f9dbf8" relationshipRef="id-98eea6a0" xsi:type="Relationship" source="f96cb4a6" target="id-280c518c">
+          <style>
+            <lineColor r="128" g="128" b="128" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="f8cf5e42" relationshipRef="id-67142db5" xsi:type="Relationship" source="id-8bbb1e3a" target="id-0c449332">
+          <style>
+            <lineColor r="128" g="128" b="128" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-83177a13" relationshipRef="id-701d64c6" xsi:type="Relationship" source="id-124be966" target="id-0c449332">
+          <style>
+            <lineColor r="128" g="128" b="128" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-90f53bea" relationshipRef="c113ac82" xsi:type="Relationship" source="id-124be966" target="id-4b0eb7e0">
+          <style>
+            <lineColor r="128" g="128" b="128" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="e7d83905" relationshipRef="aadd99cd" xsi:type="Relationship" source="id-124be966" target="cb304403">
+          <style>
+            <lineColor r="128" g="128" b="128" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-66a8c832" relationshipRef="c09b693c" xsi:type="Relationship" source="id-0c449332" target="id-4b0eb7e0">
+          <style>
+            <lineColor r="255" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1924" y="4359" />
+        </connection>
+        <connection identifier="bde1043a" relationshipRef="id-25bd1572" xsi:type="Relationship" source="id-0c449332" target="cb304403">
+          <style>
+            <lineColor r="255" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1452" y="4775" />
+          <bendpoint x="3448" y="4771" />
+        </connection>
+        <connection identifier="id-698c98e2" relationshipRef="f50558b2" xsi:type="Relationship" source="id-4b0eb7e0" target="id-0c449332">
+          <style>
+            <lineColor r="255" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1908" y="4329" />
+        </connection>
+        <connection identifier="id-24f7f9fb" relationshipRef="a0a28d67" xsi:type="Relationship" source="id-4b0eb7e0" target="cb304403">
+          <style>
+            <lineColor r="255" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="2945" y="4365" />
+        </connection>
+        <connection identifier="id-39fb35ad" relationshipRef="d7d2d0fa" xsi:type="Relationship" source="id-280c518c" target="cb304403">
+          <style>
+            <lineColor r="255" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="3185" y="3635" />
+        </connection>
+        <connection identifier="id-08e5c873" relationshipRef="e52fc6f0" xsi:type="Relationship" source="id-280c518c" target="id-67c1b420">
+          <style>
+            <lineColor r="255" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="dc638800" relationshipRef="id-56b9f5ae" xsi:type="Relationship" source="id-280c518c" target="id-0c449332">
+          <style>
+            <lineColor r="255" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1652" y="3607" />
+        </connection>
+        <connection identifier="d752c895" relationshipRef="id-54cf265a" xsi:type="Relationship" source="cb304403" target="id-4b0eb7e0">
+          <style>
+            <lineColor r="255" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-27b0065c" relationshipRef="id-639ac11f" xsi:type="Relationship" source="cb304403" target="id-0c449332">
+          <style>
+            <lineColor r="255" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="3484" y="4799" />
+          <bendpoint x="1412" y="4815" />
+        </connection>
+      </view>
+      <view identifier="ff8912dc-da82-4819-8ea3-a9d74d894058" xsi:type="Diagram">
+        <name xml:lang="en">3 Subtyping Packages</name>
+      </view>
+      <view identifier="id-25b121ca" xsi:type="Diagram">
+        <name xml:lang="en">1 Multiple Access Levels to a Package</name>
+        <node identifier="id-74eeeb19" xsi:type="Label" x="380" y="3365" w="501" h="201">
+          <label xml:lang="en">Example, how we can split a large domain model on the app level</label>
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-7678d047" elementRef="b89931d6" xsi:type="Element" x="387" y="1469" w="1504" h="1224">
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="f9801690" elementRef="a323d9b9" xsi:type="Element" x="1602" y="2234" w="210" h="150">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+            <node identifier="id-164b03cc" elementRef="id-3c88830c" xsi:type="Element" x="1642" y="2274" w="160" h="100">
+              <style>
+                <fillColor r="255" g="255" b="181" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+              <node identifier="id-7c2371a5" elementRef="id-001559ac" xsi:type="Element" x="1684" y="2318" w="120" h="55">
+                <style>
+                  <fillColor r="255" g="255" b="181" a="100" />
+                  <lineColor r="92" g="92" b="92" a="100" />
+                  <font name="Lucida Grande" size="12">
+                    <color r="0" g="0" b="0" />
+                  </font>
+                </style>
+              </node>
+            </node>
+          </node>
+          <node identifier="id-5979932f" elementRef="id-288264c4" xsi:type="Element" x="1602" y="2394" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-94d1b741" elementRef="c744d88c" xsi:type="Element" x="1122" y="2304" w="311" h="340">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+            <node identifier="dd308fb5" elementRef="id-18d341af" xsi:type="Element" x="1202" y="2554" w="120" h="55">
+              <style>
+                <fillColor r="255" g="255" b="181" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="id-2544ba42" elementRef="dd64380c" xsi:type="Element" x="1202" y="2454" w="120" h="55">
+              <style>
+                <fillColor r="255" g="255" b="181" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="fe1d20e2" elementRef="f43dfa34" xsi:type="Element" x="1202" y="2364" w="120" h="55">
+              <style>
+                <fillColor r="255" g="255" b="181" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+          </node>
+          <node identifier="id-0db1d7ea" elementRef="id-51e74750" xsi:type="Element" x="1602" y="2544" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="e5e8116f" elementRef="id-877f967d" xsi:type="Element" x="1122" y="1964" w="311" h="144">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="c3782c60" elementRef="dd16ae1c" xsi:type="Element" x="1602" y="1984" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-793efbe1" elementRef="a8245a38" xsi:type="Element" x="1602" y="2164" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-9ebe72f5" elementRef="c2d52bc2" xsi:type="Element" x="1602" y="2474" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="cda4c0ae" elementRef="id-2c173537" xsi:type="Element" x="1662" y="279" w="2068" h="1116">
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-8b1be35e" elementRef="id-21d951ce" xsi:type="Element" x="1772" y="594" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="ff25bf45" elementRef="aa4d1df1" xsi:type="Element" x="3354" y="1317" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-85ac6a6f" elementRef="id-0e83d100" xsi:type="Element" x="2372" y="484" w="560" h="330">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+            <node identifier="id-1366e4f0" elementRef="id-1e51b0b2" xsi:type="Element" x="2382" y="544" w="531" h="170">
+              <style>
+                <fillColor r="254" g="254" b="181" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+              <node identifier="id-7242f1b6" elementRef="id-79514adf" xsi:type="Element" x="2452" y="594" w="120" h="55">
+                <style>
+                  <fillColor r="255" g="255" b="181" a="100" />
+                  <lineColor r="92" g="92" b="92" a="100" />
+                  <font name="Lucida Grande" size="12">
+                    <color r="0" g="0" b="0" />
+                  </font>
+                </style>
+              </node>
+              <node identifier="id-8f8fff54" elementRef="id-86814cd5" xsi:type="Element" x="2722" y="594" w="120" h="55">
+                <style>
+                  <fillColor r="255" g="255" b="181" a="100" />
+                  <lineColor r="92" g="92" b="92" a="100" />
+                  <font name="Lucida Grande" size="12">
+                    <color r="0" g="0" b="0" />
+                  </font>
+                </style>
+              </node>
+            </node>
+          </node>
+          <node identifier="id-7e4edcbf" elementRef="f10fbc9b" xsi:type="Element" x="2070" y="594" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="a1620d94" elementRef="id-90e18c56" xsi:type="Element" x="3106" y="1187" w="120" h="55">
+            <style>
+              <fillColor r="204" g="204" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-5e4f7d10" elementRef="da07efe4" xsi:type="Element" x="3532" y="1317" w="120" h="55">
+            <style>
+              <fillColor r="204" g="204" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-87dfb0fb" elementRef="fbe431b0" xsi:type="Element" x="3354" y="1155" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="e98bf4a4" elementRef="fea3cfb9" xsi:type="Element" x="3106" y="594" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="f120a8cc" elementRef="id-0b34c103" xsi:type="Element" x="3534" y="1237" w="120" h="55">
+            <style>
+              <fillColor r="204" g="204" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="a8e8f17d" elementRef="dae4395e" xsi:type="Element" x="3106" y="354" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-20fa8e3c" elementRef="id-0068c68e" xsi:type="Element" x="3354" y="1069" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="c2e51aa5" elementRef="id-33f61e22" xsi:type="Element" x="3354" y="1237" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="id-779ef01d" elementRef="id-9496d9bc" xsi:type="Element" x="2528" y="354" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="cbb08836" elementRef="id-9bc924ac" xsi:type="Element" x="2922" y="1002" w="311" h="144">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+            <node identifier="ef69e392" elementRef="id-559e383d" xsi:type="Element" x="2952" y="1066" w="120" h="55">
+              <style>
+                <fillColor r="255" g="255" b="181" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="ea891e9d" elementRef="ca70d370" xsi:type="Element" x="3102" y="1066" w="120" h="55">
+              <style>
+                <fillColor r="255" g="255" b="181" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+          </node>
+        </node>
+        <node identifier="d81424e3" elementRef="e3e513b1" xsi:type="Element" x="2327" y="1482" w="596" h="528">
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-0296eb7d" elementRef="id-220c9731" xsi:type="Element" x="2432" y="1552" w="420" h="256">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+            <node identifier="id-886a97ec" elementRef="id-9054a234" xsi:type="Element" x="2472" y="1622" w="311" h="144">
+              <style>
+                <fillColor r="255" g="255" b="181" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+          </node>
+        </node>
+        <node identifier="d42b2b00" elementRef="id-36bef834" xsi:type="Element" x="821" y="3864" w="656" h="480">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="e7059fdd" elementRef="id-231cf37f" xsi:type="Element" x="2447" y="3864" w="656" h="480">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="ab025db2" elementRef="bb31f9e9" xsi:type="Element" x="2537" y="3424" w="304" h="243">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="a4d8e70d" elementRef="a8635da6" xsi:type="Element" x="3217" y="3869" w="656" h="480">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-010d8246" xsi:type="Label" x="3302" y="4024" w="501" h="201">
+            <label xml:lang="en">To allow multiple Access Levels(from risk management app and scenario management app) to the scenario package:&#xD;
+     - using separate protocols&#xD;
+     - using extra package (for example, scenario structure package)</label>
+            <style>
+              <fillColor r="255" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="255" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="d64a1275" elementRef="id-50e9edfb" xsi:type="Element" x="1762" y="3424" w="304" h="243">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="f9f9ecee" elementRef="df70d644" xsi:type="Element" x="3037" y="3424" w="304" h="243">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <connection identifier="id-3825b22e" relationshipRef="id-53b8c991" xsi:type="Relationship" source="f9801690" target="id-94d1b741">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-787b3f22" relationshipRef="id-06273c56" xsi:type="Relationship" source="id-7c2371a5" target="id-793efbe1">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-4c0e5ffe" relationshipRef="a6ee09cf" xsi:type="Relationship" source="dd308fb5" target="id-886a97ec">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="2618" y="2553" />
+        </connection>
+        <connection identifier="id-7595a0f1" relationshipRef="id-75a3cc63" xsi:type="Relationship" source="dd308fb5" target="id-0db1d7ea">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1462" y="2565" />
+        </connection>
+        <connection identifier="e793a483" relationshipRef="c9029da7" xsi:type="Relationship" source="dd308fb5" target="id-0db1d7ea">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1462" y="2594" />
+        </connection>
+        <connection identifier="id-032feed1" relationshipRef="df8af857" xsi:type="Relationship" source="id-2544ba42" target="id-9ebe72f5">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-7a7799c6" relationshipRef="b2cc7784" xsi:type="Relationship" source="fe1d20e2" target="e5e8116f">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="1222" y="2233" />
+        </connection>
+        <connection identifier="ed608cea" relationshipRef="id-7f81b217" xsi:type="Relationship" source="fe1d20e2" target="id-5979932f">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-5f40cb0a" relationshipRef="id-4b4648c8" xsi:type="Relationship" source="e5e8116f" target="id-94d1b741">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-6e472b62" relationshipRef="fc5d27bf" xsi:type="Relationship" source="e5e8116f" target="c3782c60">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="e8846ba5" relationshipRef="id-65de4632" xsi:type="Relationship" source="id-793efbe1" target="id-94d1b741">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="bab859cf" relationshipRef="id-9334eaf8" xsi:type="Relationship" source="ff25bf45" target="id-5e4f7d10">
+          <style>
+            <lineColor r="153" g="153" b="153" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="d683aa38" relationshipRef="id-13b77a20" xsi:type="Relationship" source="id-85ac6a6f" target="id-0296eb7d">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="2459" y="1182" />
+        </connection>
+        <connection identifier="id-4c17a7b2" relationshipRef="b3c2fdcd" xsi:type="Relationship" source="id-85ac6a6f" target="id-779ef01d">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="b98d2352" relationshipRef="id-2c4bc180" xsi:type="Relationship" source="id-85ac6a6f" target="cbb08836">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="3104" y="723" />
+        </connection>
+        <connection identifier="e5285eeb" relationshipRef="id-349dc125" xsi:type="Relationship" source="id-7242f1b6" target="id-7e4edcbf">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="e58e616c" relationshipRef="id-058fba93" xsi:type="Relationship" source="id-8f8fff54" target="id-85ac6a6f">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="2822" y="884" />
+          <bendpoint x="2802" y="884" />
+        </connection>
+        <connection identifier="id-2e662183" relationshipRef="id-4052b8b9" xsi:type="Relationship" source="id-8f8fff54" target="e98bf4a4">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-0d36d145" relationshipRef="cf9de408" xsi:type="Relationship" source="id-7e4edcbf" target="id-8b1be35e">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-7accd102" relationshipRef="id-8d4ac17d" xsi:type="Relationship" source="c2e51aa5" target="f120a8cc">
+          <style>
+            <lineColor r="153" g="153" b="153" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-0dbb0e77" relationshipRef="id-5fc10fa8" xsi:type="Relationship" source="id-779ef01d" target="a8e8f17d">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="255" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-5851a8ed" relationshipRef="id-7c49d94f" xsi:type="Relationship" source="cbb08836" target="id-20fa8e3c">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="c7bb6130" relationshipRef="id-79ce2cc7" xsi:type="Relationship" source="cbb08836" target="ff25bf45">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="bbdc7281" relationshipRef="d1cdaed9" xsi:type="Relationship" source="cbb08836" target="id-87dfb0fb">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="ffcc4703" relationshipRef="id-3bb62f4a" xsi:type="Relationship" source="cbb08836" target="c2e51aa5">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-4df13608" relationshipRef="id-8a8a0a3d" xsi:type="Relationship" source="ea891e9d" target="a1620d94">
+          <style>
+            <lineColor r="153" g="153" b="153" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="d0039327" relationshipRef="id-0bae2e64" xsi:type="Relationship" source="d42b2b00" target="id-7678d047">
+          <style lineWidth="3">
+            <lineColor r="128" g="128" b="128" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-5b8dbd92" relationshipRef="e52fc6f0" xsi:type="Relationship" source="d42b2b00" target="e7059fdd">
+          <style>
+            <lineColor r="255" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-4a92eec8" relationshipRef="id-8a5bd6c7" xsi:type="Relationship" source="e7059fdd" target="cda4c0ae">
+          <style lineWidth="3">
+            <lineColor r="128" g="128" b="128" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="2955" y="2624" />
+        </connection>
+        <connection identifier="id-9d5a43b1" relationshipRef="aff97a3c" xsi:type="Relationship" source="ab025db2" target="d81424e3">
+          <style lineWidth="3">
+            <lineColor r="128" g="128" b="128" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-843c5eac" relationshipRef="id-0b5ae1e8" xsi:type="Relationship" source="a4d8e70d" target="cda4c0ae">
+          <style lineWidth="3">
+            <lineColor r="128" g="128" b="128" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="3512" y="2629" />
+        </connection>
+        <connection identifier="id-966d973d" relationshipRef="b5f56abb" xsi:type="Relationship" source="a4d8e70d" target="e7059fdd">
+          <style>
+            <lineColor r="255" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-12195dc7" relationshipRef="id-98eea6a0" xsi:type="Relationship" source="d64a1275" target="d42b2b00">
+          <style>
+            <lineColor r="255" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-80d7a394" relationshipRef="c6491c50" xsi:type="Relationship" source="d64a1275" target="e7059fdd">
+          <style>
+            <lineColor r="255" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-0ed0906e" relationshipRef="id-3c7a5511" xsi:type="Relationship" source="f9f9ecee" target="e7059fdd">
+          <style>
+            <lineColor r="255" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="c8e8f591" relationshipRef="a6bd6d57" xsi:type="Relationship" source="f9f9ecee" target="a4d8e70d">
+          <style>
+            <lineColor r="255" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+      </view>
+    </diagrams>
+  </views>
+</model>

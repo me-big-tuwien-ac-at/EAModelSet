@@ -1,0 +1,89 @@
+"ID","Type","Name","Documentation","Specialization"
+"331497f3","ArchimateModel","10 Money","",""
+"f81b343d","ApplicationComponent","class currency","",""
+"21fb2ce3","ApplicationComponent","class money","",""
+"74e410f7","ApplicationComponent","Currency Converter","",""
+"3cb65afe","ApplicationFunction","* (bigdecimal, rounding mode)","",""
+"f2abd58e","ApplicationFunction","+ (money object)","",""
+"1d08ac9a","ApplicationFunction","- (money object)","",""
+"ba5e9d70","ApplicationFunction","<","",""
+"4001b3a0","ApplicationFunction","<=","",""
+"b64ba578","ApplicationFunction","=","",""
+"c0338fec","ApplicationFunction",">","",""
+"98c75c3d","ApplicationFunction",">=","",""
+"65841406","ApplicationFunction","allocate(proportions X:Y:Z)","class Money... 
+
+   public Money[] allocate(int n) {
+      Money lowResult = newMoney(amount / n);
+      Money highResult = newMoney(lowResult.amount + 1);
+      Money[] results = new Money[n];
+      int remainder = (int) amount % n;
+      for (int i = 0; i < remainder; i++) results[i] = highResult;
+      for (int i = remainder; i < n; i++) results[i] = lowResult;
+      return results;
+   }
+
+Более сложный алгоритм распределения может поделить деньги в любой заданной пропорции.
+
+class Money... 
+
+   public Money[] allocate(long[] ratios) {
+      long total = 0;
+      for (int i = 0; i < ratios.length; i++) total += ratios[i];
+      long remainder = amount;
+      Money[] results = new Money[ratios.length];
+      for (int i = 0; i < results.length; i++) {
+         results[i] = newMoney(amount * ratios[i] / total);
+         remainder -= results[i].amount;
+      }
+      for (int i = 0; i < remainder; i++) {
+         results[i].amount++;
+      }
+      return results;
+   }
+
+Данный алгоритм можно применить для решения задачки Мэтью Фоммела (Matthew Foemmel).
+
+class Money... 
+
+   public void testAllocate2() {
+      long[] allocation = {3,7};
+      Money[] result = Money.dollars(0.05).allocate(allocation);
+      assertEquals(Money.dollars(0.02), result[0]);
+      assertEquals(Money.dollars(0.03), result[1]);
+   }",""
+"c7d49d32-2acf-46ef-8917-42b7e960396e","ApplicationFunction","amount()","",""
+"9f683978","ApplicationFunction","compare (money object)","",""
+"1723971b","ApplicationFunction","compare (some object)","",""
+"31e83fad","ApplicationFunction","construnctor (amount, currency obj)","",""
+"3a83d854","ApplicationFunction","equals (money object)","",""
+"ffe5adda","ApplicationFunction","equals (some object)","",""
+"8d2aee58","ApplicationFunction","fabric for dollars (amount)","",""
+"39fe1275","ApplicationFunction","get default fraction digits","",""
+"5f781f9e","ApplicationFunction","hashCode ()","",""
+"96001353","ApplicationProcess","amount *10^currencyObj.getDefaultFractionDigits","",""
+"36132d44","ApplicationProcess","Application Process","",""
+"e1a642d8","ApplicationProcess","call","",""
+"c19c7fd3","ApplicationProcess","check that the money in the same currency","",""
+"fe93d6dd","ApplicationProcess","check that the money in the same currency","",""
+"9446333b","ApplicationProcess","check that the money in the same currency","",""
+"76bfbc4b","ApplicationProcess","check that the money in the same currency","",""
+"0daaebae","ApplicationProcess","else return false","",""
+"312f0e35","ApplicationProcess"," find $,$,$                        where    $:$:$=X:Y:Z             and  $+$+$=amount ","",""
+"81f6e521","ApplicationProcess","if this.amount>object.amount","",""
+"34328e8c","ApplicationProcess","money left over after rounding distributed between all parts of the proportion $:$:$ of randomly","",""
+"19f9348a","ApplicationProcess","return $,$,$","",""
+"4cf8022b","ApplicationProcess","return (int) (amount ^ (amount >>> 32))","",""
+"10fd17f6-eae9-4cd6-8431-9379dc0e633e","ApplicationProcess","return amount *10^(-currencyObj.getDefaultFractionDigits)","",""
+"8a5a6c74","ApplicationProcess","return Money (this.amount *moneyObj.amount, currency,rounding mode) ","",""
+"596e2af0","ApplicationProcess","return Money (this.amount +moneyObj.amount)","",""
+"2bb210fc","ApplicationProcess","return Money (this.amount - moneyObj.amount )","",""
+"7ec0541c","ApplicationProcess","return Money(amount, Currency.USD)","",""
+"5ce7b2ee","ApplicationProcess","return true","",""
+"94ae56d1","ApplicationProcess","some object EQUAL this","",""
+"48d26aba","ApplicationProcess","validate that  object.amount == this.amount","",""
+"0517fd9a","ApplicationProcess","validate that  object.currency EQUAL this.currency","",""
+"0ba19a9b","ApplicationProcess","validate that object of Money type","",""
+"aba25289","DataObject","amount LONG","",""
+"dc9d47db","DataObject","currency","",""
+"7ed92f97","DataObject","REF to currency","",""

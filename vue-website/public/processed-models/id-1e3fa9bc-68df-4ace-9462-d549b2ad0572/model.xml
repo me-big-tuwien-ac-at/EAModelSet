@@ -1,0 +1,1361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://www.opengroup.org/xsd/archimate/3.0/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengroup.org/xsd/archimate/3.0/ http://www.opengroup.org/xsd/archimate/3.1/archimate3_Diagram.xsd http://purl.org/dc/elements/1.1/ http://www.opengroup.org/xsd/archimate/3.1/dc.xsd" identifier="id-1e3fa9bc-68df-4ace-9462-d549b2ad0572">
+  <name xml:lang="cs">Vzorový metamodel EG v0.7</name>
+  <documentation xml:lang="cs">Vzorový referenční metamodel pro tvorbu architektury EG speciálně pro OVM a jejich využití</documentation>
+  <metadata>
+    <schema>Dublin Core</schema>
+    <schemaversion>1.1</schemaversion>
+    <dc:type>Model</dc:type>
+  </metadata>
+  <elements>
+    <element identifier="id-metamodel-schopnost" xsi:type="Capability">
+      <name xml:lang="cs">Schopnost</name>
+      <documentation xml:lang="cs">Komplexní schopnost, zejména u schopností úřadu. Znamená společnou schopnost v úřadě, která se vykonává jednotně napříč celým úřadem a má i jednotné metodiky a jednotný rámec, ať už se dotýká jakékoliv agendy (v agendách může být pochopitelně parametricky přizpůsobena). Schopnost lze na byznysové vrstvě nejlépe rozpadnout na elementy typu [Služba] a [Proces], důležité jsou také [Role] zejména uvnitř úřadu. Na aplikační vrstvě se nesmí zapomínat zejména na [Informační systém veřejné správy] a [Informační systém], díky kterým můžeme schopnost realizovat. Schopnost plyne z nějakého byznysového prvku, a tedy zejména z typů [Povinnost].</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="cs">Spisová služba, Ekonomické řízení, Architektura, Správa majetku, Správa ICT, Tvorba legislativy</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-organizacni-jednotka" xsi:type="BusinessActor">
+      <name xml:lang="cs">Útvar či organizační jednotka</name>
+      <documentation xml:lang="cs">Uvádí konkrétní útvar v organizaci, či její organizační jednotku. Udává se pro detailnější rozpad struktury dané organizace (zejména u OVM) a pro vazbu konkrétního útvaru na jeho role či na další objekty. V detailnějších modelech úřadů může být zapsán i jako příslušný atribut u daného objektu.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-2">
+          <value xml:lang="cs">OU</value>
+        </property>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="cs">Ekonomický odbor, Odbor hlavního architekta, Krajské pracoviště Kladno, Správní oddělení</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-ovm" xsi:type="BusinessActor">
+      <name xml:lang="cs">Orgán veřejné moci</name>
+      <documentation xml:lang="cs">Subjekt, který je orgánem veřejné moci. Definuje se proto, že díky jeho OVMství má nějaké role, povinnosti a práva.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="cs">Ministerstvo vnitra, Úřad práce, Hlavní město Praha</value>
+        </property>
+        <property propertyDefinitionRef="propid-2">
+          <value xml:lang="cs">MA</value>
+        </property>
+        <property propertyDefinitionRef="propid-3">
+          <value xml:lang="cs">OVM</value>
+        </property>
+        <property propertyDefinitionRef="propid-4">
+          <value xml:lang="cs">12345678</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-subjekt" xsi:type="BusinessActor">
+      <name xml:lang="cs">Subjekt</name>
+      <documentation xml:lang="cs">Subjekt práva, typicky subjekt konkrétní fyzické osoby či subjekt konkrétní právnické osoby. Subjekt má typicky danou roli v určitém kontextu</documentation>
+    </element>
+    <element identifier="id-metamodel-agenda" xsi:type="BusinessFunction">
+      <name xml:lang="cs">Agenda</name>
+      <documentation xml:lang="cs">Jedna agenda ohlášená v Registru práv a povinností. Je zároveň stereotypem s povinnými atributy, jako je kód agendy a její gestor/ohlašovatel. Zaznamenává se jako element byznys funkce, jelikož zaznamenávat jako kontrakt by bylo nepřehledné.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-5">
+          <value xml:lang="cs">A1234</value>
+        </property>
+        <property propertyDefinitionRef="propid-3">
+          <value xml:lang="cs">Agenda</value>
+        </property>
+        <property propertyDefinitionRef="propid-6">
+          <value xml:lang="cs">Název z RPP</value>
+        </property>
+        <property propertyDefinitionRef="propid-7">
+          <value xml:lang="cs">Ministerstvo agend</value>
+        </property>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="cs">Evidence obyvatel, cizinecká a ochrana hranic, sociální zabezpečení</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-ukon" xsi:type="BusinessFunction">
+      <name xml:lang="cs">Úkon</name>
+      <documentation xml:lang="cs">Úkon, zejména úkon ohlášený v RPP k dané agendě. Je součástí objektu [Služba veřejné správy] a uvnitř úřadu je vázán na [proces]. Může být i [agendová činnost], nicméně z pohledu agendy v RPP se jedná o ohlášený úkon.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value xml:lang="cs">Úkon</value>
+        </property>
+        <property propertyDefinitionRef="propid-5">
+          <value xml:lang="cs">(označení z RPP)</value>
+        </property>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="cs">Podání žádosti, každý úkon ohlášený v agendě</value>
+        </property>
+        <property propertyDefinitionRef="propid-8">
+          <value xml:lang="cs">Ano/ne</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-evidence-byznysove" xsi:type="BusinessObject">
+      <name xml:lang="cs">Evidence</name>
+      <documentation xml:lang="cs">Evidence skutečností či dokumentů či informací na byznysové úrovni. Shromažďují a spravují se v ní skutečnosti důležité pro rozhodování v rámci činností úřadu. Na byznysové úrovni znamená logický prvek, který na aplikační vrstvě reprezentuje kupříkladu [evidence údajů]. Evidence je základem pro znalosti pro výkon byznysových objektů typu [služba veřejné správy], [služba] a [proces]. Evidence má i své důležité [role], jako je editor či subjekt zodpovědný za vedení evidence.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value xml:lang="cs">Evidence</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-povinnost" xsi:type="BusinessObject">
+      <name xml:lang="cs">Povinnost</name>
+      <documentation xml:lang="cs">Povinnost definovaná právním předpisem, je ve skutečnosti základem kontraktu zúčastněných stran, přičemž pro stranu poskytovatele povinnosti je povinnou.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="cs">Zpracovat Informační koncepci ČR, Zpracovat informační koncepci, Předložit ICT projekt ke stanovisku OHA, Využívat údaje z PPDF, Vykonávat spisovou službu</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-pravo" xsi:type="BusinessObject">
+      <name xml:lang="cs">Právo</name>
+      <documentation xml:lang="cs">Právo definované právním předpisem či jiným předpisem. Většinou na druhé straně vztahu zakládá i související povinnost.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="cs">Právo na poskytnutí údajů, Právo na nedokládání údajů zapsaných v ZR, Právo podat žádost či učinit podání, Právo požádat o dávku</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-acinnost" xsi:type="BusinessProcess">
+      <name xml:lang="cs">Agendová činnost</name>
+      <documentation xml:lang="cs">Agendová činnost ohlášená v rámci agendy v RPP. Činnost je vždy součástí agendy a vždy je někým vykonávána v rámci jeho působnosti.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="cs">Zápis údajů do evidence obyvatel</value>
+        </property>
+        <property propertyDefinitionRef="propid-5">
+          <value xml:lang="cs">C1234</value>
+        </property>
+        <property propertyDefinitionRef="propid-3">
+          <value xml:lang="cs">Agendová činnost</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-proces" xsi:type="BusinessProcess">
+      <name xml:lang="cs">Proces</name>
+      <documentation xml:lang="cs">Proces</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="cs">Výběr barvy polstrování židle, Rozhodování o dávce, Přidělení a zapsání rodného čísla, Reklamování údajů v PPDF</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-gestor" xsi:type="BusinessRole">
+      <name xml:lang="cs">Gestor</name>
+      <documentation xml:lang="cs">Subjekt, který je vůči předpisu či jinému objektu v roli gestora. Vazbu gestora lze zaznamenat přímou vazbou, nebo atributem. Objekt Gestor se využívá jen v popisném modelu. Nejčastěji je gestor zapsán příslušným atributem u objektu.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="cs">Ministerstvo vnitra je gestorem Zákona 365/2000 o ISVS</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-ohlasovatel" xsi:type="BusinessRole">
+      <name xml:lang="cs">Ohlašovatel</name>
+      <documentation xml:lang="cs">Virtuální logický objekt role. Subjekt, který je ohlašovatelem agendy. Vazbu ohlašovatele lze zaznamenat přímou vazbou, objekt Ohlašovatel se využívá zřídka, anebo v obecném referenčním modelu. U agendy je ohlašovatel zapsán příslušným atributem.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="cs">Ministerstvo vnitra je ohlašovatelem agendy Evidence obyvatel</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-role" xsi:type="BusinessRole">
+      <name xml:lang="cs">Role</name>
+      <documentation xml:lang="cs">Určitá byznysová role. Jsme vždy schopni k dané roli přiřadit někoho a role vykonává činnosti či pracuje s dalšími objekty. I role je klíčovým elementem v modelu architektury EG.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="cs">Zaměstnavatel, Dotčený orgán, Rozhodný orgán, Původce, Subjekt veřejné správy, Zadavatel, Správce evidence</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-sluzba-agendy" xsi:type="BusinessService">
+      <name xml:lang="cs">Služba veřejné správy</name>
+      <documentation xml:lang="cs">Služba veřejné správy, která je ohlášená v RPP v rámci objektu [agenda]. Má svého poskytovatele v rámci agendy. Služba se uvnitř úřadu rozpadá na objekty [proces] pro její výkon a [úkon] pro zaznamenání formálního úkonu v dané agendě. Nezaměňovat za objekt [agendová činnost].</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-5">
+          <value xml:lang="cs">(označení z RPP)</value>
+        </property>
+        <property propertyDefinitionRef="propid-8">
+          <value xml:lang="cs">Ano/ne</value>
+        </property>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="cs">každá činnost registrovaná v RPP jako služba v rámci agendy</value>
+        </property>
+        <property propertyDefinitionRef="propid-3">
+          <value xml:lang="cs">Služba veřejné správy</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-sluzba" xsi:type="BusinessService">
+      <name xml:lang="cs">Služba</name>
+      <documentation xml:lang="cs">Služba z byznysového pohledu</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="cs">Dávky sociální podpory, Vedení matriky, Poskytování údajů ze základních registrů, Výpis bodů řidiče</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-pravni-predpis" xsi:type="Contract">
+      <name xml:lang="cs">Právní předpis</name>
+      <documentation xml:lang="cs">Jeden právní předpis. Je zároveň stereotypem s danou strukturou autributů.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="cs">Zákon č. 365/2000 Sb., o informačních systémech veřejné správy</value>
+        </property>
+        <property propertyDefinitionRef="propid-9">
+          <value xml:lang="cs">Zákon 333/2030 Sb., o zelených žabučkách</value>
+        </property>
+        <property propertyDefinitionRef="propid-5">
+          <value xml:lang="cs">333/2030 Sb.</value>
+        </property>
+        <property propertyDefinitionRef="propid-10">
+          <value xml:lang="cs">Ministerstvo agend</value>
+        </property>
+        <property propertyDefinitionRef="propid-11">
+          <value xml:lang="cs">http://www.zakonyprolidi.cz/cs/2030-333</value>
+        </property>
+        <property propertyDefinitionRef="propid-3">
+          <value xml:lang="cs">Právní předpis</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-ustanoveni" xsi:type="Contract">
+      <name xml:lang="cs">Ustanovení právního předpisu</name>
+      <documentation xml:lang="cs">Konkrétní ustanovení jednoho právního předpisu. Je zároveň stereotypem s určitými povinnými atributy, jako je odkaz na předpis a odkaz na daný fragment právního předpisu.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="cs">§ 5a, Zákona 365/2000 Sb.</value>
+        </property>
+        <property propertyDefinitionRef="propid-12">
+          <value xml:lang="cs">Zákon č. 333/2030 Sb., o zelených žavičkách</value>
+        </property>
+        <property propertyDefinitionRef="propid-13">
+          <value xml:lang="cs">§ 2, odst. 1</value>
+        </property>
+        <property propertyDefinitionRef="propid-11">
+          <value xml:lang="cs">http://www.zakonyprolidi.cz/cs/2030-333#p2-1</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-vnitrni-predpis" xsi:type="Contract">
+      <name xml:lang="cs">Vnitřní předpis</name>
+      <documentation xml:lang="cs">Vnitřní závazný předpis upravující nějakou oblast. Často se využívá jako element pro úpravu [Schopnost] a nebo agendové konání. Je závazným předpisem pro daného vydavatele, či i pro jeho podřízené či řízené organizace.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value xml:lang="cs">Vnitřní předpis</value>
+        </property>
+        <property propertyDefinitionRef="propid-5">
+          <value xml:lang="cs">Identifikace vnitřního předpisu (třeba ČJ dokumentu nebo číslo interního aktu řízení)</value>
+        </property>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="cs">Spisový řád, Spisový plán, Organizační řád, Podpisový řád, Nařízení ministra, Závazný pokyn nadřízeného orgánu</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-isprovozni" xsi:type="ApplicationComponent">
+      <name xml:lang="cs">Informační systém</name>
+      <documentation xml:lang="cs">Informační systém, který není [informační systém veřejné správy]. Pozor, systémy pro správu dokumentů, spisovou službu, ekonomiku a personalistiku vždy vedeme jako ISVS.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value xml:lang="cs">Provozní systém</value>
+        </property>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="cs">Systém monitogingu, auditní systém, apod.</value>
+        </property>
+        <property propertyDefinitionRef="propid-14">
+          <value xml:lang="cs">¨Ministerstvo agend</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-isvs" xsi:type="ApplicationComponent">
+      <name xml:lang="cs">Informační systém veřejné správy</name>
+      <documentation xml:lang="cs">Jeden logický ISVS jako celek ohlášený do Registru práv a povinností jako ISVS. Je zároveň stereotypem s určitými atributy, jako je kód v EISVS, nebo jeho správce.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-2">
+          <value xml:lang="cs">ISZŽ</value>
+        </property>
+        <property propertyDefinitionRef="propid-5">
+          <value xml:lang="cs">označení z RPP), tedy identifikátor z evidence ISVS</value>
+        </property>
+        <property propertyDefinitionRef="propid-3">
+          <value xml:lang="cs">Informační systém</value>
+        </property>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="cs">ISEO, ROB, ISZR, všechny ISVS</value>
+        </property>
+        <property propertyDefinitionRef="propid-14">
+          <value xml:lang="cs">Ministerstvo agend</value>
+        </property>
+        <property propertyDefinitionRef="propid-9">
+          <value xml:lang="cs">Úplný oficiální název informačního systému</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-komponentais" xsi:type="ApplicationComponent">
+      <name xml:lang="cs">Komponenta systému</name>
+      <documentation xml:lang="cs">Fyzická komponenta systému, se kterou se na vývojové větvi pracuje či dá pracovat samostatně. Může se jednat o fyzické komponenty i s různými dodavateli, což je dobrý způsob oddělení komponent v architektuře.</documentation>
+    </element>
+    <element identifier="id-metamodel-modulis" xsi:type="ApplicationComponent">
+      <name xml:lang="cs">Modul informačního systému</name>
+      <documentation xml:lang="cs">Modul informačního systému. Jedná se o jeden logický či fyzický modul u modulárního informačního systému, zejména u informačního systému veřejné správy</documentation>
+    </element>
+    <element identifier="id-metamodel-provozni-aplikace" xsi:type="ApplicationComponent">
+      <name xml:lang="cs">Provozní aplikace</name>
+      <documentation xml:lang="cs">Aplikace či systém, které jsou ryze provozními. Jedná se třeba o kancelářské aplikace apod. Do architektury se většinou nezaznamenávají, nicméně je nutné je vést v evidenci aplikací a systémů i z důvodu udržování povědomí o jejich licencování, využívání, aktualizacích apod. V architektuře se ale vést může, a to zejména, pokud nějaký [Informační systém veřejné správy] takové klientské počítačové programy využívá (třeba spisová služba využívající Word, nebo aplikaci pro podepisování).</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value xml:lang="cs">Provozní systém</value>
+        </property>
+        <property propertyDefinitionRef="propid-14">
+          <value xml:lang="cs">Správce</value>
+        </property>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="cs">Microsoft Office, LibreOffice, Poznámkový blok, Archi, apod.</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-aplikacni-rozhrani" xsi:type="ApplicationInterface">
+      <name xml:lang="cs">Rozhraní mezi aplikacemi</name>
+      <documentation xml:lang="cs">Technické rozhraní mezi aplikacemi, či uživatelské rozhraní. Je důležitým prvkem pro modelování integrací informačních systémů zejména na sdílené služby.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="cs">ISZR, EGSB, Uživatelské rozhraní EKIS, czechpoint at office</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-aplikacni-sluzba" xsi:type="ApplicationService">
+      <name xml:lang="cs">Aplikační služba</name>
+      <documentation xml:lang="cs">Aplikační služba pro alespoň rámcový rozpis toho, co dělá aplikace či systém.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="cs">Evidence faktur, Zaevidování dokumentu, Skartační řízení, Aktualizace údajů, Vygenerování PDF/a, Přijetí a zaevidování žádosti</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-evidence-udaju" xsi:type="DataObject">
+      <name xml:lang="cs">Evidence údajů</name>
+      <documentation xml:lang="cs">Technický prvek [Evidence]. Evidence jako souvislá evidence údajů či dokumentů či informací. Je technickým prvkem datové architektury s tím, že se očekává, že evidence je součástí informačního systému, má své zodpovědné subjekty a obsahuje údaje či prvky [skupina údajů] a identifikátor(y). Je to důležité i pro daný [kontext].</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="cs">Evidence psů, Registr rodných čísel v rámci ISEO, Evidence faktur v rámci EKIS</value>
+        </property>
+        <property propertyDefinitionRef="propid-3">
+          <value xml:lang="cs">Evidence údajů</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-evidence" xsi:type="DataObject">
+      <name xml:lang="cs">Evidence</name>
+      <documentation xml:lang="cs">Evidence jako souvislá evidence údajů či dokumentů či informací. Je technickým prvkem datové architektury s tím, že se očekává, že evidence je součástí informačního systému, má své zodpovědné subjekty a obsahuje údaje či skupiny údajů a identifikátor(y)</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value xml:lang="cs">Evidence</value>
+        </property>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="cs">Evidence psů, Registr rodných čísel v rámci ISEO, Evidence faktur v rámci EKIS</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-identifikator-objektu" xsi:type="DataObject">
+      <name xml:lang="cs">Identifikátor objektu</name>
+      <documentation xml:lang="cs">Identifikátor objektu práva</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-3">
+          <value xml:lang="cs">Identifikátor objektu</value>
+        </property>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="cs">Registrační značka vozidla, číslo průkazu, Číslo oprávnění k odborné činnosti</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-identifikator-subjektu" xsi:type="DataObject">
+      <name xml:lang="cs">Identifikátor subjektu</name>
+      <documentation xml:lang="cs">Identifikátor subjektu práva (ve vazbě na jeho identitu)</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="cs">AIFO v dané agendě</value>
+        </property>
+        <property propertyDefinitionRef="propid-3">
+          <value xml:lang="cs">Identifikátor subjektu</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-identifikator" xsi:type="DataObject">
+      <name xml:lang="cs">Identifikátor</name>
+      <documentation xml:lang="cs">Identifikátor (neurčuje se jeho vlastnost a podoba). Identifikuje údaje či informace vedené formou údajů.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="cs">Číslo jednací dokumentu, Číslo spisu, Číslo pobočky, Kód v evidenci</value>
+        </property>
+        <property propertyDefinitionRef="propid-3">
+          <value xml:lang="cs">Identifikátor</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-kontext" xsi:type="DataObject">
+      <name xml:lang="cs">Kontext</name>
+      <documentation xml:lang="cs">Kontext, jak je definován v rámci agend a sdílení v propojeném datovém fondu. Jedná se o soubor subjektů a objektů práva a u nich vedených a spravovaných údajů a o matici využívání těchto údajů. Zaznamená se na aplikační vrstvě, mělo by být vždy jasné, jaké [evidence] se týká, jaký [Informační systém veřejné správy] je dotčen (či dotčeny) a jaké logické skupiny [Skupina údajů] se to týká. U kontextu a evidence a sdílení údajů je nezbytné správně vést a využívat [Identifikátor], a to zejména pro [Identifikátor subjektu] a [Identifikátor objektu]. Kontext se využije pro sdílení údajů mezi jednotlivými agendovými informační systémy.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-7">
+          <value xml:lang="cs">Ministerstvo agend</value>
+        </property>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="cs">Kontext řidiče podle oprávnění k řízení, kontext zdravotního pojištění jako pojištěnce a pojišťovny, apod.</value>
+        </property>
+        <property propertyDefinitionRef="propid-5">
+          <value xml:lang="cs">ID označení z katalogu kontextů</value>
+        </property>
+        <property propertyDefinitionRef="propid-3">
+          <value xml:lang="cs">Kontext</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-skupina-udaju" xsi:type="DataObject">
+      <name xml:lang="cs">Skupina údajů</name>
+      <documentation xml:lang="cs">Udává skupinu údajů vztahující se většinou k nějakému subjektu či objektu práva. Údaje jsou evidovány v rámci příslušného informačního systému či evidence apod. Tento datový objekt je datovou reprezentací jednoho či více byznysových objektů jako fyzických údajů. Mimo jiné má v popisu atributů i identifikátor, kterým lze jednoznačně identifikovat věc, ke které se údaje vztahují a jak vznikají a kdo je za ně zodpovědný. V obecných modelech (až na výjimky) není vhodné rozebírat v modelu jednotlivé údaje, proto se využije daná skupina údajů.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="cs">Údaje o fyzické osobě, Údaje o řidičském oprávnění, Údaje o platbách zdravotního pojištění, Údaje o přiznání a výplatě dávky</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-meaning-aplikacni-vrstva" xsi:type="Meaning">
+      <name xml:lang="cs">Aplikační vrstva</name>
+      <documentation xml:lang="cs">Na aplikační vrstvě architektury úřadu se zaznamenají klíčové elementy, které souvisí s fungováním informačních systémů a aplikací a také s vedením a správou údajů po technické stránce.&#xD;
+U systémů a aplikací jsou klíčovými objekty [Informační systém veřejné správy], a popřípadě další IS reprezentované jako [Informační systém] a provozní [Aplikace]. U každého systému musí být jasné, zda se jedná o vlastní IS, který je spravován právě tímto úřadem, nebo o cizí IS, který je úřadem využíván. U systémů může být pak i hlubší rozpad na objekty typu [Aplikační služba], a případně i [Aplikační funkce]. Pro uskutečňování integrací a vazeb se definují [Rozhraní aplikace] jako technická rozhraní služeb jednotlivých systémů. Tyto objekty mohou mít pak vazby na infrastrukturní a systémové objekty na technologické vrstvě.&#xD;
+U správy údajů je nutno si správně definovat údaje z agend zapsaných v RPP, včetně jejich zdrojů. Aby nebylo nutné definovat v EA každý údaj, lze využít objekt [Skupina údajů], který reprezentuje logický celek jednotlivých údajů. Skupiny údajů vedeme většinou v rámci souboru [Kontext], jak je definován v rámci agendového modelu a propojeného datového fondu. Údaje jsou vedeny buď v informačních systémech, pro jejich přehlednost lze ale systémy dělit ještě na [Evidence], což jsou zákonem či věcnou skupinou definované celky týkající se jednotlivých evidencí údajů a jejich skupin. Jako logický prvek, který se ovšem do architektury nezapracovává jako samostatný objekt, pak slouží [Identifikátor], a to zejména [Identifikátor subjektu] a [Identifikátor objektu], které jsou však na úrovni architektury vždy atributy daného subjektu či projektu a měly by být vedeny i jako atributy u [Evidence] a [Skupina údajů].</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-15">
+          <value xml:lang="cs">vysvětlení</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-Metamodel-meaning-byznysova-vrstva" xsi:type="Meaning">
+      <name xml:lang="cs">Byznysová vrstva</name>
+      <documentation xml:lang="cs">Na byznysové vrstvě architektury úřadu jsou zaznamenány všechny klíčové objekty, které se týkají samotné činnosti úřadu. Čili jakákoliv činnost úřadu může být brána jako jeho byznys, přestože se nejedná o klasickou ziskovou firmu. Ať už se jedná o činnosti související s úřední činností v rámci působnosti daného úřadu v agendách, nebo o provozně-režijní činnosti, včetně personální a ekonomické a správní politiky úřadu. Na byznysové vrstvě se znázorňuje vše, co je činnostmi úřadu jako organizace a plyne ze strategie či z předpisů. &#xD;
+Samotný legislativní rámec se udává v podobě elementů typu Contract, a to především [Právní předpis], [Ustanovení právního předpisu], [Vnitřní předpis] a z toho plynoucí obecné prvky jako [Povinnost] a výkon zajišťující [Právo]. Dále se na byznysové vrstvě musí definovat začlenění úřadu v rámci agendového modelu veřejné správy, a to všechny objekty [Agenda], [Agendová činnost] atd.&#xD;
+Po definici těchto prvků je vhodné definovat základní byznysové objekty, jako jsou [Služba], a to včetně služeb poskytovaných klientům a využívaných odjinud, a [Proces]. Subjekty (včetně sama sebe a ostatních úřadů) definujeme jako aktéry, a to zejména u [Orgán veřejné moci] a [Skupina orgánů veřejné moci], jednotlivé subjekty pak stavíme do jejich aktuální [Role] podle toho, co zrovna dělají a jakou mají v dané věci roli. Služby a procesy se neobejdou bez byznysových objektů a je možné definovat i základní byznysové události. Pro detailní popisy procesů slouží procesní modely v jazyce BPMN a architektura je pro detailní rozbor procesů spíše nevhodná, pro rozpad schopností a služeb jsou ale vhodně definované alespoň skupiny procesů nutným základem.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-15">
+          <value xml:lang="cs">vysvětlení</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-meaning-identifikator-objektu" xsi:type="Meaning">
+      <name xml:lang="cs">Identifikátor objektu</name>
+      <documentation xml:lang="cs">Identifikátor objektu práva</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-15">
+          <value xml:lang="cs">vysvětlení</value>
+        </property>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="cs">Registrační značka vozidla, číslo průkazu, Číslo oprávnění k odborné činnosti</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-meaning-identifikator-subjektu" xsi:type="Meaning">
+      <name xml:lang="cs">Identifikátor subjektu</name>
+      <documentation xml:lang="cs">Identifikátor subjektu práva (ve vazbě na jeho identitu)</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-15">
+          <value xml:lang="cs">vysvětlení</value>
+        </property>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="cs">AIFO v dané agendě</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-meaning-identifikator" xsi:type="Meaning">
+      <name xml:lang="cs">Identifikátor</name>
+      <documentation xml:lang="cs">Fiktivní logický objekt. Identifikátor (neurčuje se jeho vlastnost a podoba). Identifikuje údaje či informace vedené formou údajů. Nezaznamenává se jako samostatný element v architektuře, vždy je atributem objektu který identifikuje. V modelu je uveden pouze pro potřebu zdůraznění významu.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="cs">Číslo jednací dokumentu, Číslo spisu, Číslo pobočky, Kód v evidenci</value>
+        </property>
+        <property propertyDefinitionRef="propid-15">
+          <value xml:lang="cs">vysvětlení</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-meaning-implementacni-vrstva" xsi:type="Meaning">
+      <name xml:lang="cs">Implementační vrstva</name>
+      <documentation xml:lang="cs">Implementační vrstva architektury úřadu</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-15">
+          <value xml:lang="cs">vysvětlení</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-meaning-motivacni-vrstva" xsi:type="Meaning">
+      <name xml:lang="cs">Motivační vrstva</name>
+      <documentation xml:lang="cs">Motivační vrstva architektury úřadu</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-15">
+          <value xml:lang="cs">vysvětlení</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-Metamodel-meaning-strategicka-vrstva" xsi:type="Meaning">
+      <name xml:lang="cs">Strategická vrstva</name>
+      <documentation xml:lang="cs">Strategický rámec určuje strategii úřadu a jeho služeb a jeho činností. Od strategie se vše odvíjí. Strategická vrstva je tedy tou první důležitou pro celý úřad a také pro jeho interakci s ostatními úřady a klienty. Ve strategické vrstvě je nejdůležitějším elementem pro úřad [Schopnost] - tedy je pro chod úřadu a pro jeho postupnou efektivizaci nutné si udělat základní mapu všech společných schopností úřadu.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-15">
+          <value xml:lang="cs">vysvětlení</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-meaning-technologicka-vrstva" xsi:type="Meaning">
+      <name xml:lang="cs">Technologická vrstva</name>
+      <documentation xml:lang="cs">Technologická vrstva není sice v architektuře úřadu povinná, přesto se ale doporučuje si na ní rozkreslit alespoň technologické a infrastrukturní prvky a zdroje. Jedná se o vrstvu, kde se reprezentuje technologie, infrastruktura, komunikační sítě a zařízení potřebné pro chod informačních systémů a pro zajištění byznysu (činností) úřadu.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-15">
+          <value xml:lang="cs">vysvětlení</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-metamodel-vice-ovm" xsi:type="Grouping">
+      <name xml:lang="cs">Skupina orgánů veřejné moci</name>
+      <documentation xml:lang="cs">Definování skupiny orgánů veřejné moci, má odlišné atributy, než je jeden OVM, nicméně platí to samé, něco dělají a mají nějaké role a nějaké povinnosti.</documentation>
+      <properties>
+        <property propertyDefinitionRef="propid-9">
+          <value xml:lang="cs">Název skupiny orgánů vedené v RPP či jiný obecný úplný název</value>
+        </property>
+        <property propertyDefinitionRef="propid-1">
+          <value xml:lang="cs">Ministerstva, Kraje, Orgány sociálního zabezpečení, Zdravotní pojišťovny</value>
+        </property>
+        <property propertyDefinitionRef="propid-3">
+          <value xml:lang="cs">Skupina OVM</value>
+        </property>
+        <property propertyDefinitionRef="propid-5">
+          <value xml:lang="cs">S1234</value>
+        </property>
+        <property propertyDefinitionRef="propid-2">
+          <value xml:lang="cs">ÚSÚ</value>
+        </property>
+      </properties>
+    </element>
+  </elements>
+  <relationships>
+    <relationship identifier="id-metamodel-isvs-evidence" source="id-metamodel-isvs" target="id-metamodel-evidence-udaju" xsi:type="Access" accessType="Write">
+      <name xml:lang="cs">řeší datovou evidenci</name>
+      <documentation xml:lang="cs">Informační systém řeší evidenci údajů a spravují se v něm údaje</documentation>
+    </relationship>
+    <relationship identifier="id-metamodel-isvs-sprava-udaju" source="id-metamodel-isvs" target="id-metamodel-skupina-udaju" xsi:type="Access" accessType="Write">
+      <name xml:lang="cs">eviduje údaje</name>
+    </relationship>
+    <relationship identifier="id-metamodel-cinnostni-role" source="id-metamodel-ovm" target="id-metamodel-acinnost" xsi:type="Assignment">
+      <name xml:lang="cs">vykonává činnost</name>
+      <documentation xml:lang="cs">Daný OVM vykonává činnostní roli. Jde o vazbu OVM na danou činnost.</documentation>
+    </relationship>
+    <relationship identifier="id-metamodel-subjekt-do-role" source="id-metamodel-subjekt" target="id-metamodel-role" xsi:type="Assignment">
+      <name xml:lang="cs">může být v roli</name>
+      <documentation xml:lang="cs">Vazba pro přiřazení obecného subjektu (nebo jiného aktéra) do konkrétní role.</documentation>
+    </relationship>
+    <relationship identifier="id-metamodel-vykon-pusobnosti" source="id-metamodel-ovm" target="id-metamodel-agenda" xsi:type="Assignment">
+      <name xml:lang="cs">vykonává působnost v agendě</name>
+      <documentation xml:lang="cs">Daný OVM má působnost v dané agendě. Jedná se o výkon působnosti, tedy jde o vazbu mezi OVM a agendou.</documentation>
+    </relationship>
+    <relationship identifier="id-metamodel-agenda-cinnost" source="id-metamodel-agenda" target="id-metamodel-acinnost" xsi:type="Association">
+      <name xml:lang="cs">obsahuje činnost</name>
+      <documentation xml:lang="cs">Vazba mezi agendou a její agendovou činností</documentation>
+    </relationship>
+    <relationship identifier="id-metamodel-gesce-za-predpis" source="id-metamodel-ovm" target="id-metamodel-pravni-predpis" xsi:type="Association">
+      <name xml:lang="cs">je gestorem za</name>
+      <documentation xml:lang="cs">Reprezentuje, že nějaké OVM je gestorem za daný právní předpis.</documentation>
+    </relationship>
+    <relationship identifier="id-metamodel-ohlasovatelagendy" source="id-metamodel-ovm" target="id-metamodel-agenda" xsi:type="Association">
+      <name xml:lang="cs">ohlašuje</name>
+      <documentation xml:lang="cs">[Orgán veřejné moci] v roli [Ohlašovatel] ohlašuje agendu do RPP</documentation>
+    </relationship>
+    <relationship identifier="id-metamodel-ohlasovatelagendy1" source="id-metamodel-ohlasovatel" target="id-metamodel-agenda" xsi:type="Association">
+      <name xml:lang="cs">ohlašuje</name>
+      <documentation xml:lang="cs">[Orgán veřejné moci] v roli [Ohlašovatel] ohlašuje agendu do RPP</documentation>
+    </relationship>
+    <relationship identifier="id-metamodel-role-ma-povinnost" source="id-metamodel-role" target="id-metamodel-povinnost" xsi:type="Association">
+      <name xml:lang="cs">má povinnost</name>
+      <documentation xml:lang="cs">Subjekt v dané roli má určitou povinnost, plynoucí mu právě z jeho role</documentation>
+    </relationship>
+    <relationship identifier="id-metamodel-role-ma-pravo" source="id-metamodel-role" target="id-metamodel-pravo" xsi:type="Association">
+      <name xml:lang="cs">má právo</name>
+      <documentation xml:lang="cs">Subjekt v dané roli má určité právo, které má právě díky své roli</documentation>
+    </relationship>
+    <relationship identifier="id-metamodel-sluzba-zagendy" source="id-metamodel-agenda" target="id-metamodel-sluzba-agendy" xsi:type="Association">
+      <name xml:lang="cs">určuje službu</name>
+      <documentation xml:lang="cs">Reprezentuje, že daná agenda určuje digitální službu či obecnou službu veřejné správy.</documentation>
+    </relationship>
+    <relationship identifier="id-metamodel-subjekt-ma-povinnost" source="id-metamodel-subjekt" target="id-metamodel-povinnost" xsi:type="Association">
+      <name xml:lang="cs">má povinnost</name>
+      <documentation xml:lang="cs">Subjekt má obecně definovanou povinnost</documentation>
+    </relationship>
+    <relationship identifier="id-metamodel-subjekt-ma-pravo" source="id-metamodel-subjekt" target="id-metamodel-pravo" xsi:type="Association">
+      <name xml:lang="cs">má právo</name>
+      <documentation xml:lang="cs">Subjekt má obecně definované právo</documentation>
+    </relationship>
+    <relationship identifier="id-metamodel-ukon-agendy" source="id-metamodel-agenda" target="id-metamodel-ukon" xsi:type="Association">
+      <name xml:lang="cs">určuje úkon</name>
+      <documentation xml:lang="cs">Reprezentuje, že daná agenda určuje digitální nebo obecný úkon. Úkon je součástí agendy.</documentation>
+    </relationship>
+    <relationship identifier="id-metamodel-urceni-povinnosti" source="id-metamodel-pravni-predpis" target="id-metamodel-povinnost" xsi:type="Association">
+      <name xml:lang="cs">definuje povinnost</name>
+      <documentation xml:lang="cs">Vazba pro definici povinnosti. Právní předpis určuje (definuje) nějakou povinnost</documentation>
+    </relationship>
+    <relationship identifier="id-metamodel-urceni-prava" source="id-metamodel-pravni-predpis" target="id-metamodel-pravo" xsi:type="Association">
+      <name xml:lang="cs">definuje právo</name>
+      <documentation xml:lang="cs">Vazba pro definici práva. Právní předpis dává (definuje) nějaké právo</documentation>
+    </relationship>
+    <relationship identifier="id-metamodel-ustanoveni-acinnost" source="id-metamodel-ustanoveni" target="id-metamodel-acinnost" xsi:type="Association">
+      <name xml:lang="cs">určuje činnost</name>
+      <documentation xml:lang="cs">Vazba mezi ustanovením právního předpisu a z něj plynoucí agendové činnosti. V praxi se příliš nepoužívá, protože to je příliš detailní pohled.</documentation>
+    </relationship>
+    <relationship identifier="id-metamodel-vydava-pravni-predpis" source="id-metamodel-ovm" target="id-metamodel-pravni-predpis" xsi:type="Association">
+      <name xml:lang="cs">VYDÁVÁ</name>
+      <documentation xml:lang="cs">Reprezentuje vztah, kdy určitý OVM vydává právní předpis. Je zároveň i jeho gestorem.</documentation>
+    </relationship>
+    <relationship identifier="id-METAMODEL-VYDAVA-VNITRNI-PREDPIS" source="id-metamodel-ovm" target="id-metamodel-vnitrni-predpis" xsi:type="Association">
+      <name xml:lang="cs">VYDÁVÁ</name>
+      <documentation xml:lang="cs">Reprezentuje, že někdo vydává svůj závazný vnitřní předpis.</documentation>
+    </relationship>
+    <relationship identifier="id-metamodel-zakon-agenda" source="id-metamodel-pravni-predpis" target="id-metamodel-agenda" xsi:type="Association">
+      <name xml:lang="cs">definuje agendu</name>
+      <documentation xml:lang="cs">Vazba původu agendy, kdy agendu definuje daný právní předpis.</documentation>
+    </relationship>
+    <relationship identifier="id-metamodel-appdekompozice-komponenta" source="id-metamodel-isvs" target="id-metamodel-modulis" xsi:type="Composition">
+      <name xml:lang="cs">se skládá z objektů</name>
+      <documentation xml:lang="cs">Aplikační dekompozice jde vždy minimálně z úrovně [Informační systém veřejné správy] s dělením na logické či fyzické objekty [Modul informačního systému] a fyzické objekty typu [Komponenta systému]</documentation>
+    </relationship>
+    <relationship identifier="id-metamodel-appdekompozice-modul" source="id-metamodel-isvs" target="id-metamodel-modulis" xsi:type="Composition">
+      <name xml:lang="cs">se skládá z objektů</name>
+      <documentation xml:lang="cs">Aplikační dekompozice jde vždy minimálně z úrovně [Informační systém veřejné správy] s dělením na logické či fyzické objekty [Modul informačního systému] a fyzické objekty typu [Komponenta systému]</documentation>
+    </relationship>
+    <relationship identifier="id-metamodel-zakon-ustanoveni" source="id-metamodel-pravni-predpis" target="id-metamodel-ustanoveni" xsi:type="Composition">
+      <name xml:lang="cs">obsahuje ustanovení</name>
+      <documentation xml:lang="cs">Vazba mezi právním předpisem a jeho logickou jednotkou ustanovením.</documentation>
+    </relationship>
+    <relationship identifier="id-metamodel-evidence-a-udaje" source="id-metamodel-evidence-udaju" target="id-metamodel-evidence-byznysove" xsi:type="Realization">
+      <name xml:lang="cs">je reprezentací pro objekt</name>
+      <documentation xml:lang="cs">Vazba mezi logickou (byznysovou) evidencí jako byznysovým objektem a evidencí v příslušném informačním systému jako technickou evidencí ve formě datového objektu</documentation>
+    </relationship>
+    <relationship identifier="id-metamodel-provozuje-provozniis" source="id-metamodel-ovm" target="id-metamodel-isprovozni" xsi:type="Serving">
+      <name xml:lang="cs">má provozní systém</name>
+      <documentation xml:lang="cs">Reprezentuje, že nějaké OVM spravuje a provozuje a užívá provozní informační systém</documentation>
+    </relationship>
+    <relationship identifier="id-metamodel-spravuje-isvs" source="id-metamodel-ovm" target="id-metamodel-isvs" xsi:type="Serving">
+      <name xml:lang="cs">je správcem systému</name>
+      <documentation xml:lang="cs">Reprezentuje, že nějaké OVM je správcem daného informačního systému.</documentation>
+    </relationship>
+    <relationship identifier="id-metamodel-uziva-isvs" source="id-metamodel-isvs" target="id-metamodel-ovm" xsi:type="Serving">
+      <name xml:lang="cs">je užíván OVM</name>
+      <documentation xml:lang="cs">Reprezentuje, že OVM je uživatelem daného informačního systému.</documentation>
+    </relationship>
+  </relationships>
+  <organizations>
+    <item>
+      <label xml:lang="cs">Strategy</label>
+      <item identifierRef="id-metamodel-schopnost" />
+    </item>
+    <item>
+      <label xml:lang="cs">Business</label>
+      <item identifierRef="id-metamodel-organizacni-jednotka" />
+      <item identifierRef="id-metamodel-ovm" />
+      <item identifierRef="id-metamodel-subjekt" />
+      <item identifierRef="id-metamodel-agenda" />
+      <item identifierRef="id-metamodel-ukon" />
+      <item identifierRef="id-metamodel-evidence-byznysove" />
+      <item identifierRef="id-metamodel-povinnost" />
+      <item identifierRef="id-metamodel-pravo" />
+      <item identifierRef="id-metamodel-acinnost" />
+      <item identifierRef="id-metamodel-proces" />
+      <item identifierRef="id-metamodel-gestor" />
+      <item identifierRef="id-metamodel-ohlasovatel" />
+      <item identifierRef="id-metamodel-role" />
+      <item identifierRef="id-metamodel-sluzba-agendy" />
+      <item identifierRef="id-metamodel-sluzba" />
+      <item identifierRef="id-metamodel-pravni-predpis" />
+      <item identifierRef="id-metamodel-ustanoveni" />
+      <item identifierRef="id-metamodel-vnitrni-predpis" />
+    </item>
+    <item>
+      <label xml:lang="cs">Application</label>
+      <item identifierRef="id-metamodel-isprovozni" />
+      <item identifierRef="id-metamodel-isvs" />
+      <item identifierRef="id-metamodel-komponentais" />
+      <item identifierRef="id-metamodel-modulis" />
+      <item identifierRef="id-metamodel-provozni-aplikace" />
+      <item identifierRef="id-metamodel-aplikacni-rozhrani" />
+      <item identifierRef="id-metamodel-aplikacni-sluzba" />
+      <item identifierRef="id-metamodel-evidence-udaju" />
+      <item identifierRef="id-metamodel-evidence" />
+      <item identifierRef="id-metamodel-identifikator-objektu" />
+      <item identifierRef="id-metamodel-identifikator-subjektu" />
+      <item identifierRef="id-metamodel-identifikator" />
+      <item identifierRef="id-metamodel-kontext" />
+      <item identifierRef="id-metamodel-skupina-udaju" />
+    </item>
+    <item>
+      <label xml:lang="cs">Motivation</label>
+      <item identifierRef="id-metamodel-meaning-aplikacni-vrstva" />
+      <item identifierRef="id-Metamodel-meaning-byznysova-vrstva" />
+      <item identifierRef="id-metamodel-meaning-identifikator-objektu" />
+      <item identifierRef="id-metamodel-meaning-identifikator-subjektu" />
+      <item identifierRef="id-metamodel-meaning-identifikator" />
+      <item identifierRef="id-metamodel-meaning-implementacni-vrstva" />
+      <item identifierRef="id-metamodel-meaning-motivacni-vrstva" />
+      <item identifierRef="id-Metamodel-meaning-strategicka-vrstva" />
+      <item identifierRef="id-metamodel-meaning-technologicka-vrstva" />
+    </item>
+    <item>
+      <label xml:lang="cs">Other</label>
+      <item identifierRef="id-metamodel-vice-ovm" />
+    </item>
+    <item>
+      <label xml:lang="cs">Relations</label>
+      <item identifierRef="id-metamodel-isvs-evidence" />
+      <item identifierRef="id-metamodel-isvs-sprava-udaju" />
+      <item identifierRef="id-metamodel-cinnostni-role" />
+      <item identifierRef="id-metamodel-subjekt-do-role" />
+      <item identifierRef="id-metamodel-vykon-pusobnosti" />
+      <item identifierRef="id-metamodel-agenda-cinnost" />
+      <item identifierRef="id-metamodel-gesce-za-predpis" />
+      <item identifierRef="id-metamodel-ohlasovatelagendy" />
+      <item identifierRef="id-metamodel-ohlasovatelagendy1" />
+      <item identifierRef="id-metamodel-role-ma-povinnost" />
+      <item identifierRef="id-metamodel-role-ma-pravo" />
+      <item identifierRef="id-metamodel-sluzba-zagendy" />
+      <item identifierRef="id-metamodel-subjekt-ma-povinnost" />
+      <item identifierRef="id-metamodel-subjekt-ma-pravo" />
+      <item identifierRef="id-metamodel-ukon-agendy" />
+      <item identifierRef="id-metamodel-urceni-povinnosti" />
+      <item identifierRef="id-metamodel-urceni-prava" />
+      <item identifierRef="id-metamodel-ustanoveni-acinnost" />
+      <item identifierRef="id-metamodel-vydava-pravni-predpis" />
+      <item identifierRef="id-METAMODEL-VYDAVA-VNITRNI-PREDPIS" />
+      <item identifierRef="id-metamodel-zakon-agenda" />
+      <item identifierRef="id-metamodel-appdekompozice-komponenta" />
+      <item identifierRef="id-metamodel-appdekompozice-modul" />
+      <item identifierRef="id-metamodel-zakon-ustanoveni" />
+      <item identifierRef="id-metamodel-evidence-a-udaje" />
+      <item identifierRef="id-metamodel-provozuje-provozniis" />
+      <item identifierRef="id-metamodel-spravuje-isvs" />
+      <item identifierRef="id-metamodel-uziva-isvs" />
+    </item>
+    <item>
+      <label xml:lang="cs">Views</label>
+      <item identifierRef="id-fa6874e1-8d3d-46f1-a331-678265aa0d34" />
+    </item>
+  </organizations>
+  <propertyDefinitions>
+    <propertyDefinition identifier="propid-10" type="string">
+      <name>Gestor</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-4" type="string">
+      <name>IČ</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-8" type="string">
+      <name>Lze digitálně</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-9" type="string">
+      <name>Název</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-6" type="string">
+      <name>Název agendy</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-7" type="string">
+      <name>Ohlašovatel</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-5" type="string">
+      <name>Označení</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-12" type="string">
+      <name>Předpis</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-1" type="string">
+      <name>Příklad</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-14" type="string">
+      <name>Správce</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-3" type="string">
+      <name>Stereotype</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-11" type="string">
+      <name>URL</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-13" type="string">
+      <name>Ustanovení</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-15" type="string">
+      <name>Vrstva</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-2" type="string">
+      <name>Zkratka</name>
+    </propertyDefinition>
+  </propertyDefinitions>
+  <views>
+    <diagrams>
+      <view identifier="id-fa6874e1-8d3d-46f1-a331-678265aa0d34" xsi:type="Diagram">
+        <name xml:lang="cs">All Items</name>
+        <node identifier="id-45946cde-d553-491e-9312-56be67b6ec6f" elementRef="id-metamodel-schopnost" xsi:type="Element" x="20" y="20" w="120" h="55">
+          <style>
+            <fillColor r="245" g="222" b="170" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-e8b6e6eb-48e1-41fd-89e2-79209ab4d484" elementRef="id-metamodel-agenda" xsi:type="Element" x="20" y="120" w="120" h="55">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-e07d37b2-5f81-4262-820b-b28db1257fe6" elementRef="id-metamodel-acinnost" xsi:type="Element" x="20" y="220" w="120" h="55">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-4c5816a8-2117-487d-8eb3-5488d753575c" elementRef="id-metamodel-evidence-byznysove" xsi:type="Element" x="20" y="320" w="120" h="55">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-287f558a-90b6-4240-a30f-39d285fbb4f1" elementRef="id-metamodel-gestor" xsi:type="Element" x="20" y="420" w="120" h="55">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-b68ba145-2385-4fee-a9eb-8694fcdb73df" elementRef="id-metamodel-ohlasovatel" xsi:type="Element" x="20" y="520" w="120" h="55">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-41aa6114-3185-4ea8-b4ca-36265f9d700b" elementRef="id-metamodel-ovm" xsi:type="Element" x="20" y="620" w="120" h="55">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-c974973e-50a2-4d1c-9e74-e23de59f12a0" elementRef="id-metamodel-povinnost" xsi:type="Element" x="20" y="720" w="120" h="55">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-245ddb12-e824-4d79-9ec5-71d086822610" elementRef="id-metamodel-proces" xsi:type="Element" x="20" y="820" w="120" h="55">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-4b9df95d-e89f-44c6-b4f3-686fdceac7e8" elementRef="id-metamodel-pravni-predpis" xsi:type="Element" x="20" y="920" w="120" h="55">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-3f070519-1b48-4cd3-b1a2-cc8b186f44ba" elementRef="id-metamodel-pravo" xsi:type="Element" x="20" y="1020" w="120" h="55">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-05d70d41-a11b-483c-8ce2-9f7ef6634079" elementRef="id-metamodel-role" xsi:type="Element" x="20" y="1120" w="120" h="55">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-d9e65af4-5f43-4ce3-bf62-ca64e2bb60bc" elementRef="id-metamodel-sluzba" xsi:type="Element" x="20" y="1220" w="120" h="55">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-780af7e1-7c6c-4db1-8560-d32374ae9e38" elementRef="id-metamodel-sluzba-agendy" xsi:type="Element" x="20" y="1320" w="120" h="55">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-c999c88d-cc99-4a3d-ab79-d24928708703" elementRef="id-metamodel-subjekt" xsi:type="Element" x="20" y="1420" w="120" h="55">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-633dbabd-bea6-48de-a529-f3631e32e8c0" elementRef="id-metamodel-ustanoveni" xsi:type="Element" x="20" y="1520" w="120" h="55">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-677f972b-23cf-4773-981c-437651729826" elementRef="id-metamodel-vnitrni-predpis" xsi:type="Element" x="20" y="1620" w="120" h="55">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-1d0e6308-8aa3-4c8f-91bd-ce95250765f6" elementRef="id-metamodel-ukon" xsi:type="Element" x="20" y="1720" w="120" h="55">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-4c15a601-26e6-4f28-97da-2613467dd675" elementRef="id-metamodel-organizacni-jednotka" xsi:type="Element" x="20" y="1820" w="120" h="55">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-2ef91111-1843-45e9-8caf-7640b2faeaad" elementRef="id-metamodel-aplikacni-sluzba" xsi:type="Element" x="20" y="1920" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-f6e81fb9-25fc-469b-8c95-1838c90ad7a7" elementRef="id-metamodel-evidence" xsi:type="Element" x="20" y="2020" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-6f4a9cfa-ac95-43d9-830c-b2be6485c7c3" elementRef="id-metamodel-evidence-udaju" xsi:type="Element" x="20" y="2120" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-2605ed7b-5208-4c98-b68b-704f66e47b97" elementRef="id-metamodel-identifikator" xsi:type="Element" x="20" y="2220" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-22164762-40ce-43e3-a48f-bf7a65beb759" elementRef="id-metamodel-identifikator-objektu" xsi:type="Element" x="20" y="2320" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-77e12f4b-6d46-4011-94c7-2481ad67fdd3" elementRef="id-metamodel-identifikator-subjektu" xsi:type="Element" x="20" y="2420" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-cb3fb219-813c-452d-bc85-c204fb20a35f" elementRef="id-metamodel-isprovozni" xsi:type="Element" x="20" y="2520" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-2c46e217-92bb-495b-825f-f9a2e4010617" elementRef="id-metamodel-isvs" xsi:type="Element" x="20" y="2620" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-80683593-6103-47ae-8e3d-1f5bb2980d00" elementRef="id-metamodel-kontext" xsi:type="Element" x="20" y="2720" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-c0aec29a-ab0b-448f-a47c-922d048e1727" elementRef="id-metamodel-provozni-aplikace" xsi:type="Element" x="20" y="2820" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-131d8cd9-78e8-4ca1-814f-4943679001c0" elementRef="id-metamodel-aplikacni-rozhrani" xsi:type="Element" x="20" y="2920" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-68818323-1859-4372-822a-b8ec52d855dc" elementRef="id-metamodel-skupina-udaju" xsi:type="Element" x="20" y="3020" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-54147c69-3248-4976-ad20-65c88ad3696a" elementRef="id-metamodel-meaning-aplikacni-vrstva" xsi:type="Element" x="20" y="3120" w="120" h="55">
+          <style>
+            <fillColor r="204" g="204" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-9124e98e-b2b7-47d4-adaa-cbf84df2e277" elementRef="id-Metamodel-meaning-byznysova-vrstva" xsi:type="Element" x="20" y="3220" w="120" h="55">
+          <style>
+            <fillColor r="204" g="204" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-0ccf807e-3f9e-4ce2-93d1-8aa61a81b984" elementRef="id-metamodel-meaning-identifikator" xsi:type="Element" x="20" y="3320" w="120" h="55">
+          <style>
+            <fillColor r="204" g="204" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-2de821ca-3a6e-41b4-b442-2fe26c1dcb1d" elementRef="id-metamodel-meaning-identifikator-objektu" xsi:type="Element" x="20" y="3420" w="120" h="55">
+          <style>
+            <fillColor r="204" g="204" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-c89eb397-470c-4b04-b777-90ec99cfbbf9" elementRef="id-metamodel-meaning-identifikator-subjektu" xsi:type="Element" x="20" y="3520" w="120" h="55">
+          <style>
+            <fillColor r="204" g="204" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-dc6f0e77-da6f-4a6d-b7f0-6148389b3d9b" elementRef="id-metamodel-meaning-implementacni-vrstva" xsi:type="Element" x="20" y="3620" w="120" h="55">
+          <style>
+            <fillColor r="204" g="204" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-0b65a61c-5e29-4210-9791-3e967393cb98" elementRef="id-metamodel-meaning-motivacni-vrstva" xsi:type="Element" x="20" y="3720" w="120" h="55">
+          <style>
+            <fillColor r="204" g="204" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-60120443-dade-4f65-827c-43802d9af97a" elementRef="id-Metamodel-meaning-strategicka-vrstva" xsi:type="Element" x="20" y="3820" w="120" h="55">
+          <style>
+            <fillColor r="204" g="204" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-1d3d6b55-c845-40ec-8686-f0f81ffc746b" elementRef="id-metamodel-meaning-technologicka-vrstva" xsi:type="Element" x="20" y="3920" w="120" h="55">
+          <style>
+            <fillColor r="204" g="204" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-8ea33c58-4c7d-40b6-a8aa-47a2ac0d14f1" elementRef="id-metamodel-vice-ovm" xsi:type="Element" x="20" y="4020" w="400" h="140">
+          <style>
+            <fillColor r="255" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <connection identifier="id-a57be435-d983-46d8-93a2-38bfc9761683" relationshipRef="id-metamodel-agenda-cinnost" xsi:type="Relationship" source="id-e8b6e6eb-48e1-41fd-89e2-79209ab4d484" target="id-e07d37b2-5f81-4262-820b-b28db1257fe6">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-76f37b98-5f58-44ec-87d5-05615f3cc927" relationshipRef="id-metamodel-sluzba-zagendy" xsi:type="Relationship" source="id-e8b6e6eb-48e1-41fd-89e2-79209ab4d484" target="id-780af7e1-7c6c-4db1-8560-d32374ae9e38">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-15e66517-b33d-46d5-aff6-69eea3cbdf41" relationshipRef="id-metamodel-ukon-agendy" xsi:type="Relationship" source="id-e8b6e6eb-48e1-41fd-89e2-79209ab4d484" target="id-1d0e6308-8aa3-4c8f-91bd-ce95250765f6">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-a2513ec7-868d-44af-96c8-22aad044d065" relationshipRef="id-metamodel-cinnostni-role" xsi:type="Relationship" source="id-41aa6114-3185-4ea8-b4ca-36265f9d700b" target="id-e07d37b2-5f81-4262-820b-b28db1257fe6">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-a0451f7d-3215-4dac-bcde-03eeb1da6cde" relationshipRef="id-metamodel-vykon-pusobnosti" xsi:type="Relationship" source="id-41aa6114-3185-4ea8-b4ca-36265f9d700b" target="id-e8b6e6eb-48e1-41fd-89e2-79209ab4d484">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-e783f74c-f4ae-4465-91c1-24e230fb5e7c" relationshipRef="id-metamodel-gesce-za-predpis" xsi:type="Relationship" source="id-41aa6114-3185-4ea8-b4ca-36265f9d700b" target="id-4b9df95d-e89f-44c6-b4f3-686fdceac7e8">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-050b9f89-c402-47a1-a534-e07828a86217" relationshipRef="id-metamodel-vydava-pravni-predpis" xsi:type="Relationship" source="id-41aa6114-3185-4ea8-b4ca-36265f9d700b" target="id-4b9df95d-e89f-44c6-b4f3-686fdceac7e8">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-2b2cc43a-1653-4d7d-b2e2-89d78b2d9a35" relationshipRef="id-METAMODEL-VYDAVA-VNITRNI-PREDPIS" xsi:type="Relationship" source="id-41aa6114-3185-4ea8-b4ca-36265f9d700b" target="id-677f972b-23cf-4773-981c-437651729826">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-c7a85308-0698-415a-80b4-09cd9de08065" relationshipRef="id-metamodel-provozuje-provozniis" xsi:type="Relationship" source="id-41aa6114-3185-4ea8-b4ca-36265f9d700b" target="id-cb3fb219-813c-452d-bc85-c204fb20a35f">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-68f44f7a-2181-436f-9fe5-00ce6d0a0fd7" relationshipRef="id-metamodel-spravuje-isvs" xsi:type="Relationship" source="id-41aa6114-3185-4ea8-b4ca-36265f9d700b" target="id-2c46e217-92bb-495b-825f-f9a2e4010617">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-9bdf4142-2227-4f91-b1c9-3feeb5cadeb7" relationshipRef="id-metamodel-urceni-povinnosti" xsi:type="Relationship" source="id-4b9df95d-e89f-44c6-b4f3-686fdceac7e8" target="id-c974973e-50a2-4d1c-9e74-e23de59f12a0">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-f807cb96-b03a-4029-8969-1d1a21ef85c2" relationshipRef="id-metamodel-urceni-prava" xsi:type="Relationship" source="id-4b9df95d-e89f-44c6-b4f3-686fdceac7e8" target="id-3f070519-1b48-4cd3-b1a2-cc8b186f44ba">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-e63ae72a-ffcc-4d89-9ef4-00a6d4f10793" relationshipRef="id-metamodel-zakon-agenda" xsi:type="Relationship" source="id-4b9df95d-e89f-44c6-b4f3-686fdceac7e8" target="id-e8b6e6eb-48e1-41fd-89e2-79209ab4d484">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-233131d8-6782-4bb1-bf52-65fc925efea3" relationshipRef="id-metamodel-zakon-ustanoveni" xsi:type="Relationship" source="id-4b9df95d-e89f-44c6-b4f3-686fdceac7e8" target="id-633dbabd-bea6-48de-a529-f3631e32e8c0">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-6109dd57-e1c6-4dc5-83af-f8ff8068a5d4" relationshipRef="id-metamodel-role-ma-povinnost" xsi:type="Relationship" source="id-05d70d41-a11b-483c-8ce2-9f7ef6634079" target="id-c974973e-50a2-4d1c-9e74-e23de59f12a0">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-6e6368af-f35a-4806-91a3-ea28b9b7e813" relationshipRef="id-metamodel-role-ma-pravo" xsi:type="Relationship" source="id-05d70d41-a11b-483c-8ce2-9f7ef6634079" target="id-3f070519-1b48-4cd3-b1a2-cc8b186f44ba">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-a22c223e-37eb-474c-98e5-cf988b4bb5bc" relationshipRef="id-metamodel-subjekt-do-role" xsi:type="Relationship" source="id-c999c88d-cc99-4a3d-ab79-d24928708703" target="id-05d70d41-a11b-483c-8ce2-9f7ef6634079">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-48ad57f5-d23b-4ced-ba5a-62444ec88d24" relationshipRef="id-metamodel-subjekt-ma-povinnost" xsi:type="Relationship" source="id-c999c88d-cc99-4a3d-ab79-d24928708703" target="id-c974973e-50a2-4d1c-9e74-e23de59f12a0">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-42176708-2cfc-42fd-bab9-1e24d1c64232" relationshipRef="id-metamodel-subjekt-ma-pravo" xsi:type="Relationship" source="id-c999c88d-cc99-4a3d-ab79-d24928708703" target="id-3f070519-1b48-4cd3-b1a2-cc8b186f44ba">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-d5d986b6-7778-472c-8906-f62868e2acb0" relationshipRef="id-metamodel-ustanoveni-acinnost" xsi:type="Relationship" source="id-633dbabd-bea6-48de-a529-f3631e32e8c0" target="id-e07d37b2-5f81-4262-820b-b28db1257fe6">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-5f86a483-45c7-4c91-9b57-ec896d8bac73" relationshipRef="id-metamodel-evidence-a-udaje" xsi:type="Relationship" source="id-6f4a9cfa-ac95-43d9-830c-b2be6485c7c3" target="id-4c5816a8-2117-487d-8eb3-5488d753575c">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-86a81296-50ea-4def-a473-9e3553ef8793" relationshipRef="id-metamodel-isvs-evidence" xsi:type="Relationship" source="id-2c46e217-92bb-495b-825f-f9a2e4010617" target="id-6f4a9cfa-ac95-43d9-830c-b2be6485c7c3">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-06ef2496-a2f3-4610-8438-f5685861d74c" relationshipRef="id-metamodel-isvs-sprava-udaju" xsi:type="Relationship" source="id-2c46e217-92bb-495b-825f-f9a2e4010617" target="id-68818323-1859-4372-822a-b8ec52d855dc">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-4a022751-4367-4c21-a9d8-0b6e1c94a255" relationshipRef="id-metamodel-uziva-isvs" xsi:type="Relationship" source="id-2c46e217-92bb-495b-825f-f9a2e4010617" target="id-41aa6114-3185-4ea8-b4ca-36265f9d700b">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Segoe UI" size="9">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+      </view>
+    </diagrams>
+  </views>
+</model>

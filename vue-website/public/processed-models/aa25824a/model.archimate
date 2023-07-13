@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archimate:model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:archimate="http://www.archimatetool.com/archimate" name="event sourcing" id="aa25824a" version="5.0.0">
+  <folder name="Strategy" id="id-249819017af242c08cce9df5306a8628" type="strategy"/>
+  <folder name="Business" id="id-9570c2a0bcbd47748cb7670f4d92eb3c" type="business">
+    <element xsi:type="archimate:BusinessObject" name="entity 1" id="id-8794d1c0"/>
+    <element xsi:type="archimate:BusinessObject" name="entity 1" id="id-14c61bfe"/>
+  </folder>
+  <folder name="Application" id="id-e27db5a2f8f749d5b95c6314adb2f817" type="application">
+    <element xsi:type="archimate:DataObject" name="table 1" id="id-287114fa"/>
+    <element xsi:type="archimate:DataObject" name="persistence table (event sourcing)" id="c9406b02"/>
+    <element xsi:type="archimate:DataObject" name="event type" id="id-03b1e8b3"/>
+    <element xsi:type="archimate:DataObject" name="event content" id="id-7beb2964"/>
+    <element xsi:type="archimate:DataObject" name="aggregate name" id="f0a96881"/>
+    <element xsi:type="archimate:DataObject" name="ordinal number" id="id-0de516be"/>
+    <element xsi:type="archimate:ApplicationEvent" name="Application Event" id="cc8e9126"/>
+  </folder>
+  <folder name="Technology &amp; Physical" id="id-913a2ac64a084c4a8884e96562c28268" type="technology"/>
+  <folder name="Motivation" id="id-ac926460bf514009a6dbcc52202970f0" type="motivation"/>
+  <folder name="Implementation &amp; Migration" id="id-a7747132ef2c44cdb290a9ae7bfc7df5" type="implementation_migration"/>
+  <folder name="Other" id="id-6533e5c48c8e4c34aa16c441f56348d2" type="other">
+    <element xsi:type="archimate:Grouping" name="aggregate 1" id="id-47caee49"/>
+    <element xsi:type="archimate:Grouping" name="aggregate 1" id="f0cc4a65"/>
+  </folder>
+  <folder name="Relations" id="id-54eb930ec0704f4bab6beaa6050cb1d2" type="relations">
+    <element xsi:type="archimate:CompositionRelationship" id="id-43de4979" source="c9406b02" target="id-0de516be"/>
+    <element xsi:type="archimate:AssociationRelationship" id="id-14df45bd" source="id-287114fa" target="id-47caee49"/>
+    <element xsi:type="archimate:CompositionRelationship" id="id-22fad559" source="c9406b02" target="id-03b1e8b3"/>
+    <element xsi:type="archimate:AssociationRelationship" id="a71742e4" source="id-47caee49" target="id-8794d1c0"/>
+    <element xsi:type="archimate:CompositionRelationship" id="id-122f4445" source="c9406b02" target="f0a96881"/>
+    <element xsi:type="archimate:AssociationRelationship" id="id-57c012c6" source="f0cc4a65" target="id-14c61bfe"/>
+    <element xsi:type="archimate:CompositionRelationship" id="a03ed7b6" source="c9406b02" target="id-7beb2964"/>
+    <element xsi:type="archimate:AssociationRelationship" id="f737d38f" source="f0cc4a65" target="c9406b02"/>
+    <element xsi:type="archimate:InfluenceRelationship" id="a06e073b" source="cc8e9126" target="f0cc4a65"/>
+  </folder>
+  <folder name="Views" id="id-1fb8a624f4034f9f850881e6a06a7f93" type="diagrams">
+    <element xsi:type="archimate:ArchimateDiagramModel" name="event sourcing" id="id-36eea90a">
+      <child xsi:type="archimate:Note" id="a6ef2a8c" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" textAlignment="1" fillColor="#ffffff">
+        <bounds x="954" y="130" width="657" height="1256"/>
+        <content>Event sourcing example.&#xD;
+In order to restore the state of the aggregate, it is necessary to apply to it all the events from the first to the last.&#xD;
+Also, we can determine what the state was at any time in the past.</content>
+      </child>
+      <child xsi:type="archimate:Note" id="id-88c9ae9f" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" textAlignment="1" fillColor="#ffffff">
+        <bounds x="145" y="130" width="657" height="1256"/>
+        <content>Example of traditional snapshot‐only persistence.&#xD;
+To restore the state of the aggregate, you simply need to read it from the table.</content>
+      </child>
+      <child xsi:type="archimate:Group" id="c9e78879" name="Conceptual domain model" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" textAlignment="1" fillColor="#d2d7d7">
+        <bounds x="225" y="195" width="491" height="156"/>
+        <child xsi:type="archimate:DiagramObject" id="id-2d183ccb" targetConnections="id-636b8195" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#ffffb5" archimateElement="id-8794d1c0">
+          <bounds x="105" y="60" width="120" height="55"/>
+        </child>
+      </child>
+      <child xsi:type="archimate:Group" id="e02b44c0" name="application layer" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" textAlignment="1" fillColor="#d2d7d7">
+        <bounds x="225" y="475" width="491" height="236"/>
+        <child xsi:type="archimate:DiagramObject" id="id-637825c5" targetConnections="a277318b" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" textAlignment="1" fillColor="#ffffff" archimateElement="id-47caee49">
+          <bounds x="105" y="120" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-636b8195" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#c0c0c0" source="id-637825c5" target="id-2d183ccb" archimateRelationship="a71742e4"/>
+        </child>
+      </child>
+      <child xsi:type="archimate:Group" id="a4c462f7" name="data layer" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" textAlignment="1" fillColor="#d2d7d7">
+        <bounds x="225" y="802" width="491" height="504"/>
+        <child xsi:type="archimate:DiagramObject" id="ef9144cd" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b5ffff" archimateElement="id-287114fa">
+          <bounds x="115" y="65" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="a277318b" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#c0c0c0" source="ef9144cd" target="id-637825c5" archimateRelationship="id-14df45bd"/>
+        </child>
+      </child>
+      <child xsi:type="archimate:Note" id="id-83e98be0" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#ff0000" lineColor="#5c5c5c" textAlignment="1" fillColor="#ffffff">
+        <bounds x="340" y="730" width="140" height="56"/>
+        <content>persisting the Aggregate state as a whole</content>
+      </child>
+      <child xsi:type="archimate:Group" id="id-82e6162b" name="Conceptual domain model" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" textAlignment="1" fillColor="#d2d7d7">
+        <bounds x="1024" y="210" width="491" height="156"/>
+        <child xsi:type="archimate:DiagramObject" id="id-39dab933" targetConnections="id-619a4723" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#ffffb5" archimateElement="id-14c61bfe">
+          <bounds x="105" y="60" width="120" height="55"/>
+        </child>
+      </child>
+      <child xsi:type="archimate:Group" id="id-87ac487b" name="application layer" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" textAlignment="1" fillColor="#d2d7d7">
+        <bounds x="1024" y="475" width="491" height="236"/>
+        <child xsi:type="archimate:DiagramObject" id="id-769dd317" targetConnections="cd9dc855" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" textAlignment="1" fillColor="#ffffff" archimateElement="f0cc4a65">
+          <bounds x="105" y="120" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-619a4723" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#c0c0c0" source="id-769dd317" target="id-39dab933" archimateRelationship="id-57c012c6"/>
+          <sourceConnection xsi:type="archimate:Connection" id="a84ba34a" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#c0c0c0" source="id-769dd317" target="id-06ec5567" archimateRelationship="f737d38f"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-26a817c5" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b5ffff" archimateElement="cc8e9126">
+          <bounds x="312" y="113" width="120" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="cd9dc855" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="id-26a817c5" target="id-769dd317" archimateRelationship="a06e073b"/>
+        </child>
+      </child>
+      <child xsi:type="archimate:Group" id="id-6c499ea7" name="data layer" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" textAlignment="1" fillColor="#d2d7d7">
+        <bounds x="1024" y="819" width="491" height="504"/>
+        <child xsi:type="archimate:DiagramObject" id="id-06ec5567" targetConnections="a84ba34a" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#ff0000" lineColor="#5c5c5c" fillColor="#b5ffff" archimateElement="c9406b02">
+          <bounds x="90" y="60" width="210" height="296"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-ed3585b8325a4af58d9cb40d6545ce73" source="id-06ec5567" target="b832ac8c" archimateRelationship="id-22fad559"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-14fe2b46617a438b9691c1348b47fef2" source="id-06ec5567" target="id-0bb237e9" archimateRelationship="a03ed7b6"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-3f59ed2a526b4fe8ade16c21b8ffbfb1" source="id-06ec5567" target="id-38e66eaa" archimateRelationship="id-122f4445"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-04e41f14ad854bf4b64a402f431a83dc" source="id-06ec5567" target="id-310e0dba" archimateRelationship="id-43de4979"/>
+          <child xsi:type="archimate:DiagramObject" id="b832ac8c" targetConnections="id-ed3585b8325a4af58d9cb40d6545ce73" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b5ffff" archimateElement="id-03b1e8b3">
+            <bounds x="45" y="165" width="120" height="55"/>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="id-0bb237e9" targetConnections="id-14fe2b46617a438b9691c1348b47fef2" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b5ffff" archimateElement="id-7beb2964">
+            <bounds x="45" y="230" width="120" height="55"/>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="id-38e66eaa" targetConnections="id-3f59ed2a526b4fe8ade16c21b8ffbfb1" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b5ffff" archimateElement="f0a96881">
+            <bounds x="45" y="100" width="120" height="55"/>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="id-310e0dba" targetConnections="id-04e41f14ad854bf4b64a402f431a83dc" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b5ffff" archimateElement="id-0de516be">
+            <bounds x="45" y="35" width="120" height="55"/>
+          </child>
+        </child>
+      </child>
+      <child xsi:type="archimate:Note" id="id-6bcd6460" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#ff0000" lineColor="#5c5c5c" textAlignment="1" fillColor="#ffffff">
+        <bounds x="1119" y="747" width="185" height="56"/>
+        <content>Keep the history of all events that happened with the aggreagate</content>
+      </child>
+      <child xsi:type="archimate:Note" id="d6321fad" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" textAlignment="1" fillColor="#ffffff">
+        <bounds x="1320" y="430" width="233" height="120"/>
+        <content>Аll changes to the domain objects are initiated by the event objects.&#xD;
+&#xD;
+For example, we can restore events (from the event store) one at a time and see what happens. That is, we can better test the causes and effects of any event.</content>
+      </child>
+    </element>
+  </folder>
+</archimate:model>

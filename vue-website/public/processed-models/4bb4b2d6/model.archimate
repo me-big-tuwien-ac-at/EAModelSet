@@ -1,0 +1,1131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archimate:model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:archimate="http://www.archimatetool.com/archimate" name="ServiceNow" id="4bb4b2d6" version="3.1.1">
+  <folder name="Business" id="0a61b848" type="business">
+    <element xsi:type="archimate:BusinessProcess" id="8a503796" name="Budgeting"/>
+    <element xsi:type="archimate:BusinessFunction" id="075fbf35" name="Accounting"/>
+    <element xsi:type="archimate:BusinessProcess" id="8aed9f55" name="Charging"/>
+    <element xsi:type="archimate:BusinessProcess" id="f47e0d68" name="IT Financial Management"/>
+    <element xsi:type="archimate:BusinessActor" id="0a7bd17b" name="Budget Owner">
+      <documentation>Budget owners can view all items that budget keys are associated with, such as budget plans and forecasts.
+
+Budget owners are users in the instance that you can associate with a budget plan. Create a budget owner record to give a user the budget_owner role, which grants access to budget plans and forecasts.
+
+</documentation>
+    </element>
+    <element xsi:type="archimate:BusinessActor" id="0609e555" name="Budget Admin">
+      <documentation>Role: budget_admin
+</documentation>
+    </element>
+    <element xsi:type="archimate:BusinessActor" id="2f46ec2b" name="Budget Key Owner">
+      <documentation>Budget key owners are also users in the instance that you can associated with a budget key, and thereby budget plans as well. Budget key ownership can be full or limited:
+
+Full access allows the owner to access everything associated with the budget key, including budget plans and forecasts, targets, and budget key expenses.
+Limited access allows the owner to see only the budget plans they own and the items in those plans.
+Budget key owners also have the same level of access to the items associated with child budget keys.</documentation>
+    </element>
+    <element xsi:type="archimate:BusinessActor" id="e08c04f4" name="Budget Analyst">
+      <documentation>Role: ?
+</documentation>
+    </element>
+    <element xsi:type="archimate:BusinessActor" id="ef73bdc7" name="Cost Admin">
+      <documentation>cost_transparency_admin</documentation>
+    </element>
+    <element xsi:type="archimate:BusinessActor" id="8dab2caa" name="Company"/>
+  </folder>
+  <folder name="Application" id="76e39efb" type="application">
+    <element xsi:type="archimate:ApplicationComponent" id="8e9c9750" name="Financial Management"/>
+    <element xsi:type="archimate:ApplicationComponent" id="152ed138" name="Cost Management"/>
+    <element xsi:type="archimate:ApplicationComponent" id="f4ab94d8" name="ServiceNow"/>
+    <element xsi:type="archimate:ApplicationComponent" id="2ea1db1a" name="Financial System"/>
+    <element xsi:type="archimate:ApplicationComponent" id="19ff834b" name="General Ledger"/>
+    <element xsi:type="archimate:DataObject" id="c2292107" name="Chart of Accounts"/>
+    <element xsi:type="archimate:DataObject" id="122f2140" name="IT General Ledger">
+      <documentation>The general ledger: A list of your organizational expenses.
+the general ledger contains all expenses for your organization for all fiscal periods.</documentation>
+    </element>
+    <element xsi:type="archimate:DataObject" id="0939c504" name="Cost Model"/>
+    <element xsi:type="archimate:ApplicationCollaboration" id="ff894a0a" name="GL Data Import">
+      <documentation>Financial data resides in the General Ledger Staged Data table.
+
+You can import financial data into the General Ledger Staged Data [itfm_gl_data_staged] table by using either of the following methods:
+
+Import sets
+Easy import
+See Import sets.
+Attention: Be sure that your fiscal calendar can be used with your financial data.
+</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" id="8f42a49a" name="Allocation Engine">
+      <documentation>The core of the application that uses your cost model to calculate expenses and determine how to allocate expenses.</documentation>
+    </element>
+    <element xsi:type="archimate:DataObject" id="e57b74d1" name="Fiscal Period">
+      <documentation>The fiscal period: The timeframe during which expenses were incurred. You can work with only one fiscal period at a time.</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationService" id="d9fe1e40" name="Financial Reports and Dashboards">
+      <documentation>Graphical representations of the expense allocations that show you where your expenses are coming from.</documentation>
+    </element>
+    <element xsi:type="archimate:DataObject" id="9da59fe0" name="Budget Model">
+      <documentation>A budget model is the foundation of your budget.
+
+A budget model is necessary for each budget key. Create as many budget models as necessary to classify budgeted expenses based on the segments that you can specify through their relationships.
+
+Budget analysts and budget admins can see any budget model. Budget owners can see only the budget models associated with budget keys that the budget owner has access to.
+
+Budget models replace budget definitions, starting with the Helsinki release.
+
+</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationFunction" id="02281798" name="Create Budget Model">
+      <documentation>Create a budget model that can be used by cost allocations and budgets.
+
+Before you begin
+
+Role required: budget_admin
+About this task
+
+When you are creating a budget model, select segments in a hierarchy and then generate a budget key for the model.
+
+Procedure
+
+Navigate to Financial Planning > Administration > Budget Model.
+
+Click New.
+
+Fill out the fields on the Financial Model form (see table).
+
+Right-click the header and select Save.
+
+Table 1. Budget Model form fields
+Field	Description
+Name	A descriptive name for the model.
+Data Source	The source of the financial data. Use the General Ledger Staged source. Only use the Cost Plan Breakdown if you activate and use the Project Portfolio Suite with Financials (com.snc.financial_planning_pmo) plugin. Portfolio actuals do not come from the staged general ledger. They are located in cost plan breakdowns in the Project Portfolio Suite.
+Model Owner	The user who owns the model.
+Used by Cost Allocation	If the model can be used by cost models. You can select this option if you also want the budget model to be used as a cost model.
+Used by Budgeting	If the model can be used by budgets. Select this option.
+Description	A detailed description for the model.
+Important budget model actions
+Generate Budget Keys	Creates budget keys based on the segment relationships.
+Generate Actuals	Creates financial actuals in the Budget actuals table [itfm_gl_actuals], which the budget console and the budget variance report use.
+Related list
+Segment Relationships	The relationships between the segments associated with this budget model. The segments are used when you generate budget keys for the model. Create segments relationships as necessary.
+</documentation>
+    </element>
+    <element xsi:type="archimate:DataObject" id="c3601efe" name="Budget Key">
+      <documentation>A budget key is a unique combination of values that the application uses to identify budget forecasts and budget plans.
+
+Note: Budget keys replace account codes, starting with the Helsinki release.
+
+Structure
+
+You can define the structure of the budget key by specifying the segments/code combination from the general ledger, such as the cost center, department, location, vendor, or any attributes. The budget key is a unique combination of values for these attributes. The combination of values is in a budget model hierarchy on a budget model.
+
+</documentation>
+    </element>
+    <element xsi:type="archimate:DataObject" id="df557988" name="Budget Plan">
+      <documentation>Budget plans specify expenses for assets, contracts, labor, and certain configuration items (CIs) for a fiscal period, particularly one in the future. Use budget plans as the basis to compare your actual versus planned expenses.
+
+Budget plans are associated with a budget key and a fiscal period. If you have financial data over several financial periods, make a separate plan for each period.
+
+There are several types of items you can add to the budget plan. The costs of these items are broken down over the fiscal period that you specify for the plan. See Budget items and Budget item breakdowns for more information.
+
+Budget plan expense amount types
+
+Budget plans show these types of expense amounts:
+
+Target amounts: An amount that you set as a goal to reach or a limit not to exceed. A target amount is created for a specific fiscal period and account code combination. When you select the account code and fiscal period for the budget plan, the target amount is automatically populated in the read-only target fields. There are targets for both operating and capital expenses.
+Budgeted amounts: A rollup of all the budget plan items, which appear as related lists on the Budget Plan form. Only items marked as capital expenses do not roll up to the amount fields. There are budgeted amounts for both operating and capital expenses.
+Budget plan ownership
+
+Budget plans have a single owner, who must have the budget_owner role. Whoever you chose as the budget owner must also be associated with the budget plan's budget key as an owner.
+
+Budget plan parent-child relationships
+
+Budget plans can have one or more sub-plans, which roll up their actual budget amounts to the parent budget plan. You cannot promote child plans individually. Only the top-level plan in a hierarchy can be promoted.
+
+The same account codes can be used for parent and any or all child plans, if necessary. Child plans can also have account codes that are lower in the hierarchy. For example, if the parent's account code is IT finance, the child plan's account code could be IT finance > Auditing Service, or similar. If you have multiple sub-plans with the same account codes, the amounts roll up from all subplans to the forecast.
+
+Changing the fiscal period parent plan cascades the change down to all sub-plans. See Budget owners and budget key owners for more information.
+
+Budget plan promotion
+
+You can promote a budget plan to a budget forecast, based on the plan's account code and fiscal period. The forecast helps you predict the expenses your organization will incur. See Budget forecasts for more information.
+
+Create a budget plan
+After you have configured your budget target and account codes, create a budget plan.
+
+Copy a budget plan
+You can use any plan as a basis for creating a new plan.
+
+Budget items
+The items that comprise a budget plan come from several other applications in an instance, including Asset Management, Project Management, and Configuration Management. This enables you to budget your expenses for items across your IT infrastructure.
+
+</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationFunction" id="b23efb5d" name="Generate Budget Keys">
+      <documentation>Budget keys can be generated using Generate Budget Keys from the model. To generate budget keys, the segments used in the budget model have to be mapped to the data source column in the field map, if by default they were not mapped already. By default, the application has field mapping with cost center, vendor, location, department, and project. If you are using any code combination segments in the budget model hierarchy other than these segments mentioned, then it has to be explicitly mapped in the data source field map.
+
+If there is an error when you manually generate budget keys, then verify the data source field map.
+</documentation>
+    </element>
+    <element xsi:type="archimate:DataObject" id="5e7f7d9f" name="Segments"/>
+    <element xsi:type="archimate:ApplicationFunction" id="7930a261" name="Generate from model ">
+      <documentation>Generate budget keys from a budget model if you do not want to create them manually one by one.
+
+Before you begin
+
+Role required: budget_admin
+About this task
+
+Procedure
+
+Navigate to Financial Planning > Administration > Budget Model.
+
+Open the desired budget model.
+
+Ensure that your mappings are defined on all the segments used in the model hierarchy.
+
+Click the Generate Budget Keys button at the bottom of the list.
+
+If you add more general ledger data and generate the keys again, the application generates only new keys based on the changed data. It does not regenerate the same keys, nor does it create duplicate keys.
+
+</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationFunction" id="86d83799" name="Assign ">
+      <documentation>Assign budget key to budget owner
+</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationFunction" id="84baf3d1" name="Create Manually">
+      <documentation>Create a budget key manually when you want to specify specific segment records that comprise the key, as allowed by the budget definition.
+
+Before you begin
+
+Role required: budget_admin
+Procedure
+
+Navigate to Financial Planning > Administration > Budget keys.
+
+Click New.
+
+Fill out the form fields (see table).
+
+Click Submit.
+
+Table 1. Account Code form fields
+Field	Description
+Name	Descriptive name for the account code.
+Segments	The segments associated with this budget key. These segments are set in the budget model in the Segment Relationships related list. Select a value for the root segment identified in the budget definition.</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationFunction" id="545b9b14" name="Generate Actuals"/>
+    <element xsi:type="archimate:DataObject" id="9fe51835" name="Budget Actuals">
+      <documentation>Account code, or budget key, expenses are records that show general ledger amounts for a budget key. The amounts are aggregated for each fiscal period.
+
+The expenses in the Account Code Expenses [itfm_gl_actuals] table are used by the budget console for calculations of actual expenses. Normally you do not need to create or modify data in this table.
+
+Financial administrators can access account code expenses from the Financials > Administration > Budget actuals module. The expenses are populated when you click Generate Actuals on the Financial Model form.</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationInterface" id="335241d2" name="Budget Console">
+      <documentation>The target amount also appears on the Review tab of the Budget Console. You can edit the amount through the console.</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationInterface" id="32acda7d" name="Workbench">
+      <documentation>Financial Management Workbench
+</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationService" id="2d37fcb1" name="Use the budget variance report">
+      <documentation>Use the budget variance report
+Use the Budget Variance report to see how expenses compare to budgets for cost centers, departments, locations, and vendors.
+
+About this task
+
+When you access this report, you can only see the budget data for the budget keys that the user in the Budget Owner choice list actually owns.
+
+Procedure
+
+Navigate to Financial Planning > Budget Planning > Variance. The report opens in another tab or window.
+
+Click the gear icon (gear icon) to configure settings for the report:
+
+Table 1. Report configuration options
+Setting	Description
+Budget Model	Shows budget data for the selected model.
+Group by	The main segments you want to group by. Select the segment from the choice list. To change the segments, modify the ITFM_BudgetVariance script include.
+Subgroup by	The segment you want to group by under the main segment. Select the segment from the choice list.
+Display description instead of name	How you want to display the segment in the report. Click the switch to use the display description instead of the name of the department, vendor, and so on.
+Use Year-to-Date Instead of Fiscal Periods	Sets the available time period for the data. Click the switch icon next to Use Year-to-Date instead of Fiscal Periods to use data for the current year. Turn off the switch to use fiscal periods, one of which you can select with the Fiscal Period choice list.
+Filter the report as needed.
+
+Table 2. Budget variance report filters
+Action	Procedure
+Filter by a budget variance	Enter the low end and high end of the range in the left and right-hand text boxes under Filter out by Variance. For example, to show only the budgets where the difference between the actual amount and the budgeted amount is between -1000 and 1000, enter (1000) in the left text box and 1000 in the right text box.
+Show data for a specific fiscal period and budget model.	Select the period from the Fiscal Period and Budget Model choice lists.
+Show data for a specific budget owner.	Select a user from the Budget Owner choice list. This list is filtered to show only the budget owners under you in the budget owner hierarchy.
+Show budget data for capital or operating expenses	Select the Operating or Capital check boxes
+- Business Management Financial Management, Istanbul</documentation>
+    </element>
+    <element xsi:type="archimate:DataObject" id="cc29385a" name="Budget Forecast">
+      <documentation>Budget forecasts provide a projection of expenses taken from a budget plan.
+
+You create a budget forecast by promoting a budget plan. When you do, the application creates a forecast and a read-only copy of the budget plan that the forecast refers to. This allows you to modify the budget plan without changing the forecast.
+
+Budget forecast components
+
+The budget forecast includes these items.
+
+Inherited budget plan values: important values from the plan, including the budget plan key.
+Overrides: an amount you can specify to override, or replace, the final forecast amount.
+Budget forecast items: the budget items from the budget plan.
+Budget forecast breakdowns: A breakdown of the Amount value into monthly units.
+Promote a budget plan
+After you review the budget plan and agree to the numbers, you can promote it to a forecast. The forecast becomes a benchmark for the same fiscal period specified by the plan.
+
+Override a budget forecast amount
+If you do not want to keep the forecast amount, you can override it with a value of your own.
+
+Budget forecast breakdowns
+The total cost in a budget forecast is divided into smaller units called breakdowns, which are taken from the budget plan.
+</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationFunction" id="7f089ff2" name="Promote a budget plan ">
+      <documentation>After you review the budget plan and agree to the numbers, you can promote it to a forecast. The forecast becomes a benchmark for the same fiscal period specified by the plan.
+
+Before you begin
+
+Role required: budget_admin
+Note: All items must have an account number associated with them before you can promote the budget plan.
+Procedure
+
+Open a budget plan.
+
+Click Promote.
+
+Note: The application creates a forecast and a read-only copy of the project plan that the forecast refers to. This allows you to modify the project plan without changing the forecast.
+Navigate to Financial Planning > Budget Planning > Budget Forecasts.
+
+Click the forecast Display Name to open it.
+
+Verify the information on the form and related lists (see table).
+
+If you make any changes, click Update.
+
+Field	Description
+Display Name	The name derived from the budget plan
+Budget Key	The budget key used by the plan.
+Account Number	An account associated with the forecast.
+Budget Owner	The budget plan's owner, who also has access to this forecast.
+Budget Plan	The budget plan from which the forecast was derived.
+Fiscal period	The fiscal period from the budget plan.
+Amount	The Budget Amount from the plan. This value populates the Final Amount field unless you use an override.
+Override Amount	An amount that can replace the amount in the Final Amount field. Enter an amount if you want to ignore the value in the Amount field.
+Final Amount	The final amount that is taken from the Amount field, or, if you are using an override, the Override Amount field.
+Override Category	The category for the override.
+Target	The target amount for the account code on the budget forecast. The target amount may not be the same as the target on the budget plan because there may be multiple account codes on the budget plan that each generates a budget forecast. This is because the budget forecast is for a fiscal period + account code combination.
+Related Lists
+Breakdown	A breakdown of the Amount value into monthly units. Double-click the fields in the list to edit them or click the record icon to open the breakdown.
+Budget Forecast Items	The items inherited from the budget plan.</documentation>
+    </element>
+    <element xsi:type="archimate:DataObject" id="60d0dd58" name="Breakdowns ">
+      <documentation>Budget forecast breakdowns: A breakdown of the Amount value into monthly units.
+
+The total cost in a budget forecast is divided into smaller units called breakdowns, which are taken from the budget plan.
+
+The breakdowns are used to calculate the value in the forecast's Amount field.
+
+</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationFunction" id="ea54df95" name="Override forecast ">
+      <documentation>f you do not want to keep the forecast amount, you can override it with a value of your own.
+
+Before you begin
+
+Role required: budget_admin
+About this task
+
+You can also override the amounts in budget breakdowns. The override value is used in the forecast's Amount field. However, any value you use as an override in the forecast completely overrides the value in the Amount field.
+
+If you are using the budget console, you can edit the value of the Override column if you add that column to the view on the Review tab. See The budget console for more information.
+
+Procedure
+
+Navigate to Financial Planning > Budget Planning > Budget Forecasts.
+
+Open a forecast.
+
+Enter the override value in the Override Amount field.
+
+Select an optional Override Category. See Create a budget override category for more information on these categories.
+
+Enter comments in the Override Note field.
+
+Click Update.
+
+</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationService" id="50bb7671" name="Import budget data ">
+      <documentation>You can use the platform's Easy Import feature to import budget data into the Budget Item table. A transform map is available by default to transform the data and create a budget plan, account code, budget items, and a budget owner.
+
+Before you begin
+
+You must set up a budget definition. Configure the spreadsheet with any or all the following columns, which represent segments:
+Department
+Location
+Vendor
+Cost Center
+Business unit
+Business service
+Portfolio
+Project
+Shared service
+Custom columns (up to four): additional segments.
+You do not need all of these columns. Only include the ones you need for your budget data. The values in each of the rows is the same as the value in the Name field of each of the segments.
+
+You must be familiar with the Easy import feature and transform map scripts. The transform map used in this topic is named importBudgetItemTranform.
+
+See Import sets.
+
+Role required: budget_admin
+About this task
+
+The transform map performs the following actions:
+
+Concatenates strings to provide an account code.
+Gets an account code by querying the account codes or by creating a new one.
+Creates a budget item for each row in the spreadsheet.
+Associates the budget items to a budget plan by finding a plan in the Budget Plan table or by creating one.
+Promotes the budget plan to a forecast.
+Procedure
+
+Create a table named u_itfm_budget_stage.
+
+Import the spreadsheet data into the u_itfm_budget_stage table using the Easy Import feature.
+
+Run the transform map importBudgetItemTranform. This transform processes data from the Source u_itfm_budget_stage table to the Target Budget Item [itfm_budget_item] table.
+
+Navigate to Financial Planning > Budget Planning > Final Budgets to confirm the budget data and records that were created and make modifications.
+
+</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationFunction" id="1891a735" name="Create Budget Plan">
+      <documentation>After you have configured your budget target and account codes, create a budget plan.
+
+Before you begin
+
+Role required: budget_admin, budget_analyst, budget_owner
+About this task
+
+This procedure explains how to create a budget plan with a blank form. You can also copy an existing budget plan.
+
+Procedure
+
+Navigate to Financial Planning > Budget Planning > Budget Plans.
+
+Click New.
+
+Fill in the Budget Plan form fields (see table).
+
+Right-click the form header and select Save from the context menu. The related lists and links appear.
+
+Click Preview to see what your budget plan would look like. The Budget Preview window looks like the Budget Console, except that you cannot change the budget model, budget key, or fiscal period. The data comes from the pre-promoted budget plan and includes sub-plans.
+
+</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationFunction" id="903f187e" name="Generate Actuals">
+      <documentation>
+After you have configured your budget target and account codes, create a budget plan.
+
+Before you begin
+
+Role required: budget_admin, budget_analyst, budget_owner
+About this task
+
+This procedure explains how to create a budget plan with a blank form. You can also copy an existing budget plan.
+
+Procedure
+
+Navigate to Financial Planning > Budget Planning > Budget Plans.
+
+Click New.
+
+Fill in the Budget Plan form fields (see table).
+
+Right-click the form header and select Save from the context menu. The related lists and links appear.
+
+Click Preview to see what your budget plan would look like. The Budget Preview window looks like the Budget Console, except that you cannot change the budget model, budget key, or fiscal period. The data comes from the pre-promoted budget plan and includes sub-plans.
+
+</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationFunction" id="03c5d0fc" name="Create Budget Targets ">
+      <documentation>A budget target is an estimated amount of money for a specific fiscal period and budget key combination for operating and capital expenses. Use budget targets to set up a financial goal for a budget plan.
+
+Before you begin
+
+Role required: budget_admin, budget_analyst, budget_owner
+Procedure
+
+</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationFunction" id="08b505e8" name="Copy a budget plan">
+      <documentation>You can use any plan as a basis for creating a new plan.
+
+Before you begin
+
+Role required: budget_admin
+About this task
+
+When you copy a plan, an exact replica of the plan and all its items is created, with the word copy appended to the name.
+
+Procedure
+
+Navigate to Financial Planning > Budget Planning > Budget Plans.
+
+Click a plan to open the Budget Plan form.
+
+Click Copy Plan.
+
+</documentation>
+    </element>
+    <element xsi:type="archimate:DataObject" id="60c02ef2" name="Budget items ">
+      <documentation>The items that comprise a budget plan come from several other applications in an instance, including Asset Management, Project Management, and Configuration Management. This enables you to budget your expenses for items across your IT infrastructure.
+
+Each item in the budget plan has an actual item cost and an account number. The actual item costs roll up to comprise the budget plan's actual budgeted amounts for both capital and operating expenses, using the type of account code (capital or operating) associated with each item. You can further refine the costs of the items by specifying how many units to include in a single item, a unit cost, and the percentage of each unit that you want to include in the actual item cost.
+
+Starting with the Helsinki release:
+
+you can add product catalog items to budget items. See Product Catalog for more information.
+Expense type will be determine by the Account selected on the budget item.
+Budget item breakdowns
+The total cost in a budget plan is divided into smaller units called breakdowns.
+
+Add items to a budget plan
+After you create a budget plan, add items to the plan, such as assets and configuration items. You can then track the estimated target cost of all the items in the budget versus the actual costs.</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" id="61db4962" name="Asset Management"/>
+    <element xsi:type="archimate:ApplicationComponent" id="bd988b18" name="Project Management"/>
+    <element xsi:type="archimate:ApplicationComponent" id="9e5881db" name="Application Component">
+      <documentation>Configuration Management</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" id="b0f6f900" name="Service Catalog">
+      <documentation>Configuration Management</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationFunction" id="f34c0571" name="Add items to a budget plan ">
+      <documentation>After you create a budget plan, add items to the plan, such as assets and configuration items. You can then track the estimated target cost of all the items in the budget versus the actual costs.
+
+Before you begin
+
+Role required: budget_admin
+Procedure
+
+Open a budget plan.
+
+Click one of the related lists.
+
+Click New.
+
+Fill out the fields on the form (see table).
+
+Right-click the form header and select Save.
+
+The application calculates the breakdowns automatically.
+
+Click Recalculate Item Amount if you update budget reference rates.
+
+Table 1. Form fields for budget plan items
+Field	Available for these types of items	Description
+Name	All types	A descriptive name for the item. Enter a name. If you select a product model, the application automatically populates this field and makes it read-only.
+Budget Plan	All types	The plan this item belongs to.
+Budget Key	All types	The budget key for this item. You can select a key that is designated as a sub-key of the plan's key. Use this sub-key if you want items to be separated by different codes and assign those keys to different users. Items without a key take the key of the plan.
+Account Number	All types	The account number associated with this item.
+Expense Type	All types	If the item is an Operational or Capital expense. The account determines this value.
+Configuration Item	Budget item, Software, Hardware	The CI in the Configuration Item [cmdb_ci] table.
+Item Cost in Plan Currency	All types	The actual item cost for the number of units and the cost per unit. This field uses the currency that the budget uses.
+Product Model	Budget item	An item from the product catalog's Product Model [product_model] table. This field is new with the Helsinki release. See Models.
+Item Cost in Local Currency	All types	The actual item cost for the number of units and the cost per unit. This field uses the local currency selection that you make on the Cost Details tab.
+User	Labor	The user performing the labor. Select a user from the system.
+Contract	Contracts	The contract from the [ast_contract] table. Select a contract.
+Cost Details
+Local Currency	All types	Select the currency that pertains to the cost of this particular item.
+Unit Cost in Local Currency	All types	The cost of each unit in the item. Enter the cost per unit.
+Quantity	All types	The number of units in this item. Enter the quantity of this item.
+Is Prorated	All types, except Asset Depreciation	The breakdown is prorated if the start or end date falls in the middle of the time period for a breakdown record. Select this option to prorate the amount. This field is automatically selected and is read only for external labor.
+Is Monthly	All types, except Asset Depreciation	Assumes the amount entered in the Unit Cost in Local Currency field is not incurred annually, but monthly. The amount is then applied across the entire fiscal period until the specified end date. This field is automatically selected when Is Prorated is selected, and is read only for the external labor item type.
+Item Execution
+Planned Execution Start Date	All types, except Asset Depreciation and Contract	The date when this item is estimated to begin incurring an expense. The planned dates can determine which budget item breakdowns receive cost values.
+Actual Execution Start Date	All types, except Asset Depreciation	The date when this item actually begins incurring an expense. The actual dates take precedence over the planned dates in determining which budget item breakdowns receive cost values.
+Planned Execution End Date	All types, except Asset Depreciation	The date when this cost is estimated to stop incurring an example. The planned dates can determine which budget item breakdowns receive cost values.
+Actual Execution End Date	All types, except Asset Depreciation	The date when this item actually stops incurring an expense. The actual dates take precedence over the planned dates in determining which budget item breakdowns receive cost values.
+</documentation>
+    </element>
+    <element xsi:type="archimate:DataObject" id="edadc916" name="GL Account"/>
+    <element xsi:type="archimate:ApplicationFunction" id="a9ee62a3" name="Create GL account">
+      <documentation>Create a general ledger account for each account in your organization that requires an account number to associate expenses with.
+
+Before you begin
+
+Role required: cost_transparency_admin
+About this task
+
+Accounts are associated with all three types of expenses in the general ledger.
+
+Starting with the Helsinki release, account numbers are classified as either an operating expense or a capital expense. This expense type is expressed in budgets to compare operating and capital budget targets versus actual budgeted expenses.
+
+After you upgrade Financial Management to the Helsinki version, the Expense Type field defaults to Operating.
+
+Procedure
+
+Navigate to Financial Planning > Administration > Accounts.
+
+Fill out the form fields (see table).
+
+Click Submit.
+
+Table 1. General Ledger Account form fields
+Field	Description
+Account Number	Enter a unique account number for each account.
+Description	Enter a detailed description for the account.
+Name	Enter a descriptive name.
+Expense type	Select the type of expense associated with the account:
+Operating: An operational expense. If you upgrade to Helsinki from a previous release, all accounts default to this type.
+Capital: A capital expense.
+Note: After you upgrade Financial Management to the Helsinki version, this field defaults to Operating.
+</documentation>
+    </element>
+    <element xsi:type="archimate:DataObject" id="076276ee" name="Staged expenses">
+      <documentation>Staged expenses that you imported from your external source. Imported expenses are saved in the General Ledger Staged Data [itfm_gl_data_staged] table.
+</documentation>
+    </element>
+    <element xsi:type="archimate:DataObject" id="cfd31687" name="Cleansed expenses">
+      <documentation>Cleansed expenses that the workbench uses during the Data Cleansing stage. Changes to expenses during this stage are saved in the General Ledger Cleansed Data [itfm_gl_data_cleansed] table. Each time you add an expense to the General Ledger Staged Data table, a corresponding expense is created in this table.
+</documentation>
+    </element>
+    <element xsi:type="archimate:DataObject" id="6a230b49" name="Groomed expenses">
+      <documentation>Groomed expenses that the workbench uses during the Bucketing stage. Changes to expenses during this stage are saved in the Groomed General Ledger Data [itfm_gl_data_groomed] table.
+</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationInterface" id="49695135" name="View expenses ">
+      <documentation>You can view records in any of the general ledger tables and make changes if necessary.
+
+Before you begin
+
+Role required: cost_transparency_admin
+Procedure
+
+Navigate to Cost Transparency > General Ledger and open one of these general ledgers: Staged Expenses, Cleansed Expenses, Groomed Expenses.
+
+Open an expense by clicking the value in the Number column for the expense.
+
+Modify the fields on the form as appropriate (see table).
+
+Click Submit.
+
+Table 1. Groomed General Ledger Data form fields
+Field	Description
+Number	Auto-generated identification number for the general ledger data record.
+State	The current state of the record:
+Unallocated: Allocations for this expense are not allocated.
+Allocated: This expense has been allocated.
+Locked: The general ledger expense is locked so that its allocation lines cannot be reverted.
+Account name	Name of the account.
+Account number	Account number this expense applies to. This field is mandatory on the Cleansed General Ledger Data form to ensure that all cleansed expenses appear in an account in the Bucketing stage of the workbench.
+Description	Detailed description of the expense.
+Amount	The amount of the expense.
+Cleansed expense	[General Ledger Staged Data form]
+A reference to the corresponding record in the General Ledger Cleansed Data table. This is the expense in the General Ledger Cleansed Data table that is automatically created when you create an expense in the General Ledger Staged Data table.
+
+Staged expense	[General Ledger Cleansed Data form]
+A reference to the corresponding record in the General Ledger Cleansed Data table.
+
+Groomed expense	[General Ledger Cleansed Data form]
+A reference to the corresponding record in the Groomed General Ledger Data table.
+
+Grooming rule	[General Ledger Cleansed Data form]
+The condition that the workbench uses to filter expenses that are put in buckets.
+
+Currency	Currency that the expense is valued in. The currency is a three letter code defined in the Currency [fx_currency] table. If the value in this field does not match any code in the Currency table, dollar signs are displayed by default for all expenses. Make sure that your expenses in all general ledger forms are in the same currency as your system currency.
+Document amount	Amount of the original expense document.
+Document currency	Currency that the original expense document uses. As with the Currency field, the value in the field is a three letter code defined in the Currency table.
+Bucket	[Groomed General Ledger Data form]
+Bucket that this expense is associated with.
+
+Sub-bucket	[Groomed General Ledger Data form]
+Sub-bucket that this expense is associated with.
+
+Cost center	Cost center this expense applies to.
+Department	Department associated with this expense.
+Fiscal period	[Groomed General Ledger Data form]
+Period during which this expense occurred.
+
+Document date	Date on which the original expense document was issued.
+Import set	The import set containing the data that you imported into the instance.
+Location	The location of where the expense was incurred.
+Vendor	The vendor record that is referenced from the Company [core_company] table.
+Posting date	The date of when this expense was incurred.
+Local amount	The amount represented in the local currency.
+Local currency	The currency associated with the account.
+Segments	Expense amounts for the segments that are defined in the IT chart of accounts.
+Related links
+Preview Allocation	[Groomed General Ledger Data form]
+Opens the allocation viewer for unallocated expenses. This link does not appear on the form for allocated expenses.
+
+Visualize Allocation	[Groomed General Ledger Data form]
+Opens the allocation viewer for allocated expenses. This link does not appear on the form for unallocated expenses.
+
+Related Lists
+Cost Allocations	[Groomed General Ledger Data form]
+Allocation lines created from this expense.
+
+General Ledger Cleansed Data	[Groomed General Ledger Data form]
+The records in the General Ledger Cleansed Data table that created the groomed expense records after the expenses are put into buckets.</documentation>
+    </element>
+    <element xsi:type="archimate:DataObject" id="0d1a6d64" name="Business Unit">
+      <documentation>Business units are the parts of your organization that are in charge of certain operations, such as Finance, HR, IT, and so on.
+
+Business units are typically comprised of departments and associated with a company. By default, the IT chart of accounts includes a segment for business units, departments, and vendors, which are companies with the Vendor option selected. With this chart of accounts setup, you can allocate expenses to specific business units, departments, or vendors, or have expense allocations roll up to them. You can configure both departments and companies as part of user management.
+
+Create business units
+Create business units to set up the top-most segment in the IT chart of accounts. Then you can create rollup rules to have expenses roll up to these business units.
+
+</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationFunction" id="91c9d084" name="Create Business Units ">
+      <documentation>Create business units to set up the top-most segment in the IT chart of accounts. Then you can create rollup rules to have expenses roll up to these business units.
+
+Before you begin
+
+Role required: cost_transparency_admin
+Procedure
+
+Navigate to Cost Transparency > Chart of Accounts > Business Units.
+
+Click New.
+
+Fill out the fields on the form (see table).
+
+Click Save.
+
+Table 1. Business Unit form fields
+Field	Description
+Name	Name of the business unit.
+Company	The company, if any, associated with this business unit. You can choose any company, including those that do not have the Vendor field selected.
+Description	A description of the business unit.
+Related List
+Departments	Departments that comprise this business unit. Add as many departments as necessary.
+</documentation>
+    </element>
+    <element xsi:type="archimate:DataObject" id="d17ef5eb" name="Department"/>
+    <element xsi:type="archimate:DataObject" id="8eb68cb9" name="Company"/>
+  </folder>
+  <folder name="Technology" id="397a0380" type="technology">
+    <element xsi:type="archimate:Artifact" id="a970de3f" name="Default Model">
+      <documentation>Default budget model: A default budget model that you can customize. If you upgrade to Helsinki, the budget definition you had in Geneva is converted to the default budget model.</documentation>
+    </element>
+    <element xsi:type="archimate:Artifact" id="b993bd55" name="Project Financials">
+      <documentation>Project Financials Budget Model: used to integration with the Project Portfolio Suite (requires the Project Portfolio Suite with Financials (com.snc.financial_planning_pmo) plugin).</documentation>
+    </element>
+    <element xsi:type="archimate:Artifact" id="bd7d45d8" name="Account Code Expenses">
+      <documentation>[itfm_gl_actuals] table
+the expenses are used by the budget console for calculations of actual expenses. Normally you do not need to create or modify data in this table.
+</documentation>
+    </element>
+    <element xsi:type="archimate:Artifact" id="e843fa9d" name="Budget Variance report ">
+      <documentation>he Budget Variance report shows you how expenses compare to budgets for the segments in the budget definition.
+
+The Budget Variance Report is the main report you need for managing budgets. It gives you an overview of your budget estimates versus actuals. The estimated budget data is taken from the Final Budgets [itfm_budget] table, not from forecasts. The actual expense values are taken from the General Ledger Staged Data [itfm_gl_data_staged] table.
+
+The budget variance data is grouped by Operating and Capital expenses, starting with the Helsinki release.
+
+Use the budget variance report
+Use the Budget Variance report to see how expenses compare to budgets for cost centers, departments, locations, and vendors.</documentation>
+    </element>
+    <element xsi:type="archimate:Artifact" id="dbd78f41" name="Inherited budget plan values">
+      <documentation>Important values from the plan, including the budget plan key. </documentation>
+    </element>
+    <element xsi:type="archimate:Artifact" id="bfe922b5" name="Overrides">
+      <documentation>Overrides: an amount you can specify to override, or replace, the final forecast amount.
+</documentation>
+    </element>
+    <element xsi:type="archimate:Artifact" id="6e4996af" name="Budget forecast items">
+      <documentation>the budget items from the budget plan.
+</documentation>
+    </element>
+    <element xsi:type="archimate:Artifact" id="8f92868a" name="Operating Target">
+      <documentation>Operating Target	The target amount for operating expenses.
+Capital Target	The amount of the target in the currency being used.
+Budget Key	The budget key to which this target applies. Select a key.
+Currency	The currency in use.
+Fiscal period	The fiscal period year to which this target applies. Select a fiscal period.</documentation>
+    </element>
+    <element xsi:type="archimate:Artifact" id="f414147f" name="Capital Target">
+      <documentation>Capital Target	The amount of the target in the currency being used.
+</documentation>
+    </element>
+    <element xsi:type="archimate:Artifact" id="3ad22a6e" name="Currenc">
+      <documentation>Currency	The currency in use.
+</documentation>
+    </element>
+    <element xsi:type="archimate:Artifact" id="1686d65d" name="Target Amount">
+      <documentation>The target amount also appears on the Review tab of the Budget Console. You can edit the amount through the console.</documentation>
+    </element>
+    <element xsi:type="archimate:Artifact" id="70ee5b05" name="Account Number"/>
+    <element xsi:type="archimate:Artifact" id="3b16c665" name="Actual Item Cost">
+      <documentation>The actual item costs roll up to comprise the budget plan's actual budgeted amounts for both capital and operating expenses using the type of account code (capital or operating) associated with each item.</documentation>
+    </element>
+  </folder>
+  <folder name="Motivation" id="aeda204e" type="motivation"/>
+  <folder name="Implementation &amp; Migration" id="010e1a14" type="implementation_migration"/>
+  <folder name="Connectors" id="94538372" type="connectors"/>
+  <folder name="Relations" id="ee2e2e00" type="relations">
+    <element xsi:type="archimate:CompositionRelationship" id="f056042a" source="f47e0d68" target="8a503796"/>
+    <element xsi:type="archimate:CompositionRelationship" id="f594407d" source="f47e0d68" target="075fbf35"/>
+    <element xsi:type="archimate:CompositionRelationship" id="69f830ab" source="f47e0d68" target="8aed9f55"/>
+    <element xsi:type="archimate:CompositionRelationship" id="a48fbf67" source="f4ab94d8" target="152ed138"/>
+    <element xsi:type="archimate:CompositionRelationship" id="a2988c62" source="f4ab94d8" target="8e9c9750"/>
+    <element xsi:type="archimate:CompositionRelationship" id="479c7c0f" source="2ea1db1a" target="19ff834b"/>
+    <element xsi:type="archimate:CompositionRelationship" id="da87524e" source="f4ab94d8" target="ff894a0a"/>
+    <element xsi:type="archimate:CompositionRelationship" id="5ecbfef9" source="f4ab94d8" target="8f42a49a"/>
+    <element xsi:type="archimate:AssignmentRelationship" id="bca83684" source="f4ab94d8" target="d9fe1e40"/>
+    <element xsi:type="archimate:CompositionRelationship" id="ab1619b4" source="8e9c9750" target="ff894a0a"/>
+    <element xsi:type="archimate:CompositionRelationship" id="9e9e5a3e" source="8e9c9750" target="8f42a49a"/>
+    <element xsi:type="archimate:AssignmentRelationship" id="3bd2742a" source="8e9c9750" target="d9fe1e40"/>
+    <element xsi:type="archimate:AssignmentRelationship" id="11ad81b0" source="8e9c9750" target="02281798"/>
+    <element xsi:type="archimate:AssignmentRelationship" id="6f300604" source="8e9c9750" target="b23efb5d"/>
+    <element xsi:type="archimate:AssignmentRelationship" id="e849b93d" source="8e9c9750" target="86d83799"/>
+    <element xsi:type="archimate:AssignmentRelationship" id="0bdac89e" source="8e9c9750" target="84baf3d1"/>
+    <element xsi:type="archimate:CompositionRelationship" id="36bc1a63" source="b23efb5d" target="84baf3d1"/>
+    <element xsi:type="archimate:CompositionRelationship" id="b68dc6f9" source="b23efb5d" target="7930a261"/>
+    <element xsi:type="archimate:UsedByRelationship" id="629043c3" source="84baf3d1" target="0609e555"/>
+    <element xsi:type="archimate:AssociationRelationship" id="951814f3" source="c3601efe" target="84baf3d1"/>
+    <element xsi:type="archimate:AccessRelationship" id="c8b6ec8e" source="7930a261" target="9da59fe0"/>
+    <element xsi:type="archimate:AssociationRelationship" id="02bdbdb7" source="7930a261" target="c3601efe"/>
+    <element xsi:type="archimate:UsedByRelationship" id="672a367e" source="7930a261" target="0609e555"/>
+    <element xsi:type="archimate:AssociationRelationship" id="c97ff7be" source="02281798" target="9da59fe0"/>
+    <element xsi:type="archimate:AssociationRelationship" id="e122d8f5" source="86d83799" target="0a7bd17b"/>
+    <element xsi:type="archimate:AssociationRelationship" id="1f6b079c" source="86d83799" target="c3601efe"/>
+    <element xsi:type="archimate:UsedByRelationship" id="c31fa7b4" source="02281798" target="0609e555"/>
+    <element xsi:type="archimate:AccessRelationship" id="d8201e39" name="Select" source="02281798" target="5e7f7d9f" accessType="1"/>
+    <element xsi:type="archimate:AccessRelationship" id="cf83406a" name="Generates" source="02281798" target="c3601efe"/>
+    <element xsi:type="archimate:AccessRelationship" id="5e6d11d7" source="a970de3f" target="9da59fe0"/>
+    <element xsi:type="archimate:UsedByRelationship" id="9aa9498f" source="7930a261" target="02281798"/>
+    <element xsi:type="archimate:CompositionRelationship" id="80019c21" source="02281798" target="545b9b14"/>
+    <element xsi:type="archimate:AggregationRelationship" id="72117be1" source="cc29385a" target="60d0dd58"/>
+    <element xsi:type="archimate:CompositionRelationship" id="bd454e62" source="60d0dd58" target="df557988"/>
+    <element xsi:type="archimate:SpecialisationRelationship" id="78346239" source="df557988" target="60d0dd58"/>
+    <element xsi:type="archimate:AssociationRelationship" id="bec5d941" source="df557988" target="60d0dd58"/>
+    <element xsi:type="archimate:AssociationRelationship" id="89c6039b" source="7f089ff2" target="df557988"/>
+    <element xsi:type="archimate:UsedByRelationship" id="be37fd0f" source="7f089ff2" target="0609e555"/>
+    <element xsi:type="archimate:SpecialisationRelationship" id="718e8e3f" source="df557988" target="cc29385a"/>
+    <element xsi:type="archimate:UsedByRelationship" id="4d837bc2" source="ea54df95" target="0609e555"/>
+    <element xsi:type="archimate:RealisationRelationship" id="8e2671bb" source="bfe922b5" target="cc29385a"/>
+    <element xsi:type="archimate:RealisationRelationship" id="fae505be" source="dbd78f41" target="cc29385a"/>
+    <element xsi:type="archimate:RealisationRelationship" id="85027f58" source="6e4996af" target="cc29385a"/>
+    <element xsi:type="archimate:UsedByRelationship" id="0169cc62" source="bfe922b5" target="ea54df95"/>
+    <element xsi:type="archimate:AggregationRelationship" id="2d80b4da" source="df557988" target="60c02ef2"/>
+    <element xsi:type="archimate:AssociationRelationship" id="d74c831a" source="60c02ef2" target="9e5881db"/>
+    <element xsi:type="archimate:AssociationRelationship" id="dc19e767" source="60c02ef2" target="61db4962"/>
+    <element xsi:type="archimate:AssociationRelationship" id="7e86d80d" source="60c02ef2" target="bd988b18"/>
+    <element xsi:type="archimate:RealisationRelationship" id="2c27e47c" source="3b16c665" target="60c02ef2"/>
+    <element xsi:type="archimate:AssociationRelationship" id="57144229" name="Product Catalog Items" source="b0f6f900" target="df557988"/>
+    <element xsi:type="archimate:AssociationRelationship" id="5bfc35c6" name="1:1" source="df557988" target="e57b74d1"/>
+    <element xsi:type="archimate:AssociationRelationship" id="b87e3f84" source="df557988" target="c3601efe"/>
+    <element xsi:type="archimate:AssociationRelationship" id="cca20688" source="df557988" target="08b505e8"/>
+    <element xsi:type="archimate:FlowRelationship" id="40a6f908" source="1891a735" target="f34c0571"/>
+    <element xsi:type="archimate:UsedByRelationship" id="6ee34e6c" source="f34c0571" target="0609e555"/>
+    <element xsi:type="archimate:AssociationRelationship" id="36baa0ca" source="f34c0571" target="df557988"/>
+    <element xsi:type="archimate:AggregationRelationship" id="2aa67545" source="122f2140" target="edadc916"/>
+    <element xsi:type="archimate:AssociationRelationship" id="3d4e6a38" source="a9ee62a3" target="edadc916"/>
+    <element xsi:type="archimate:UsedByRelationship" id="c083b7ad" source="a9ee62a3" target="ef73bdc7"/>
+    <element xsi:type="archimate:AssociationRelationship" id="a662980c" source="19ff834b" target="ff894a0a"/>
+    <element xsi:type="archimate:AccessRelationship" id="bece3011" source="ff894a0a" target="076276ee"/>
+    <element xsi:type="archimate:AccessRelationship" id="ffacbf34" source="ff894a0a" target="cfd31687"/>
+    <element xsi:type="archimate:AccessRelationship" id="12b1574e" source="ff894a0a" target="6a230b49"/>
+    <element xsi:type="archimate:AccessRelationship" id="6da736c9" source="49695135" target="122f2140"/>
+    <element xsi:type="archimate:UsedByRelationship" id="76a643fa" source="49695135" target="ef73bdc7"/>
+    <element xsi:type="archimate:UsedByRelationship" id="1d394f27" source="91c9d084" target="ef73bdc7"/>
+    <element xsi:type="archimate:AssociationRelationship" id="c711c9e4" source="c2292107" target="0d1a6d64"/>
+    <element xsi:type="archimate:AssociationRelationship" id="303f71dd" source="91c9d084" target="0d1a6d64"/>
+    <element xsi:type="archimate:AggregationRelationship" id="cf2b919b" name="1:n" source="0d1a6d64" target="d17ef5eb"/>
+    <element xsi:type="archimate:AssociationRelationship" id="a9f7d665" source="03c5d0fc" target="1686d65d"/>
+    <element xsi:type="archimate:AssociationRelationship" id="8b2b3fe4" source="03c5d0fc" target="8f92868a"/>
+    <element xsi:type="archimate:AssociationRelationship" id="2a0606c9" source="03c5d0fc" target="3ad22a6e"/>
+    <element xsi:type="archimate:AssociationRelationship" id="322d9ed7" source="03c5d0fc" target="f414147f"/>
+    <element xsi:type="archimate:AssociationRelationship" id="5cd44798" source="0d1a6d64" target="8eb68cb9"/>
+    <element xsi:type="archimate:UsedByRelationship" id="ba2babba" source="1891a735" target="e08c04f4"/>
+    <element xsi:type="archimate:UsedByRelationship" id="63e98909" source="1891a735" target="0609e555"/>
+    <element xsi:type="archimate:UsedByRelationship" id="bb22cb76" source="1891a735" target="0a7bd17b"/>
+  </folder>
+  <folder name="Views" id="f5d7b612" type="diagrams">
+    <element xsi:type="archimate:ArchimateDiagramModel" id="7c825f38" name="Default View">
+      <child xsi:type="archimate:DiagramObject" id="e687a2c7" textAlignment="2" archimateElement="f47e0d68">
+        <bounds x="1371" y="12" width="456" height="121"/>
+        <sourceConnection xsi:type="archimate:Connection" id="f11e4c90" source="e687a2c7" target="c1ec64f6" relationship="f056042a"/>
+        <sourceConnection xsi:type="archimate:Connection" id="fa51850d" source="e687a2c7" target="ea1302ea" relationship="f594407d"/>
+        <sourceConnection xsi:type="archimate:Connection" id="f255f811" source="e687a2c7" target="19944adf" relationship="69f830ab"/>
+        <child xsi:type="archimate:DiagramObject" id="19944adf" textAlignment="2" targetConnections="f255f811" archimateElement="8aed9f55">
+          <bounds x="300" y="48" width="120" height="55"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="ea1302ea" textAlignment="2" targetConnections="fa51850d" archimateElement="075fbf35">
+          <bounds x="168" y="48" width="120" height="55"/>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="c1ec64f6" textAlignment="2" targetConnections="f11e4c90" archimateElement="8a503796">
+          <bounds x="36" y="48" width="120" height="55"/>
+        </child>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="66355fed" textAlignment="2" archimateElement="f4ab94d8">
+        <bounds x="42" y="216" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="46fabdb6" textAlignment="2" archimateElement="152ed138">
+        <bounds x="1674" y="751" width="118" height="60"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="2aa0281e" textAlignment="2" archimateElement="8e9c9750">
+        <bounds x="42" y="288" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="924a7c3b" textAlignment="2" targetConnections="8fb61dc3" archimateElement="ff894a0a">
+        <bounds x="221" y="624" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="09b31b58" source="924a7c3b" target="e36d24af" relationship="bece3011"/>
+        <sourceConnection xsi:type="archimate:Connection" id="457ea8d8" source="924a7c3b" target="e18e6c62" relationship="ffacbf34"/>
+        <sourceConnection xsi:type="archimate:Connection" id="2188822d" source="924a7c3b" target="200ac041" relationship="12b1574e"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="dc211be2" textAlignment="2" archimateElement="8f42a49a">
+        <bounds x="588" y="834" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="4d0c1b79" textAlignment="2" archimateElement="d9fe1e40">
+        <bounds x="756" y="852" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="c121100c" textAlignment="2" targetConnections="13b38573" archimateElement="122f2140">
+        <bounds x="221" y="460" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="2a720e73" source="c121100c" target="b00dda30" relationship="2aa67545"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="98e18281" textAlignment="2" archimateElement="0939c504">
+        <bounds x="432" y="822" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="ac0fd29a" textAlignment="2" targetConnections="f6f740d6" archimateElement="e57b74d1">
+        <bounds x="2748" y="438" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="736afcce" textAlignment="2" targetConnections="70ac9341 8574d112 1f5cf38a" archimateElement="9da59fe0">
+        <bounds x="1674" y="514" width="118" height="60"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="d7a44e35" textAlignment="2" targetConnections="e5a8bfa6" archimateElement="02281798">
+        <bounds x="1753" y="345" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="70ac9341" source="d7a44e35" target="736afcce" relationship="c97ff7be"/>
+        <sourceConnection xsi:type="archimate:Connection" id="0734db27" source="d7a44e35" target="d56ae870" relationship="c31fa7b4"/>
+        <sourceConnection xsi:type="archimate:Connection" id="2fcc2cf2" source="d7a44e35" target="ea09fbc9" relationship="d8201e39"/>
+        <sourceConnection xsi:type="archimate:Connection" id="127a94fd" source="d7a44e35" target="7e1e96d1" relationship="cf83406a"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="d56ae870" textAlignment="2" targetConnections="134f873e 35ca0553 0734db27 77748d87 6688fd16 32c11429 762d72ca" archimateElement="0609e555">
+        <bounds x="1908" y="168" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="7e1e96d1" textAlignment="2" targetConnections="453024f3 507ee1d4 127a94fd 841047cd" archimateElement="c3601efe">
+        <bounds x="1356" y="522" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="0511e521" source="7e1e96d1" target="904154bb" relationship="951814f3"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="01cb6d23" textAlignment="2" targetConnections="dcf5867e 719408eb" archimateElement="0a7bd17b">
+        <bounds x="1320" y="180" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="b710c444" textAlignment="2" archimateElement="2f46ec2b">
+        <bounds x="972" y="180" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="117956dd" textAlignment="2" targetConnections="cfe208c5 96b3f72e e86c7ffb" archimateElement="df557988">
+        <bounds x="2593" y="522" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="d40baf32" source="117956dd" target="28846c6c" relationship="bec5d941"/>
+        <sourceConnection xsi:type="archimate:Connection" id="df1db0d1" source="117956dd" target="a7973644" relationship="718e8e3f"/>
+        <sourceConnection xsi:type="archimate:Connection" id="6d69dcbd" source="117956dd" target="06bbe7ec" relationship="2d80b4da"/>
+        <sourceConnection xsi:type="archimate:Connection" id="f6f740d6" source="117956dd" target="ac0fd29a" relationship="5bfc35c6"/>
+        <sourceConnection xsi:type="archimate:Connection" id="841047cd" source="117956dd" target="7e1e96d1" relationship="b87e3f84"/>
+        <sourceConnection xsi:type="archimate:Connection" id="b3a7fa20" source="117956dd" target="862375d2" relationship="cca20688"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="81835def" textAlignment="2" archimateElement="b23efb5d">
+        <bounds x="1393" y="345" width="120" height="52"/>
+        <sourceConnection xsi:type="archimate:Connection" id="ad0bf712" source="81835def" target="904154bb" relationship="36bc1a63"/>
+        <sourceConnection xsi:type="archimate:Connection" id="ff59174e" source="81835def" target="285aae45" relationship="b68dc6f9"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="ea09fbc9" textAlignment="2" targetConnections="2fcc2cf2" archimateElement="5e7f7d9f">
+        <bounds x="1823" y="516" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="d63dba9b" textAlignment="2" archimateElement="86d83799">
+        <bounds x="1056" y="345" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="dcf5867e" source="d63dba9b" target="01cb6d23" relationship="e122d8f5"/>
+        <sourceConnection xsi:type="archimate:Connection" id="507ee1d4" source="d63dba9b" target="7e1e96d1" relationship="1f6b079c"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="e0741c01" textAlignment="2" targetConnections="a6c223da" archimateElement="e08c04f4">
+        <bounds x="1597" y="174" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="f31b1142" textAlignment="2" archimateElement="b993bd55">
+        <bounds x="1739" y="624" width="80" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="a5ee2f3a" textAlignment="2" archimateElement="a970de3f">
+        <bounds x="1619" y="624" width="84" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="1f5cf38a" source="a5ee2f3a" target="736afcce" relationship="5e6d11d7"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="f1f181d7" textAlignment="2" archimateElement="9fe51835">
+        <bounds x="2712" y="828" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="26e04bef" textAlignment="2" archimateElement="bd7d45d8">
+        <bounds x="2328" y="876" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="96cc8222" textAlignment="2" archimateElement="335241d2">
+        <bounds x="888" y="264" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="03fbc612" textAlignment="2" archimateElement="32acda7d">
+        <bounds x="588" y="366" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="7bc212dd" textAlignment="2" archimateElement="e843fa9d">
+        <bounds x="1356" y="852" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="dd8f385e" textAlignment="2" archimateElement="2d37fcb1">
+        <bounds x="1356" y="780" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="a7973644" textAlignment="2" targetConnections="df1db0d1 8d9a1538 c71d8b87 46a46793" archimateElement="cc29385a">
+        <bounds x="2748" y="522" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="fd8357f0" source="a7973644" target="28846c6c" relationship="72117be1"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="dc07541a" textAlignment="2" archimateElement="7f089ff2">
+        <bounds x="2292" y="360" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="cfe208c5" source="dc07541a" target="117956dd" relationship="89c6039b"/>
+        <sourceConnection xsi:type="archimate:Connection" id="77748d87" source="dc07541a" target="d56ae870" relationship="be37fd0f"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="28846c6c" textAlignment="2" targetConnections="fd8357f0 d40baf32" archimateElement="60d0dd58">
+        <bounds x="2748" y="624" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="172740ee" textAlignment="2" targetConnections="cdac7fdb" archimateElement="ea54df95">
+        <bounds x="2904" y="371" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="6688fd16" source="172740ee" target="d56ae870" relationship="4d837bc2"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="15244f4b" textAlignment="2" archimateElement="dbd78f41">
+        <bounds x="2915" y="522" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="c71d8b87" source="15244f4b" target="a7973644" relationship="fae505be"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="de02f799" textAlignment="2" archimateElement="bfe922b5">
+        <bounds x="2915" y="438" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="8d9a1538" source="de02f799" target="a7973644" relationship="8e2671bb"/>
+        <sourceConnection xsi:type="archimate:Connection" id="cdac7fdb" source="de02f799" target="172740ee" relationship="0169cc62"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="22f49d61" textAlignment="2" archimateElement="6e4996af">
+        <bounds x="2915" y="624" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="46a46793" source="22f49d61" target="a7973644" relationship="85027f58"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="85011cc8" textAlignment="2" archimateElement="50bb7671">
+        <bounds x="2457" y="250" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="10a574e3" textAlignment="2" archimateElement="1891a735">
+        <bounds x="1933" y="345" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="5709c4a9" source="10a574e3" target="5a9ffb1b" relationship="40a6f908"/>
+        <sourceConnection xsi:type="archimate:Connection" id="a6c223da" source="10a574e3" target="e0741c01" relationship="ba2babba"/>
+        <sourceConnection xsi:type="archimate:Connection" id="762d72ca" source="10a574e3" target="d56ae870" relationship="63e98909"/>
+        <sourceConnection xsi:type="archimate:Connection" id="719408eb" source="10a574e3" target="01cb6d23" relationship="bb22cb76"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="ba122d0e" textAlignment="2" archimateElement="03c5d0fc">
+        <bounds x="912" y="345" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="385b2e1a" source="ba122d0e" target="a3bd1137" relationship="a9f7d665"/>
+        <sourceConnection xsi:type="archimate:Connection" id="0ee02df2" source="ba122d0e" target="41fb9b62" relationship="8b2b3fe4"/>
+        <sourceConnection xsi:type="archimate:Connection" id="0e7d5273" source="ba122d0e" target="8c09bad3" relationship="2a0606c9"/>
+        <sourceConnection xsi:type="archimate:Connection" id="ac979836" source="ba122d0e" target="70c802d5" relationship="322d9ed7"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="41fb9b62" textAlignment="2" targetConnections="0ee02df2" archimateElement="8f92868a">
+        <bounds x="888" y="552" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="70c802d5" textAlignment="2" targetConnections="ac979836" archimateElement="f414147f">
+        <bounds x="1056" y="552" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="8c09bad3" textAlignment="2" targetConnections="0e7d5273" archimateElement="3ad22a6e">
+        <bounds x="1056" y="468" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="a3bd1137" textAlignment="2" targetConnections="385b2e1a" archimateElement="1686d65d">
+        <bounds x="888" y="468" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="862375d2" textAlignment="2" targetConnections="b3a7fa20" archimateElement="08b505e8">
+        <bounds x="2580" y="366" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="06bbe7ec" textAlignment="2" targetConnections="6d69dcbd 1482a2f0" archimateElement="60c02ef2">
+        <bounds x="2593" y="624" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="6367227f" source="06bbe7ec" target="f0ce0c16" relationship="d74c831a"/>
+        <sourceConnection xsi:type="archimate:Connection" id="531f3e23" source="06bbe7ec" target="4be6c7bf" relationship="dc19e767"/>
+        <sourceConnection xsi:type="archimate:Connection" id="aad2e146" source="06bbe7ec" target="6900d020" relationship="7e86d80d"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="4be6c7bf" textAlignment="2" targetConnections="531f3e23" archimateElement="61db4962">
+        <bounds x="2293" y="649" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="6900d020" textAlignment="2" targetConnections="aad2e146" archimateElement="bd988b18">
+        <bounds x="2292" y="727" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="f0ce0c16" textAlignment="2" targetConnections="6367227f" archimateElement="9e5881db">
+        <bounds x="2292" y="571" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="7ba33319" textAlignment="2" archimateElement="70ee5b05">
+        <bounds x="2519" y="828" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="f450d265" textAlignment="2" archimateElement="3b16c665">
+        <bounds x="2593" y="727" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="1482a2f0" source="f450d265" target="06bbe7ec" relationship="2c27e47c"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="54cfa3c0" textAlignment="2" archimateElement="b0f6f900">
+        <bounds x="2293" y="492" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="96b3f72e" source="54cfa3c0" target="117956dd" relationship="57144229"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="5a9ffb1b" textAlignment="2" targetConnections="5709c4a9" archimateElement="f34c0571">
+        <bounds x="2113" y="345" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="32c11429" source="5a9ffb1b" target="d56ae870" relationship="6ee34e6c"/>
+        <sourceConnection xsi:type="archimate:Connection" id="e86c7ffb" source="5a9ffb1b" target="117956dd" relationship="36baa0ca"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="b00dda30" textAlignment="2" targetConnections="2a720e73 6352a27a" archimateElement="edadc916">
+        <bounds x="432" y="460" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="3710f7fc" textAlignment="2" archimateElement="a9ee62a3">
+        <bounds x="432" y="366" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="6352a27a" source="3710f7fc" target="b00dda30" relationship="3d4e6a38"/>
+        <sourceConnection xsi:type="archimate:Connection" id="052a4bad" source="3710f7fc" target="bce1bca1" relationship="c083b7ad"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="bce1bca1" textAlignment="2" targetConnections="052a4bad e9daa1f8 982eb8ad" archimateElement="ef73bdc7">
+        <bounds x="324" y="180" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="e36d24af" textAlignment="2" targetConnections="09b31b58" archimateElement="076276ee">
+        <bounds x="438" y="538" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="e18e6c62" textAlignment="2" targetConnections="457ea8d8" archimateElement="cfd31687">
+        <bounds x="437" y="619" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="200ac041" textAlignment="2" targetConnections="2188822d" archimateElement="6a230b49">
+        <bounds x="437" y="697" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="87ba5599" textAlignment="2" archimateElement="49695135">
+        <bounds x="221" y="366" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="13b38573" source="87ba5599" target="c121100c" relationship="6da736c9"/>
+        <sourceConnection xsi:type="archimate:Connection" id="e9daa1f8" source="87ba5599" target="bce1bca1" relationship="76a643fa"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="90c57571" textAlignment="2" targetConnections="59bd790d 00da76e4" archimateElement="0d1a6d64">
+        <bounds x="744" y="457" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="f3b40cef" source="90c57571" target="d0c5e7ef" relationship="cf2b919b"/>
+        <sourceConnection xsi:type="archimate:Connection" id="528f08a8" source="90c57571" target="88fd6ebd" relationship="5cd44798"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="ca2402a0" textAlignment="2" archimateElement="91c9d084">
+        <bounds x="744" y="366" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="982eb8ad" source="ca2402a0" target="bce1bca1" relationship="1d394f27"/>
+        <sourceConnection xsi:type="archimate:Connection" id="00da76e4" source="ca2402a0" target="90c57571" relationship="303f71dd"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="d0c5e7ef" textAlignment="2" targetConnections="f3b40cef" archimateElement="d17ef5eb">
+        <bounds x="588" y="619" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="88fd6ebd" textAlignment="2" targetConnections="528f08a8" archimateElement="8eb68cb9">
+        <bounds x="744" y="619" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="0fa4ab24" textAlignment="2" archimateElement="903f187e">
+        <bounds x="2447" y="360" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="c5de5dd6" textAlignment="2" archimateElement="c2292107">
+        <bounds x="588" y="457" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="59bd790d" source="c5de5dd6" target="90c57571" relationship="c711c9e4"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="fdde4eca" textAlignment="2" archimateElement="19ff834b">
+        <bounds x="48" y="619" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="8fb61dc3" source="fdde4eca" target="924a7c3b" relationship="a662980c"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="904154bb" textAlignment="2" targetConnections="0511e521 ad0bf712" archimateElement="84baf3d1">
+        <bounds x="1201" y="345" width="120" height="52"/>
+        <sourceConnection xsi:type="archimate:Connection" id="35ca0553" source="904154bb" target="d56ae870" relationship="629043c3"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="285aae45" textAlignment="2" targetConnections="ff59174e" archimateElement="7930a261">
+        <bounds x="1573" y="345" width="120" height="52"/>
+        <sourceConnection xsi:type="archimate:Connection" id="134f873e" source="285aae45" target="d56ae870" relationship="672a367e"/>
+        <sourceConnection xsi:type="archimate:Connection" id="8574d112" source="285aae45" target="736afcce" relationship="c8b6ec8e"/>
+        <sourceConnection xsi:type="archimate:Connection" id="453024f3" source="285aae45" target="7e1e96d1" relationship="02bdbdb7"/>
+        <sourceConnection xsi:type="archimate:Connection" id="e5a8bfa6" source="285aae45" target="d7a44e35" relationship="9aa9498f"/>
+      </child>
+    </element>
+  </folder>
+</archimate:model>

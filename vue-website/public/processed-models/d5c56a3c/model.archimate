@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archimate:model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:archimate="http://www.archimatetool.com/archimate" name="8 Pessimistic Offline Lock" id="d5c56a3c" version="5.0.0">
+  <folder name="Strategy" id="id-3c8317006ea44457ba9478df57977402" type="strategy"/>
+  <folder name="Business" id="id-789764b24ceb4c68b635c7632fb65855" type="business"/>
+  <folder name="Application" id="id-e7fafa4d0b1f43eeaaf9b3272c831cfb" type="application">
+    <element xsi:type="archimate:ApplicationEvent" name="business transaction 1" id="id-70292c9a"/>
+    <element xsi:type="archimate:ApplicationEvent" name="business transaction 2" id="id-69ac1875"/>
+    <element xsi:type="archimate:ApplicationEvent" name="select data X" id="b5ce5802"/>
+    <element xsi:type="archimate:ApplicationEvent" name="update data X" id="id-60eef93d"/>
+    <element xsi:type="archimate:ApplicationEvent" name="1 row inserted" id="id-8ca69193"/>
+    <element xsi:type="archimate:DataObject" name="entity 3" id="a7237a1e"/>
+    <element xsi:type="archimate:DataObject" name="entity 2" id="e4ae2974"/>
+    <element xsi:type="archimate:DataObject" name="entity 1" id="id-4f05b57c"/>
+    <element xsi:type="archimate:DataObject" name="entity 6" id="b5620bc9"/>
+    <element xsi:type="archimate:DataObject" name="entity 5" id="id-27a2f3f4"/>
+    <element xsi:type="archimate:DataObject" name="entity 4" id="a9072c90"/>
+    <element xsi:type="archimate:ApplicationEvent" name="system transaction (TRY to start business transaction)" id="id-806940be"/>
+    <element xsi:type="archimate:ApplicationEvent" name="system transaction (TRY to start business transaction)" id="e37754f6"/>
+    <element xsi:type="archimate:ApplicationEvent" name="system transaction (commit)" id="id-9ddd018e"/>
+    <element xsi:type="archimate:ApplicationEvent" name="lock acquired" id="id-4396390e"/>
+    <element xsi:type="archimate:ApplicationEvent" name="rollbacked" id="id-8b78d99e"/>
+    <element xsi:type="archimate:DataObject" name="lock table" id="id-7f38abca"/>
+    <element xsi:type="archimate:DataObject" name="Primary Key of some locked row in any table" id="id-80100fc2"/>
+    <element xsi:type="archimate:DataObject" name="owner of block" id="id-128d27bf"/>
+    <element xsi:type="archimate:ApplicationEvent" name="check is row (PK=X) already exists inside lock table" id="id-8e5d2eff"/>
+    <element xsi:type="archimate:ApplicationEvent" name="add row (PK=X) into lock table" id="id-4990bc51"/>
+    <element xsi:type="archimate:ApplicationEvent" name="check is row (PK=X) already exists inside lock table" id="id-526cd42c"/>
+  </folder>
+  <folder name="Technology &amp; Physical" id="id-23f11dd547dd45adb774a076a1a8fcb7" type="technology"/>
+  <folder name="Motivation" id="id-002b8c6ae73a4f89afbb104f17a5f9b8" type="motivation"/>
+  <folder name="Implementation &amp; Migration" id="id-4b36b20e01c44395a1a3198e9b0809e2" type="implementation_migration"/>
+  <folder name="Other" id="id-287cc2b1c957475d8a3ab3703a491db6" type="other">
+    <element xsi:type="archimate:Grouping" name="database" id="e9020227"/>
+  </folder>
+  <folder name="Relations" id="id-5ba7eefe49804e5aa0b828b01353fe86" type="relations">
+    <element xsi:type="archimate:TriggeringRelationship" id="a227613b" source="id-60eef93d" target="e9020227"/>
+    <element xsi:type="archimate:FlowRelationship" id="a5884762" source="id-526cd42c" target="id-8b78d99e"/>
+    <element xsi:type="archimate:TriggeringRelationship" id="id-42041e82" source="id-69ac1875" target="e37754f6"/>
+    <element xsi:type="archimate:CompositionRelationship" id="fca635fe" source="e9020227" target="a9072c90"/>
+    <element xsi:type="archimate:AssociationRelationship" id="id-961b1a6b" source="id-4f05b57c" target="b5620bc9"/>
+    <element xsi:type="archimate:FlowRelationship" id="f05db24c" source="id-4990bc51" target="id-4396390e"/>
+    <element xsi:type="archimate:TriggeringRelationship" id="id-28958c50" source="id-806940be" target="id-8e5d2eff"/>
+    <element xsi:type="archimate:FlowRelationship" name="transaction fail" id="b04134af" source="id-8b78d99e" target="id-69ac1875"/>
+    <element xsi:type="archimate:CompositionRelationship" id="a18fdb30" source="e9020227" target="id-27a2f3f4"/>
+    <element xsi:type="archimate:AssociationRelationship" id="id-44a66694" source="a9072c90" target="a7237a1e"/>
+    <element xsi:type="archimate:AssociationRelationship" id="id-308d6ce3" source="b5620bc9" target="id-27a2f3f4"/>
+    <element xsi:type="archimate:TriggeringRelationship" id="b9879bbf" source="id-70292c9a" target="id-806940be"/>
+    <element xsi:type="archimate:AssociationRelationship" id="id-0b003418" source="id-4f05b57c" target="e4ae2974"/>
+    <element xsi:type="archimate:AssociationRelationship" id="id-3eb52816" source="e4ae2974" target="a7237a1e"/>
+    <element xsi:type="archimate:CompositionRelationship" id="id-9de51fb6" source="e9020227" target="a7237a1e"/>
+    <element xsi:type="archimate:TriggeringRelationship" id="id-49e337fb" source="id-9ddd018e" target="id-60eef93d"/>
+    <element xsi:type="archimate:FlowRelationship" name="update table" id="id-17de5d39" source="id-60eef93d" target="e9020227"/>
+    <element xsi:type="archimate:AssociationRelationship" id="id-4057b0ee" source="b5620bc9" target="a7237a1e"/>
+    <element xsi:type="archimate:FlowRelationship" id="id-27e5309e" source="id-60eef93d" target="id-8ca69193"/>
+    <element xsi:type="archimate:CompositionRelationship" id="fdfd49cc" source="e9020227" target="id-4f05b57c"/>
+    <element xsi:type="archimate:TriggeringRelationship" id="id-631180f5" source="id-70292c9a" target="id-9ddd018e"/>
+    <element xsi:type="archimate:CompositionRelationship" id="id-8fefaf2f" source="e9020227" target="e4ae2974"/>
+    <element xsi:type="archimate:CompositionRelationship" id="d3ed05bd" source="e9020227" target="b5620bc9"/>
+    <element xsi:type="archimate:AssociationRelationship" id="id-567ece3b" source="id-27a2f3f4" target="a9072c90"/>
+    <element xsi:type="archimate:FlowRelationship" name="transaction success" id="id-959b0d52" source="id-4396390e" target="id-70292c9a"/>
+    <element xsi:type="archimate:AssociationRelationship" id="id-072c58c8" source="id-4f05b57c" target="a9072c90"/>
+    <element xsi:type="archimate:CompositionRelationship" id="id-08a05c4e" source="e9020227" target="id-7f38abca"/>
+    <element xsi:type="archimate:CompositionRelationship" id="id-8f7ef7fc" source="id-7f38abca" target="id-80100fc2"/>
+    <element xsi:type="archimate:CompositionRelationship" id="id-20579842" source="id-7f38abca" target="id-128d27bf"/>
+    <element xsi:type="archimate:AccessRelationship" id="d09b8c3a" source="id-8e5d2eff" target="id-7f38abca"/>
+    <element xsi:type="archimate:TriggeringRelationship" id="id-89eaf5ce" source="b5ce5802" target="e9020227"/>
+    <element xsi:type="archimate:FlowRelationship" id="d015bf29" source="id-8e5d2eff" target="id-4990bc51"/>
+    <element xsi:type="archimate:FlowRelationship" id="id-84f7bc6c" source="id-4990bc51" target="b5ce5802"/>
+    <element xsi:type="archimate:AccessRelationship" id="id-197008e7" source="id-4990bc51" target="id-7f38abca"/>
+    <element xsi:type="archimate:TriggeringRelationship" id="id-421a5deb" source="e37754f6" target="id-526cd42c"/>
+    <element xsi:type="archimate:AccessRelationship" id="id-517e9d63" source="id-526cd42c" target="id-7f38abca"/>
+  </folder>
+  <folder name="Views" id="id-9936264ac89f4fc6a53698f5c27a3734" type="diagrams">
+    <element xsi:type="archimate:ArchimateDiagramModel" name="Pessimistic Offline Lock" id="ece89ec1">
+      <child xsi:type="archimate:Group" id="ce153202" name="presentation" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" textAlignment="1" fillColor="#c7e1e2">
+        <bounds x="553" y="198" width="1966" height="791"/>
+        <child xsi:type="archimate:Note" id="a6197f11" font="1|Segoe UI|18.0|0|COCOA|1|" fontColor="#ff0000" lineColor="#5c5c5c" textAlignment="1" fillColor="#ffffff">
+          <bounds x="130" y="190" width="1547" height="306"/>
+          <content>timeline -></content>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="ec2bac9d" targetConnections="id-0d45d416" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b7fded" archimateElement="id-70292c9a">
+          <bounds x="160" y="335" width="996" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-38b4b55b" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="ec2bac9d" target="id-9a55f770" archimateRelationship="b9879bbf"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-83a8b66e" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="ec2bac9d" target="e14b8acc" archimateRelationship="id-631180f5">
+            <bendpoint startX="367" startY="635" endX="-13" endY="-644"/>
+          </sourceConnection>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-5868a190" targetConnections="f1d9bc8f" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b5ffff" archimateElement="id-69ac1875">
+          <bounds x="655" y="410" width="245" height="55"/>
+          <sourceConnection xsi:type="archimate:Connection" id="ddc82573" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="id-5868a190" target="bbbb7d2d" archimateRelationship="id-42041e82">
+            <bendpoint startX="-95" startY="606" endX="-6" endY="-598"/>
+          </sourceConnection>
+        </child>
+        <child xsi:type="archimate:Note" id="ed90188f" font="1|Segoe UI|9.0|1|COCOA|1|" fontColor="#ff0000" lineColor="#5c5c5c" textAlignment="1" fillColor="#ffffff">
+          <bounds x="750" y="540" width="222" height="91"/>
+          <content>- message that data already locked &#xD;
+    by = buss trans 1&#xD;
+    time = 1&#xD;
+- in fact business transaction has not begun executed</content>
+        </child>
+        <child xsi:type="archimate:Note" id="e91e935b" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#ff0000" lineColor="#5c5c5c" textAlignment="1" fillColor="#ffffff">
+          <bounds x="130" y="65" width="639" height="98"/>
+          <content>- It called pessimistic because it expects the transaction will happen collision and therefore checks at the beginning of the transaction&#xD;
+- the assumption that the probability of conflict is high&#xD;
+- in case of conflict, the client will have to wait for release (but the client knows about it immediately)&#xD;
+- the likelihood of conflict =HIGH&#xD;
+- the cost of eliminating the consequences of conflict = LOW</content>
+        </child>
+      </child>
+      <child xsi:type="archimate:Group" id="id-835143b0" name="domain" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" textAlignment="1" fillColor="#cedbd3">
+        <bounds x="553" y="1043" width="1966" height="441"/>
+      </child>
+      <child xsi:type="archimate:Group" id="id-458604c5" name="data source" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" textAlignment="1" fillColor="#d8d1d7">
+        <bounds x="553" y="1527" width="1966" height="1157"/>
+        <child xsi:type="archimate:Group" id="a8494221" name="some mapper" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" textAlignment="1" fillColor="#d2d7d7">
+          <bounds x="60" y="470" width="1856" height="250"/>
+          <child xsi:type="archimate:DiagramObject" id="id-24ea4e80" targetConnections="aa133780" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b7fded" archimateElement="b5ce5802">
+            <bounds x="340" y="185" width="120" height="55"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-1da3c9a3" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="id-24ea4e80" target="id-551f4335" archimateRelationship="id-89eaf5ce">
+              <bendpoint startX="-38" startY="71" endX="-566" endY="-212"/>
+            </sourceConnection>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="c300b14c" targetConnections="e8801a5c" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b7fded" archimateElement="id-60eef93d">
+            <bounds x="910" y="185" width="120" height="55"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-97c45954" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="c300b14c" target="id-551f4335" archimateRelationship="a227613b"/>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="id-8363896c" targetConnections="id-81942543" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b7fded" archimateElement="id-8e5d2eff">
+            <bounds x="145" y="34" width="165" height="55"/>
+            <sourceConnection xsi:type="archimate:Connection" id="e76bafce" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="id-8363896c" target="id-1d5379b6" archimateRelationship="d09b8c3a">
+              <bendpoint startX="-6" startY="447" endX="-349" endY="11"/>
+            </sourceConnection>
+            <sourceConnection xsi:type="archimate:Connection" id="id-3eb1d45e" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="id-8363896c" target="e2691aa7" archimateRelationship="d015bf29"/>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="e2691aa7" targetConnections="id-3eb1d45e" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b7fded" archimateElement="id-4990bc51">
+            <bounds x="265" y="110" width="120" height="55"/>
+            <sourceConnection xsi:type="archimate:Connection" id="aa133780" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="e2691aa7" target="id-24ea4e80" archimateRelationship="id-84f7bc6c"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-13fcba13" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="e2691aa7" target="id-1d5379b6" archimateRelationship="id-197008e7">
+              <bendpoint startX="-33" startY="336" endX="-278" endY="-24"/>
+            </sourceConnection>
+            <sourceConnection xsi:type="archimate:Connection" id="a72d00e0" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="e2691aa7" target="id-9a1087a7" archimateRelationship="f05db24c">
+              <bendpoint startX="42" startY="-227" endX="7" endY="228"/>
+            </sourceConnection>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="b3ebcbb8" targetConnections="id-3cc53f22" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b5ffff" archimateElement="id-526cd42c">
+            <bounds x="550" y="34" width="165" height="55"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-04e12102" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="b3ebcbb8" target="id-1d5379b6" archimateRelationship="id-517e9d63"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-3a9c7385" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="b3ebcbb8" target="id-71f2707c" archimateRelationship="a5884762">
+              <bendpoint startX="85" startY="-371" endX="-93" endY="8"/>
+            </sourceConnection>
+          </child>
+          <documentation>Patterns of Enterprise Application Architecture</documentation>
+        </child>
+        <child xsi:type="archimate:DiagramObject" id="id-551f4335" targetConnections="id-1da3c9a3 id-97c45954" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" textAlignment="1" fillColor="#ffffff" archimateElement="e9020227">
+          <bounds x="60" y="795" width="1856" height="340"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-f5b8678d345d44f286cd04d923b16b2a" source="id-551f4335" target="id-85a7dccc" archimateRelationship="id-9de51fb6"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-036dfb994c27451cb9286e579efe3869" source="id-551f4335" target="id-0137a67a" archimateRelationship="id-8fefaf2f"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-838006ca24544646b55c67326b7334fa" source="id-551f4335" target="id-5ec857c0" archimateRelationship="fdfd49cc"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-60eb990a3f2e42a1b06266b614f7393d" source="id-551f4335" target="bbbd64f7" archimateRelationship="d3ed05bd"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-23581dc42e814e5bb9f32e1a2ffad81b" source="id-551f4335" target="id-292653d0" archimateRelationship="a18fdb30"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-9090a195bf904439b0ae83cb8b0d1bc4" source="id-551f4335" target="cbc1960a" archimateRelationship="fca635fe"/>
+          <sourceConnection xsi:type="archimate:Connection" id="id-8916142dcd8e4faebf2be2a7afcd26e8" source="id-551f4335" target="id-1d5379b6" archimateRelationship="id-08a05c4e"/>
+          <child xsi:type="archimate:DiagramObject" id="id-85a7dccc" targetConnections="id-46ca37ae b227d14c id-75fde29d id-f5b8678d345d44f286cd04d923b16b2a" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b5ffff" archimateElement="a7237a1e">
+            <bounds x="1320" y="60" width="120" height="55"/>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="id-0137a67a" targetConnections="id-7f9bcad3 id-036dfb994c27451cb9286e579efe3869" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b5ffff" archimateElement="e4ae2974">
+            <bounds x="1144" y="144" width="120" height="55"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-46ca37ae" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#c0c0c0" source="id-0137a67a" target="id-85a7dccc" archimateRelationship="id-3eb52816"/>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="id-5ec857c0" targetConnections="id-838006ca24544646b55c67326b7334fa" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b5ffff" archimateElement="id-4f05b57c">
+            <bounds x="1030" y="240" width="120" height="55"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-7f9bcad3" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#c0c0c0" source="id-5ec857c0" target="id-0137a67a" archimateRelationship="id-0b003418"/>
+            <sourceConnection xsi:type="archimate:Connection" id="f825cc92" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#c0c0c0" source="id-5ec857c0" target="bbbd64f7" archimateRelationship="id-961b1a6b"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-1eef3025" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#c0c0c0" source="id-5ec857c0" target="cbc1960a" archimateRelationship="id-072c58c8"/>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="bbbd64f7" targetConnections="f825cc92 id-60eb990a3f2e42a1b06266b614f7393d" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b5ffff" archimateElement="b5620bc9">
+            <bounds x="1284" y="254" width="120" height="55"/>
+            <sourceConnection xsi:type="archimate:Connection" id="b227d14c" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#c0c0c0" source="bbbd64f7" target="id-85a7dccc" archimateRelationship="id-4057b0ee"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-277cbfc5" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#c0c0c0" source="bbbd64f7" target="id-292653d0" archimateRelationship="id-308d6ce3"/>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="id-292653d0" targetConnections="id-277cbfc5 id-23581dc42e814e5bb9f32e1a2ffad81b" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b5ffff" archimateElement="id-27a2f3f4">
+            <bounds x="1454" y="259" width="120" height="55"/>
+            <sourceConnection xsi:type="archimate:Connection" id="fbd6a755" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#c0c0c0" source="id-292653d0" target="cbc1960a" archimateRelationship="id-567ece3b"/>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="cbc1960a" targetConnections="id-1eef3025 fbd6a755 id-9090a195bf904439b0ae83cb8b0d1bc4" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b5ffff" archimateElement="a9072c90">
+            <bounds x="1489" y="144" width="120" height="55"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-75fde29d" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#c0c0c0" source="cbc1960a" target="id-85a7dccc" archimateRelationship="id-44a66694"/>
+          </child>
+          <child xsi:type="archimate:Note" id="id-1c2dfe8c" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#ff0000" lineColor="#5c5c5c" textAlignment="1" fillColor="#ffffff">
+            <bounds x="130" y="30" width="737" height="40"/>
+            <content>- access reserved for the duration of the business transaction 1&#xD;
+- provided guarantee commit</content>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="id-1d5379b6" targetConnections="e76bafce id-13fcba13 id-04e12102 id-8916142dcd8e4faebf2be2a7afcd26e8" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b5ffff" archimateElement="id-7f38abca">
+            <bounds x="450" y="80" width="240" height="184"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-81d8f4edcdc041ed9c15c6b330061c69" source="id-1d5379b6" target="id-79c2d2f7" archimateRelationship="id-8f7ef7fc"/>
+            <child xsi:type="archimate:DiagramObject" id="id-79c2d2f7" targetConnections="id-81d8f4edcdc041ed9c15c6b330061c69" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b5ffff" archimateElement="id-80100fc2">
+              <bounds x="45" y="65" width="140" height="55"/>
+            </child>
+          </child>
+        </child>
+        <child xsi:type="archimate:Group" id="id-9af4a3b3" name="transaction manager" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" textAlignment="1" fillColor="#d2d7d7">
+          <bounds x="60" y="45" width="1856" height="386"/>
+          <child xsi:type="archimate:DiagramObject" id="id-9a55f770" targetConnections="id-38b4b55b" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b7fded" archimateElement="id-806940be">
+            <bounds x="140" y="240" width="156" height="55"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-81942543" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="id-9a55f770" target="id-8363896c" archimateRelationship="id-28958c50"/>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="bbbb7d2d" targetConnections="ddc82573" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b5ffff" archimateElement="e37754f6">
+            <bounds x="550" y="240" width="156" height="55"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-3cc53f22" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="bbbb7d2d" target="b3ebcbb8" archimateRelationship="id-421a5deb">
+              <bendpoint startX="-6" startY="111" endX="-10" endY="-108"/>
+            </sourceConnection>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="e14b8acc" targetConnections="id-83a8b66e" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b7fded" archimateElement="id-9ddd018e">
+            <bounds x="900" y="240" width="156" height="55"/>
+            <sourceConnection xsi:type="archimate:Connection" id="e8801a5c" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="e14b8acc" target="c300b14c" archimateRelationship="id-49e337fb"/>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="id-9a1087a7" targetConnections="a72d00e0" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b7fded" archimateElement="id-4396390e">
+            <bounds x="300" y="80" width="120" height="55"/>
+            <sourceConnection xsi:type="archimate:Connection" id="id-0d45d416" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#ff0000" lineColor="#000000" source="id-9a1087a7" target="ec2bac9d" archimateRelationship="id-959b0d52"/>
+          </child>
+          <child xsi:type="archimate:DiagramObject" id="id-71f2707c" targetConnections="id-3a9c7385" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b5ffff" archimateElement="id-8b78d99e">
+            <bounds x="750" y="80" width="120" height="55"/>
+            <sourceConnection xsi:type="archimate:Connection" id="f1d9bc8f" font="1|Lucida Grande|12.0|0|COCOA|1|" fontColor="#ff0000" lineColor="#000000" source="id-71f2707c" target="id-5868a190" archimateRelationship="b04134af"/>
+          </child>
+          <documentation>gang of four classic design pattern</documentation>
+        </child>
+      </child>
+    </element>
+  </folder>
+</archimate:model>

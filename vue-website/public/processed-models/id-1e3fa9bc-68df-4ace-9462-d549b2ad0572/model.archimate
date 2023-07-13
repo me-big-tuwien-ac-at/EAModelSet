@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archimate:model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:archimate="http://www.archimatetool.com/archimate" name="Vzorový metamodel EG v0.7" id="id-1e3fa9bc-68df-4ace-9462-d549b2ad0572" version="5.0.0">
+  <folder name="Strategy" id="id-c26911b4f2a34925b19f93b538475ce4" type="strategy">
+    <element xsi:type="archimate:Capability" name="Schopnost" id="id-metamodel-schopnost">
+      <documentation>Komplexní schopnost, zejména u schopností úřadu. Znamená společnou schopnost v úřadě, která se vykonává jednotně napříč celým úřadem a má i jednotné metodiky a jednotný rámec, ať už se dotýká jakékoliv agendy (v agendách může být pochopitelně parametricky přizpůsobena). Schopnost lze na byznysové vrstvě nejlépe rozpadnout na elementy typu [Služba] a [Proces], důležité jsou také [Role] zejména uvnitř úřadu. Na aplikační vrstvě se nesmí zapomínat zejména na [Informační systém veřejné správy] a [Informační systém], díky kterým můžeme schopnost realizovat. Schopnost plyne z nějakého byznysového prvku, a tedy zejména z typů [Povinnost].</documentation>
+      <property key="Příklad" value="Spisová služba, Ekonomické řízení, Architektura, Správa majetku, Správa ICT, Tvorba legislativy"/>
+    </element>
+  </folder>
+  <folder name="Business" id="id-190c12b54ef64fd5b7e621e03c7011f6" type="business">
+    <element xsi:type="archimate:BusinessActor" name="Útvar či organizační jednotka" id="id-metamodel-organizacni-jednotka">
+      <documentation>Uvádí konkrétní útvar v organizaci, či její organizační jednotku. Udává se pro detailnější rozpad struktury dané organizace (zejména u OVM) a pro vazbu konkrétního útvaru na jeho role či na další objekty. V detailnějších modelech úřadů může být zapsán i jako příslušný atribut u daného objektu.</documentation>
+      <property key="Zkratka" value="OU"/>
+      <property key="Příklad" value="Ekonomický odbor, Odbor hlavního architekta, Krajské pracoviště Kladno, Správní oddělení"/>
+    </element>
+    <element xsi:type="archimate:BusinessActor" name="Orgán veřejné moci" id="id-metamodel-ovm">
+      <documentation>Subjekt, který je orgánem veřejné moci. Definuje se proto, že díky jeho OVMství má nějaké role, povinnosti a práva.</documentation>
+      <property key="Příklad" value="Ministerstvo vnitra, Úřad práce, Hlavní město Praha"/>
+      <property key="Zkratka" value="MA"/>
+      <property key="Stereotype" value="OVM"/>
+      <property key="IČ" value="12345678"/>
+    </element>
+    <element xsi:type="archimate:BusinessActor" name="Subjekt" id="id-metamodel-subjekt">
+      <documentation>Subjekt práva, typicky subjekt konkrétní fyzické osoby či subjekt konkrétní právnické osoby. Subjekt má typicky danou roli v určitém kontextu</documentation>
+    </element>
+    <element xsi:type="archimate:BusinessFunction" name="Agenda" id="id-metamodel-agenda">
+      <documentation>Jedna agenda ohlášená v Registru práv a povinností. Je zároveň stereotypem s povinnými atributy, jako je kód agendy a její gestor/ohlašovatel. Zaznamenává se jako element byznys funkce, jelikož zaznamenávat jako kontrakt by bylo nepřehledné.</documentation>
+      <property key="Označení" value="A1234"/>
+      <property key="Stereotype" value="Agenda"/>
+      <property key="Název agendy" value="Název z RPP"/>
+      <property key="Ohlašovatel" value="Ministerstvo agend"/>
+      <property key="Příklad" value="Evidence obyvatel, cizinecká a ochrana hranic, sociální zabezpečení"/>
+    </element>
+    <element xsi:type="archimate:BusinessFunction" name="Úkon" id="id-metamodel-ukon">
+      <documentation>Úkon, zejména úkon ohlášený v RPP k dané agendě. Je součástí objektu [Služba veřejné správy] a uvnitř úřadu je vázán na [proces]. Může být i [agendová činnost], nicméně z pohledu agendy v RPP se jedná o ohlášený úkon.</documentation>
+      <property key="Stereotype" value="Úkon"/>
+      <property key="Označení" value="(označení z RPP)"/>
+      <property key="Příklad" value="Podání žádosti, každý úkon ohlášený v agendě"/>
+      <property key="Lze digitálně" value="Ano/ne"/>
+    </element>
+    <element xsi:type="archimate:BusinessObject" name="Evidence" id="id-metamodel-evidence-byznysove">
+      <documentation>Evidence skutečností či dokumentů či informací na byznysové úrovni. Shromažďují a spravují se v ní skutečnosti důležité pro rozhodování v rámci činností úřadu. Na byznysové úrovni znamená logický prvek, který na aplikační vrstvě reprezentuje kupříkladu [evidence údajů]. Evidence je základem pro znalosti pro výkon byznysových objektů typu [služba veřejné správy], [služba] a [proces]. Evidence má i své důležité [role], jako je editor či subjekt zodpovědný za vedení evidence.</documentation>
+      <property key="Stereotype" value="Evidence"/>
+    </element>
+    <element xsi:type="archimate:BusinessObject" name="Povinnost" id="id-metamodel-povinnost">
+      <documentation>Povinnost definovaná právním předpisem, je ve skutečnosti základem kontraktu zúčastněných stran, přičemž pro stranu poskytovatele povinnosti je povinnou.</documentation>
+      <property key="Příklad" value="Zpracovat Informační koncepci ČR, Zpracovat informační koncepci, Předložit ICT projekt ke stanovisku OHA, Využívat údaje z PPDF, Vykonávat spisovou službu"/>
+    </element>
+    <element xsi:type="archimate:BusinessObject" name="Právo" id="id-metamodel-pravo">
+      <documentation>Právo definované právním předpisem či jiným předpisem. Většinou na druhé straně vztahu zakládá i související povinnost.</documentation>
+      <property key="Příklad" value="Právo na poskytnutí údajů, Právo na nedokládání údajů zapsaných v ZR, Právo podat žádost či učinit podání, Právo požádat o dávku"/>
+    </element>
+    <element xsi:type="archimate:BusinessProcess" name="Agendová činnost" id="id-metamodel-acinnost">
+      <documentation>Agendová činnost ohlášená v rámci agendy v RPP. Činnost je vždy součástí agendy a vždy je někým vykonávána v rámci jeho působnosti.</documentation>
+      <property key="Příklad" value="Zápis údajů do evidence obyvatel"/>
+      <property key="Označení" value="C1234"/>
+      <property key="Stereotype" value="Agendová činnost"/>
+    </element>
+    <element xsi:type="archimate:BusinessProcess" name="Proces" id="id-metamodel-proces">
+      <documentation>Proces</documentation>
+      <property key="Příklad" value="Výběr barvy polstrování židle, Rozhodování o dávce, Přidělení a zapsání rodného čísla, Reklamování údajů v PPDF"/>
+    </element>
+    <element xsi:type="archimate:BusinessRole" name="Gestor" id="id-metamodel-gestor">
+      <documentation>Subjekt, který je vůči předpisu či jinému objektu v roli gestora. Vazbu gestora lze zaznamenat přímou vazbou, nebo atributem. Objekt Gestor se využívá jen v popisném modelu. Nejčastěji je gestor zapsán příslušným atributem u objektu.</documentation>
+      <property key="Příklad" value="Ministerstvo vnitra je gestorem Zákona 365/2000 o ISVS"/>
+    </element>
+    <element xsi:type="archimate:BusinessRole" name="Ohlašovatel" id="id-metamodel-ohlasovatel">
+      <documentation>Virtuální logický objekt role. Subjekt, který je ohlašovatelem agendy. Vazbu ohlašovatele lze zaznamenat přímou vazbou, objekt Ohlašovatel se využívá zřídka, anebo v obecném referenčním modelu. U agendy je ohlašovatel zapsán příslušným atributem.</documentation>
+      <property key="Příklad" value="Ministerstvo vnitra je ohlašovatelem agendy Evidence obyvatel"/>
+    </element>
+    <element xsi:type="archimate:BusinessRole" name="Role" id="id-metamodel-role">
+      <documentation>Určitá byznysová role. Jsme vždy schopni k dané roli přiřadit někoho a role vykonává činnosti či pracuje s dalšími objekty. I role je klíčovým elementem v modelu architektury EG.</documentation>
+      <property key="Příklad" value="Zaměstnavatel, Dotčený orgán, Rozhodný orgán, Původce, Subjekt veřejné správy, Zadavatel, Správce evidence"/>
+    </element>
+    <element xsi:type="archimate:BusinessService" name="Služba veřejné správy" id="id-metamodel-sluzba-agendy">
+      <documentation>Služba veřejné správy, která je ohlášená v RPP v rámci objektu [agenda]. Má svého poskytovatele v rámci agendy. Služba se uvnitř úřadu rozpadá na objekty [proces] pro její výkon a [úkon] pro zaznamenání formálního úkonu v dané agendě. Nezaměňovat za objekt [agendová činnost].</documentation>
+      <property key="Označení" value="(označení z RPP)"/>
+      <property key="Lze digitálně" value="Ano/ne"/>
+      <property key="Příklad" value="každá činnost registrovaná v RPP jako služba v rámci agendy"/>
+      <property key="Stereotype" value="Služba veřejné správy"/>
+    </element>
+    <element xsi:type="archimate:BusinessService" name="Služba" id="id-metamodel-sluzba">
+      <documentation>Služba z byznysového pohledu</documentation>
+      <property key="Příklad" value="Dávky sociální podpory, Vedení matriky, Poskytování údajů ze základních registrů, Výpis bodů řidiče"/>
+    </element>
+    <element xsi:type="archimate:Contract" name="Právní předpis" id="id-metamodel-pravni-predpis">
+      <documentation>Jeden právní předpis. Je zároveň stereotypem s danou strukturou autributů.</documentation>
+      <property key="Příklad" value="Zákon č. 365/2000 Sb., o informačních systémech veřejné správy"/>
+      <property key="Název" value="Zákon 333/2030 Sb., o zelených žabučkách"/>
+      <property key="Označení" value="333/2030 Sb."/>
+      <property key="Gestor" value="Ministerstvo agend"/>
+      <property key="URL" value="http://www.zakonyprolidi.cz/cs/2030-333"/>
+      <property key="Stereotype" value="Právní předpis"/>
+    </element>
+    <element xsi:type="archimate:Contract" name="Ustanovení právního předpisu" id="id-metamodel-ustanoveni">
+      <documentation>Konkrétní ustanovení jednoho právního předpisu. Je zároveň stereotypem s určitými povinnými atributy, jako je odkaz na předpis a odkaz na daný fragment právního předpisu.</documentation>
+      <property key="Příklad" value="§ 5a, Zákona 365/2000 Sb."/>
+      <property key="Předpis" value="Zákon č. 333/2030 Sb., o zelených žavičkách"/>
+      <property key="Ustanovení" value="§ 2, odst. 1"/>
+      <property key="URL" value="http://www.zakonyprolidi.cz/cs/2030-333#p2-1"/>
+    </element>
+    <element xsi:type="archimate:Contract" name="Vnitřní předpis" id="id-metamodel-vnitrni-predpis">
+      <documentation>Vnitřní závazný předpis upravující nějakou oblast. Často se využívá jako element pro úpravu [Schopnost] a nebo agendové konání. Je závazným předpisem pro daného vydavatele, či i pro jeho podřízené či řízené organizace.</documentation>
+      <property key="Stereotype" value="Vnitřní předpis"/>
+      <property key="Označení" value="Identifikace vnitřního předpisu (třeba ČJ dokumentu nebo číslo interního aktu řízení)"/>
+      <property key="Příklad" value="Spisový řád, Spisový plán, Organizační řád, Podpisový řád, Nařízení ministra, Závazný pokyn nadřízeného orgánu"/>
+    </element>
+  </folder>
+  <folder name="Application" id="id-43242cf5ee3c42768ad50719683f2226" type="application">
+    <element xsi:type="archimate:ApplicationComponent" name="Informační systém" id="id-metamodel-isprovozni">
+      <documentation>Informační systém, který není [informační systém veřejné správy]. Pozor, systémy pro správu dokumentů, spisovou službu, ekonomiku a personalistiku vždy vedeme jako ISVS.</documentation>
+      <property key="Stereotype" value="Provozní systém"/>
+      <property key="Příklad" value="Systém monitogingu, auditní systém, apod."/>
+      <property key="Správce" value="¨Ministerstvo agend"/>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="Informační systém veřejné správy" id="id-metamodel-isvs">
+      <documentation>Jeden logický ISVS jako celek ohlášený do Registru práv a povinností jako ISVS. Je zároveň stereotypem s určitými atributy, jako je kód v EISVS, nebo jeho správce.</documentation>
+      <property key="Zkratka" value="ISZŽ"/>
+      <property key="Označení" value="označení z RPP), tedy identifikátor z evidence ISVS"/>
+      <property key="Stereotype" value="Informační systém"/>
+      <property key="Příklad" value="ISEO, ROB, ISZR, všechny ISVS"/>
+      <property key="Správce" value="Ministerstvo agend"/>
+      <property key="Název" value="Úplný oficiální název informačního systému"/>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="Komponenta systému" id="id-metamodel-komponentais">
+      <documentation>Fyzická komponenta systému, se kterou se na vývojové větvi pracuje či dá pracovat samostatně. Může se jednat o fyzické komponenty i s různými dodavateli, což je dobrý způsob oddělení komponent v architektuře.</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="Modul informačního systému" id="id-metamodel-modulis">
+      <documentation>Modul informačního systému. Jedná se o jeden logický či fyzický modul u modulárního informačního systému, zejména u informačního systému veřejné správy</documentation>
+    </element>
+    <element xsi:type="archimate:ApplicationComponent" name="Provozní aplikace" id="id-metamodel-provozni-aplikace">
+      <documentation>Aplikace či systém, které jsou ryze provozními. Jedná se třeba o kancelářské aplikace apod. Do architektury se většinou nezaznamenávají, nicméně je nutné je vést v evidenci aplikací a systémů i z důvodu udržování povědomí o jejich licencování, využívání, aktualizacích apod. V architektuře se ale vést může, a to zejména, pokud nějaký [Informační systém veřejné správy] takové klientské počítačové programy využívá (třeba spisová služba využívající Word, nebo aplikaci pro podepisování).</documentation>
+      <property key="Stereotype" value="Provozní systém"/>
+      <property key="Správce" value="Správce"/>
+      <property key="Příklad" value="Microsoft Office, LibreOffice, Poznámkový blok, Archi, apod."/>
+    </element>
+    <element xsi:type="archimate:ApplicationInterface" name="Rozhraní mezi aplikacemi" id="id-metamodel-aplikacni-rozhrani">
+      <documentation>Technické rozhraní mezi aplikacemi, či uživatelské rozhraní. Je důležitým prvkem pro modelování integrací informačních systémů zejména na sdílené služby.</documentation>
+      <property key="Příklad" value="ISZR, EGSB, Uživatelské rozhraní EKIS, czechpoint at office"/>
+    </element>
+    <element xsi:type="archimate:ApplicationService" name="Aplikační služba" id="id-metamodel-aplikacni-sluzba">
+      <documentation>Aplikační služba pro alespoň rámcový rozpis toho, co dělá aplikace či systém.</documentation>
+      <property key="Příklad" value="Evidence faktur, Zaevidování dokumentu, Skartační řízení, Aktualizace údajů, Vygenerování PDF/a, Přijetí a zaevidování žádosti"/>
+    </element>
+    <element xsi:type="archimate:DataObject" name="Evidence údajů" id="id-metamodel-evidence-udaju">
+      <documentation>Technický prvek [Evidence]. Evidence jako souvislá evidence údajů či dokumentů či informací. Je technickým prvkem datové architektury s tím, že se očekává, že evidence je součástí informačního systému, má své zodpovědné subjekty a obsahuje údaje či prvky [skupina údajů] a identifikátor(y). Je to důležité i pro daný [kontext].</documentation>
+      <property key="Příklad" value="Evidence psů, Registr rodných čísel v rámci ISEO, Evidence faktur v rámci EKIS"/>
+      <property key="Stereotype" value="Evidence údajů"/>
+    </element>
+    <element xsi:type="archimate:DataObject" name="Evidence" id="id-metamodel-evidence">
+      <documentation>Evidence jako souvislá evidence údajů či dokumentů či informací. Je technickým prvkem datové architektury s tím, že se očekává, že evidence je součástí informačního systému, má své zodpovědné subjekty a obsahuje údaje či skupiny údajů a identifikátor(y)</documentation>
+      <property key="Stereotype" value="Evidence"/>
+      <property key="Příklad" value="Evidence psů, Registr rodných čísel v rámci ISEO, Evidence faktur v rámci EKIS"/>
+    </element>
+    <element xsi:type="archimate:DataObject" name="Identifikátor objektu" id="id-metamodel-identifikator-objektu">
+      <documentation>Identifikátor objektu práva</documentation>
+      <property key="Stereotype" value="Identifikátor objektu"/>
+      <property key="Příklad" value="Registrační značka vozidla, číslo průkazu, Číslo oprávnění k odborné činnosti"/>
+    </element>
+    <element xsi:type="archimate:DataObject" name="Identifikátor subjektu" id="id-metamodel-identifikator-subjektu">
+      <documentation>Identifikátor subjektu práva (ve vazbě na jeho identitu)</documentation>
+      <property key="Příklad" value="AIFO v dané agendě"/>
+      <property key="Stereotype" value="Identifikátor subjektu"/>
+    </element>
+    <element xsi:type="archimate:DataObject" name="Identifikátor" id="id-metamodel-identifikator">
+      <documentation>Identifikátor (neurčuje se jeho vlastnost a podoba). Identifikuje údaje či informace vedené formou údajů.</documentation>
+      <property key="Příklad" value="Číslo jednací dokumentu, Číslo spisu, Číslo pobočky, Kód v evidenci"/>
+      <property key="Stereotype" value="Identifikátor"/>
+    </element>
+    <element xsi:type="archimate:DataObject" name="Kontext" id="id-metamodel-kontext">
+      <documentation>Kontext, jak je definován v rámci agend a sdílení v propojeném datovém fondu. Jedná se o soubor subjektů a objektů práva a u nich vedených a spravovaných údajů a o matici využívání těchto údajů. Zaznamená se na aplikační vrstvě, mělo by být vždy jasné, jaké [evidence] se týká, jaký [Informační systém veřejné správy] je dotčen (či dotčeny) a jaké logické skupiny [Skupina údajů] se to týká. U kontextu a evidence a sdílení údajů je nezbytné správně vést a využívat [Identifikátor], a to zejména pro [Identifikátor subjektu] a [Identifikátor objektu]. Kontext se využije pro sdílení údajů mezi jednotlivými agendovými informační systémy.</documentation>
+      <property key="Ohlašovatel" value="Ministerstvo agend"/>
+      <property key="Příklad" value="Kontext řidiče podle oprávnění k řízení, kontext zdravotního pojištění jako pojištěnce a pojišťovny, apod."/>
+      <property key="Označení" value="ID označení z katalogu kontextů"/>
+      <property key="Stereotype" value="Kontext"/>
+    </element>
+    <element xsi:type="archimate:DataObject" name="Skupina údajů" id="id-metamodel-skupina-udaju">
+      <documentation>Udává skupinu údajů vztahující se většinou k nějakému subjektu či objektu práva. Údaje jsou evidovány v rámci příslušného informačního systému či evidence apod. Tento datový objekt je datovou reprezentací jednoho či více byznysových objektů jako fyzických údajů. Mimo jiné má v popisu atributů i identifikátor, kterým lze jednoznačně identifikovat věc, ke které se údaje vztahují a jak vznikají a kdo je za ně zodpovědný. V obecných modelech (až na výjimky) není vhodné rozebírat v modelu jednotlivé údaje, proto se využije daná skupina údajů.</documentation>
+      <property key="Příklad" value="Údaje o fyzické osobě, Údaje o řidičském oprávnění, Údaje o platbách zdravotního pojištění, Údaje o přiznání a výplatě dávky"/>
+    </element>
+  </folder>
+  <folder name="Technology &amp; Physical" id="id-3e99df5b80af49f6a7595a2f9a57efc0" type="technology"/>
+  <folder name="Motivation" id="id-97a434b76da9439390064dcda186fdb1" type="motivation">
+    <element xsi:type="archimate:Meaning" name="Aplikační vrstva" id="id-metamodel-meaning-aplikacni-vrstva">
+      <documentation>Na aplikační vrstvě architektury úřadu se zaznamenají klíčové elementy, které souvisí s fungováním informačních systémů a aplikací a také s vedením a správou údajů po technické stránce.&#xD;
+U systémů a aplikací jsou klíčovými objekty [Informační systém veřejné správy], a popřípadě další IS reprezentované jako [Informační systém] a provozní [Aplikace]. U každého systému musí být jasné, zda se jedná o vlastní IS, který je spravován právě tímto úřadem, nebo o cizí IS, který je úřadem využíván. U systémů může být pak i hlubší rozpad na objekty typu [Aplikační služba], a případně i [Aplikační funkce]. Pro uskutečňování integrací a vazeb se definují [Rozhraní aplikace] jako technická rozhraní služeb jednotlivých systémů. Tyto objekty mohou mít pak vazby na infrastrukturní a systémové objekty na technologické vrstvě.&#xD;
+U správy údajů je nutno si správně definovat údaje z agend zapsaných v RPP, včetně jejich zdrojů. Aby nebylo nutné definovat v EA každý údaj, lze využít objekt [Skupina údajů], který reprezentuje logický celek jednotlivých údajů. Skupiny údajů vedeme většinou v rámci souboru [Kontext], jak je definován v rámci agendového modelu a propojeného datového fondu. Údaje jsou vedeny buď v informačních systémech, pro jejich přehlednost lze ale systémy dělit ještě na [Evidence], což jsou zákonem či věcnou skupinou definované celky týkající se jednotlivých evidencí údajů a jejich skupin. Jako logický prvek, který se ovšem do architektury nezapracovává jako samostatný objekt, pak slouží [Identifikátor], a to zejména [Identifikátor subjektu] a [Identifikátor objektu], které jsou však na úrovni architektury vždy atributy daného subjektu či projektu a měly by být vedeny i jako atributy u [Evidence] a [Skupina údajů].</documentation>
+      <property key="Vrstva" value="vysvětlení"/>
+    </element>
+    <element xsi:type="archimate:Meaning" name="Byznysová vrstva" id="id-Metamodel-meaning-byznysova-vrstva">
+      <documentation>Na byznysové vrstvě architektury úřadu jsou zaznamenány všechny klíčové objekty, které se týkají samotné činnosti úřadu. Čili jakákoliv činnost úřadu může být brána jako jeho byznys, přestože se nejedná o klasickou ziskovou firmu. Ať už se jedná o činnosti související s úřední činností v rámci působnosti daného úřadu v agendách, nebo o provozně-režijní činnosti, včetně personální a ekonomické a správní politiky úřadu. Na byznysové vrstvě se znázorňuje vše, co je činnostmi úřadu jako organizace a plyne ze strategie či z předpisů. &#xD;
+Samotný legislativní rámec se udává v podobě elementů typu Contract, a to především [Právní předpis], [Ustanovení právního předpisu], [Vnitřní předpis] a z toho plynoucí obecné prvky jako [Povinnost] a výkon zajišťující [Právo]. Dále se na byznysové vrstvě musí definovat začlenění úřadu v rámci agendového modelu veřejné správy, a to všechny objekty [Agenda], [Agendová činnost] atd.&#xD;
+Po definici těchto prvků je vhodné definovat základní byznysové objekty, jako jsou [Služba], a to včetně služeb poskytovaných klientům a využívaných odjinud, a [Proces]. Subjekty (včetně sama sebe a ostatních úřadů) definujeme jako aktéry, a to zejména u [Orgán veřejné moci] a [Skupina orgánů veřejné moci], jednotlivé subjekty pak stavíme do jejich aktuální [Role] podle toho, co zrovna dělají a jakou mají v dané věci roli. Služby a procesy se neobejdou bez byznysových objektů a je možné definovat i základní byznysové události. Pro detailní popisy procesů slouží procesní modely v jazyce BPMN a architektura je pro detailní rozbor procesů spíše nevhodná, pro rozpad schopností a služeb jsou ale vhodně definované alespoň skupiny procesů nutným základem.</documentation>
+      <property key="Vrstva" value="vysvětlení"/>
+    </element>
+    <element xsi:type="archimate:Meaning" name="Identifikátor objektu" id="id-metamodel-meaning-identifikator-objektu">
+      <documentation>Identifikátor objektu práva</documentation>
+      <property key="Vrstva" value="vysvětlení"/>
+      <property key="Příklad" value="Registrační značka vozidla, číslo průkazu, Číslo oprávnění k odborné činnosti"/>
+    </element>
+    <element xsi:type="archimate:Meaning" name="Identifikátor subjektu" id="id-metamodel-meaning-identifikator-subjektu">
+      <documentation>Identifikátor subjektu práva (ve vazbě na jeho identitu)</documentation>
+      <property key="Vrstva" value="vysvětlení"/>
+      <property key="Příklad" value="AIFO v dané agendě"/>
+    </element>
+    <element xsi:type="archimate:Meaning" name="Identifikátor" id="id-metamodel-meaning-identifikator">
+      <documentation>Fiktivní logický objekt. Identifikátor (neurčuje se jeho vlastnost a podoba). Identifikuje údaje či informace vedené formou údajů. Nezaznamenává se jako samostatný element v architektuře, vždy je atributem objektu který identifikuje. V modelu je uveden pouze pro potřebu zdůraznění významu.</documentation>
+      <property key="Příklad" value="Číslo jednací dokumentu, Číslo spisu, Číslo pobočky, Kód v evidenci"/>
+      <property key="Vrstva" value="vysvětlení"/>
+    </element>
+    <element xsi:type="archimate:Meaning" name="Implementační vrstva" id="id-metamodel-meaning-implementacni-vrstva">
+      <documentation>Implementační vrstva architektury úřadu</documentation>
+      <property key="Vrstva" value="vysvětlení"/>
+    </element>
+    <element xsi:type="archimate:Meaning" name="Motivační vrstva" id="id-metamodel-meaning-motivacni-vrstva">
+      <documentation>Motivační vrstva architektury úřadu</documentation>
+      <property key="Vrstva" value="vysvětlení"/>
+    </element>
+    <element xsi:type="archimate:Meaning" name="Strategická vrstva" id="id-Metamodel-meaning-strategicka-vrstva">
+      <documentation>Strategický rámec určuje strategii úřadu a jeho služeb a jeho činností. Od strategie se vše odvíjí. Strategická vrstva je tedy tou první důležitou pro celý úřad a také pro jeho interakci s ostatními úřady a klienty. Ve strategické vrstvě je nejdůležitějším elementem pro úřad [Schopnost] - tedy je pro chod úřadu a pro jeho postupnou efektivizaci nutné si udělat základní mapu všech společných schopností úřadu.</documentation>
+      <property key="Vrstva" value="vysvětlení"/>
+    </element>
+    <element xsi:type="archimate:Meaning" name="Technologická vrstva" id="id-metamodel-meaning-technologicka-vrstva">
+      <documentation>Technologická vrstva není sice v architektuře úřadu povinná, přesto se ale doporučuje si na ní rozkreslit alespoň technologické a infrastrukturní prvky a zdroje. Jedná se o vrstvu, kde se reprezentuje technologie, infrastruktura, komunikační sítě a zařízení potřebné pro chod informačních systémů a pro zajištění byznysu (činností) úřadu.</documentation>
+      <property key="Vrstva" value="vysvětlení"/>
+    </element>
+  </folder>
+  <folder name="Implementation &amp; Migration" id="id-5679c383d75d47818766865e8735b22e" type="implementation_migration"/>
+  <folder name="Other" id="id-25d4025a626a414f97094eceb5cedf6b" type="other">
+    <element xsi:type="archimate:Grouping" name="Skupina orgánů veřejné moci" id="id-metamodel-vice-ovm">
+      <documentation>Definování skupiny orgánů veřejné moci, má odlišné atributy, než je jeden OVM, nicméně platí to samé, něco dělají a mají nějaké role a nějaké povinnosti.</documentation>
+      <property key="Název" value="Název skupiny orgánů vedené v RPP či jiný obecný úplný název"/>
+      <property key="Příklad" value="Ministerstva, Kraje, Orgány sociálního zabezpečení, Zdravotní pojišťovny"/>
+      <property key="Stereotype" value="Skupina OVM"/>
+      <property key="Označení" value="S1234"/>
+      <property key="Zkratka" value="ÚSÚ"/>
+    </element>
+  </folder>
+  <folder name="Relations" id="id-7fb9943e602847be80063536c66e9650" type="relations">
+    <element xsi:type="archimate:AccessRelationship" name="řeší datovou evidenci" id="id-metamodel-isvs-evidence" source="id-metamodel-isvs" target="id-metamodel-evidence-udaju">
+      <documentation>Informační systém řeší evidenci údajů a spravují se v něm údaje</documentation>
+    </element>
+    <element xsi:type="archimate:AccessRelationship" name="eviduje údaje" id="id-metamodel-isvs-sprava-udaju" source="id-metamodel-isvs" target="id-metamodel-skupina-udaju"/>
+    <element xsi:type="archimate:AssignmentRelationship" name="vykonává činnost" id="id-metamodel-cinnostni-role" source="id-metamodel-ovm" target="id-metamodel-acinnost">
+      <documentation>Daný OVM vykonává činnostní roli. Jde o vazbu OVM na danou činnost.</documentation>
+    </element>
+    <element xsi:type="archimate:AssignmentRelationship" name="může být v roli" id="id-metamodel-subjekt-do-role" source="id-metamodel-subjekt" target="id-metamodel-role">
+      <documentation>Vazba pro přiřazení obecného subjektu (nebo jiného aktéra) do konkrétní role.</documentation>
+    </element>
+    <element xsi:type="archimate:AssignmentRelationship" name="vykonává působnost v agendě" id="id-metamodel-vykon-pusobnosti" source="id-metamodel-ovm" target="id-metamodel-agenda">
+      <documentation>Daný OVM má působnost v dané agendě. Jedná se o výkon působnosti, tedy jde o vazbu mezi OVM a agendou.</documentation>
+    </element>
+    <element xsi:type="archimate:AssociationRelationship" name="obsahuje činnost" id="id-metamodel-agenda-cinnost" source="id-metamodel-agenda" target="id-metamodel-acinnost">
+      <documentation>Vazba mezi agendou a její agendovou činností</documentation>
+    </element>
+    <element xsi:type="archimate:AssociationRelationship" name="je gestorem za" id="id-metamodel-gesce-za-predpis" source="id-metamodel-ovm" target="id-metamodel-pravni-predpis">
+      <documentation>Reprezentuje, že nějaké OVM je gestorem za daný právní předpis.</documentation>
+    </element>
+    <element xsi:type="archimate:AssociationRelationship" name="ohlašuje" id="id-metamodel-ohlasovatelagendy" source="id-metamodel-ovm" target="id-metamodel-agenda">
+      <documentation>[Orgán veřejné moci] v roli [Ohlašovatel] ohlašuje agendu do RPP</documentation>
+    </element>
+    <element xsi:type="archimate:AssociationRelationship" name="ohlašuje" id="id-metamodel-ohlasovatelagendy1" source="id-metamodel-ohlasovatel" target="id-metamodel-agenda">
+      <documentation>[Orgán veřejné moci] v roli [Ohlašovatel] ohlašuje agendu do RPP</documentation>
+    </element>
+    <element xsi:type="archimate:AssociationRelationship" name="má povinnost" id="id-metamodel-role-ma-povinnost" source="id-metamodel-role" target="id-metamodel-povinnost">
+      <documentation>Subjekt v dané roli má určitou povinnost, plynoucí mu právě z jeho role</documentation>
+    </element>
+    <element xsi:type="archimate:AssociationRelationship" name="má právo" id="id-metamodel-role-ma-pravo" source="id-metamodel-role" target="id-metamodel-pravo">
+      <documentation>Subjekt v dané roli má určité právo, které má právě díky své roli</documentation>
+    </element>
+    <element xsi:type="archimate:AssociationRelationship" name="určuje službu" id="id-metamodel-sluzba-zagendy" source="id-metamodel-agenda" target="id-metamodel-sluzba-agendy">
+      <documentation>Reprezentuje, že daná agenda určuje digitální službu či obecnou službu veřejné správy.</documentation>
+    </element>
+    <element xsi:type="archimate:AssociationRelationship" name="má povinnost" id="id-metamodel-subjekt-ma-povinnost" source="id-metamodel-subjekt" target="id-metamodel-povinnost">
+      <documentation>Subjekt má obecně definovanou povinnost</documentation>
+    </element>
+    <element xsi:type="archimate:AssociationRelationship" name="má právo" id="id-metamodel-subjekt-ma-pravo" source="id-metamodel-subjekt" target="id-metamodel-pravo">
+      <documentation>Subjekt má obecně definované právo</documentation>
+    </element>
+    <element xsi:type="archimate:AssociationRelationship" name="určuje úkon" id="id-metamodel-ukon-agendy" source="id-metamodel-agenda" target="id-metamodel-ukon">
+      <documentation>Reprezentuje, že daná agenda určuje digitální nebo obecný úkon. Úkon je součástí agendy.</documentation>
+    </element>
+    <element xsi:type="archimate:AssociationRelationship" name="definuje povinnost" id="id-metamodel-urceni-povinnosti" source="id-metamodel-pravni-predpis" target="id-metamodel-povinnost">
+      <documentation>Vazba pro definici povinnosti. Právní předpis určuje (definuje) nějakou povinnost</documentation>
+    </element>
+    <element xsi:type="archimate:AssociationRelationship" name="definuje právo" id="id-metamodel-urceni-prava" source="id-metamodel-pravni-predpis" target="id-metamodel-pravo">
+      <documentation>Vazba pro definici práva. Právní předpis dává (definuje) nějaké právo</documentation>
+    </element>
+    <element xsi:type="archimate:AssociationRelationship" name="určuje činnost" id="id-metamodel-ustanoveni-acinnost" source="id-metamodel-ustanoveni" target="id-metamodel-acinnost">
+      <documentation>Vazba mezi ustanovením právního předpisu a z něj plynoucí agendové činnosti. V praxi se příliš nepoužívá, protože to je příliš detailní pohled.</documentation>
+    </element>
+    <element xsi:type="archimate:AssociationRelationship" name="VYDÁVÁ" id="id-metamodel-vydava-pravni-predpis" source="id-metamodel-ovm" target="id-metamodel-pravni-predpis">
+      <documentation>Reprezentuje vztah, kdy určitý OVM vydává právní předpis. Je zároveň i jeho gestorem.</documentation>
+    </element>
+    <element xsi:type="archimate:AssociationRelationship" name="VYDÁVÁ" id="id-METAMODEL-VYDAVA-VNITRNI-PREDPIS" source="id-metamodel-ovm" target="id-metamodel-vnitrni-predpis">
+      <documentation>Reprezentuje, že někdo vydává svůj závazný vnitřní předpis.</documentation>
+    </element>
+    <element xsi:type="archimate:AssociationRelationship" name="definuje agendu" id="id-metamodel-zakon-agenda" source="id-metamodel-pravni-predpis" target="id-metamodel-agenda">
+      <documentation>Vazba původu agendy, kdy agendu definuje daný právní předpis.</documentation>
+    </element>
+    <element xsi:type="archimate:CompositionRelationship" name="se skládá z objektů" id="id-metamodel-appdekompozice-komponenta" source="id-metamodel-isvs" target="id-metamodel-modulis">
+      <documentation>Aplikační dekompozice jde vždy minimálně z úrovně [Informační systém veřejné správy] s dělením na logické či fyzické objekty [Modul informačního systému] a fyzické objekty typu [Komponenta systému]</documentation>
+    </element>
+    <element xsi:type="archimate:CompositionRelationship" name="se skládá z objektů" id="id-metamodel-appdekompozice-modul" source="id-metamodel-isvs" target="id-metamodel-modulis">
+      <documentation>Aplikační dekompozice jde vždy minimálně z úrovně [Informační systém veřejné správy] s dělením na logické či fyzické objekty [Modul informačního systému] a fyzické objekty typu [Komponenta systému]</documentation>
+    </element>
+    <element xsi:type="archimate:CompositionRelationship" name="obsahuje ustanovení" id="id-metamodel-zakon-ustanoveni" source="id-metamodel-pravni-predpis" target="id-metamodel-ustanoveni">
+      <documentation>Vazba mezi právním předpisem a jeho logickou jednotkou ustanovením.</documentation>
+    </element>
+    <element xsi:type="archimate:RealizationRelationship" name="je reprezentací pro objekt" id="id-metamodel-evidence-a-udaje" source="id-metamodel-evidence-udaju" target="id-metamodel-evidence-byznysove">
+      <documentation>Vazba mezi logickou (byznysovou) evidencí jako byznysovým objektem a evidencí v příslušném informačním systému jako technickou evidencí ve formě datového objektu</documentation>
+    </element>
+    <element xsi:type="archimate:ServingRelationship" name="má provozní systém" id="id-metamodel-provozuje-provozniis" source="id-metamodel-ovm" target="id-metamodel-isprovozni">
+      <documentation>Reprezentuje, že nějaké OVM spravuje a provozuje a užívá provozní informační systém</documentation>
+    </element>
+    <element xsi:type="archimate:ServingRelationship" name="je správcem systému" id="id-metamodel-spravuje-isvs" source="id-metamodel-ovm" target="id-metamodel-isvs">
+      <documentation>Reprezentuje, že nějaké OVM je správcem daného informačního systému.</documentation>
+    </element>
+    <element xsi:type="archimate:ServingRelationship" name="je užíván OVM" id="id-metamodel-uziva-isvs" source="id-metamodel-isvs" target="id-metamodel-ovm">
+      <documentation>Reprezentuje, že OVM je uživatelem daného informačního systému.</documentation>
+    </element>
+  </folder>
+  <folder name="Views" id="id-344e82436f76425facf2c70d8db00e22" type="diagrams">
+    <element xsi:type="archimate:ArchimateDiagramModel" name="All Items" id="id-fa6874e1-8d3d-46f1-a331-678265aa0d34">
+      <child xsi:type="archimate:DiagramObject" id="id-45946cde-d553-491e-9312-56be67b6ec6f" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#f5deaa" archimateElement="id-metamodel-schopnost">
+        <bounds x="20" y="20" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-e8b6e6eb-48e1-41fd-89e2-79209ab4d484" targetConnections="id-a0451f7d-3215-4dac-bcde-03eeb1da6cde id-e63ae72a-ffcc-4d89-9ef4-00a6d4f10793" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#ffffb5" archimateElement="id-metamodel-agenda">
+        <bounds x="20" y="120" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-a57be435-d983-46d8-93a2-38bfc9761683" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="id-e8b6e6eb-48e1-41fd-89e2-79209ab4d484" target="id-e07d37b2-5f81-4262-820b-b28db1257fe6" archimateRelationship="id-metamodel-agenda-cinnost"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-76f37b98-5f58-44ec-87d5-05615f3cc927" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="id-e8b6e6eb-48e1-41fd-89e2-79209ab4d484" target="id-780af7e1-7c6c-4db1-8560-d32374ae9e38" archimateRelationship="id-metamodel-sluzba-zagendy"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-15e66517-b33d-46d5-aff6-69eea3cbdf41" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="id-e8b6e6eb-48e1-41fd-89e2-79209ab4d484" target="id-1d0e6308-8aa3-4c8f-91bd-ce95250765f6" archimateRelationship="id-metamodel-ukon-agendy"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-e07d37b2-5f81-4262-820b-b28db1257fe6" targetConnections="id-a57be435-d983-46d8-93a2-38bfc9761683 id-a2513ec7-868d-44af-96c8-22aad044d065 id-d5d986b6-7778-472c-8906-f62868e2acb0" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#ffffb5" archimateElement="id-metamodel-acinnost">
+        <bounds x="20" y="220" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-4c5816a8-2117-487d-8eb3-5488d753575c" targetConnections="id-5f86a483-45c7-4c91-9b57-ec896d8bac73" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#ffffb5" archimateElement="id-metamodel-evidence-byznysove">
+        <bounds x="20" y="320" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-287f558a-90b6-4240-a30f-39d285fbb4f1" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#ffffb5" archimateElement="id-metamodel-gestor">
+        <bounds x="20" y="420" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-b68ba145-2385-4fee-a9eb-8694fcdb73df" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#ffffb5" archimateElement="id-metamodel-ohlasovatel">
+        <bounds x="20" y="520" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-41aa6114-3185-4ea8-b4ca-36265f9d700b" targetConnections="id-4a022751-4367-4c21-a9d8-0b6e1c94a255" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#ffffb5" archimateElement="id-metamodel-ovm">
+        <bounds x="20" y="620" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-a2513ec7-868d-44af-96c8-22aad044d065" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="id-41aa6114-3185-4ea8-b4ca-36265f9d700b" target="id-e07d37b2-5f81-4262-820b-b28db1257fe6" archimateRelationship="id-metamodel-cinnostni-role"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-a0451f7d-3215-4dac-bcde-03eeb1da6cde" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="id-41aa6114-3185-4ea8-b4ca-36265f9d700b" target="id-e8b6e6eb-48e1-41fd-89e2-79209ab4d484" archimateRelationship="id-metamodel-vykon-pusobnosti"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-e783f74c-f4ae-4465-91c1-24e230fb5e7c" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="id-41aa6114-3185-4ea8-b4ca-36265f9d700b" target="id-4b9df95d-e89f-44c6-b4f3-686fdceac7e8" archimateRelationship="id-metamodel-gesce-za-predpis"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-050b9f89-c402-47a1-a534-e07828a86217" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="id-41aa6114-3185-4ea8-b4ca-36265f9d700b" target="id-4b9df95d-e89f-44c6-b4f3-686fdceac7e8" archimateRelationship="id-metamodel-vydava-pravni-predpis"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-2b2cc43a-1653-4d7d-b2e2-89d78b2d9a35" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="id-41aa6114-3185-4ea8-b4ca-36265f9d700b" target="id-677f972b-23cf-4773-981c-437651729826" archimateRelationship="id-METAMODEL-VYDAVA-VNITRNI-PREDPIS"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-c7a85308-0698-415a-80b4-09cd9de08065" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="id-41aa6114-3185-4ea8-b4ca-36265f9d700b" target="id-cb3fb219-813c-452d-bc85-c204fb20a35f" archimateRelationship="id-metamodel-provozuje-provozniis"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-68f44f7a-2181-436f-9fe5-00ce6d0a0fd7" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="id-41aa6114-3185-4ea8-b4ca-36265f9d700b" target="id-2c46e217-92bb-495b-825f-f9a2e4010617" archimateRelationship="id-metamodel-spravuje-isvs"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-c974973e-50a2-4d1c-9e74-e23de59f12a0" targetConnections="id-9bdf4142-2227-4f91-b1c9-3feeb5cadeb7 id-6109dd57-e1c6-4dc5-83af-f8ff8068a5d4 id-48ad57f5-d23b-4ced-ba5a-62444ec88d24" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#ffffb5" archimateElement="id-metamodel-povinnost">
+        <bounds x="20" y="720" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-245ddb12-e824-4d79-9ec5-71d086822610" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#ffffb5" archimateElement="id-metamodel-proces">
+        <bounds x="20" y="820" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-4b9df95d-e89f-44c6-b4f3-686fdceac7e8" targetConnections="id-e783f74c-f4ae-4465-91c1-24e230fb5e7c id-050b9f89-c402-47a1-a534-e07828a86217" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#ffffb5" archimateElement="id-metamodel-pravni-predpis">
+        <bounds x="20" y="920" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-9bdf4142-2227-4f91-b1c9-3feeb5cadeb7" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="id-4b9df95d-e89f-44c6-b4f3-686fdceac7e8" target="id-c974973e-50a2-4d1c-9e74-e23de59f12a0" archimateRelationship="id-metamodel-urceni-povinnosti"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-f807cb96-b03a-4029-8969-1d1a21ef85c2" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="id-4b9df95d-e89f-44c6-b4f3-686fdceac7e8" target="id-3f070519-1b48-4cd3-b1a2-cc8b186f44ba" archimateRelationship="id-metamodel-urceni-prava"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-e63ae72a-ffcc-4d89-9ef4-00a6d4f10793" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="id-4b9df95d-e89f-44c6-b4f3-686fdceac7e8" target="id-e8b6e6eb-48e1-41fd-89e2-79209ab4d484" archimateRelationship="id-metamodel-zakon-agenda"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-233131d8-6782-4bb1-bf52-65fc925efea3" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="id-4b9df95d-e89f-44c6-b4f3-686fdceac7e8" target="id-633dbabd-bea6-48de-a529-f3631e32e8c0" archimateRelationship="id-metamodel-zakon-ustanoveni"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-3f070519-1b48-4cd3-b1a2-cc8b186f44ba" targetConnections="id-f807cb96-b03a-4029-8969-1d1a21ef85c2 id-6e6368af-f35a-4806-91a3-ea28b9b7e813 id-42176708-2cfc-42fd-bab9-1e24d1c64232" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#ffffb5" archimateElement="id-metamodel-pravo">
+        <bounds x="20" y="1020" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-05d70d41-a11b-483c-8ce2-9f7ef6634079" targetConnections="id-a22c223e-37eb-474c-98e5-cf988b4bb5bc" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#ffffb5" archimateElement="id-metamodel-role">
+        <bounds x="20" y="1120" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-6109dd57-e1c6-4dc5-83af-f8ff8068a5d4" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="id-05d70d41-a11b-483c-8ce2-9f7ef6634079" target="id-c974973e-50a2-4d1c-9e74-e23de59f12a0" archimateRelationship="id-metamodel-role-ma-povinnost"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-6e6368af-f35a-4806-91a3-ea28b9b7e813" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="id-05d70d41-a11b-483c-8ce2-9f7ef6634079" target="id-3f070519-1b48-4cd3-b1a2-cc8b186f44ba" archimateRelationship="id-metamodel-role-ma-pravo"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-d9e65af4-5f43-4ce3-bf62-ca64e2bb60bc" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#ffffb5" archimateElement="id-metamodel-sluzba">
+        <bounds x="20" y="1220" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-780af7e1-7c6c-4db1-8560-d32374ae9e38" targetConnections="id-76f37b98-5f58-44ec-87d5-05615f3cc927" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#ffffb5" archimateElement="id-metamodel-sluzba-agendy">
+        <bounds x="20" y="1320" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-c999c88d-cc99-4a3d-ab79-d24928708703" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#ffffb5" archimateElement="id-metamodel-subjekt">
+        <bounds x="20" y="1420" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-a22c223e-37eb-474c-98e5-cf988b4bb5bc" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="id-c999c88d-cc99-4a3d-ab79-d24928708703" target="id-05d70d41-a11b-483c-8ce2-9f7ef6634079" archimateRelationship="id-metamodel-subjekt-do-role"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-48ad57f5-d23b-4ced-ba5a-62444ec88d24" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="id-c999c88d-cc99-4a3d-ab79-d24928708703" target="id-c974973e-50a2-4d1c-9e74-e23de59f12a0" archimateRelationship="id-metamodel-subjekt-ma-povinnost"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-42176708-2cfc-42fd-bab9-1e24d1c64232" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="id-c999c88d-cc99-4a3d-ab79-d24928708703" target="id-3f070519-1b48-4cd3-b1a2-cc8b186f44ba" archimateRelationship="id-metamodel-subjekt-ma-pravo"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-633dbabd-bea6-48de-a529-f3631e32e8c0" targetConnections="id-233131d8-6782-4bb1-bf52-65fc925efea3" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#ffffb5" archimateElement="id-metamodel-ustanoveni">
+        <bounds x="20" y="1520" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-d5d986b6-7778-472c-8906-f62868e2acb0" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="id-633dbabd-bea6-48de-a529-f3631e32e8c0" target="id-e07d37b2-5f81-4262-820b-b28db1257fe6" archimateRelationship="id-metamodel-ustanoveni-acinnost"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-677f972b-23cf-4773-981c-437651729826" targetConnections="id-2b2cc43a-1653-4d7d-b2e2-89d78b2d9a35" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#ffffb5" archimateElement="id-metamodel-vnitrni-predpis">
+        <bounds x="20" y="1620" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-1d0e6308-8aa3-4c8f-91bd-ce95250765f6" targetConnections="id-15e66517-b33d-46d5-aff6-69eea3cbdf41" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#ffffb5" archimateElement="id-metamodel-ukon">
+        <bounds x="20" y="1720" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-4c15a601-26e6-4f28-97da-2613467dd675" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#ffffb5" archimateElement="id-metamodel-organizacni-jednotka">
+        <bounds x="20" y="1820" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-2ef91111-1843-45e9-8caf-7640b2faeaad" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b5ffff" archimateElement="id-metamodel-aplikacni-sluzba">
+        <bounds x="20" y="1920" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-f6e81fb9-25fc-469b-8c95-1838c90ad7a7" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b5ffff" archimateElement="id-metamodel-evidence">
+        <bounds x="20" y="2020" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-6f4a9cfa-ac95-43d9-830c-b2be6485c7c3" targetConnections="id-86a81296-50ea-4def-a473-9e3553ef8793" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b5ffff" archimateElement="id-metamodel-evidence-udaju">
+        <bounds x="20" y="2120" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-5f86a483-45c7-4c91-9b57-ec896d8bac73" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="id-6f4a9cfa-ac95-43d9-830c-b2be6485c7c3" target="id-4c5816a8-2117-487d-8eb3-5488d753575c" archimateRelationship="id-metamodel-evidence-a-udaje"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-2605ed7b-5208-4c98-b68b-704f66e47b97" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b5ffff" archimateElement="id-metamodel-identifikator">
+        <bounds x="20" y="2220" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-22164762-40ce-43e3-a48f-bf7a65beb759" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b5ffff" archimateElement="id-metamodel-identifikator-objektu">
+        <bounds x="20" y="2320" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-77e12f4b-6d46-4011-94c7-2481ad67fdd3" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b5ffff" archimateElement="id-metamodel-identifikator-subjektu">
+        <bounds x="20" y="2420" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-cb3fb219-813c-452d-bc85-c204fb20a35f" targetConnections="id-c7a85308-0698-415a-80b4-09cd9de08065" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b5ffff" archimateElement="id-metamodel-isprovozni">
+        <bounds x="20" y="2520" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-2c46e217-92bb-495b-825f-f9a2e4010617" targetConnections="id-68f44f7a-2181-436f-9fe5-00ce6d0a0fd7" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b5ffff" archimateElement="id-metamodel-isvs">
+        <bounds x="20" y="2620" width="120" height="55"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-86a81296-50ea-4def-a473-9e3553ef8793" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="id-2c46e217-92bb-495b-825f-f9a2e4010617" target="id-6f4a9cfa-ac95-43d9-830c-b2be6485c7c3" archimateRelationship="id-metamodel-isvs-evidence"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-06ef2496-a2f3-4610-8438-f5685861d74c" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="id-2c46e217-92bb-495b-825f-f9a2e4010617" target="id-68818323-1859-4372-822a-b8ec52d855dc" archimateRelationship="id-metamodel-isvs-sprava-udaju"/>
+        <sourceConnection xsi:type="archimate:Connection" id="id-4a022751-4367-4c21-a9d8-0b6e1c94a255" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#000000" source="id-2c46e217-92bb-495b-825f-f9a2e4010617" target="id-41aa6114-3185-4ea8-b4ca-36265f9d700b" archimateRelationship="id-metamodel-uziva-isvs"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-80683593-6103-47ae-8e3d-1f5bb2980d00" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b5ffff" archimateElement="id-metamodel-kontext">
+        <bounds x="20" y="2720" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-c0aec29a-ab0b-448f-a47c-922d048e1727" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b5ffff" archimateElement="id-metamodel-provozni-aplikace">
+        <bounds x="20" y="2820" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-131d8cd9-78e8-4ca1-814f-4943679001c0" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b5ffff" archimateElement="id-metamodel-aplikacni-rozhrani">
+        <bounds x="20" y="2920" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-68818323-1859-4372-822a-b8ec52d855dc" targetConnections="id-06ef2496-a2f3-4610-8438-f5685861d74c" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#b5ffff" archimateElement="id-metamodel-skupina-udaju">
+        <bounds x="20" y="3020" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-54147c69-3248-4976-ad20-65c88ad3696a" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#ccccff" archimateElement="id-metamodel-meaning-aplikacni-vrstva">
+        <bounds x="20" y="3120" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-9124e98e-b2b7-47d4-adaa-cbf84df2e277" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#ccccff" archimateElement="id-Metamodel-meaning-byznysova-vrstva">
+        <bounds x="20" y="3220" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-0ccf807e-3f9e-4ce2-93d1-8aa61a81b984" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#ccccff" archimateElement="id-metamodel-meaning-identifikator">
+        <bounds x="20" y="3320" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-2de821ca-3a6e-41b4-b442-2fe26c1dcb1d" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#ccccff" archimateElement="id-metamodel-meaning-identifikator-objektu">
+        <bounds x="20" y="3420" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-c89eb397-470c-4b04-b777-90ec99cfbbf9" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#ccccff" archimateElement="id-metamodel-meaning-identifikator-subjektu">
+        <bounds x="20" y="3520" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-dc6f0e77-da6f-4a6d-b7f0-6148389b3d9b" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#ccccff" archimateElement="id-metamodel-meaning-implementacni-vrstva">
+        <bounds x="20" y="3620" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-0b65a61c-5e29-4210-9791-3e967393cb98" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#ccccff" archimateElement="id-metamodel-meaning-motivacni-vrstva">
+        <bounds x="20" y="3720" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-60120443-dade-4f65-827c-43802d9af97a" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#ccccff" archimateElement="id-Metamodel-meaning-strategicka-vrstva">
+        <bounds x="20" y="3820" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-1d3d6b55-c845-40ec-8686-f0f81ffc746b" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" fillColor="#ccccff" archimateElement="id-metamodel-meaning-technologicka-vrstva">
+        <bounds x="20" y="3920" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-8ea33c58-4c7d-40b6-a8aa-47a2ac0d14f1" font="1|Segoe UI|9.0|0|COCOA|1|" fontColor="#000000" lineColor="#5c5c5c" textAlignment="1" fillColor="#ffffff" archimateElement="id-metamodel-vice-ovm">
+        <bounds x="20" y="4020" width="400" height="140"/>
+      </child>
+    </element>
+  </folder>
+  <purpose>Vzorový referenční metamodel pro tvorbu architektury EG speciálně pro OVM a jejich využití</purpose>
+</archimate:model>

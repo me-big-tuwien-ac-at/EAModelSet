@@ -1,0 +1,2184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://www.opengroup.org/xsd/archimate/3.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengroup.org/xsd/archimate/3.0/ http://www.opengroup.org/xsd/archimate/3.1/archimate3_Diagram.xsd" identifier="id-4bb4b2d6">
+  <name xml:lang="en">ServiceNow</name>
+  <elements>
+    <element identifier="id-8a503796" xsi:type="BusinessProcess">
+      <name xml:lang="en">Budgeting</name>
+    </element>
+    <element identifier="id-075fbf35" xsi:type="BusinessFunction">
+      <name xml:lang="en">Accounting</name>
+    </element>
+    <element identifier="id-8aed9f55" xsi:type="BusinessProcess">
+      <name xml:lang="en">Charging</name>
+    </element>
+    <element identifier="f47e0d68" xsi:type="BusinessProcess">
+      <name xml:lang="en">IT Financial Management</name>
+    </element>
+    <element identifier="id-0a7bd17b" xsi:type="BusinessActor">
+      <name xml:lang="en">Budget Owner</name>
+      <documentation xml:lang="en">Budget owners can view all items that budget keys are associated with, such as budget plans and forecasts.
+
+Budget owners are users in the instance that you can associate with a budget plan. Create a budget owner record to give a user the budget_owner role, which grants access to budget plans and forecasts.</documentation>
+    </element>
+    <element identifier="id-0609e555" xsi:type="BusinessActor">
+      <name xml:lang="en">Budget Admin</name>
+      <documentation xml:lang="en">Role: budget_admin</documentation>
+    </element>
+    <element identifier="id-2f46ec2b" xsi:type="BusinessActor">
+      <name xml:lang="en">Budget Key Owner</name>
+      <documentation xml:lang="en">Budget key owners are also users in the instance that you can associated with a budget key, and thereby budget plans as well. Budget key ownership can be full or limited:
+
+Full access allows the owner to access everything associated with the budget key, including budget plans and forecasts, targets, and budget key expenses.
+Limited access allows the owner to see only the budget plans they own and the items in those plans.
+Budget key owners also have the same level of access to the items associated with child budget keys.</documentation>
+    </element>
+    <element identifier="e08c04f4" xsi:type="BusinessActor">
+      <name xml:lang="en">Budget Analyst</name>
+      <documentation xml:lang="en">Role: ?</documentation>
+    </element>
+    <element identifier="ef73bdc7" xsi:type="BusinessActor">
+      <name xml:lang="en">Cost Admin</name>
+      <documentation xml:lang="en">cost_transparency_admin</documentation>
+    </element>
+    <element identifier="id-8dab2caa" xsi:type="BusinessActor">
+      <name xml:lang="en">Company</name>
+    </element>
+    <element identifier="id-8e9c9750" xsi:type="ApplicationComponent">
+      <name xml:lang="en">Financial Management</name>
+    </element>
+    <element identifier="id-152ed138" xsi:type="ApplicationComponent">
+      <name xml:lang="en">Cost Management</name>
+    </element>
+    <element identifier="f4ab94d8" xsi:type="ApplicationComponent">
+      <name xml:lang="en">ServiceNow</name>
+    </element>
+    <element identifier="id-2ea1db1a" xsi:type="ApplicationComponent">
+      <name xml:lang="en">Financial System</name>
+    </element>
+    <element identifier="id-19ff834b" xsi:type="ApplicationComponent">
+      <name xml:lang="en">General Ledger</name>
+    </element>
+    <element identifier="c2292107" xsi:type="DataObject">
+      <name xml:lang="en">Chart of Accounts</name>
+    </element>
+    <element identifier="id-122f2140" xsi:type="DataObject">
+      <name xml:lang="en">IT General Ledger</name>
+      <documentation xml:lang="en">The general ledger: A list of your organizational expenses.
+the general ledger contains all expenses for your organization for all fiscal periods.</documentation>
+    </element>
+    <element identifier="id-0939c504" xsi:type="DataObject">
+      <name xml:lang="en">Cost Model</name>
+    </element>
+    <element identifier="ff894a0a" xsi:type="ApplicationCollaboration">
+      <name xml:lang="en">GL Data Import</name>
+      <documentation xml:lang="en">Financial data resides in the General Ledger Staged Data table.
+
+You can import financial data into the General Ledger Staged Data [itfm_gl_data_staged] table by using either of the following methods:
+
+Import sets
+Easy import
+See Import sets.
+Attention: Be sure that your fiscal calendar can be used with your financial data.</documentation>
+    </element>
+    <element identifier="id-8f42a49a" xsi:type="ApplicationComponent">
+      <name xml:lang="en">Allocation Engine</name>
+      <documentation xml:lang="en">The core of the application that uses your cost model to calculate expenses and determine how to allocate expenses.</documentation>
+    </element>
+    <element identifier="e57b74d1" xsi:type="DataObject">
+      <name xml:lang="en">Fiscal Period</name>
+      <documentation xml:lang="en">The fiscal period: The timeframe during which expenses were incurred. You can work with only one fiscal period at a time.</documentation>
+    </element>
+    <element identifier="d9fe1e40" xsi:type="ApplicationService">
+      <name xml:lang="en">Financial Reports and Dashboards</name>
+      <documentation xml:lang="en">Graphical representations of the expense allocations that show you where your expenses are coming from.</documentation>
+    </element>
+    <element identifier="id-9da59fe0" xsi:type="DataObject">
+      <name xml:lang="en">Budget Model</name>
+      <documentation xml:lang="en">A budget model is the foundation of your budget.
+
+A budget model is necessary for each budget key. Create as many budget models as necessary to classify budgeted expenses based on the segments that you can specify through their relationships.
+
+Budget analysts and budget admins can see any budget model. Budget owners can see only the budget models associated with budget keys that the budget owner has access to.
+
+Budget models replace budget definitions, starting with the Helsinki release.</documentation>
+    </element>
+    <element identifier="id-02281798" xsi:type="ApplicationFunction">
+      <name xml:lang="en">Create Budget Model</name>
+      <documentation xml:lang="en">Create a budget model that can be used by cost allocations and budgets.
+
+Before you begin
+
+Role required: budget_admin
+About this task
+
+When you are creating a budget model, select segments in a hierarchy and then generate a budget key for the model.
+
+Procedure
+
+Navigate to Financial Planning &gt; Administration &gt; Budget Model.
+
+Click New.
+
+Fill out the fields on the Financial Model form (see table).
+
+Right-click the header and select Save.
+
+Table 1. Budget Model form fields
+Field	Description
+Name	A descriptive name for the model.
+Data Source	The source of the financial data. Use the General Ledger Staged source. Only use the Cost Plan Breakdown if you activate and use the Project Portfolio Suite with Financials (com.snc.financial_planning_pmo) plugin. Portfolio actuals do not come from the staged general ledger. They are located in cost plan breakdowns in the Project Portfolio Suite.
+Model Owner	The user who owns the model.
+Used by Cost Allocation	If the model can be used by cost models. You can select this option if you also want the budget model to be used as a cost model.
+Used by Budgeting	If the model can be used by budgets. Select this option.
+Description	A detailed description for the model.
+Important budget model actions
+Generate Budget Keys	Creates budget keys based on the segment relationships.
+Generate Actuals	Creates financial actuals in the Budget actuals table [itfm_gl_actuals], which the budget console and the budget variance report use.
+Related list
+Segment Relationships	The relationships between the segments associated with this budget model. The segments are used when you generate budget keys for the model. Create segments relationships as necessary.</documentation>
+    </element>
+    <element identifier="c3601efe" xsi:type="DataObject">
+      <name xml:lang="en">Budget Key</name>
+      <documentation xml:lang="en">A budget key is a unique combination of values that the application uses to identify budget forecasts and budget plans.
+
+Note: Budget keys replace account codes, starting with the Helsinki release.
+
+Structure
+
+You can define the structure of the budget key by specifying the segments/code combination from the general ledger, such as the cost center, department, location, vendor, or any attributes. The budget key is a unique combination of values for these attributes. The combination of values is in a budget model hierarchy on a budget model.</documentation>
+    </element>
+    <element identifier="df557988" xsi:type="DataObject">
+      <name xml:lang="en">Budget Plan</name>
+      <documentation xml:lang="en">Budget plans specify expenses for assets, contracts, labor, and certain configuration items (CIs) for a fiscal period, particularly one in the future. Use budget plans as the basis to compare your actual versus planned expenses.
+
+Budget plans are associated with a budget key and a fiscal period. If you have financial data over several financial periods, make a separate plan for each period.
+
+There are several types of items you can add to the budget plan. The costs of these items are broken down over the fiscal period that you specify for the plan. See Budget items and Budget item breakdowns for more information.
+
+Budget plan expense amount types
+
+Budget plans show these types of expense amounts:
+
+Target amounts: An amount that you set as a goal to reach or a limit not to exceed. A target amount is created for a specific fiscal period and account code combination. When you select the account code and fiscal period for the budget plan, the target amount is automatically populated in the read-only target fields. There are targets for both operating and capital expenses.
+Budgeted amounts: A rollup of all the budget plan items, which appear as related lists on the Budget Plan form. Only items marked as capital expenses do not roll up to the amount fields. There are budgeted amounts for both operating and capital expenses.
+Budget plan ownership
+
+Budget plans have a single owner, who must have the budget_owner role. Whoever you chose as the budget owner must also be associated with the budget plan's budget key as an owner.
+
+Budget plan parent-child relationships
+
+Budget plans can have one or more sub-plans, which roll up their actual budget amounts to the parent budget plan. You cannot promote child plans individually. Only the top-level plan in a hierarchy can be promoted.
+
+The same account codes can be used for parent and any or all child plans, if necessary. Child plans can also have account codes that are lower in the hierarchy. For example, if the parent's account code is IT finance, the child plan's account code could be IT finance &gt; Auditing Service, or similar. If you have multiple sub-plans with the same account codes, the amounts roll up from all subplans to the forecast.
+
+Changing the fiscal period parent plan cascades the change down to all sub-plans. See Budget owners and budget key owners for more information.
+
+Budget plan promotion
+
+You can promote a budget plan to a budget forecast, based on the plan's account code and fiscal period. The forecast helps you predict the expenses your organization will incur. See Budget forecasts for more information.
+
+Create a budget plan
+After you have configured your budget target and account codes, create a budget plan.
+
+Copy a budget plan
+You can use any plan as a basis for creating a new plan.
+
+Budget items
+The items that comprise a budget plan come from several other applications in an instance, including Asset Management, Project Management, and Configuration Management. This enables you to budget your expenses for items across your IT infrastructure.</documentation>
+    </element>
+    <element identifier="b23efb5d" xsi:type="ApplicationFunction">
+      <name xml:lang="en">Generate Budget Keys</name>
+      <documentation xml:lang="en">Budget keys can be generated using Generate Budget Keys from the model. To generate budget keys, the segments used in the budget model have to be mapped to the data source column in the field map, if by default they were not mapped already. By default, the application has field mapping with cost center, vendor, location, department, and project. If you are using any code combination segments in the budget model hierarchy other than these segments mentioned, then it has to be explicitly mapped in the data source field map.
+
+If there is an error when you manually generate budget keys, then verify the data source field map.</documentation>
+    </element>
+    <element identifier="id-5e7f7d9f" xsi:type="DataObject">
+      <name xml:lang="en">Segments</name>
+    </element>
+    <element identifier="id-7930a261" xsi:type="ApplicationFunction">
+      <name xml:lang="en">Generate from model</name>
+      <documentation xml:lang="en">Generate budget keys from a budget model if you do not want to create them manually one by one.
+
+Before you begin
+
+Role required: budget_admin
+About this task
+
+Procedure
+
+Navigate to Financial Planning &gt; Administration &gt; Budget Model.
+
+Open the desired budget model.
+
+Ensure that your mappings are defined on all the segments used in the model hierarchy.
+
+Click the Generate Budget Keys button at the bottom of the list.
+
+If you add more general ledger data and generate the keys again, the application generates only new keys based on the changed data. It does not regenerate the same keys, nor does it create duplicate keys.</documentation>
+    </element>
+    <element identifier="id-86d83799" xsi:type="ApplicationFunction">
+      <name xml:lang="en">Assign</name>
+      <documentation xml:lang="en">Assign budget key to budget owner</documentation>
+    </element>
+    <element identifier="id-84baf3d1" xsi:type="ApplicationFunction">
+      <name xml:lang="en">Create Manually</name>
+      <documentation xml:lang="en">Create a budget key manually when you want to specify specific segment records that comprise the key, as allowed by the budget definition.
+
+Before you begin
+
+Role required: budget_admin
+Procedure
+
+Navigate to Financial Planning &gt; Administration &gt; Budget keys.
+
+Click New.
+
+Fill out the form fields (see table).
+
+Click Submit.
+
+Table 1. Account Code form fields
+Field	Description
+Name	Descriptive name for the account code.
+Segments	The segments associated with this budget key. These segments are set in the budget model in the Segment Relationships related list. Select a value for the root segment identified in the budget definition.</documentation>
+    </element>
+    <element identifier="id-545b9b14" xsi:type="ApplicationFunction">
+      <name xml:lang="en">Generate Actuals</name>
+    </element>
+    <element identifier="id-9fe51835" xsi:type="DataObject">
+      <name xml:lang="en">Budget Actuals</name>
+      <documentation xml:lang="en">Account code, or budget key, expenses are records that show general ledger amounts for a budget key. The amounts are aggregated for each fiscal period.
+
+The expenses in the Account Code Expenses [itfm_gl_actuals] table are used by the budget console for calculations of actual expenses. Normally you do not need to create or modify data in this table.
+
+Financial administrators can access account code expenses from the Financials &gt; Administration &gt; Budget actuals module. The expenses are populated when you click Generate Actuals on the Financial Model form.</documentation>
+    </element>
+    <element identifier="id-335241d2" xsi:type="ApplicationInterface">
+      <name xml:lang="en">Budget Console</name>
+      <documentation xml:lang="en">The target amount also appears on the Review tab of the Budget Console. You can edit the amount through the console.</documentation>
+    </element>
+    <element identifier="id-32acda7d" xsi:type="ApplicationInterface">
+      <name xml:lang="en">Workbench</name>
+      <documentation xml:lang="en">Financial Management Workbench</documentation>
+    </element>
+    <element identifier="id-2d37fcb1" xsi:type="ApplicationService">
+      <name xml:lang="en">Use the budget variance report</name>
+      <documentation xml:lang="en">Use the budget variance report
+Use the Budget Variance report to see how expenses compare to budgets for cost centers, departments, locations, and vendors.
+
+About this task
+
+When you access this report, you can only see the budget data for the budget keys that the user in the Budget Owner choice list actually owns.
+
+Procedure
+
+Navigate to Financial Planning &gt; Budget Planning &gt; Variance. The report opens in another tab or window.
+
+Click the gear icon (gear icon) to configure settings for the report:
+
+Table 1. Report configuration options
+Setting	Description
+Budget Model	Shows budget data for the selected model.
+Group by	The main segments you want to group by. Select the segment from the choice list. To change the segments, modify the ITFM_BudgetVariance script include.
+Subgroup by	The segment you want to group by under the main segment. Select the segment from the choice list.
+Display description instead of name	How you want to display the segment in the report. Click the switch to use the display description instead of the name of the department, vendor, and so on.
+Use Year-to-Date Instead of Fiscal Periods	Sets the available time period for the data. Click the switch icon next to Use Year-to-Date instead of Fiscal Periods to use data for the current year. Turn off the switch to use fiscal periods, one of which you can select with the Fiscal Period choice list.
+Filter the report as needed.
+
+Table 2. Budget variance report filters
+Action	Procedure
+Filter by a budget variance	Enter the low end and high end of the range in the left and right-hand text boxes under Filter out by Variance. For example, to show only the budgets where the difference between the actual amount and the budgeted amount is between -1000 and 1000, enter (1000) in the left text box and 1000 in the right text box.
+Show data for a specific fiscal period and budget model.	Select the period from the Fiscal Period and Budget Model choice lists.
+Show data for a specific budget owner.	Select a user from the Budget Owner choice list. This list is filtered to show only the budget owners under you in the budget owner hierarchy.
+Show budget data for capital or operating expenses	Select the Operating or Capital check boxes
+- Business Management Financial Management, Istanbul</documentation>
+    </element>
+    <element identifier="cc29385a" xsi:type="DataObject">
+      <name xml:lang="en">Budget Forecast</name>
+      <documentation xml:lang="en">Budget forecasts provide a projection of expenses taken from a budget plan.
+
+You create a budget forecast by promoting a budget plan. When you do, the application creates a forecast and a read-only copy of the budget plan that the forecast refers to. This allows you to modify the budget plan without changing the forecast.
+
+Budget forecast components
+
+The budget forecast includes these items.
+
+Inherited budget plan values: important values from the plan, including the budget plan key.
+Overrides: an amount you can specify to override, or replace, the final forecast amount.
+Budget forecast items: the budget items from the budget plan.
+Budget forecast breakdowns: A breakdown of the Amount value into monthly units.
+Promote a budget plan
+After you review the budget plan and agree to the numbers, you can promote it to a forecast. The forecast becomes a benchmark for the same fiscal period specified by the plan.
+
+Override a budget forecast amount
+If you do not want to keep the forecast amount, you can override it with a value of your own.
+
+Budget forecast breakdowns
+The total cost in a budget forecast is divided into smaller units called breakdowns, which are taken from the budget plan.</documentation>
+    </element>
+    <element identifier="id-7f089ff2" xsi:type="ApplicationFunction">
+      <name xml:lang="en">Promote a budget plan</name>
+      <documentation xml:lang="en">After you review the budget plan and agree to the numbers, you can promote it to a forecast. The forecast becomes a benchmark for the same fiscal period specified by the plan.
+
+Before you begin
+
+Role required: budget_admin
+Note: All items must have an account number associated with them before you can promote the budget plan.
+Procedure
+
+Open a budget plan.
+
+Click Promote.
+
+Note: The application creates a forecast and a read-only copy of the project plan that the forecast refers to. This allows you to modify the project plan without changing the forecast.
+Navigate to Financial Planning &gt; Budget Planning &gt; Budget Forecasts.
+
+Click the forecast Display Name to open it.
+
+Verify the information on the form and related lists (see table).
+
+If you make any changes, click Update.
+
+Field	Description
+Display Name	The name derived from the budget plan
+Budget Key	The budget key used by the plan.
+Account Number	An account associated with the forecast.
+Budget Owner	The budget plan's owner, who also has access to this forecast.
+Budget Plan	The budget plan from which the forecast was derived.
+Fiscal period	The fiscal period from the budget plan.
+Amount	The Budget Amount from the plan. This value populates the Final Amount field unless you use an override.
+Override Amount	An amount that can replace the amount in the Final Amount field. Enter an amount if you want to ignore the value in the Amount field.
+Final Amount	The final amount that is taken from the Amount field, or, if you are using an override, the Override Amount field.
+Override Category	The category for the override.
+Target	The target amount for the account code on the budget forecast. The target amount may not be the same as the target on the budget plan because there may be multiple account codes on the budget plan that each generates a budget forecast. This is because the budget forecast is for a fiscal period + account code combination.
+Related Lists
+Breakdown	A breakdown of the Amount value into monthly units. Double-click the fields in the list to edit them or click the record icon to open the breakdown.
+Budget Forecast Items	The items inherited from the budget plan.</documentation>
+    </element>
+    <element identifier="id-60d0dd58" xsi:type="DataObject">
+      <name xml:lang="en">Breakdowns</name>
+      <documentation xml:lang="en">Budget forecast breakdowns: A breakdown of the Amount value into monthly units.
+
+The total cost in a budget forecast is divided into smaller units called breakdowns, which are taken from the budget plan.
+
+The breakdowns are used to calculate the value in the forecast's Amount field.</documentation>
+    </element>
+    <element identifier="ea54df95" xsi:type="ApplicationFunction">
+      <name xml:lang="en">Override forecast</name>
+      <documentation xml:lang="en">f you do not want to keep the forecast amount, you can override it with a value of your own.
+
+Before you begin
+
+Role required: budget_admin
+About this task
+
+You can also override the amounts in budget breakdowns. The override value is used in the forecast's Amount field. However, any value you use as an override in the forecast completely overrides the value in the Amount field.
+
+If you are using the budget console, you can edit the value of the Override column if you add that column to the view on the Review tab. See The budget console for more information.
+
+Procedure
+
+Navigate to Financial Planning &gt; Budget Planning &gt; Budget Forecasts.
+
+Open a forecast.
+
+Enter the override value in the Override Amount field.
+
+Select an optional Override Category. See Create a budget override category for more information on these categories.
+
+Enter comments in the Override Note field.
+
+Click Update.</documentation>
+    </element>
+    <element identifier="id-50bb7671" xsi:type="ApplicationService">
+      <name xml:lang="en">Import budget data</name>
+      <documentation xml:lang="en">You can use the platform's Easy Import feature to import budget data into the Budget Item table. A transform map is available by default to transform the data and create a budget plan, account code, budget items, and a budget owner.
+
+Before you begin
+
+You must set up a budget definition. Configure the spreadsheet with any or all the following columns, which represent segments:
+Department
+Location
+Vendor
+Cost Center
+Business unit
+Business service
+Portfolio
+Project
+Shared service
+Custom columns (up to four): additional segments.
+You do not need all of these columns. Only include the ones you need for your budget data. The values in each of the rows is the same as the value in the Name field of each of the segments.
+
+You must be familiar with the Easy import feature and transform map scripts. The transform map used in this topic is named importBudgetItemTranform.
+
+See Import sets.
+
+Role required: budget_admin
+About this task
+
+The transform map performs the following actions:
+
+Concatenates strings to provide an account code.
+Gets an account code by querying the account codes or by creating a new one.
+Creates a budget item for each row in the spreadsheet.
+Associates the budget items to a budget plan by finding a plan in the Budget Plan table or by creating one.
+Promotes the budget plan to a forecast.
+Procedure
+
+Create a table named u_itfm_budget_stage.
+
+Import the spreadsheet data into the u_itfm_budget_stage table using the Easy Import feature.
+
+Run the transform map importBudgetItemTranform. This transform processes data from the Source u_itfm_budget_stage table to the Target Budget Item [itfm_budget_item] table.
+
+Navigate to Financial Planning &gt; Budget Planning &gt; Final Budgets to confirm the budget data and records that were created and make modifications.</documentation>
+    </element>
+    <element identifier="id-1891a735" xsi:type="ApplicationFunction">
+      <name xml:lang="en">Create Budget Plan</name>
+      <documentation xml:lang="en">After you have configured your budget target and account codes, create a budget plan.
+
+Before you begin
+
+Role required: budget_admin, budget_analyst, budget_owner
+About this task
+
+This procedure explains how to create a budget plan with a blank form. You can also copy an existing budget plan.
+
+Procedure
+
+Navigate to Financial Planning &gt; Budget Planning &gt; Budget Plans.
+
+Click New.
+
+Fill in the Budget Plan form fields (see table).
+
+Right-click the form header and select Save from the context menu. The related lists and links appear.
+
+Click Preview to see what your budget plan would look like. The Budget Preview window looks like the Budget Console, except that you cannot change the budget model, budget key, or fiscal period. The data comes from the pre-promoted budget plan and includes sub-plans.</documentation>
+    </element>
+    <element identifier="id-903f187e" xsi:type="ApplicationFunction">
+      <name xml:lang="en">Generate Actuals</name>
+      <documentation xml:lang="en">After you have configured your budget target and account codes, create a budget plan.
+
+Before you begin
+
+Role required: budget_admin, budget_analyst, budget_owner
+About this task
+
+This procedure explains how to create a budget plan with a blank form. You can also copy an existing budget plan.
+
+Procedure
+
+Navigate to Financial Planning &gt; Budget Planning &gt; Budget Plans.
+
+Click New.
+
+Fill in the Budget Plan form fields (see table).
+
+Right-click the form header and select Save from the context menu. The related lists and links appear.
+
+Click Preview to see what your budget plan would look like. The Budget Preview window looks like the Budget Console, except that you cannot change the budget model, budget key, or fiscal period. The data comes from the pre-promoted budget plan and includes sub-plans.</documentation>
+    </element>
+    <element identifier="id-03c5d0fc" xsi:type="ApplicationFunction">
+      <name xml:lang="en">Create Budget Targets</name>
+      <documentation xml:lang="en">A budget target is an estimated amount of money for a specific fiscal period and budget key combination for operating and capital expenses. Use budget targets to set up a financial goal for a budget plan.
+
+Before you begin
+
+Role required: budget_admin, budget_analyst, budget_owner
+Procedure</documentation>
+    </element>
+    <element identifier="id-08b505e8" xsi:type="ApplicationFunction">
+      <name xml:lang="en">Copy a budget plan</name>
+      <documentation xml:lang="en">You can use any plan as a basis for creating a new plan.
+
+Before you begin
+
+Role required: budget_admin
+About this task
+
+When you copy a plan, an exact replica of the plan and all its items is created, with the word copy appended to the name.
+
+Procedure
+
+Navigate to Financial Planning &gt; Budget Planning &gt; Budget Plans.
+
+Click a plan to open the Budget Plan form.
+
+Click Copy Plan.</documentation>
+    </element>
+    <element identifier="id-60c02ef2" xsi:type="DataObject">
+      <name xml:lang="en">Budget items</name>
+      <documentation xml:lang="en">The items that comprise a budget plan come from several other applications in an instance, including Asset Management, Project Management, and Configuration Management. This enables you to budget your expenses for items across your IT infrastructure.
+
+Each item in the budget plan has an actual item cost and an account number. The actual item costs roll up to comprise the budget plan's actual budgeted amounts for both capital and operating expenses, using the type of account code (capital or operating) associated with each item. You can further refine the costs of the items by specifying how many units to include in a single item, a unit cost, and the percentage of each unit that you want to include in the actual item cost.
+
+Starting with the Helsinki release:
+
+you can add product catalog items to budget items. See Product Catalog for more information.
+Expense type will be determine by the Account selected on the budget item.
+Budget item breakdowns
+The total cost in a budget plan is divided into smaller units called breakdowns.
+
+Add items to a budget plan
+After you create a budget plan, add items to the plan, such as assets and configuration items. You can then track the estimated target cost of all the items in the budget versus the actual costs.</documentation>
+    </element>
+    <element identifier="id-61db4962" xsi:type="ApplicationComponent">
+      <name xml:lang="en">Asset Management</name>
+    </element>
+    <element identifier="bd988b18" xsi:type="ApplicationComponent">
+      <name xml:lang="en">Project Management</name>
+    </element>
+    <element identifier="id-9e5881db" xsi:type="ApplicationComponent">
+      <name xml:lang="en">Application Component</name>
+      <documentation xml:lang="en">Configuration Management</documentation>
+    </element>
+    <element identifier="b0f6f900" xsi:type="ApplicationComponent">
+      <name xml:lang="en">Service Catalog</name>
+      <documentation xml:lang="en">Configuration Management</documentation>
+    </element>
+    <element identifier="f34c0571" xsi:type="ApplicationFunction">
+      <name xml:lang="en">Add items to a budget plan</name>
+      <documentation xml:lang="en">After you create a budget plan, add items to the plan, such as assets and configuration items. You can then track the estimated target cost of all the items in the budget versus the actual costs.
+
+Before you begin
+
+Role required: budget_admin
+Procedure
+
+Open a budget plan.
+
+Click one of the related lists.
+
+Click New.
+
+Fill out the fields on the form (see table).
+
+Right-click the form header and select Save.
+
+The application calculates the breakdowns automatically.
+
+Click Recalculate Item Amount if you update budget reference rates.
+
+Table 1. Form fields for budget plan items
+Field	Available for these types of items	Description
+Name	All types	A descriptive name for the item. Enter a name. If you select a product model, the application automatically populates this field and makes it read-only.
+Budget Plan	All types	The plan this item belongs to.
+Budget Key	All types	The budget key for this item. You can select a key that is designated as a sub-key of the plan's key. Use this sub-key if you want items to be separated by different codes and assign those keys to different users. Items without a key take the key of the plan.
+Account Number	All types	The account number associated with this item.
+Expense Type	All types	If the item is an Operational or Capital expense. The account determines this value.
+Configuration Item	Budget item, Software, Hardware	The CI in the Configuration Item [cmdb_ci] table.
+Item Cost in Plan Currency	All types	The actual item cost for the number of units and the cost per unit. This field uses the currency that the budget uses.
+Product Model	Budget item	An item from the product catalog's Product Model [product_model] table. This field is new with the Helsinki release. See Models.
+Item Cost in Local Currency	All types	The actual item cost for the number of units and the cost per unit. This field uses the local currency selection that you make on the Cost Details tab.
+User	Labor	The user performing the labor. Select a user from the system.
+Contract	Contracts	The contract from the [ast_contract] table. Select a contract.
+Cost Details
+Local Currency	All types	Select the currency that pertains to the cost of this particular item.
+Unit Cost in Local Currency	All types	The cost of each unit in the item. Enter the cost per unit.
+Quantity	All types	The number of units in this item. Enter the quantity of this item.
+Is Prorated	All types, except Asset Depreciation	The breakdown is prorated if the start or end date falls in the middle of the time period for a breakdown record. Select this option to prorate the amount. This field is automatically selected and is read only for external labor.
+Is Monthly	All types, except Asset Depreciation	Assumes the amount entered in the Unit Cost in Local Currency field is not incurred annually, but monthly. The amount is then applied across the entire fiscal period until the specified end date. This field is automatically selected when Is Prorated is selected, and is read only for the external labor item type.
+Item Execution
+Planned Execution Start Date	All types, except Asset Depreciation and Contract	The date when this item is estimated to begin incurring an expense. The planned dates can determine which budget item breakdowns receive cost values.
+Actual Execution Start Date	All types, except Asset Depreciation	The date when this item actually begins incurring an expense. The actual dates take precedence over the planned dates in determining which budget item breakdowns receive cost values.
+Planned Execution End Date	All types, except Asset Depreciation	The date when this cost is estimated to stop incurring an example. The planned dates can determine which budget item breakdowns receive cost values.
+Actual Execution End Date	All types, except Asset Depreciation	The date when this item actually stops incurring an expense. The actual dates take precedence over the planned dates in determining which budget item breakdowns receive cost values.</documentation>
+    </element>
+    <element identifier="edadc916" xsi:type="DataObject">
+      <name xml:lang="en">GL Account</name>
+    </element>
+    <element identifier="a9ee62a3" xsi:type="ApplicationFunction">
+      <name xml:lang="en">Create GL account</name>
+      <documentation xml:lang="en">Create a general ledger account for each account in your organization that requires an account number to associate expenses with.
+
+Before you begin
+
+Role required: cost_transparency_admin
+About this task
+
+Accounts are associated with all three types of expenses in the general ledger.
+
+Starting with the Helsinki release, account numbers are classified as either an operating expense or a capital expense. This expense type is expressed in budgets to compare operating and capital budget targets versus actual budgeted expenses.
+
+After you upgrade Financial Management to the Helsinki version, the Expense Type field defaults to Operating.
+
+Procedure
+
+Navigate to Financial Planning &gt; Administration &gt; Accounts.
+
+Fill out the form fields (see table).
+
+Click Submit.
+
+Table 1. General Ledger Account form fields
+Field	Description
+Account Number	Enter a unique account number for each account.
+Description	Enter a detailed description for the account.
+Name	Enter a descriptive name.
+Expense type	Select the type of expense associated with the account:
+Operating: An operational expense. If you upgrade to Helsinki from a previous release, all accounts default to this type.
+Capital: A capital expense.
+Note: After you upgrade Financial Management to the Helsinki version, this field defaults to Operating.</documentation>
+    </element>
+    <element identifier="id-076276ee" xsi:type="DataObject">
+      <name xml:lang="en">Staged expenses</name>
+      <documentation xml:lang="en">Staged expenses that you imported from your external source. Imported expenses are saved in the General Ledger Staged Data [itfm_gl_data_staged] table.</documentation>
+    </element>
+    <element identifier="cfd31687" xsi:type="DataObject">
+      <name xml:lang="en">Cleansed expenses</name>
+      <documentation xml:lang="en">Cleansed expenses that the workbench uses during the Data Cleansing stage. Changes to expenses during this stage are saved in the General Ledger Cleansed Data [itfm_gl_data_cleansed] table. Each time you add an expense to the General Ledger Staged Data table, a corresponding expense is created in this table.</documentation>
+    </element>
+    <element identifier="id-6a230b49" xsi:type="DataObject">
+      <name xml:lang="en">Groomed expenses</name>
+      <documentation xml:lang="en">Groomed expenses that the workbench uses during the Bucketing stage. Changes to expenses during this stage are saved in the Groomed General Ledger Data [itfm_gl_data_groomed] table.</documentation>
+    </element>
+    <element identifier="id-49695135" xsi:type="ApplicationInterface">
+      <name xml:lang="en">View expenses</name>
+      <documentation xml:lang="en">You can view records in any of the general ledger tables and make changes if necessary.
+
+Before you begin
+
+Role required: cost_transparency_admin
+Procedure
+
+Navigate to Cost Transparency &gt; General Ledger and open one of these general ledgers: Staged Expenses, Cleansed Expenses, Groomed Expenses.
+
+Open an expense by clicking the value in the Number column for the expense.
+
+Modify the fields on the form as appropriate (see table).
+
+Click Submit.
+
+Table 1. Groomed General Ledger Data form fields
+Field	Description
+Number	Auto-generated identification number for the general ledger data record.
+State	The current state of the record:
+Unallocated: Allocations for this expense are not allocated.
+Allocated: This expense has been allocated.
+Locked: The general ledger expense is locked so that its allocation lines cannot be reverted.
+Account name	Name of the account.
+Account number	Account number this expense applies to. This field is mandatory on the Cleansed General Ledger Data form to ensure that all cleansed expenses appear in an account in the Bucketing stage of the workbench.
+Description	Detailed description of the expense.
+Amount	The amount of the expense.
+Cleansed expense	[General Ledger Staged Data form]
+A reference to the corresponding record in the General Ledger Cleansed Data table. This is the expense in the General Ledger Cleansed Data table that is automatically created when you create an expense in the General Ledger Staged Data table.
+
+Staged expense	[General Ledger Cleansed Data form]
+A reference to the corresponding record in the General Ledger Cleansed Data table.
+
+Groomed expense	[General Ledger Cleansed Data form]
+A reference to the corresponding record in the Groomed General Ledger Data table.
+
+Grooming rule	[General Ledger Cleansed Data form]
+The condition that the workbench uses to filter expenses that are put in buckets.
+
+Currency	Currency that the expense is valued in. The currency is a three letter code defined in the Currency [fx_currency] table. If the value in this field does not match any code in the Currency table, dollar signs are displayed by default for all expenses. Make sure that your expenses in all general ledger forms are in the same currency as your system currency.
+Document amount	Amount of the original expense document.
+Document currency	Currency that the original expense document uses. As with the Currency field, the value in the field is a three letter code defined in the Currency table.
+Bucket	[Groomed General Ledger Data form]
+Bucket that this expense is associated with.
+
+Sub-bucket	[Groomed General Ledger Data form]
+Sub-bucket that this expense is associated with.
+
+Cost center	Cost center this expense applies to.
+Department	Department associated with this expense.
+Fiscal period	[Groomed General Ledger Data form]
+Period during which this expense occurred.
+
+Document date	Date on which the original expense document was issued.
+Import set	The import set containing the data that you imported into the instance.
+Location	The location of where the expense was incurred.
+Vendor	The vendor record that is referenced from the Company [core_company] table.
+Posting date	The date of when this expense was incurred.
+Local amount	The amount represented in the local currency.
+Local currency	The currency associated with the account.
+Segments	Expense amounts for the segments that are defined in the IT chart of accounts.
+Related links
+Preview Allocation	[Groomed General Ledger Data form]
+Opens the allocation viewer for unallocated expenses. This link does not appear on the form for allocated expenses.
+
+Visualize Allocation	[Groomed General Ledger Data form]
+Opens the allocation viewer for allocated expenses. This link does not appear on the form for unallocated expenses.
+
+Related Lists
+Cost Allocations	[Groomed General Ledger Data form]
+Allocation lines created from this expense.
+
+General Ledger Cleansed Data	[Groomed General Ledger Data form]
+The records in the General Ledger Cleansed Data table that created the groomed expense records after the expenses are put into buckets.</documentation>
+    </element>
+    <element identifier="id-0d1a6d64" xsi:type="DataObject">
+      <name xml:lang="en">Business Unit</name>
+      <documentation xml:lang="en">Business units are the parts of your organization that are in charge of certain operations, such as Finance, HR, IT, and so on.
+
+Business units are typically comprised of departments and associated with a company. By default, the IT chart of accounts includes a segment for business units, departments, and vendors, which are companies with the Vendor option selected. With this chart of accounts setup, you can allocate expenses to specific business units, departments, or vendors, or have expense allocations roll up to them. You can configure both departments and companies as part of user management.
+
+Create business units
+Create business units to set up the top-most segment in the IT chart of accounts. Then you can create rollup rules to have expenses roll up to these business units.</documentation>
+    </element>
+    <element identifier="id-91c9d084" xsi:type="ApplicationFunction">
+      <name xml:lang="en">Create Business Units</name>
+      <documentation xml:lang="en">Create business units to set up the top-most segment in the IT chart of accounts. Then you can create rollup rules to have expenses roll up to these business units.
+
+Before you begin
+
+Role required: cost_transparency_admin
+Procedure
+
+Navigate to Cost Transparency &gt; Chart of Accounts &gt; Business Units.
+
+Click New.
+
+Fill out the fields on the form (see table).
+
+Click Save.
+
+Table 1. Business Unit form fields
+Field	Description
+Name	Name of the business unit.
+Company	The company, if any, associated with this business unit. You can choose any company, including those that do not have the Vendor field selected.
+Description	A description of the business unit.
+Related List
+Departments	Departments that comprise this business unit. Add as many departments as necessary.</documentation>
+    </element>
+    <element identifier="d17ef5eb" xsi:type="DataObject">
+      <name xml:lang="en">Department</name>
+    </element>
+    <element identifier="id-8eb68cb9" xsi:type="DataObject">
+      <name xml:lang="en">Company</name>
+    </element>
+    <element identifier="a970de3f" xsi:type="Artifact">
+      <name xml:lang="en">Default Model</name>
+      <documentation xml:lang="en">Default budget model: A default budget model that you can customize. If you upgrade to Helsinki, the budget definition you had in Geneva is converted to the default budget model.</documentation>
+    </element>
+    <element identifier="b993bd55" xsi:type="Artifact">
+      <name xml:lang="en">Project Financials</name>
+      <documentation xml:lang="en">Project Financials Budget Model: used to integration with the Project Portfolio Suite (requires the Project Portfolio Suite with Financials (com.snc.financial_planning_pmo) plugin).</documentation>
+    </element>
+    <element identifier="bd7d45d8" xsi:type="Artifact">
+      <name xml:lang="en">Account Code Expenses</name>
+      <documentation xml:lang="en">[itfm_gl_actuals] table
+the expenses are used by the budget console for calculations of actual expenses. Normally you do not need to create or modify data in this table.</documentation>
+    </element>
+    <element identifier="e843fa9d" xsi:type="Artifact">
+      <name xml:lang="en">Budget Variance report</name>
+      <documentation xml:lang="en">he Budget Variance report shows you how expenses compare to budgets for the segments in the budget definition.
+
+The Budget Variance Report is the main report you need for managing budgets. It gives you an overview of your budget estimates versus actuals. The estimated budget data is taken from the Final Budgets [itfm_budget] table, not from forecasts. The actual expense values are taken from the General Ledger Staged Data [itfm_gl_data_staged] table.
+
+The budget variance data is grouped by Operating and Capital expenses, starting with the Helsinki release.
+
+Use the budget variance report
+Use the Budget Variance report to see how expenses compare to budgets for cost centers, departments, locations, and vendors.</documentation>
+    </element>
+    <element identifier="dbd78f41" xsi:type="Artifact">
+      <name xml:lang="en">Inherited budget plan values</name>
+      <documentation xml:lang="en">Important values from the plan, including the budget plan key.</documentation>
+    </element>
+    <element identifier="bfe922b5" xsi:type="Artifact">
+      <name xml:lang="en">Overrides</name>
+      <documentation xml:lang="en">Overrides: an amount you can specify to override, or replace, the final forecast amount.</documentation>
+    </element>
+    <element identifier="id-6e4996af" xsi:type="Artifact">
+      <name xml:lang="en">Budget forecast items</name>
+      <documentation xml:lang="en">the budget items from the budget plan.</documentation>
+    </element>
+    <element identifier="id-8f92868a" xsi:type="Artifact">
+      <name xml:lang="en">Operating Target</name>
+      <documentation xml:lang="en">Operating Target	The target amount for operating expenses.
+Capital Target	The amount of the target in the currency being used.
+Budget Key	The budget key to which this target applies. Select a key.
+Currency	The currency in use.
+Fiscal period	The fiscal period year to which this target applies. Select a fiscal period.</documentation>
+    </element>
+    <element identifier="f414147f" xsi:type="Artifact">
+      <name xml:lang="en">Capital Target</name>
+      <documentation xml:lang="en">Capital Target	The amount of the target in the currency being used.</documentation>
+    </element>
+    <element identifier="id-3ad22a6e" xsi:type="Artifact">
+      <name xml:lang="en">Currenc</name>
+      <documentation xml:lang="en">Currency	The currency in use.</documentation>
+    </element>
+    <element identifier="id-1686d65d" xsi:type="Artifact">
+      <name xml:lang="en">Target Amount</name>
+      <documentation xml:lang="en">The target amount also appears on the Review tab of the Budget Console. You can edit the amount through the console.</documentation>
+    </element>
+    <element identifier="id-70ee5b05" xsi:type="Artifact">
+      <name xml:lang="en">Account Number</name>
+    </element>
+    <element identifier="id-3b16c665" xsi:type="Artifact">
+      <name xml:lang="en">Actual Item Cost</name>
+      <documentation xml:lang="en">The actual item costs roll up to comprise the budget plan's actual budgeted amounts for both capital and operating expenses using the type of account code (capital or operating) associated with each item.</documentation>
+    </element>
+  </elements>
+  <relationships>
+    <relationship identifier="f056042a" source="f47e0d68" target="id-8a503796" xsi:type="Composition" />
+    <relationship identifier="f594407d" source="f47e0d68" target="id-075fbf35" xsi:type="Composition" />
+    <relationship identifier="id-69f830ab" source="f47e0d68" target="id-8aed9f55" xsi:type="Composition" />
+    <relationship identifier="a48fbf67" source="f4ab94d8" target="id-152ed138" xsi:type="Composition" />
+    <relationship identifier="a2988c62" source="f4ab94d8" target="id-8e9c9750" xsi:type="Composition" />
+    <relationship identifier="id-479c7c0f" source="id-2ea1db1a" target="id-19ff834b" xsi:type="Composition" />
+    <relationship identifier="da87524e" source="f4ab94d8" target="ff894a0a" xsi:type="Composition" />
+    <relationship identifier="id-5ecbfef9" source="f4ab94d8" target="id-8f42a49a" xsi:type="Composition" />
+    <relationship identifier="bca83684" source="f4ab94d8" target="d9fe1e40" xsi:type="Assignment" />
+    <relationship identifier="ab1619b4" source="id-8e9c9750" target="ff894a0a" xsi:type="Composition" />
+    <relationship identifier="id-9e9e5a3e" source="id-8e9c9750" target="id-8f42a49a" xsi:type="Composition" />
+    <relationship identifier="id-3bd2742a" source="id-8e9c9750" target="d9fe1e40" xsi:type="Assignment" />
+    <relationship identifier="id-11ad81b0" source="id-8e9c9750" target="id-02281798" xsi:type="Assignment" />
+    <relationship identifier="id-6f300604" source="id-8e9c9750" target="b23efb5d" xsi:type="Assignment" />
+    <relationship identifier="e849b93d" source="id-8e9c9750" target="id-86d83799" xsi:type="Assignment" />
+    <relationship identifier="id-0bdac89e" source="id-8e9c9750" target="id-84baf3d1" xsi:type="Assignment" />
+    <relationship identifier="id-36bc1a63" source="b23efb5d" target="id-84baf3d1" xsi:type="Composition" />
+    <relationship identifier="b68dc6f9" source="b23efb5d" target="id-7930a261" xsi:type="Composition" />
+    <relationship identifier="id-629043c3" source="id-84baf3d1" target="id-0609e555" xsi:type="Serving" />
+    <relationship identifier="id-951814f3" source="c3601efe" target="id-84baf3d1" xsi:type="Association" />
+    <relationship identifier="c8b6ec8e" source="id-7930a261" target="id-9da59fe0" xsi:type="Access" accessType="Write" />
+    <relationship identifier="id-02bdbdb7" source="id-7930a261" target="c3601efe" xsi:type="Association" />
+    <relationship identifier="id-672a367e" source="id-7930a261" target="id-0609e555" xsi:type="Serving" />
+    <relationship identifier="c97ff7be" source="id-02281798" target="id-9da59fe0" xsi:type="Association" />
+    <relationship identifier="e122d8f5" source="id-86d83799" target="id-0a7bd17b" xsi:type="Association" />
+    <relationship identifier="id-1f6b079c" source="id-86d83799" target="c3601efe" xsi:type="Association" />
+    <relationship identifier="c31fa7b4" source="id-02281798" target="id-0609e555" xsi:type="Serving" />
+    <relationship identifier="d8201e39" source="id-02281798" target="id-5e7f7d9f" xsi:type="Access" accessType="Read">
+      <name xml:lang="en">Select</name>
+    </relationship>
+    <relationship identifier="cf83406a" source="id-02281798" target="c3601efe" xsi:type="Access" accessType="Write">
+      <name xml:lang="en">Generates</name>
+    </relationship>
+    <relationship identifier="id-5e6d11d7" source="a970de3f" target="id-9da59fe0" xsi:type="Access" accessType="Write" />
+    <relationship identifier="id-9aa9498f" source="id-7930a261" target="id-02281798" xsi:type="Serving" />
+    <relationship identifier="id-80019c21" source="id-02281798" target="id-545b9b14" xsi:type="Composition" />
+    <relationship identifier="id-72117be1" source="cc29385a" target="id-60d0dd58" xsi:type="Aggregation" />
+    <relationship identifier="bd454e62" source="id-60d0dd58" target="df557988" xsi:type="Composition" />
+    <relationship identifier="id-78346239" source="df557988" target="id-60d0dd58" xsi:type="Specialization" />
+    <relationship identifier="bec5d941" source="df557988" target="id-60d0dd58" xsi:type="Association" />
+    <relationship identifier="id-89c6039b" source="id-7f089ff2" target="df557988" xsi:type="Association" />
+    <relationship identifier="be37fd0f" source="id-7f089ff2" target="id-0609e555" xsi:type="Serving" />
+    <relationship identifier="id-718e8e3f" source="df557988" target="cc29385a" xsi:type="Specialization" />
+    <relationship identifier="id-4d837bc2" source="ea54df95" target="id-0609e555" xsi:type="Serving" />
+    <relationship identifier="id-8e2671bb" source="bfe922b5" target="cc29385a" xsi:type="Realization" />
+    <relationship identifier="fae505be" source="dbd78f41" target="cc29385a" xsi:type="Realization" />
+    <relationship identifier="id-85027f58" source="id-6e4996af" target="cc29385a" xsi:type="Realization" />
+    <relationship identifier="id-0169cc62" source="bfe922b5" target="ea54df95" xsi:type="Serving" />
+    <relationship identifier="id-2d80b4da" source="df557988" target="id-60c02ef2" xsi:type="Aggregation" />
+    <relationship identifier="d74c831a" source="id-60c02ef2" target="id-9e5881db" xsi:type="Association" />
+    <relationship identifier="dc19e767" source="id-60c02ef2" target="id-61db4962" xsi:type="Association" />
+    <relationship identifier="id-7e86d80d" source="id-60c02ef2" target="bd988b18" xsi:type="Association" />
+    <relationship identifier="id-2c27e47c" source="id-3b16c665" target="id-60c02ef2" xsi:type="Realization" />
+    <relationship identifier="id-57144229" source="b0f6f900" target="df557988" xsi:type="Association">
+      <name xml:lang="en">Product Catalog Items</name>
+    </relationship>
+    <relationship identifier="id-5bfc35c6" source="df557988" target="e57b74d1" xsi:type="Association">
+      <name xml:lang="en">1:1</name>
+    </relationship>
+    <relationship identifier="b87e3f84" source="df557988" target="c3601efe" xsi:type="Association" />
+    <relationship identifier="cca20688" source="df557988" target="id-08b505e8" xsi:type="Association" />
+    <relationship identifier="id-40a6f908" source="id-1891a735" target="f34c0571" xsi:type="Flow" />
+    <relationship identifier="id-6ee34e6c" source="f34c0571" target="id-0609e555" xsi:type="Serving" />
+    <relationship identifier="id-36baa0ca" source="f34c0571" target="df557988" xsi:type="Association" />
+    <relationship identifier="id-2aa67545" source="id-122f2140" target="edadc916" xsi:type="Aggregation" />
+    <relationship identifier="id-3d4e6a38" source="a9ee62a3" target="edadc916" xsi:type="Association" />
+    <relationship identifier="c083b7ad" source="a9ee62a3" target="ef73bdc7" xsi:type="Serving" />
+    <relationship identifier="a662980c" source="id-19ff834b" target="ff894a0a" xsi:type="Association" />
+    <relationship identifier="bece3011" source="ff894a0a" target="id-076276ee" xsi:type="Access" accessType="Write" />
+    <relationship identifier="ffacbf34" source="ff894a0a" target="cfd31687" xsi:type="Access" accessType="Write" />
+    <relationship identifier="id-12b1574e" source="ff894a0a" target="id-6a230b49" xsi:type="Access" accessType="Write" />
+    <relationship identifier="id-6da736c9" source="id-49695135" target="id-122f2140" xsi:type="Access" accessType="Write" />
+    <relationship identifier="id-76a643fa" source="id-49695135" target="ef73bdc7" xsi:type="Serving" />
+    <relationship identifier="id-1d394f27" source="id-91c9d084" target="ef73bdc7" xsi:type="Serving" />
+    <relationship identifier="c711c9e4" source="c2292107" target="id-0d1a6d64" xsi:type="Association" />
+    <relationship identifier="id-303f71dd" source="id-91c9d084" target="id-0d1a6d64" xsi:type="Association" />
+    <relationship identifier="cf2b919b" source="id-0d1a6d64" target="d17ef5eb" xsi:type="Aggregation">
+      <name xml:lang="en">1:n</name>
+    </relationship>
+    <relationship identifier="a9f7d665" source="id-03c5d0fc" target="id-1686d65d" xsi:type="Association" />
+    <relationship identifier="id-8b2b3fe4" source="id-03c5d0fc" target="id-8f92868a" xsi:type="Association" />
+    <relationship identifier="id-2a0606c9" source="id-03c5d0fc" target="id-3ad22a6e" xsi:type="Association" />
+    <relationship identifier="id-322d9ed7" source="id-03c5d0fc" target="f414147f" xsi:type="Association" />
+    <relationship identifier="id-5cd44798" source="id-0d1a6d64" target="id-8eb68cb9" xsi:type="Association" />
+    <relationship identifier="ba2babba" source="id-1891a735" target="e08c04f4" xsi:type="Serving" />
+    <relationship identifier="id-63e98909" source="id-1891a735" target="id-0609e555" xsi:type="Serving" />
+    <relationship identifier="bb22cb76" source="id-1891a735" target="id-0a7bd17b" xsi:type="Serving" />
+  </relationships>
+  <organizations>
+    <item>
+      <label xml:lang="en">Business</label>
+      <item identifierRef="id-8a503796" />
+      <item identifierRef="id-075fbf35" />
+      <item identifierRef="id-8aed9f55" />
+      <item identifierRef="f47e0d68" />
+      <item identifierRef="id-0a7bd17b" />
+      <item identifierRef="id-0609e555" />
+      <item identifierRef="id-2f46ec2b" />
+      <item identifierRef="e08c04f4" />
+      <item identifierRef="ef73bdc7" />
+      <item identifierRef="id-8dab2caa" />
+    </item>
+    <item>
+      <label xml:lang="en">Application</label>
+      <item identifierRef="id-8e9c9750" />
+      <item identifierRef="id-152ed138" />
+      <item identifierRef="f4ab94d8" />
+      <item identifierRef="id-2ea1db1a" />
+      <item identifierRef="id-19ff834b" />
+      <item identifierRef="c2292107" />
+      <item identifierRef="id-122f2140" />
+      <item identifierRef="id-0939c504" />
+      <item identifierRef="ff894a0a" />
+      <item identifierRef="id-8f42a49a" />
+      <item identifierRef="e57b74d1" />
+      <item identifierRef="d9fe1e40" />
+      <item identifierRef="id-9da59fe0" />
+      <item identifierRef="id-02281798" />
+      <item identifierRef="c3601efe" />
+      <item identifierRef="df557988" />
+      <item identifierRef="b23efb5d" />
+      <item identifierRef="id-5e7f7d9f" />
+      <item identifierRef="id-7930a261" />
+      <item identifierRef="id-86d83799" />
+      <item identifierRef="id-84baf3d1" />
+      <item identifierRef="id-545b9b14" />
+      <item identifierRef="id-9fe51835" />
+      <item identifierRef="id-335241d2" />
+      <item identifierRef="id-32acda7d" />
+      <item identifierRef="id-2d37fcb1" />
+      <item identifierRef="cc29385a" />
+      <item identifierRef="id-7f089ff2" />
+      <item identifierRef="id-60d0dd58" />
+      <item identifierRef="ea54df95" />
+      <item identifierRef="id-50bb7671" />
+      <item identifierRef="id-1891a735" />
+      <item identifierRef="id-903f187e" />
+      <item identifierRef="id-03c5d0fc" />
+      <item identifierRef="id-08b505e8" />
+      <item identifierRef="id-60c02ef2" />
+      <item identifierRef="id-61db4962" />
+      <item identifierRef="bd988b18" />
+      <item identifierRef="id-9e5881db" />
+      <item identifierRef="b0f6f900" />
+      <item identifierRef="f34c0571" />
+      <item identifierRef="edadc916" />
+      <item identifierRef="a9ee62a3" />
+      <item identifierRef="id-076276ee" />
+      <item identifierRef="cfd31687" />
+      <item identifierRef="id-6a230b49" />
+      <item identifierRef="id-49695135" />
+      <item identifierRef="id-0d1a6d64" />
+      <item identifierRef="id-91c9d084" />
+      <item identifierRef="d17ef5eb" />
+      <item identifierRef="id-8eb68cb9" />
+    </item>
+    <item>
+      <label xml:lang="en">Technology &amp; Physical</label>
+      <item identifierRef="a970de3f" />
+      <item identifierRef="b993bd55" />
+      <item identifierRef="bd7d45d8" />
+      <item identifierRef="e843fa9d" />
+      <item identifierRef="dbd78f41" />
+      <item identifierRef="bfe922b5" />
+      <item identifierRef="id-6e4996af" />
+      <item identifierRef="id-8f92868a" />
+      <item identifierRef="f414147f" />
+      <item identifierRef="id-3ad22a6e" />
+      <item identifierRef="id-1686d65d" />
+      <item identifierRef="id-70ee5b05" />
+      <item identifierRef="id-3b16c665" />
+    </item>
+    <item>
+      <label xml:lang="en">Relations</label>
+      <item identifierRef="f056042a" />
+      <item identifierRef="f594407d" />
+      <item identifierRef="id-69f830ab" />
+      <item identifierRef="a48fbf67" />
+      <item identifierRef="a2988c62" />
+      <item identifierRef="id-479c7c0f" />
+      <item identifierRef="da87524e" />
+      <item identifierRef="id-5ecbfef9" />
+      <item identifierRef="bca83684" />
+      <item identifierRef="ab1619b4" />
+      <item identifierRef="id-9e9e5a3e" />
+      <item identifierRef="id-3bd2742a" />
+      <item identifierRef="id-11ad81b0" />
+      <item identifierRef="id-6f300604" />
+      <item identifierRef="e849b93d" />
+      <item identifierRef="id-0bdac89e" />
+      <item identifierRef="id-36bc1a63" />
+      <item identifierRef="b68dc6f9" />
+      <item identifierRef="id-629043c3" />
+      <item identifierRef="id-951814f3" />
+      <item identifierRef="c8b6ec8e" />
+      <item identifierRef="id-02bdbdb7" />
+      <item identifierRef="id-672a367e" />
+      <item identifierRef="c97ff7be" />
+      <item identifierRef="e122d8f5" />
+      <item identifierRef="id-1f6b079c" />
+      <item identifierRef="c31fa7b4" />
+      <item identifierRef="d8201e39" />
+      <item identifierRef="cf83406a" />
+      <item identifierRef="id-5e6d11d7" />
+      <item identifierRef="id-9aa9498f" />
+      <item identifierRef="id-80019c21" />
+      <item identifierRef="id-72117be1" />
+      <item identifierRef="bd454e62" />
+      <item identifierRef="id-78346239" />
+      <item identifierRef="bec5d941" />
+      <item identifierRef="id-89c6039b" />
+      <item identifierRef="be37fd0f" />
+      <item identifierRef="id-718e8e3f" />
+      <item identifierRef="id-4d837bc2" />
+      <item identifierRef="id-8e2671bb" />
+      <item identifierRef="fae505be" />
+      <item identifierRef="id-85027f58" />
+      <item identifierRef="id-0169cc62" />
+      <item identifierRef="id-2d80b4da" />
+      <item identifierRef="d74c831a" />
+      <item identifierRef="dc19e767" />
+      <item identifierRef="id-7e86d80d" />
+      <item identifierRef="id-2c27e47c" />
+      <item identifierRef="id-57144229" />
+      <item identifierRef="id-5bfc35c6" />
+      <item identifierRef="b87e3f84" />
+      <item identifierRef="cca20688" />
+      <item identifierRef="id-40a6f908" />
+      <item identifierRef="id-6ee34e6c" />
+      <item identifierRef="id-36baa0ca" />
+      <item identifierRef="id-2aa67545" />
+      <item identifierRef="id-3d4e6a38" />
+      <item identifierRef="c083b7ad" />
+      <item identifierRef="a662980c" />
+      <item identifierRef="bece3011" />
+      <item identifierRef="ffacbf34" />
+      <item identifierRef="id-12b1574e" />
+      <item identifierRef="id-6da736c9" />
+      <item identifierRef="id-76a643fa" />
+      <item identifierRef="id-1d394f27" />
+      <item identifierRef="c711c9e4" />
+      <item identifierRef="id-303f71dd" />
+      <item identifierRef="cf2b919b" />
+      <item identifierRef="a9f7d665" />
+      <item identifierRef="id-8b2b3fe4" />
+      <item identifierRef="id-2a0606c9" />
+      <item identifierRef="id-322d9ed7" />
+      <item identifierRef="id-5cd44798" />
+      <item identifierRef="ba2babba" />
+      <item identifierRef="id-63e98909" />
+      <item identifierRef="bb22cb76" />
+    </item>
+    <item>
+      <label xml:lang="en">Views</label>
+      <item identifierRef="id-7c825f38" />
+    </item>
+  </organizations>
+  <views>
+    <diagrams>
+      <view identifier="id-7c825f38" xsi:type="Diagram">
+        <name xml:lang="en">Default View</name>
+        <node identifier="e687a2c7" elementRef="f47e0d68" xsi:type="Element" x="1371" y="12" w="456" h="121">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-19944adf" elementRef="id-8aed9f55" xsi:type="Element" x="1671" y="60" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="ea1302ea" elementRef="id-075fbf35" xsi:type="Element" x="1539" y="60" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+          <node identifier="c1ec64f6" elementRef="id-8a503796" xsi:type="Element" x="1407" y="60" w="120" h="55">
+            <style>
+              <fillColor r="255" g="255" b="181" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+          </node>
+        </node>
+        <node identifier="id-66355fed" elementRef="f4ab94d8" xsi:type="Element" x="42" y="216" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-46fabdb6" elementRef="id-152ed138" xsi:type="Element" x="1674" y="751" w="118" h="60">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-2aa0281e" elementRef="id-8e9c9750" xsi:type="Element" x="42" y="288" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-924a7c3b" elementRef="ff894a0a" xsi:type="Element" x="221" y="624" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="dc211be2" elementRef="id-8f42a49a" xsi:type="Element" x="588" y="834" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-4d0c1b79" elementRef="d9fe1e40" xsi:type="Element" x="756" y="852" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="c121100c" elementRef="id-122f2140" xsi:type="Element" x="221" y="460" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-98e18281" elementRef="id-0939c504" xsi:type="Element" x="432" y="822" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="ac0fd29a" elementRef="e57b74d1" xsi:type="Element" x="2748" y="438" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-736afcce" elementRef="id-9da59fe0" xsi:type="Element" x="1674" y="514" w="118" h="60">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="d7a44e35" elementRef="id-02281798" xsi:type="Element" x="1753" y="345" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="d56ae870" elementRef="id-0609e555" xsi:type="Element" x="1908" y="168" w="120" h="55">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-7e1e96d1" elementRef="c3601efe" xsi:type="Element" x="1356" y="522" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-01cb6d23" elementRef="id-0a7bd17b" xsi:type="Element" x="1320" y="180" w="120" h="55">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="b710c444" elementRef="id-2f46ec2b" xsi:type="Element" x="972" y="180" w="120" h="55">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-117956dd" elementRef="df557988" xsi:type="Element" x="2593" y="522" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-81835def" elementRef="b23efb5d" xsi:type="Element" x="1393" y="345" w="120" h="52">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="ea09fbc9" elementRef="id-5e7f7d9f" xsi:type="Element" x="1823" y="516" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="d63dba9b" elementRef="id-86d83799" xsi:type="Element" x="1056" y="345" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="e0741c01" elementRef="e08c04f4" xsi:type="Element" x="1597" y="174" w="120" h="55">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="f31b1142" elementRef="b993bd55" xsi:type="Element" x="1739" y="624" w="80" h="55">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="a5ee2f3a" elementRef="a970de3f" xsi:type="Element" x="1619" y="624" w="84" h="55">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="f1f181d7" elementRef="id-9fe51835" xsi:type="Element" x="2712" y="828" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-26e04bef" elementRef="bd7d45d8" xsi:type="Element" x="2328" y="876" w="120" h="55">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-96cc8222" elementRef="id-335241d2" xsi:type="Element" x="888" y="264" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-03fbc612" elementRef="id-32acda7d" xsi:type="Element" x="588" y="366" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-7bc212dd" elementRef="e843fa9d" xsi:type="Element" x="1356" y="852" w="120" h="55">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="dd8f385e" elementRef="id-2d37fcb1" xsi:type="Element" x="1356" y="780" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="a7973644" elementRef="cc29385a" xsi:type="Element" x="2748" y="522" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="dc07541a" elementRef="id-7f089ff2" xsi:type="Element" x="2292" y="360" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-28846c6c" elementRef="id-60d0dd58" xsi:type="Element" x="2748" y="624" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-172740ee" elementRef="ea54df95" xsi:type="Element" x="2904" y="371" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-15244f4b" elementRef="dbd78f41" xsi:type="Element" x="2915" y="522" w="120" h="55">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="de02f799" elementRef="bfe922b5" xsi:type="Element" x="2915" y="438" w="120" h="55">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-22f49d61" elementRef="id-6e4996af" xsi:type="Element" x="2915" y="624" w="120" h="55">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-85011cc8" elementRef="id-50bb7671" xsi:type="Element" x="2457" y="250" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-10a574e3" elementRef="id-1891a735" xsi:type="Element" x="1933" y="345" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="ba122d0e" elementRef="id-03c5d0fc" xsi:type="Element" x="912" y="345" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-41fb9b62" elementRef="id-8f92868a" xsi:type="Element" x="888" y="552" w="120" h="55">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-70c802d5" elementRef="f414147f" xsi:type="Element" x="1056" y="552" w="120" h="55">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-8c09bad3" elementRef="id-3ad22a6e" xsi:type="Element" x="1056" y="468" w="120" h="55">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="a3bd1137" elementRef="id-1686d65d" xsi:type="Element" x="888" y="468" w="120" h="55">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-862375d2" elementRef="id-08b505e8" xsi:type="Element" x="2580" y="366" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-06bbe7ec" elementRef="id-60c02ef2" xsi:type="Element" x="2593" y="624" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-4be6c7bf" elementRef="id-61db4962" xsi:type="Element" x="2293" y="649" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-6900d020" elementRef="bd988b18" xsi:type="Element" x="2292" y="727" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="f0ce0c16" elementRef="id-9e5881db" xsi:type="Element" x="2292" y="571" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-7ba33319" elementRef="id-70ee5b05" xsi:type="Element" x="2519" y="828" w="120" h="55">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="f450d265" elementRef="id-3b16c665" xsi:type="Element" x="2593" y="727" w="120" h="55">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-54cfa3c0" elementRef="b0f6f900" xsi:type="Element" x="2293" y="492" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-5a9ffb1b" elementRef="f34c0571" xsi:type="Element" x="2113" y="345" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="b00dda30" elementRef="edadc916" xsi:type="Element" x="432" y="460" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-3710f7fc" elementRef="a9ee62a3" xsi:type="Element" x="432" y="366" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="bce1bca1" elementRef="ef73bdc7" xsi:type="Element" x="324" y="180" w="120" h="55">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="e36d24af" elementRef="id-076276ee" xsi:type="Element" x="438" y="538" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="e18e6c62" elementRef="cfd31687" xsi:type="Element" x="437" y="619" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-200ac041" elementRef="id-6a230b49" xsi:type="Element" x="437" y="697" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-87ba5599" elementRef="id-49695135" xsi:type="Element" x="221" y="366" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-90c57571" elementRef="id-0d1a6d64" xsi:type="Element" x="744" y="457" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="ca2402a0" elementRef="id-91c9d084" xsi:type="Element" x="744" y="366" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="d0c5e7ef" elementRef="d17ef5eb" xsi:type="Element" x="588" y="619" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-88fd6ebd" elementRef="id-8eb68cb9" xsi:type="Element" x="744" y="619" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-0fa4ab24" elementRef="id-903f187e" xsi:type="Element" x="2447" y="360" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="c5de5dd6" elementRef="c2292107" xsi:type="Element" x="588" y="457" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="fdde4eca" elementRef="id-19ff834b" xsi:type="Element" x="48" y="619" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-904154bb" elementRef="id-84baf3d1" xsi:type="Element" x="1201" y="345" w="120" h="52">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-285aae45" elementRef="id-7930a261" xsi:type="Element" x="1573" y="345" w="120" h="52">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <connection identifier="id-09b31b58" relationshipRef="bece3011" xsi:type="Relationship" source="id-924a7c3b" target="e36d24af">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-457ea8d8" relationshipRef="ffacbf34" xsi:type="Relationship" source="id-924a7c3b" target="e18e6c62">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-2188822d" relationshipRef="id-12b1574e" xsi:type="Relationship" source="id-924a7c3b" target="id-200ac041">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-2a720e73" relationshipRef="id-2aa67545" xsi:type="Relationship" source="c121100c" target="b00dda30">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-70ac9341" relationshipRef="c97ff7be" xsi:type="Relationship" source="d7a44e35" target="id-736afcce">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-0734db27" relationshipRef="c31fa7b4" xsi:type="Relationship" source="d7a44e35" target="d56ae870">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-2fcc2cf2" relationshipRef="d8201e39" xsi:type="Relationship" source="d7a44e35" target="ea09fbc9">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-127a94fd" relationshipRef="cf83406a" xsi:type="Relationship" source="d7a44e35" target="id-7e1e96d1">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-0511e521" relationshipRef="id-951814f3" xsi:type="Relationship" source="id-7e1e96d1" target="id-904154bb">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="d40baf32" relationshipRef="bec5d941" xsi:type="Relationship" source="id-117956dd" target="id-28846c6c">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="df1db0d1" relationshipRef="id-718e8e3f" xsi:type="Relationship" source="id-117956dd" target="a7973644">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-6d69dcbd" relationshipRef="id-2d80b4da" xsi:type="Relationship" source="id-117956dd" target="id-06bbe7ec">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="f6f740d6" relationshipRef="id-5bfc35c6" xsi:type="Relationship" source="id-117956dd" target="ac0fd29a">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-841047cd" relationshipRef="b87e3f84" xsi:type="Relationship" source="id-117956dd" target="id-7e1e96d1">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="b3a7fa20" relationshipRef="cca20688" xsi:type="Relationship" source="id-117956dd" target="id-862375d2">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="ad0bf712" relationshipRef="id-36bc1a63" xsi:type="Relationship" source="id-81835def" target="id-904154bb">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="ff59174e" relationshipRef="b68dc6f9" xsi:type="Relationship" source="id-81835def" target="id-285aae45">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="dcf5867e" relationshipRef="e122d8f5" xsi:type="Relationship" source="d63dba9b" target="id-01cb6d23">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-507ee1d4" relationshipRef="id-1f6b079c" xsi:type="Relationship" source="d63dba9b" target="id-7e1e96d1">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-1f5cf38a" relationshipRef="id-5e6d11d7" xsi:type="Relationship" source="a5ee2f3a" target="id-736afcce">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="fd8357f0" relationshipRef="id-72117be1" xsi:type="Relationship" source="a7973644" target="id-28846c6c">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="cfe208c5" relationshipRef="id-89c6039b" xsi:type="Relationship" source="dc07541a" target="id-117956dd">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-77748d87" relationshipRef="be37fd0f" xsi:type="Relationship" source="dc07541a" target="d56ae870">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-6688fd16" relationshipRef="id-4d837bc2" xsi:type="Relationship" source="id-172740ee" target="d56ae870">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="c71d8b87" relationshipRef="fae505be" xsi:type="Relationship" source="id-15244f4b" target="a7973644">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-8d9a1538" relationshipRef="id-8e2671bb" xsi:type="Relationship" source="de02f799" target="a7973644">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="cdac7fdb" relationshipRef="id-0169cc62" xsi:type="Relationship" source="de02f799" target="id-172740ee">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-46a46793" relationshipRef="id-85027f58" xsi:type="Relationship" source="id-22f49d61" target="a7973644">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-5709c4a9" relationshipRef="id-40a6f908" xsi:type="Relationship" source="id-10a574e3" target="id-5a9ffb1b">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="a6c223da" relationshipRef="ba2babba" xsi:type="Relationship" source="id-10a574e3" target="e0741c01">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-762d72ca" relationshipRef="id-63e98909" xsi:type="Relationship" source="id-10a574e3" target="d56ae870">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-719408eb" relationshipRef="bb22cb76" xsi:type="Relationship" source="id-10a574e3" target="id-01cb6d23">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-385b2e1a" relationshipRef="a9f7d665" xsi:type="Relationship" source="ba122d0e" target="a3bd1137">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-0ee02df2" relationshipRef="id-8b2b3fe4" xsi:type="Relationship" source="ba122d0e" target="id-41fb9b62">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-0e7d5273" relationshipRef="id-2a0606c9" xsi:type="Relationship" source="ba122d0e" target="id-8c09bad3">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="ac979836" relationshipRef="id-322d9ed7" xsi:type="Relationship" source="ba122d0e" target="id-70c802d5">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-6367227f" relationshipRef="d74c831a" xsi:type="Relationship" source="id-06bbe7ec" target="f0ce0c16">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-531f3e23" relationshipRef="dc19e767" xsi:type="Relationship" source="id-06bbe7ec" target="id-4be6c7bf">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="aad2e146" relationshipRef="id-7e86d80d" xsi:type="Relationship" source="id-06bbe7ec" target="id-6900d020">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-1482a2f0" relationshipRef="id-2c27e47c" xsi:type="Relationship" source="f450d265" target="id-06bbe7ec">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-96b3f72e" relationshipRef="id-57144229" xsi:type="Relationship" source="id-54cfa3c0" target="id-117956dd">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-32c11429" relationshipRef="id-6ee34e6c" xsi:type="Relationship" source="id-5a9ffb1b" target="d56ae870">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="e86c7ffb" relationshipRef="id-36baa0ca" xsi:type="Relationship" source="id-5a9ffb1b" target="id-117956dd">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-6352a27a" relationshipRef="id-3d4e6a38" xsi:type="Relationship" source="id-3710f7fc" target="b00dda30">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-052a4bad" relationshipRef="c083b7ad" xsi:type="Relationship" source="id-3710f7fc" target="bce1bca1">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-13b38573" relationshipRef="id-6da736c9" xsi:type="Relationship" source="id-87ba5599" target="c121100c">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="e9daa1f8" relationshipRef="id-76a643fa" xsi:type="Relationship" source="id-87ba5599" target="bce1bca1">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="f3b40cef" relationshipRef="cf2b919b" xsi:type="Relationship" source="id-90c57571" target="d0c5e7ef">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-528f08a8" relationshipRef="id-5cd44798" xsi:type="Relationship" source="id-90c57571" target="id-88fd6ebd">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-982eb8ad" relationshipRef="id-1d394f27" xsi:type="Relationship" source="ca2402a0" target="bce1bca1">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-00da76e4" relationshipRef="id-303f71dd" xsi:type="Relationship" source="ca2402a0" target="id-90c57571">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-59bd790d" relationshipRef="c711c9e4" xsi:type="Relationship" source="c5de5dd6" target="id-90c57571">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-8fb61dc3" relationshipRef="a662980c" xsi:type="Relationship" source="fdde4eca" target="id-924a7c3b">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-35ca0553" relationshipRef="id-629043c3" xsi:type="Relationship" source="id-904154bb" target="d56ae870">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-134f873e" relationshipRef="id-672a367e" xsi:type="Relationship" source="id-285aae45" target="d56ae870">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-8574d112" relationshipRef="c8b6ec8e" xsi:type="Relationship" source="id-285aae45" target="id-736afcce">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-453024f3" relationshipRef="id-02bdbdb7" xsi:type="Relationship" source="id-285aae45" target="id-7e1e96d1">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="e5a8bfa6" relationshipRef="id-9aa9498f" xsi:type="Relationship" source="id-285aae45" target="d7a44e35">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+      </view>
+    </diagrams>
+  </views>
+</model>

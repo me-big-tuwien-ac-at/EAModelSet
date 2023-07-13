@@ -1,0 +1,191 @@
+"ID","Type","Name","Documentation","Specialization"
+"490512c1-d52a-4558-8ecc-326bcf3cea69","ArchimateModel","OPBOT","",""
+"57b71ce1-4660-4744-a57f-cf4866194280","BusinessActor","관련자","Slack",""
+"36ef1a77-434b-471f-a204-6fe384469718","BusinessActor","작업자","",""
+"73dd6b49-28ed-4502-be28-fa48ef1444c9","BusinessObject","Step1","1.Excel 로딩
+2.DB 초기화
+3.데이터(장애구분, 문자발송일시, 발송메시지) 추출
+4.발송메시지 분석
+4.1.'\n'(new line)으로 row 파싱
+4.2.row 분석
+5.분석결과 DB 저장",""
+"45c70bc4-0a83-4fe5-8ee9-b00fd9f69985","BusinessObject","Step2","",""
+"5dc25a00-7792-4de1-bc2c-b33c001740f4","ApplicationComponent","Analyzer","수집된 로그를 이용하여 일배치로 학습 데이터 생성
+",""
+"1df1ca90-e21a-448e-81ef-01ee100c9d3c","ApplicationComponent","ChannelAdapter","",""
+"2513ea21-21d3-4978-96f8-bbd458d97aab","ApplicationComponent","Chatbot","ip: localhost
+port: 9595",""
+"5da997f0-a01f-41a5-b9bf-a561a837bf05","ApplicationComponent","Collector","작업자 수행 정보를 비동기로 수집/저장
+현재는 DB에 저장하나, 추후 NoSQL DB나 pikle로 저장 고려(암호화, 성능 등 보안적인 고려 필요)",""
+"f91af1c2-b0b9-4375-9c8f-d75575b374b1","ApplicationComponent","DataPreprocessor","",""
+"0ea80148-94c4-42ad-ab56-633b3aef3c81","ApplicationComponent","Manager","-태스트 관리
+-사용자 관리",""
+"b8028510-c510-4ccf-a158-22b48f443ed5","ApplicationComponent","Recommender","-알고리즘을 통한 분석/조치 태스크 추천",""
+"228413dd-a264-4c1a-b54a-25ff8b79c608","ApplicationComponent","TaskExecutor","-태스크 수행 요청 및 수행 결과 저장",""
+"5f0f73ac-97c1-4dd1-9ca8-6674e9ae8202","ApplicationEvent","1day","",""
+"08d464e8-4d56-4054-9aaa-23927a5627fd","ApplicationEvent","1min","",""
+"e8e055f4-66d5-4cb5-96d0-ea16f4b5d6e3","ApplicationEvent","1sec","",""
+"945a6bf0-f2c3-48cd-9206-11c7b47f8dba","ApplicationEvent","on_demand","",""
+"83023f95-46de-40a6-8469-8b13196eb87a","ApplicationFunction","action_info_add","수집된 수행 정보 WORK_HISTORY 테이블에 적재",""
+"44c160c7-1ed6-4d9d-9a2d-5231f32b3f8c","ApplicationFunction","action_info_get","QUEUE에 적재된 수행 이력 수집",""
+"19bb6352-3ea7-41db-ba3e-06630db22af5","ApplicationFunction","catch_event","이벤트 감지",""
+"6319eb7e-f92c-4302-aa40-8cff45ee3afa","ApplicationFunction","channel_read","CHANNEL_INFO 정보 조회",""
+"19ae79cb-4b08-4975-8273-e4c0b12fd186","ApplicationFunction","clear_data","",""
+"98f78850-e041-4d16-85d1-9408a350d8f8","ApplicationFunction","data_filter","",""
+"ae213c49-62ba-497c-bb60-6dacfe949ff5","ApplicationFunction","dataset_adding","3.Adding
+-classify csv 파일 row의 오류 메시지가 RECOMMEND_INFO 테이블에 MESSAGE_PATTERN 컬럼 데이터와 유사도 90%일 경우
+ OUTBOUND_TASK_ID 없으면 INSERT 존재하면 CALL_CNT 1 증가",""
+"3acc59ff-0b0d-46c8-9607-fe9662f3d126","ApplicationFunction","dataset_classify","2.Classify
+-그룹 csv 파일을 read 하여 task ID 별로 분류한다.
+-파일명: 'A' or 'S'/classify/YYYYMMDD/c_NNNN.csv
+",""
+"6b03f5b1-0459-46db-9a04-d6e3db8d9006","ApplicationFunction","dataset_grouping","1.Grouping
+-Origin CSV 내 오류 메시지의 유사도가 90%이상인 row들끼리 그룹핑
+-파일명: 'A' or 'S'/group/YYYYMMDD/g_NNNN.csv",""
+"d1b51105-d960-44ca-abc5-70f19e4ae8f5","ApplicationFunction","dataset_preproc","",""
+"3c804b82-1966-488a-afad-581d877b0660","ApplicationFunction","find_contents","",""
+"42008597-c42e-46bb-b807-b4330ea38f21","ApplicationFunction","find_key_word","",""
+"b29470cd-eb06-4753-9c62-850a51c31ef9","ApplicationFunction","get_send_message","",""
+"3c6354a6-ee16-4217-9898-479ec40a20fd","ApplicationFunction","get_type","",""
+"8c245acf-e2af-4d84-af97-2db517c4cde7","ApplicationFunction","history_add","",""
+"d411975b-1efe-4d52-81a3-19281012bd8f","ApplicationFunction","history_read","이벤트 정보 조회(채널 아이디, 메시지)",""
+"5078509d-79ed-4784-9bd2-115041aff0dd","ApplicationFunction","insert_xls","",""
+"55790d8b-b150-4b43-a207-429235d8d629","ApplicationFunction","interactive_chat","",""
+"7090ef5d-45aa-43df-836e-a5d561837d81","ApplicationFunction","origin_dataset_generate","학습 데이터 dataset 가공을 위한 원천 dataset 생성.
+1.origin dataset 파일(CSV) 파일 생성
+-분석('A')/조치('S') 별 파일 생성
+-파일명: origin_YYYYMMDD.csv
+2.work_history 조회.
+3.event message 조회
+4.분석/조치 별 csv 파일 생성.",""
+"fa4083ed-4bb9-4a1e-ae9a-e9219915eeea","ApplicationFunction","parse_command","Slack 응답 메시지 파싱하여 수행할 명령어 분석.",""
+"20003271-ddad-4d10-bd7d-0048c2189d35","ApplicationFunction","parse_row","",""
+"f2a07ec9-560d-4bda-9eed-9e34738c6d5c","ApplicationFunction","percentage_calc","백분율 계산.",""
+"af38c989-16ff-4796-8d7b-c0462a6d94be","ApplicationFunction","put_broadcast","- RTM(Real Time Message)
+- Async I/O
+- 아웃바운드 메시지 브로드케스팅
+- 개방 채널(open channel)",""
+"981390fb-5532-493b-86e6-f7af270100b5","ApplicationFunction","put_chat","- 작업자에게 수행가능한 Task 리스트 제공
+- 처리결과 제공
+- 폐쇄 채널(closed channel)",""
+"a0c92046-a2be-493f-bc61-84be6b6946a1","ApplicationFunction","put_collect","분석/조치 수행 정보 수집/저장 요청",""
+"3ac5d3ae-12d4-4255-91f7-60b43d7f7470","ApplicationFunction","read_xls","",""
+"8f713578-702b-4873-9434-fafd8a7b668b","ApplicationFunction","recommend_info_get","-분석('A')/조치('S')에 따라 TASK_INFO 테이블에서 action_type 별로 조회
+-조회된 TASK를 기준으로 RECOMMEND_BASE_INFO 정보를 이용하여 백분율 계산 및 추천 순위 반환",""
+"1efcf300-256d-4342-b15a-d6352ecfca71","ApplicationFunction","recommend_renew","추천 정보 갱신
+Origin CSV를 기반으로 RECOMMEND_INFO 정보 갱신.
+
+1.Grouping
+-Origin CSV 내 오류 메시지의 유사도가 90%이상인 row들끼리 그룹핑
+-파일명: 'A' or 'S'/group/YYYYMMDD/{uuid}.csv
+
+2.Classify
+-그룹 csv 파일을 read하여 task ID 별로 분류한다.
+-파일명: 'A' or 'S'/classify/YYYYMMDD/{uuid}.csv
+
+3.Adding
+-classify csv 파일 row의 오류 메시지가 RECOMMEND_INFO 테이블에 MESSAGE_PATTERN 컬럼 데이터와 유사도 90%일 경우
+ OUTBOUND_TASK_ID 없으면 INSERT 존재하면 CALL_CNT 1 증가",""
+"6394e59e-aca0-47c6-ab60-dbef52f41842","ApplicationFunction","report_generate","수행 결과 보고서 생성
+-async task 내에서 수행",""
+"134bca2f-7f3e-405f-ab93-5c15a9a5f35e","ApplicationFunction","save_data","",""
+"5b513606-8ce4-4a53-a093-332746e8dd02","ApplicationFunction","scrape","",""
+"4e3a9898-512c-47ea-a9b8-97d2f41bca85","ApplicationFunction","sign_in","로그인",""
+"935314b2-3d0b-4f77-aba3-851952c12628","ApplicationFunction","sign_out","로그 오프",""
+"b2a80b9a-11d5-4495-b080-92b6ff5e4596","ApplicationFunction","task_add","1.작업(task) 등록
+  - 작업 ID
+  - 작업 명칭
+  - 유형 선택(분석[a] or 조치[s])
+2.slack channel 선택",""
+"81d1ad64-382d-4d71-a47f-4e6b5fe4ea92","ApplicationFunction","task_del","작업(task), slack channel 삭제",""
+"5db58042-c3e2-4f16-96a5-9a82b7950ded","ApplicationFunction","task_edit","작업(task), slack channel 수정",""
+"6c92942e-e13d-47a1-9037-881c165323d0","ApplicationFunction","task_execute","태스트 수행 요청
+-Async task",""
+"30924fc8-aec1-4591-9e15-424424130e07","ApplicationFunction","task_opinion","발생한 event 유형을 분석하고 이에 적합한 분석/조치 task에 대한 의견 제공
+REST API를 이용하여 Recommander로부터 의견 수신
+예)
+동일한 이벤트 대응 이력분석 결과 유효한 분석/조치 작업은 아래와 같습니다.
+분석: 'DB_상태_분석' 85.3 %, 'EAI/MCG_상태_분석' 13.2 %, 'TP_상태_분석' 1.5 %, '시스템_상태_분석' 0%
+조치: 'DB_Session_Lock_제거' 95 %, 'EAI_Queue_Purge' 15 %, 'TP_재기동' 0 %",""
+"94bc0d17-fc4b-4a87-8641-e713cf750046","ApplicationFunction","task_recommend","채널 ID별 수행가능한 분석/조치 태스크 제공(추천 알고리즘 적용)",""
+"7377f090-b0ec-417e-8422-f3c503448dc1","ApplicationFunction","task_recommend","추천도가 가장 높은 태스크 반환.",""
+"1f9e12b6-c20b-4a65-b821-ce8f786a347d","ApplicationFunction","task_result_add","",""
+"5881b49b-5564-41b0-84f9-d385ea7c259c","ApplicationFunction","task_sort","추천도(백분율)에 따라 태스크 정렬.",""
+"5592269a-68f2-41b1-8fd9-ee92f94eebbc","ApplicationFunction","user_add","사용자 추가",""
+"8d42a000-2365-4c8c-9257-451404002463","ApplicationFunction","user_del","사용자 삭제",""
+"11309340-25c3-479d-927f-ae50514d9f8c","ApplicationFunction","user_edit","사용자 정보 수정",""
+"95ea29cc-8421-490d-9e05-903e5df0d6ab","ApplicationFunction","work_history_get","수행 이력 조회",""
+"5a4d7e59-ee02-437d-9b6b-a2479e3bea0e","ApplicationInterface","adapter_opmate","",""
+"8464c129-977d-4bb8-b2e1-2f008c6cfdbc","ApplicationInterface","adapter_oracle","-ADAPTER는 특정 채널을 위한 별도 모듈
+-신규 채널이 추가되면 별도 구현
+-채널 ID 지정",""
+"2404f6d7-4999-4b39-b08e-543df6230f7a","ApplicationInterface","adapter_sa","",""
+"8a8b5a37-1c53-4111-85db-72918079a085","ApplicationInterface","adapter_ssh","ssh 기반 no agent 수행기",""
+"d643b61b-c8aa-42b8-b943-5d0fdb632ffa","ApplicationInterface","notify","",""
+"57764eba-c280-4922-8e8a-50d16e761e30","ApplicationProcess","asyncio_receiver","RTM API 비동기 수신 프로세스.",""
+"b3bba506-b4a7-4d58-a67b-1382d9ea9410","ApplicationProcess","recommend_model","-M/L",""
+"f10b32ef-4250-4e0a-b599-38b4d2adad67","ApplicationProcess","recommend_model","",""
+"5317d529-f8d2-4076-a05b-cf17583417a9","DataObject","CHANNEL_INFO","- 이벤트가 들어오는 inbound 채널과 이벤트를 출력할 outbound 채널 관리테이블
+- Slack 채널 ID 별 outbound 채널 설정",""
+"ab210f0a-291b-4762-aa6e-e6b1c24de398","DataObject","EVENT_HISTORY","",""
+"73e6b131-ab4f-4f5f-926e-7e281a12d8ca","DataObject","PM_SVC_LOG_MON","통품감 알람 마스터 테이블",""
+"cd16d96b-64d6-491e-94ed-a14ffac44284","DataObject","r.txt","",""
+"f940535f-7053-4366-9f87-bc7bd92d5df8","DataObject","RECOMMEND_BASE_INFO","Origin CSV 기반으로 계산된 태스크 별 호출 정보.",""
+"30d3ad3b-9edb-408e-a8ef-fb0ee30b9dd5","DataObject","Rims","Rims 장애/상황 관련 Excel 파일",""
+"5cad4e93-9fce-472b-a3de-1ccdd7130257","DataObject","Rims_result","",""
+"4b69e659-eda8-415d-950f-28346391a729","DataObject","TARGET_LIST","task executor가 요청할 대상 서버 정보 관리 테이블",""
+"eb14772d-4561-4749-a755-8198a5c90a05","DataObject","TASK_DETAIL","",""
+"f689a7f0-a423-4748-a9c0-71e874a904ad","DataObject","TASK_INFO","ssh adapter를 사용하는 task 정의",""
+"0bd44d8f-fec0-4fb3-93dc-661db8029c87","DataObject","TASK_LIST","분석/조치를 위한 태스크 목록",""
+"14f30345-0648-4552-96f2-a3185a8282ce","DataObject","TASK_RESULT_DETAIL","",""
+"a773171d-81ca-409d-b2db-e5f021891f04","DataObject","TASK_RESULT_LIST","",""
+"afdf454e-026b-4074-ad23-7b53aa26a116","DataObject","USERS","",""
+"1bf47b57-04ba-4c0f-a4cc-256a3d6c21c4","DataObject","WORK_HISTORY","수행 이력 테이블",""
+"82b6038b-6d08-4c3a-a3dd-88da6c7e8181","Artifact","Classify CSV","",""
+"93925381-ff22-4ede-99e1-b2e2c1ed3862","Artifact","Group CSV","",""
+"a6a42138-52a6-4b67-9667-88fbb290a723","Artifact","Origin CSV","학습 원천 데이터
+포맷: CSV
+파일명: origin_{YYYYMMDD}.csv
+디렉토리: 설정에 있는 DATASETS_DIR 아래 분석('A')/조치('S') 디렉토리로 분류",""
+"c98d6ae3-f2f9-4bc2-9416-3c3e394b0462","Artifact","Pre_Proc CSV","전처리 가공된 학습 데이터
+포맷: CSV
+파일명: proc_{YYYYMMDD}.csv
+디렉토리: 설정에 있는 DATASETS_DIR 아래 분석('A')/조치('S') 디렉토리로 분류",""
+"e58b1360-4966-4a8e-8a09-a69b462578a0","Device","PC or Mobile","",""
+"52eb7b9f-2724-4adf-8375-9f1f0512d3cd","Node","OPBOT","",""
+"eaaa98cb-4fb6-4203-b914-8fa94e9e6859","Node","Slack","",""
+"4a9568f4-cfc5-4631-8512-57f86f0b23dc","Node","모니터링 서버","",""
+"0dbd928e-6574-45df-80cc-72ed8ac69c0f","Node","자동화 도구","OPMATE, SA, Ansible, Chef",""
+"9d5f69b1-93d9-42e3-9e8a-e784549ae4cf","Node","작업 대상 서버","",""
+"a002ad63-65d2-4039-b9ee-5b7830211349","SystemSoftware","Celery","",""
+"de8a7615-1253-4423-abce-a6c8a203230a","SystemSoftware","Excel","",""
+"bed649b2-891d-4080-81c6-f82db718d492","SystemSoftware","fabric","",""
+"5ff2a351-c6ec-45bd-9062-d33a7af8a29a","SystemSoftware","File","",""
+"bb9f46c4-0b7e-4aca-94b5-1fd49301e336","SystemSoftware","Flask","REST API Server",""
+"f98e8e77-d60b-4f65-9a4d-1c99d29676c8","SystemSoftware","Flask-RESTPlus","",""
+"7893666b-d325-44f2-b635-5d668bbafdc7","SystemSoftware","Gunicorn","",""
+"4551af2d-019d-44ea-8eee-6fb133de1e98","SystemSoftware","keras(dev)","",""
+"651bc35c-cec6-4f66-bf47-8289f6465022","SystemSoftware","keras(real)","",""
+"de52ad2a-5af8-4c7c-b0f5-b4273df5d029","SystemSoftware","MariaDB","database: opbot_db
+user: opbot_appl/apbot_appl26#!
+
+!주의 사항: Database 생성시 인코딩 주의!
+alter database opbot_db character set=utf8mb4 collate=utf8mb4_unicode_ci;
+alter table [table명] convert to character set utf8mb4 collate utf8mb4_unicode_ci;",""
+"0312c56b-4c30-49cb-9ba3-478f72acf7d4","SystemSoftware","OPMATE","",""
+"adebf3aa-8f8f-4bef-8a8c-49fe4e6f5fe5","SystemSoftware","Oracle","Prototype에서는 MariadB에 'oracle_db'로 database 생성.
+계정: pm_svc/!pm1svc",""
+"948b7a41-1ade-4313-94aa-6921478588cb","SystemSoftware","Pandas","",""
+"a2a85214-1345-446f-ad9c-40a76a10b7d5","SystemSoftware","Redis","* event에 대한 subject와 context 관리
+1.event가 발생하면 slack 채널별(out_channel_id) events hash에 추가
+  -hash name: ""opbot_events_"" + {out_channel_id}
+  -key: {event_uid}
+  -data: {context}('A':분석, 'S':조치)
+2.현재 처리중인 subject list 관리
+  -hash name: ""opbot_subjects""
+  -key: {out_channel_id}
+  -data: {event_uid}
+3.처리 완료되면 opbot_events와 opbot_subjects에서 event_uid 제거",""
+"d210bc27-c6ce-44a2-828e-4a1d884c1909","SystemSoftware","SA","",""
+"793b254e-77c1-4601-8e2c-f3e3cbd0e159","SystemSoftware","Slacker","",""
+"2c583930-0e41-4831-abd4-b7f93d30e343","TechnologyCollaboration","Flask&Celery","",""
