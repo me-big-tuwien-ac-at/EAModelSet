@@ -3,8 +3,8 @@ name: Deploy static content to Pages
 
 on:
   # Runs on pushes targeting the default branch
-  push:
-    branches: ["main"]
+  #push:
+  #  branches: ["main"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -37,17 +37,23 @@ jobs:
           node-version: 18
       - name: Install dependencies
         run: yarn
+        working-directory: ./vue-website
       - name: Build
         run: yarn run build
+        working-directory: ./vue-website
       - name: Additional Deployment Step
         run: yarn run deploy
+        working-directory: ./vue-website
       - name: Setup Pages
         uses: actions/configure-pages@v3
+        working-directory: ./vue-website
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
+        working-directory: ./vue-website
         with:
           # Upload vite build output
           path: './dist'
       - name: Deploy to GitHub Pages
         id: deployment
+        working-directory: ./vue-website
         uses: actions/deploy-pages@v2
