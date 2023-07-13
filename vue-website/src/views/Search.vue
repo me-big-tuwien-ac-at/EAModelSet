@@ -121,12 +121,17 @@ const redirectToRepo = (repo: string) => {
 const openModelDetails = (id: string) => {
     router.push({ path: `/model/${id}` });
 }
+const dt = ref();
+const exportCSV = () => {
+    dt.value.exportCSV();
+};
 // scrollable scrollHeight="650px" :virtualScrollerOptions="{ itemSize: 50 }" resizableColumns columnResizeMode="expand"
 </script>
 
 <template>
     <h2>Search</h2>
     <DataTable 
+        ref="dt"
         :value="models" 
         dataKey="id" 
         :class="`p-datatable-sm`" 
@@ -154,7 +159,10 @@ const openModelDetails = (id: string) => {
                     <i class="pi pi-search" />
                     <InputText v-model="filters['global'].value" placeholder="Search all fields" />
                 </span>
-                <Button type="reset" v-tooltip.bottom="'Clear all filters'" icon="pi pi-filter-slash" @click="clearFilters()"/>
+                <div>
+                    <Button class="mr-4"  v-tooltip.bottom="'Export table to CSV'" icon="pi pi-external-link" label="Export" @click="exportCSV()" />
+                    <Button type="reset" v-tooltip.bottom="'Clear all filters'" icon="pi pi-filter-slash" @click="clearFilters()"/>
+                </div>
             </div>
         </template>
 
