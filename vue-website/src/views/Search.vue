@@ -52,7 +52,7 @@ const initFilters = () => {
         duplicateCount: { value: [0, 20], matchMode: FilterMatchMode.BETWEEN },
         elementCount: { value: [0, 4500], matchMode: FilterMatchMode.BETWEEN },
         relationshipCount: { value: [0, 6000], matchMode: FilterMatchMode.BETWEEN },
-        viewCount: { value: [0, 350], matchMode: FilterMatchMode.BETWEEN },
+        viewCount: { value: [0, 400], matchMode: FilterMatchMode.BETWEEN },
     };
 };
 const filters = ref();
@@ -302,7 +302,7 @@ const exportCSV = () => {
                     </div>
                     <div class="flex flow-column flex-wrap">
                         <label for="view-count-max">Max</label>
-                        <InputNumber id="view-count-max" v-model="filterModel.value[1]" mode="decimal" :min="filterModel.value[0]" :max="350" style="width: 5rem; height: 2rem" />
+                        <InputNumber id="view-count-max" v-model="filterModel.value[1]" mode="decimal" :min="filterModel.value[0]" :max="400" style="width: 5rem; height: 2rem" />
                     </div>
                 </div>
             </template>
