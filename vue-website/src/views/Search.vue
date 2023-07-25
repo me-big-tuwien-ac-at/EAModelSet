@@ -132,8 +132,8 @@ const exportCSV = () => {
     <h2>Search</h2>
     <DataTable 
         ref="dt"
-        :value="models" 
-        dataKey="id" 
+        :value="models"
+        dataKey="id"
         :class="`p-datatable-sm`" 
         showGridlines removableSort scrollable resizableColumns paginator 
         :rows="10" :rowsPerPageOptions="[5, 10, 20, 50]" 
