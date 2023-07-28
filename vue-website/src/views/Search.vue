@@ -10,25 +10,23 @@ import { FilterMatchMode} from 'primevue/api';
 import { LANGS } from '@/util/language-utils';
 import ISO6391 from 'iso-639-1';
 import axios from 'redaxios';
+import { ModelInfo } from '@/types';
 
 const models = ref();
-const licenses = ref();
-const selectableLicenses = ref([]);
+const selectableLicenses = ref<{ label: string; value: string; }[]>();
 const router = useRouter();
 
 onMounted(() => {
     axios.get('dataset.json').then((res) => {
         models.value = res.data.modelInfos
-        // TODO: improve this
-        const allLicenses = res.data.modelInfos.map(i => i.license);
-        licenses.value = [... new Set(allLicenses)]
-        for (const lic in licenses.value) {
-            const obj = {
-                label: getLicense(licenses.value[lic]),
-                value: licenses.value[lic]
-            }
-            selectableLicenses.value.push(obj);
-        }
+        // retrieve all possible license values to use for filtering
+        const allLicenses = res.data.modelInfos.map((i: ModelInfo) => i.license);
+        const uniqueLicenses: string[] = [... new Set(allLicenses)] as string[];
+        const selectableLicensesData = uniqueLicenses.map((license: string) => ({
+            label: getLicense(license),
+            value: license,
+        }));
+        selectableLicenses.value = selectableLicensesData;
     });
 });
 
