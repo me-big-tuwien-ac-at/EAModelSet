@@ -13,7 +13,7 @@ const bytesToMb = (bytes: number) => {
 };
 
 const downloadLabel = ref(
-    `Download .${dataset.value.distribution.mediaType} (${bytesToMb(dataset.value.distribution.byteSize)} MB)`
+    `Download ${dataset.value.distribution.mediaType} (${bytesToMb(dataset.value.distribution.byteSize)} MB)`
 );
 
 const redirectToDownload = () => {

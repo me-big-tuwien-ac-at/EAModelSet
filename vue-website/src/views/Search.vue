@@ -12,11 +12,23 @@ import ISO6391 from 'iso-639-1';
 import axios from 'redaxios';
 
 const models = ref();
+const licenses = ref();
+const selectableLicenses = ref([]);
 const router = useRouter();
 
 onMounted(() => {
     axios.get('dataset.json').then((res) => {
         models.value = res.data.modelInfos
+        // TODO: improve this
+        const allLicenses = res.data.modelInfos.map(i => i.license);
+        licenses.value = [... new Set(allLicenses)]
+        for (const lic in licenses.value) {
+            const obj = {
+                label: getLicense(licenses.value[lic]),
+                value: licenses.value[lic]
+            }
+            selectableLicenses.value.push(obj);
+        }
     });
 });
 
@@ -45,7 +57,7 @@ const initFilters = () => {
         name: { value: null, matchMode: FilterMatchMode.CONTAINS },
         source: { value: null, matchMode: FilterMatchMode.IN },
         repository: { value: null, matchmode: FilterMatchMode.CONTAINS },
-        // TODO: filter licenses
+        license: { value: null, matchMode: FilterMatchMode.IN },
         language: { value: null, matchMode: FilterMatchMode.IN },
         formats: { value: null, matchMode: FilterMatchMode.CONTAINS },
         tags: { value: null, matchMode: FilterMatchMode.CONTAINS },
@@ -78,7 +90,6 @@ const clearFilters = () => {
     initFilters();
 };
 
-
 const onColumnToggle = (val: any) => {
     selectedColumns.value = columns.value.filter(col => val.includes(col));
 };
@@ -104,7 +115,6 @@ const getLicense = (lic: string) => {
     switch (lic) {
         case 'Not found': return 'Unspecified';
         case '': return 'Unknown';
-        case 'Other': return 'Custom';
         default: return lic;
     }
 }
@@ -140,7 +150,7 @@ const exportCSV = () => {
         :loading="!models"
         paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" 
         currentPageReportTemplate="{first} to {last} of {totalRecords} models"
-        v-model:filters="filters" filterDisplay="row" :globalFilterFields="[ 'id', 'name', 'repository' ]"
+        v-model:filters="filters" filterDisplay="row" :globalFilterFields="[ 'id', 'name', 'source', 'repository', 'license', 'formats', 'tags' ]"
     >
         <template #header>
             <span class="p-float-label mt-4 mb-4 mx-2">
@@ -204,6 +214,9 @@ const exportCSV = () => {
         <Column field="license" header="License" sortable v-if="selectedColumns.includes(columns[4])">
             <template #body="{ data }">
                 <Tag class="mr-1" :value="getLicense(data.license)"  :severity="getLicenseSeverity(data.license)"/>
+            </template>
+            <template #filter="{ filterModel, filterCallback }">
+                <MultiSelect v-model="filterModel.value" @change="filterCallback()" :options="selectableLicenses" optionLabel="label" optionValue="value" placeholder="Select license(s)" class="p-column-filter"/>
             </template>
         </Column>
 
