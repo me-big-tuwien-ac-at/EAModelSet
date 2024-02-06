@@ -1,10 +1,11 @@
-package me.big.cli.app.model.dataset;
+package me.big.cli.app.model.stats;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import java.util.Date;
 
 @Data
@@ -37,4 +38,6 @@ public class DatasetStats {
     private Double avgViews;
 
     private Stats languageStats;
+    private Stats elementOccurrenceFrequency;
+    private Stats relationshipOccurrenceFrequency;
 }

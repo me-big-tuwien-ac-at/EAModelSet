@@ -11,8 +11,9 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Stats {
+public class Distribution {
     private String title;
-    private List<String> labels;
-    private List<Long> data;
+    private String downloadUrl;
+    private String mediaType;
+    private Long byteSize;
 }

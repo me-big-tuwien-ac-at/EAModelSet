@@ -5,13 +5,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.victools.jsonschema.generator.*;
 import me.big.cli.app.model.ArchimateModelNew;
 import me.big.cli.app.model.dataset.Dataset;
-import me.big.cli.app.model.dataset.DatasetStats;
+import me.big.cli.app.model.dataset.Distribution;
+import me.big.cli.app.model.stats.DatasetStats;
 import me.big.cli.app.model.dataset.ModelInfo;
 import me.big.cli.app.service.ModelService;
-import me.big.cli.app.util.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.Availability;
-import org.springframework.shell.command.annotation.Option;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellMethodAvailability;
@@ -39,6 +38,16 @@ public class DatasetManagement {
                 .title("EA ModelSet")
                 .version("0.0.2")
                 .lastUpdated(new Date())
+                .repositoryUrl("https://github.com/me-big-tuwien-ac-at/EAModelSet/")
+                .homepageUrl("https://me.big.tuwien.ac.at/EAModelSet/")
+                .distribution(Distribution.builder()
+                        .title("EA ModelSet ZIP Archive")
+                        .mediaType(".zip")
+                        // TODO: Update URL once zip is published
+                        .downloadUrl("https://github.com/me-big-tuwien-ac-at/EAModelSet/releases/")
+                        // TODO: fix hard-coded size (use e.g. library to calculate)
+                        .byteSize(67504418L)
+                        .build())
                 .modelCount((long) modelInfos.size())
                 .modelInfos(modelInfos)
                 .build();
@@ -51,7 +60,6 @@ public class DatasetManagement {
     @ShellMethod(value = "Create dataset statistics JSON file (dataset_stats.json)", key ="datasetStats")
     @ShellMethodAvailability("availabilityCheck")
     public void stats() throws IOException {
-        // TODO
         DatasetStats datasetStats = DatasetStats.builder()
                 .title("EA ModelSet Dataset Statistics")
                 .version("0.0.1")
@@ -60,7 +68,15 @@ public class DatasetManagement {
                 .totalElements(modelService.getTotalElements())
                 .totalRelationships(modelService.getTotalRelationships())
                 .totalViews(modelService.getTotalViews())
+                .minElements(modelService.getMinElementCount().orElse(0L))
+                .minRelationships(modelService.getMinRelationshipCount().orElse(0L))
+                .minViews(modelService.getMinViewCount().orElse(0L))
+                .maxElements(modelService.getMaxElementCount().orElse(0L))
+                .maxRelationships(modelService.getMaxRelationshipCount().orElse(0L))
+                .maxViews(modelService.getMaxViewCount().orElse(0L))
                 .languageStats(modelService.getLanguageStats())
+                .elementOccurrenceFrequency(modelService.getElementOccurrenceFrequency())
+                .relationshipOccurrenceFrequency(modelService.getRelationshipOccurrenceFrequency())
                 .build();
         ObjectMapper mapper = new ObjectMapper();
         File targetFile = new File(dataProcessing.getDatasetDir(), "dataset_stats.json");

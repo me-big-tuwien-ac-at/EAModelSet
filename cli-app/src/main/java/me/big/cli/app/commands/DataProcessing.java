@@ -110,7 +110,7 @@ public class DataProcessing {
         }
     }
 
-    @ShellMethod(value = "Process a model to the given dataset folder", key = "addModelDir")
+    @ShellMethod(value = "Add a model to the given dataset folder", key = "addModelDir")
     public void processModel(
             @Option(longNames = "modelPath", shortNames = 'm', required = true) String modelPath,
             @Option(longNames = "datasetDirPath", shortNames = 'd', required = true) String datasetDirPath
@@ -148,7 +148,7 @@ public class DataProcessing {
         }
     }
 
-    @ShellMethod(value = "Remove Model", key = "removeModel")
+    @ShellMethod(value = "Remove a model from the dataset", key = "removeModel")
     public void removeModel(
             @Option(required = true) String datasetDirPath,
             @Option(required = true) String modelId

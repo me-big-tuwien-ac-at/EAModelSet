@@ -31,7 +31,7 @@ public class ZipCommands {
         zip(targetFilePath, datasetDir.getCanonicalPath());
     }
 
-    @ShellMethod(value = "Create a ZIP archive of a give directory", key = "zipDir")
+    @ShellMethod(value = "Create a ZIP archive of a given directory", key = "zipDir")
     public void zip(@Option String targetFilePath, @Option String dirPath) throws IOException {
         // validate paths provided as arguments
         if (!targetFilePath.endsWith(".zip")) {
