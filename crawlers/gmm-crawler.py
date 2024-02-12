@@ -1,5 +1,6 @@
 import requests
 from rich.console import Console
+from rich.progress import track
 
 console = Console()
 err_console = Console(stderr=True, style='bold red')
@@ -27,8 +28,10 @@ def get_archimate_projects() -> list[str]:
         if not next_page_link:
             break
         
-        if params['page'] == 3:
-            break
+        # FOR TESTING
+        #if params['page'] == 3:
+        #    break
+
         params = {'limit': 20, 'page': params['page'] + 1}
     return project_ids
 
@@ -38,9 +41,13 @@ def main():
     project_ids = get_archimate_projects()
     console.print(project_ids)
 
-    # TODO: Get XML model
-    # https://app.genmymodel.com/api/projects/<project_id>/archimate
-
+    # Currently does not work, since GenMyModel changed its REST API
+    # 500 Server ERROR when accessing https://app.genmymodel.com/api/projects/<project_id>/archimate
+    for proj_id in track(project_ids, description="Processing..."):
+        url = f"https://app.genmymodel.com/api/projects/{proj_id}/archimate"
+        response = requests.get(url)
+        data = response.json()
+        print(data)
 
 if __name__ == "__main__":
     main()
