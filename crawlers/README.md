@@ -11,6 +11,13 @@ Install required packages from `requirements.txt`:
 pip install -r requirements.txt
 ```
 
+Enter your [GitHub personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) in the file `github-crawler.py`:
+
+```python
+# Insert GitHub Authentication Token here
+AUTH_TOKEN = ''
+```
+
 Start the crawler:
 
 ```bash
