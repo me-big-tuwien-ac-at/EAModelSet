@@ -1,7 +1,4 @@
-import json
-import os
-import time
-import requests
+import os, json, time, requests
 from rich.console import Console
 from rich.progress import track
 from rich.progress import Progress
@@ -157,6 +154,7 @@ def store_model(response: requests.Response, html_url: str, model_ids: set[str])
     }
 
 def main():
+    console.print('\n--- EA ModelSet GitHub Crawler ---\n', style='cyan bold')
     data = search_github(ARCHI_QUERY) + search_github(XML_QUERY)
 
     try:
