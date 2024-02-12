@@ -7,9 +7,10 @@ from rich.progress import track
 from rich.progress import Progress
 import xml.etree.ElementTree as ET
 
-# Inser GitHub Authentication Token
+# Insert GitHub Authentication Token here
 AUTH_TOKEN = ''
 
+GITHUB_API = 'https://api.github.com/search/code?q='
 ARCHI_QUERY = 'archimate:model+extension:archimate'
 XML_QUERY = 'model xmlns=\"http://www.opengroup.org/xsd/archimate+extension:xml'
 
@@ -32,7 +33,7 @@ def handle_rate_limit(progress: Progress):
         progress.update(wait_task, advance=1)
 
 def get_response(query: str, page: int, per_page: int) -> requests.Response:
-    url = f"https://api.github.com/search/code?q={query}"
+    url = f"{GITHUB_API}{query}"
     headers = {
         "Accept": "application/vnd.github.+json",
         "Authorization": f"Bearer {AUTH_TOKEN}"
