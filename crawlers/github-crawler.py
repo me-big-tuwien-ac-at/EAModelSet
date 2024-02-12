@@ -7,8 +7,8 @@ from rich.progress import track
 from rich.progress import Progress
 import xml.etree.ElementTree as ET
 
-# GitHub Authentication Token
-AUTH_TOKEN = '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'
+# Inser GitHub Authentication Token
+AUTH_TOKEN = ''
 
 ARCHI_QUERY = 'archimate:model+extension:archimate'
 XML_QUERY = 'model xmlns=\"http://www.opengroup.org/xsd/archimate+extension:xml'
