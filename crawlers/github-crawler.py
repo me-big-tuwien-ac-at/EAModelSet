@@ -190,6 +190,7 @@ def main():
         model = store_model(response, html_url, existing_model_ids)
         if model is not None:
             new_models.append(model)
+            existing_model_ids.add(model['model_id'])
 
     console.print('Filtering finished!\n', style='bold green')
 
