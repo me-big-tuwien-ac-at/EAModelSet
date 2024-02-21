@@ -1,0 +1,612 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://www.opengroup.org/xsd/archimate/3.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengroup.org/xsd/archimate/3.0/ http://www.opengroup.org/xsd/archimate/3.1/archimate3_Diagram.xsd" identifier="id-4d49dcbc3bfc483f8ffcc65c5813a398">
+  <name>coredns-recursor</name>
+  <elements>
+    <element identifier="id-2e82d3742d6543a69c042b459f9a5661" xsi:type="BusinessActor">
+      <name>Client</name>
+    </element>
+    <element identifier="id-c474791aa0264c7bacd7d9544018a724" xsi:type="ApplicationComponent">
+      <name>coredns</name>
+    </element>
+    <element identifier="id-c795f89fa1d343ababc072a7644df33b" xsi:type="ApplicationService">
+      <name>recursor, zone: demo.svc</name>
+    </element>
+    <element identifier="id-b626898f09ed49918c3fbea432f40754" xsi:type="ApplicationService">
+      <name>resolver dns-c</name>
+      <documentation>urls udp://1.1.1.1:53&#xD;
+          udp://1.0.0.1:53&#xD;
+   timeout_ms 500</documentation>
+    </element>
+    <element identifier="id-2ebd938b5548494d8f15fe55575eb403" xsi:type="ApplicationComponent">
+      <name>dns-c</name>
+    </element>
+    <element identifier="id-948bbb7229574d70930c8201c07bd22d" xsi:type="ApplicationComponent">
+      <name>dns-g</name>
+    </element>
+    <element identifier="id-284c68566cd946278bfa2eb8470a26c8" xsi:type="ApplicationService">
+      <name>resolver dns-g</name>
+      <documentation>urls udp://8.8.8.8:53&#xD;
+          udp://8.8.4.4:53</documentation>
+    </element>
+    <element identifier="id-ff2c15c9de4b4305b80e736455b2d298" xsi:type="ApplicationService">
+      <name>alias alias1</name>
+      <documentation>hosts www.example.org&#xD;
+             www.example.com&#xD;
+   resolver_name dns-c&#xD;
+   ttl 11</documentation>
+    </element>
+    <element identifier="id-253b0980c55e4f6aa4b9f40c13f11835" xsi:type="ApplicationService">
+      <name>alias alias2</name>
+      <documentation>ips 10.0.0.1 10.0.0.2&#xD;
+   ttl 12</documentation>
+    </element>
+    <element identifier="id-fe10a34b990744619c254311fae40a53" xsi:type="ApplicationService">
+      <name>alias alias3</name>
+      <documentation>ips 10.0.0.1 10.0.0.2&#xD;
+   hosts www.example.net&#xD;
+   resolver_name dns-g&#xD;
+   ttl 13</documentation>
+    </element>
+    <element identifier="id-88f59ee926b04d269d47297c120e674f" xsi:type="ApplicationService">
+      <name>alias alias4</name>
+      <documentation>hosts www.example.net&#xD;
+   ttl 14</documentation>
+    </element>
+    <element identifier="id-cbe48c4a61a5486fac5e7a0b18164d5f" xsi:type="ApplicationService">
+      <name>resolver default</name>
+      <documentation>urls ://default</documentation>
+    </element>
+    <element identifier="id-065115ee8e5f4e28b7ee065f31dc3de4" xsi:type="ApplicationProcess">
+      <name>dig alias1.demo.svc</name>
+    </element>
+    <element identifier="id-516c119c8a2e4fe3b9a7b9cba29fc2fa" xsi:type="ApplicationProcess">
+      <name>dig alias2.demo.svc</name>
+    </element>
+    <element identifier="id-a5f363603f5f4d1c95f523f15f7d405a" xsi:type="ApplicationProcess">
+      <name>dig alias3.demo.svc</name>
+    </element>
+    <element identifier="id-38411f1f483f451680e55c380fd63c59" xsi:type="ApplicationProcess">
+      <name>dig alias4.demo.svc</name>
+    </element>
+    <element identifier="id-50ea44a7cffc45f49fdb3ca6eb2f7a68" xsi:type="ApplicationProcess">
+      <name>dig alias5.demo.svc</name>
+    </element>
+    <element identifier="id-7403cc71add6415198e525bda0299c2d" xsi:type="ApplicationComponent">
+      <name>system default DNS</name>
+    </element>
+    <element identifier="id-e06d4c293e1540e6919259dca4e421bd" xsi:type="ApplicationService">
+      <name>alias *</name>
+      <documentation>resolver_name default&#xD;
+   ttl 15</documentation>
+    </element>
+    <element identifier="id-4a8a0c3e9af04259829197dd4d6dfe2e" xsi:type="ApplicationComponent">
+      <name>demo</name>
+    </element>
+    <element identifier="id-1842d991afe54192bdda99fd82116593" xsi:type="ApplicationService">
+      <name>resolver demo</name>
+      <documentation>urls udp://10.0.0.1:53</documentation>
+    </element>
+  </elements>
+  <relationships>
+    <relationship identifier="id-424fb23c4ee645d1a03c2fb7726c3792" source="id-c474791aa0264c7bacd7d9544018a724" target="id-c795f89fa1d343ababc072a7644df33b" xsi:type="Assignment" />
+    <relationship identifier="id-2ea43f687cbf4bb78a42fa02aba34b48" source="id-c795f89fa1d343ababc072a7644df33b" target="id-b626898f09ed49918c3fbea432f40754" xsi:type="Composition" />
+    <relationship identifier="id-fe60309bf6634d64b93fa009eaf2c294" source="id-065115ee8e5f4e28b7ee065f31dc3de4" target="id-ff2c15c9de4b4305b80e736455b2d298" xsi:type="Flow">
+      <name>alias1.demo.svc</name>
+    </relationship>
+    <relationship identifier="id-63ad5c8bc0354509aee7d11c45054bbb" source="id-c795f89fa1d343ababc072a7644df33b" target="id-284c68566cd946278bfa2eb8470a26c8" xsi:type="Composition" />
+    <relationship identifier="id-d522309a75c149afa5a21db54ba4bf29" source="id-c795f89fa1d343ababc072a7644df33b" target="id-ff2c15c9de4b4305b80e736455b2d298" xsi:type="Composition" />
+    <relationship identifier="id-d6d520797cc5478aac16b423f53615a2" source="id-c795f89fa1d343ababc072a7644df33b" target="id-253b0980c55e4f6aa4b9f40c13f11835" xsi:type="Composition" />
+    <relationship identifier="id-f8b1cee001244918981e7c27ffc8e5a9" source="id-c795f89fa1d343ababc072a7644df33b" target="id-fe10a34b990744619c254311fae40a53" xsi:type="Composition" />
+    <relationship identifier="id-e07b64f54bcb4e209499c003116c37f9" source="id-c795f89fa1d343ababc072a7644df33b" target="id-88f59ee926b04d269d47297c120e674f" xsi:type="Composition" />
+    <relationship identifier="id-f62003ef344047c3886ad3e017c88b9f" source="id-c795f89fa1d343ababc072a7644df33b" target="id-cbe48c4a61a5486fac5e7a0b18164d5f" xsi:type="Composition" />
+    <relationship identifier="id-a777c5184ce54ffd91262ff1d0675786" source="id-b626898f09ed49918c3fbea432f40754" target="id-2ebd938b5548494d8f15fe55575eb403" xsi:type="Flow">
+      <name>www.example.com</name>
+    </relationship>
+    <relationship identifier="id-86f594b94d0a43d1ab1fbece874384d5" source="id-2ebd938b5548494d8f15fe55575eb403" target="id-b626898f09ed49918c3fbea432f40754" xsi:type="Flow">
+      <name>A:[93.184.216.34]</name>
+    </relationship>
+    <relationship identifier="id-3aa27350e3bb4738a2b8cc237da5e728" source="id-ff2c15c9de4b4305b80e736455b2d298" target="id-b626898f09ed49918c3fbea432f40754" xsi:type="Triggering" />
+    <relationship identifier="id-04e779cb74fb470b9a4f3b5f2003750d" source="id-fe10a34b990744619c254311fae40a53" target="id-284c68566cd946278bfa2eb8470a26c8" xsi:type="Triggering" />
+    <relationship identifier="id-fb9a703a2a6a42139f6e024f53102699" source="id-88f59ee926b04d269d47297c120e674f" target="id-cbe48c4a61a5486fac5e7a0b18164d5f" xsi:type="Triggering" />
+    <relationship identifier="id-942ece3c3627461ca1db99d660e578a9" source="id-ff2c15c9de4b4305b80e736455b2d298" target="id-065115ee8e5f4e28b7ee065f31dc3de4" xsi:type="Flow">
+      <name>TTL:11 A:[93.184.216.34]</name>
+    </relationship>
+    <relationship identifier="id-5b6d39e2d423469a967bf7b6ae9b95fa" source="id-516c119c8a2e4fe3b9a7b9cba29fc2fa" target="id-253b0980c55e4f6aa4b9f40c13f11835" xsi:type="Flow">
+      <name>alias2.demo.svc</name>
+    </relationship>
+    <relationship identifier="id-f462ef936cd447b3bf8ac4d22b90c094" source="id-a5f363603f5f4d1c95f523f15f7d405a" target="id-fe10a34b990744619c254311fae40a53" xsi:type="Flow">
+      <name>alias3.demo.svc</name>
+    </relationship>
+    <relationship identifier="id-1ce059fb24714bacaf7d33eb08b1fcff" source="id-38411f1f483f451680e55c380fd63c59" target="id-88f59ee926b04d269d47297c120e674f" xsi:type="Flow">
+      <name>alias4.demo.svc</name>
+    </relationship>
+    <relationship identifier="id-37bab78acf744e61aed7804fdd2f0392" source="id-50ea44a7cffc45f49fdb3ca6eb2f7a68" target="id-e06d4c293e1540e6919259dca4e421bd" xsi:type="Flow">
+      <name>alias5.demo.svc</name>
+    </relationship>
+    <relationship identifier="id-952e0c0b30f544a78217297b58b47022" source="id-253b0980c55e4f6aa4b9f40c13f11835" target="id-516c119c8a2e4fe3b9a7b9cba29fc2fa" xsi:type="Flow">
+      <name>TTL:12 A:[10.0.0.1,10.0.0.2]</name>
+    </relationship>
+    <relationship identifier="id-323224d9931a435a9714de9f5eba5879" source="id-fe10a34b990744619c254311fae40a53" target="id-a5f363603f5f4d1c95f523f15f7d405a" xsi:type="Flow">
+      <name>TTL:13 A:[10.0.0.1,10.0.0.2,93.184.216.34]</name>
+    </relationship>
+    <relationship identifier="id-4ecb8e84e1884959bca9e3f304dae582" source="id-88f59ee926b04d269d47297c120e674f" target="id-38411f1f483f451680e55c380fd63c59" xsi:type="Flow">
+      <name>TTL:14 A:[93.184.216.34]</name>
+    </relationship>
+    <relationship identifier="id-cedba16cce714d1a9af2263f48f649ce" source="id-e06d4c293e1540e6919259dca4e421bd" target="id-50ea44a7cffc45f49fdb3ca6eb2f7a68" xsi:type="Flow">
+      <name>TTL:15 A:[10.1.1.1]</name>
+    </relationship>
+    <relationship identifier="id-4f9924a06a4e472381a930995f5232d2" source="id-284c68566cd946278bfa2eb8470a26c8" target="id-948bbb7229574d70930c8201c07bd22d" xsi:type="Flow">
+      <name>www.example.net</name>
+    </relationship>
+    <relationship identifier="id-d5f18afe9a4b418fbfff6462f62c6c1e" source="id-948bbb7229574d70930c8201c07bd22d" target="id-284c68566cd946278bfa2eb8470a26c8" xsi:type="Flow">
+      <name>A:[93.184.216.34]</name>
+    </relationship>
+    <relationship identifier="id-3611195ac7fb410a99343f9786eb5766" source="id-cbe48c4a61a5486fac5e7a0b18164d5f" target="id-7403cc71add6415198e525bda0299c2d" xsi:type="Flow">
+      <name>www.example.net</name>
+    </relationship>
+    <relationship identifier="id-ebb6cf2748f048c1838d4344056c97cf" source="id-7403cc71add6415198e525bda0299c2d" target="id-cbe48c4a61a5486fac5e7a0b18164d5f" xsi:type="Flow">
+      <name>A:[93.184.216.34]</name>
+    </relationship>
+    <relationship identifier="id-6e15eaf6f17c4cd3b4f9867746dc0fdf" source="id-2e82d3742d6543a69c042b459f9a5661" target="id-50ea44a7cffc45f49fdb3ca6eb2f7a68" xsi:type="Triggering" />
+    <relationship identifier="id-19aced192049418bba82cb66fcda97c6" source="id-2e82d3742d6543a69c042b459f9a5661" target="id-38411f1f483f451680e55c380fd63c59" xsi:type="Triggering" />
+    <relationship identifier="id-a0577d1fef1a44f68ae6dd4377653c6d" source="id-2e82d3742d6543a69c042b459f9a5661" target="id-a5f363603f5f4d1c95f523f15f7d405a" xsi:type="Triggering" />
+    <relationship identifier="id-cd27f38618724262835ce0b61edfd6e2" source="id-2e82d3742d6543a69c042b459f9a5661" target="id-516c119c8a2e4fe3b9a7b9cba29fc2fa" xsi:type="Triggering" />
+    <relationship identifier="id-a05f3246132f44929198027df3e3b30f" source="id-2e82d3742d6543a69c042b459f9a5661" target="id-065115ee8e5f4e28b7ee065f31dc3de4" xsi:type="Triggering" />
+    <relationship identifier="id-1bb2fd77e37140ab87860b781b487a02" source="id-b626898f09ed49918c3fbea432f40754" target="id-2ebd938b5548494d8f15fe55575eb403" xsi:type="Flow">
+      <name>www.example.org</name>
+    </relationship>
+    <relationship identifier="id-881432667bea4f2fb12645c0d548bfcb" source="id-c795f89fa1d343ababc072a7644df33b" target="id-e06d4c293e1540e6919259dca4e421bd" xsi:type="Composition" />
+    <relationship identifier="id-4a323fdfa52946808ba4e28cedd578d1" source="id-e06d4c293e1540e6919259dca4e421bd" target="id-1842d991afe54192bdda99fd82116593" xsi:type="Triggering" />
+    <relationship identifier="id-539f2ec112a64b77a1537ad3afc92079" source="id-1842d991afe54192bdda99fd82116593" target="id-4a8a0c3e9af04259829197dd4d6dfe2e" xsi:type="Flow">
+      <name>alias5.demo.svc</name>
+    </relationship>
+    <relationship identifier="id-aa3cbccb0eb14a4f84058b4680263401" source="id-4a8a0c3e9af04259829197dd4d6dfe2e" target="id-1842d991afe54192bdda99fd82116593" xsi:type="Flow">
+      <name>A:[10.1.1.1]</name>
+    </relationship>
+    <relationship identifier="id-1ff3f80c920c425e8fbdef3509d44fcd" source="id-c795f89fa1d343ababc072a7644df33b" target="id-1842d991afe54192bdda99fd82116593" xsi:type="Composition" />
+  </relationships>
+  <views>
+    <diagrams>
+      <view identifier="id-d4f658c463294c24986fecfbe529f720" xsi:type="Diagram">
+        <name>Default View</name>
+        <node identifier="id-65c058a75db945058cc9120b5db73c08" elementRef="id-2e82d3742d6543a69c042b459f9a5661" xsi:type="Element" x="40" y="53" w="72" h="31">
+          <style>
+            <fillColor r="255" g="255" b="181" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-046e003024414498bd5d54d0a2a21ecd" elementRef="id-c474791aa0264c7bacd7d9544018a724" xsi:type="Element" x="472" y="29" w="425" h="564">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <node identifier="id-dded1d14d8fe4195baff9c6e5cc1130f" elementRef="id-c795f89fa1d343ababc072a7644df33b" xsi:type="Element" x="496" y="61" w="369" h="513">
+            <style>
+              <fillColor r="181" g="255" b="255" a="100" />
+              <lineColor r="92" g="92" b="92" a="100" />
+              <font name="Lucida Grande" size="12">
+                <color r="0" g="0" b="0" />
+              </font>
+            </style>
+            <node identifier="id-392faf6a412740f7a36195ea57200973" elementRef="id-b626898f09ed49918c3fbea432f40754" xsi:type="Element" x="704" y="93" w="129" h="89">
+              <style>
+                <fillColor r="221" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="id-c4e5002555a4466baf816b6d85e5cdf5" elementRef="id-284c68566cd946278bfa2eb8470a26c8" xsi:type="Element" x="704" y="289" w="129" h="73">
+              <style>
+                <fillColor r="221" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="id-fd51d4179951455280790abb51836e91" elementRef="id-ff2c15c9de4b4305b80e736455b2d298" xsi:type="Element" x="512" y="85" w="161" h="105">
+              <style>
+                <fillColor r="221" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="id-279c7184a63e475c98dd6ee977ddd996" elementRef="id-253b0980c55e4f6aa4b9f40c13f11835" xsi:type="Element" x="512" y="197" w="161" h="73">
+              <style>
+                <fillColor r="221" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="id-948f28ee8b6d4dc588c35e843c278306" elementRef="id-fe10a34b990744619c254311fae40a53" xsi:type="Element" x="512" y="277" w="161" h="97">
+              <style>
+                <fillColor r="221" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="id-0fa1660eaca547a68961670d58c144a0" elementRef="id-88f59ee926b04d269d47297c120e674f" xsi:type="Element" x="512" y="381" w="161" h="73">
+              <style>
+                <fillColor r="221" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="id-bf3f69b0dfa44a6ba8da7e6a0c49f449" elementRef="id-cbe48c4a61a5486fac5e7a0b18164d5f" xsi:type="Element" x="704" y="389" w="129" h="57">
+              <style>
+                <fillColor r="221" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="id-df8da58118d743899321aa33e42c2cec" elementRef="id-e06d4c293e1540e6919259dca4e421bd" xsi:type="Element" x="512" y="461" w="161" h="73">
+              <style>
+                <fillColor r="221" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+            <node identifier="id-c24bcbdc7cf849bc93db1a882936ab2a" elementRef="id-1842d991afe54192bdda99fd82116593" xsi:type="Element" x="704" y="469" w="129" h="57">
+              <style>
+                <fillColor r="221" g="255" b="255" a="100" />
+                <lineColor r="92" g="92" b="92" a="100" />
+                <font name="Lucida Grande" size="12">
+                  <color r="0" g="0" b="0" />
+                </font>
+              </style>
+            </node>
+          </node>
+        </node>
+        <node identifier="id-58a1b38c651c4511a9c70713511c1b8a" elementRef="id-2ebd938b5548494d8f15fe55575eb403" xsi:type="Element" x="1024" y="101" w="120" h="63">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-5f6efba49d1f426ba3023223e9e7206b" elementRef="id-948bbb7229574d70930c8201c07bd22d" xsi:type="Element" x="1024" y="289" w="120" h="65">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-d9ef39280cfc4beb818495831b71d347" elementRef="id-065115ee8e5f4e28b7ee065f31dc3de4" xsi:type="Element" x="112" y="104" w="144" h="58">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-f40517a4a0e6451883b859066224c441" elementRef="id-516c119c8a2e4fe3b9a7b9cba29fc2fa" xsi:type="Element" x="113" y="197" w="144" h="56">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-ace875dd1a90435aa5335986c875c6c6" elementRef="id-a5f363603f5f4d1c95f523f15f7d405a" xsi:type="Element" x="113" y="293" w="144" h="56">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-de2448de66ea4068a344fddf0a35f62c" elementRef="id-38411f1f483f451680e55c380fd63c59" xsi:type="Element" x="112" y="379" w="144" h="56">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-2a8d7aae1d844805a4fb936ee80d2556" elementRef="id-50ea44a7cffc45f49fdb3ca6eb2f7a68" xsi:type="Element" x="112" y="464" w="144" h="56">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-01bedd3892d746fbb565fbda6e26ce36" elementRef="id-7403cc71add6415198e525bda0299c2d" xsi:type="Element" x="1024" y="392" w="120" h="49">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-2a01dd5fe59740e189845d7b0eb5eb9d" elementRef="id-4a8a0c3e9af04259829197dd4d6dfe2e" xsi:type="Element" x="1024" y="465" w="120" h="54">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <connection identifier="id-f6d8f880aa654eb7a43878244b47749b" relationshipRef="id-6e15eaf6f17c4cd3b4f9867746dc0fdf" xsi:type="Relationship" source="id-65c058a75db945058cc9120b5db73c08" target="id-2a8d7aae1d844805a4fb936ee80d2556">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="56" y="488" />
+        </connection>
+        <connection identifier="id-8d3cac03992645d4849b5712c43651e4" relationshipRef="id-19aced192049418bba82cb66fcda97c6" xsi:type="Relationship" source="id-65c058a75db945058cc9120b5db73c08" target="id-de2448de66ea4068a344fddf0a35f62c">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="64" y="408" />
+        </connection>
+        <connection identifier="id-87dccb856bea48688de7f55535010b63" relationshipRef="id-a0577d1fef1a44f68ae6dd4377653c6d" xsi:type="Relationship" source="id-65c058a75db945058cc9120b5db73c08" target="id-ace875dd1a90435aa5335986c875c6c6">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="72" y="320" />
+        </connection>
+        <connection identifier="id-f6a91927ee134a9485aa2e822aaf7781" relationshipRef="id-cd27f38618724262835ce0b61edfd6e2" xsi:type="Relationship" source="id-65c058a75db945058cc9120b5db73c08" target="id-f40517a4a0e6451883b859066224c441">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="80" y="224" />
+        </connection>
+        <connection identifier="id-bbb111967310420fbeae837e5976469a" relationshipRef="id-a05f3246132f44929198027df3e3b30f" xsi:type="Relationship" source="id-65c058a75db945058cc9120b5db73c08" target="id-d9ef39280cfc4beb818495831b71d347">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="88" y="136" />
+        </connection>
+        <connection identifier="id-21fa68387db248fcb6f5cd3e14043a91" relationshipRef="id-a777c5184ce54ffd91262ff1d0675786" xsi:type="Relationship" source="id-392faf6a412740f7a36195ea57200973" target="id-58a1b38c651c4511a9c70713511c1b8a">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="952" y="133" />
+        </connection>
+        <connection identifier="id-6a9e36cfe1644c3d91469c76888ab4c6" relationshipRef="id-1bb2fd77e37140ab87860b781b487a02" xsi:type="Relationship" source="id-392faf6a412740f7a36195ea57200973" target="id-58a1b38c651c4511a9c70713511c1b8a">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="928" y="109" />
+        </connection>
+        <connection identifier="id-f6aac456a04e463498acc5fc1ff54247" relationshipRef="id-4f9924a06a4e472381a930995f5232d2" xsi:type="Relationship" source="id-c4e5002555a4466baf816b6d85e5cdf5" target="id-5f6efba49d1f426ba3023223e9e7206b">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="936" y="301" />
+        </connection>
+        <connection identifier="id-ebee5445bf144e72a068902d0f25865e" relationshipRef="id-3aa27350e3bb4738a2b8cc237da5e728" xsi:type="Relationship" source="id-fd51d4179951455280790abb51836e91" target="id-392faf6a412740f7a36195ea57200973">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-b61632f452fb444a9fd37361a61ae6b9" relationshipRef="id-942ece3c3627461ca1db99d660e578a9" xsi:type="Relationship" source="id-fd51d4179951455280790abb51836e91" target="id-d9ef39280cfc4beb818495831b71d347">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="355" y="146" />
+        </connection>
+        <connection identifier="id-373cf027ec0d44c083f33753baf13196" relationshipRef="id-952e0c0b30f544a78217297b58b47022" xsi:type="Relationship" source="id-279c7184a63e475c98dd6ee977ddd996" target="id-f40517a4a0e6451883b859066224c441">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="386" y="245" />
+        </connection>
+        <connection identifier="id-b3f545c843bf4fd388da441cc2f951c5" relationshipRef="id-04e779cb74fb470b9a4f3b5f2003750d" xsi:type="Relationship" source="id-948f28ee8b6d4dc588c35e843c278306" target="id-c4e5002555a4466baf816b6d85e5cdf5">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-a14983ca10bd4b89b2227b6506f9a6b2" relationshipRef="id-323224d9931a435a9714de9f5eba5879" xsi:type="Relationship" source="id-948f28ee8b6d4dc588c35e843c278306" target="id-ace875dd1a90435aa5335986c875c6c6">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="386" y="337" />
+        </connection>
+        <connection identifier="id-f783122de8914434bcdb8db8dac61ed8" relationshipRef="id-fb9a703a2a6a42139f6e024f53102699" xsi:type="Relationship" source="id-0fa1660eaca547a68961670d58c144a0" target="id-bf3f69b0dfa44a6ba8da7e6a0c49f449">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-58e4dd79b7c14dd7aa9744a985724072" relationshipRef="id-4ecb8e84e1884959bca9e3f304dae582" xsi:type="Relationship" source="id-0fa1660eaca547a68961670d58c144a0" target="id-de2448de66ea4068a344fddf0a35f62c">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="386" y="427" />
+        </connection>
+        <connection identifier="id-89c68c45c7f0447298bd5e4e85b9b08d" relationshipRef="id-3611195ac7fb410a99343f9786eb5766" xsi:type="Relationship" source="id-bf3f69b0dfa44a6ba8da7e6a0c49f449" target="id-01bedd3892d746fbb565fbda6e26ce36">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="936" y="400" />
+        </connection>
+        <connection identifier="id-e938f89ae4354164a17eaee19f6347b6" relationshipRef="id-cedba16cce714d1a9af2263f48f649ce" xsi:type="Relationship" source="id-df8da58118d743899321aa33e42c2cec" target="id-2a8d7aae1d844805a4fb936ee80d2556">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="376" y="508" />
+        </connection>
+        <connection identifier="id-3220d99f3d1741c3b724ab950f476e27" relationshipRef="id-4a323fdfa52946808ba4e28cedd578d1" xsi:type="Relationship" source="id-df8da58118d743899321aa33e42c2cec" target="id-c24bcbdc7cf849bc93db1a882936ab2a">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-f2a9f3700196415b826c2566a5602509" relationshipRef="id-539f2ec112a64b77a1537ad3afc92079" xsi:type="Relationship" source="id-c24bcbdc7cf849bc93db1a882936ab2a" target="id-2a01dd5fe59740e189845d7b0eb5eb9d">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="936" y="480" />
+        </connection>
+        <connection identifier="id-8310d2f098a1424bbb8ee9724b7f0133" relationshipRef="id-86f594b94d0a43d1ab1fbece874384d5" xsi:type="Relationship" source="id-58a1b38c651c4511a9c70713511c1b8a" target="id-392faf6a412740f7a36195ea57200973">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="928" y="157" />
+        </connection>
+        <connection identifier="id-b49c380468b54e7f8cf4311a872e7c8b" relationshipRef="id-d5f18afe9a4b418fbfff6462f62c6c1e" xsi:type="Relationship" source="id-5f6efba49d1f426ba3023223e9e7206b" target="id-c4e5002555a4466baf816b6d85e5cdf5">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="936" y="325" />
+        </connection>
+        <connection identifier="id-46d8d3630d6e4a73a314736a372dd9fb" relationshipRef="id-fe60309bf6634d64b93fa009eaf2c294" xsi:type="Relationship" source="id-d9ef39280cfc4beb818495831b71d347" target="id-fd51d4179951455280790abb51836e91">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="363" y="118" />
+        </connection>
+        <connection identifier="id-66cfd626f7bf4abd994b76f7f1700664" relationshipRef="id-5b6d39e2d423469a967bf7b6ae9b95fa" xsi:type="Relationship" source="id-f40517a4a0e6451883b859066224c441" target="id-279c7184a63e475c98dd6ee977ddd996">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="386" y="213" />
+        </connection>
+        <connection identifier="id-ef4fc1abee5c47418253663a648c684f" relationshipRef="id-f462ef936cd447b3bf8ac4d22b90c094" xsi:type="Relationship" source="id-ace875dd1a90435aa5335986c875c6c6" target="id-948f28ee8b6d4dc588c35e843c278306">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="394" y="305" />
+        </connection>
+        <connection identifier="id-c427fd83b2fe46d3ab3b9baaa7e85613" relationshipRef="id-1ce059fb24714bacaf7d33eb08b1fcff" xsi:type="Relationship" source="id-de2448de66ea4068a344fddf0a35f62c" target="id-0fa1660eaca547a68961670d58c144a0">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="394" y="395" />
+        </connection>
+        <connection identifier="id-f0b9eaa6561646ddab6156bea835df49" relationshipRef="id-37bab78acf744e61aed7804fdd2f0392" xsi:type="Relationship" source="id-2a8d7aae1d844805a4fb936ee80d2556" target="id-df8da58118d743899321aa33e42c2cec">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="384" y="476" />
+        </connection>
+        <connection identifier="id-d46925b674e94054a45a125b1b5233cd" relationshipRef="id-ebb6cf2748f048c1838d4344056c97cf" xsi:type="Relationship" source="id-01bedd3892d746fbb565fbda6e26ce36" target="id-bf3f69b0dfa44a6ba8da7e6a0c49f449">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="928" y="432" />
+        </connection>
+        <connection identifier="id-405c5148d1184057bac1e3b8fd460fb0" relationshipRef="id-aa3cbccb0eb14a4f84058b4680263401" xsi:type="Relationship" source="id-2a01dd5fe59740e189845d7b0eb5eb9d" target="id-c24bcbdc7cf849bc93db1a882936ab2a">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+          <bendpoint x="928" y="504" />
+        </connection>
+      </view>
+    </diagrams>
+  </views>
+</model>

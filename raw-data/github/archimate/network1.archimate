@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archimate:model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:archimate="http://www.archimatetool.com/archimate" name="Network generation - level 1" id="eda90c04" version="2.6.0">
+  <folder name="Business" id="238c3cfb" type="business"/>
+  <folder name="Application" id="680fc5fd" type="application">
+    <element xsi:type="archimate:ApplicationComponent" id="3305b5c8" name="Dhcp Server">
+      <property key="minip" value="192.168.2.100"/>
+      <property key="maxip" value="192.168.2.200"/>
+      <property key="poolname" value="clients"/>
+    </element>
+  </folder>
+  <folder name="Technology" id="c6a5d000" type="technology">
+    <element xsi:type="archimate:Node" id="36c73938" name="External firewall node 1">
+      <property key="OS" value="Linux"/>
+    </element>
+    <element xsi:type="archimate:Node" id="58fb0910" name="External Firewall Node 2">
+      <property key="OS" value="Linux"/>
+    </element>
+    <element xsi:type="archimate:Network" id="586ecc06" name="Firewall hearbeat">
+      <property key="IP" value="192.168.1.0"/>
+      <property key="maskbits" value="24"/>
+    </element>
+    <element xsi:type="archimate:Node" id="06023e0e" name="External switch">
+      <property key="IP" value="1.1.1.200"/>
+      <property key="OS" value="Zebra"/>
+    </element>
+    <element xsi:type="archimate:Node" id="4cae20ca" name="DMZ switch">
+      <property key="OS" value="Zebra"/>
+    </element>
+    <element xsi:type="archimate:Network" id="bceff0fb" name="DMZ network">
+      <property key="IP" value="192.168.3.0"/>
+      <property key="maskbits" value="24"/>
+      <property key="gw" value="192.168.3.1"/>
+    </element>
+    <element xsi:type="archimate:Node" id="f4080b87" name="Intranet switch">
+      <property key="OS" value="openwrt"/>
+    </element>
+    <element xsi:type="archimate:Network" id="338241ea" name="Provider network">
+      <property key="IP" value="1.1.1.0"/>
+      <property key="maskbits" value="24"/>
+      <property key="gw" value="1.1.1.1"/>
+    </element>
+    <element xsi:type="archimate:Network" id="51d35e07" name="Intranet network">
+      <property key="IP" value="192.168.2.0"/>
+      <property key="maskbits" value="24"/>
+    </element>
+    <element xsi:type="archimate:Node" id="cb24bb3a" name="Web server">
+      <property key="OS" value="Linux"/>
+    </element>
+    <element xsi:type="archimate:Node" id="d7816b42" name="samba server"/>
+    <element xsi:type="archimate:Node" id="f65760ff" name="client">
+      <property key="OS" value="Debian"/>
+    </element>
+    <element xsi:type="archimate:Node" id="c24fb632" name="new node"/>
+    <element xsi:type="archimate:CommunicationPath" id="4cd48b51" name="reference to interface">
+      <property key="ifaceref" value="FE-02"/>
+    </element>
+  </folder>
+  <folder name="Motivation" id="e9022c8d" type="motivation"/>
+  <folder name="Implementation &amp; Migration" id="efb967bc" type="implementation_migration"/>
+  <folder name="Connectors" id="21653557" type="connectors"/>
+  <folder name="Relations" id="2973ce6f" type="relations">
+    <element xsi:type="archimate:AssociationRelationship" id="a91b8f61" source="36c73938" target="586ecc06">
+      <property key="nodeif" value="eth2"/>
+      <property key="IP" value="192.168.1.1"/>
+    </element>
+    <element xsi:type="archimate:AssociationRelationship" id="32f151af" source="586ecc06" target="58fb0910">
+      <property key="nodeif" value="eth2"/>
+      <property key="IP" value="192.168.1.2"/>
+    </element>
+    <element xsi:type="archimate:AssociationRelationship" id="cb4ba248" source="58fb0910" target="06023e0e">
+      <property key="switchport" value="3"/>
+      <property key="nodeif" value="eth0"/>
+      <property key="IP" value="1.1.1.12"/>
+    </element>
+    <element xsi:type="archimate:AssociationRelationship" id="3164d9d1" source="06023e0e" target="36c73938">
+      <property key="switchport" value="2"/>
+      <property key="nodeif" value="eth0"/>
+      <property key="IP" value="1.1.1.11"/>
+    </element>
+    <element xsi:type="archimate:AssociationRelationship" id="5dde9cc4" source="06023e0e" target="338241ea">
+      <property key="switchport" value="1"/>
+    </element>
+    <element xsi:type="archimate:AssociationRelationship" id="297db42d" source="36c73938" target="4cae20ca">
+      <property key="nodeif" value="eth4"/>
+      <property key="IP" value="192.168.3.1"/>
+      <property key="switchport" value="1"/>
+      <property key="virtualip" value="192.168.3.3"/>
+    </element>
+    <element xsi:type="archimate:AssociationRelationship" id="d5b1dc7f" source="58fb0910" target="f4080b87">
+      <property key="switchport" value="2"/>
+      <property key="nodeif" value="eth3"/>
+      <property key="IP" value="192.168.2.1"/>
+      <property key="virtualip" value="192.168.2.3"/>
+    </element>
+    <element xsi:type="archimate:AssociationRelationship" id="5b93a03d" source="36c73938" target="f4080b87">
+      <property key="nodeif" value="eth3"/>
+      <property key="IP" value="192.168.2.2"/>
+      <property key="switchport" value="1"/>
+      <property key="virtualip" value="192.168.3.3"/>
+    </element>
+    <element xsi:type="archimate:AssociationRelationship" id="56e834da" source="58fb0910" target="4cae20ca">
+      <property key="nodeif" value="eth4"/>
+      <property key="switchport" value="2"/>
+      <property key="IP" value="192.168.3.2"/>
+      <property key="virtualip" value="192.168.3.3"/>
+    </element>
+    <element xsi:type="archimate:AssociationRelationship" id="7b57f149" source="4cae20ca" target="cb24bb3a">
+      <property key="IP" value="192.168.3.10"/>
+      <property key="nodeif" value="eth0"/>
+      <property key="switchport" value="5"/>
+    </element>
+    <element xsi:type="archimate:AssociationRelationship" id="8eae1894" source="bceff0fb" target="4cae20ca"/>
+    <element xsi:type="archimate:AssociationRelationship" id="b01d7c47" source="f4080b87" target="d7816b42">
+      <property key="nodeif" value="eth0"/>
+      <property key="switchport" value="3"/>
+      <property key="IP" value="192.168.2.10"/>
+    </element>
+    <element xsi:type="archimate:AssociationRelationship" id="dc15e498" source="f4080b87" target="f65760ff">
+      <property key="switchport" value="4"/>
+      <property key="nodeif" value="eth0"/>
+      <property key="IP" value="dhcp"/>
+    </element>
+    <element xsi:type="archimate:AssociationRelationship" id="49a19155" source="51d35e07" target="f4080b87"/>
+    <element xsi:type="archimate:RealisationRelationship" id="0bd9a715" source="f4080b87" target="3305b5c8"/>
+    <element xsi:type="archimate:AssignmentRelationship" id="78785934" source="cb24bb3a" target="bceff0fb"/>
+    <element xsi:type="archimate:AssignmentRelationship" id="fa9945fc" source="c24fb632" target="bceff0fb"/>
+    <element xsi:type="archimate:AccessRelationship" id="d74db185" source="f65760ff" target="4cd48b51"/>
+    <element xsi:type="archimate:AccessRelationship" id="53e237de" source="cb24bb3a" target="4cd48b51" accessType="1"/>
+  </folder>
+  <folder name="Views" id="669625a7" type="diagrams">
+    <element xsi:type="archimate:ArchimateDiagramModel" id="508a11e2" name="Classic SOHO example - beginner modeling style" connectionRouterType="1">
+      <child xsi:type="archimate:DiagramObject" id="301ad9de" textAlignment="2" targetConnections="148b0178" archimateElement="36c73938">
+        <bounds x="168" y="196"/>
+        <sourceConnection xsi:type="archimate:Connection" id="37394f24" source="301ad9de" target="78cdfe8f" relationship="a91b8f61"/>
+        <sourceConnection xsi:type="archimate:Connection" id="cf3ccb40" source="301ad9de" target="02351334" relationship="297db42d"/>
+        <sourceConnection xsi:type="archimate:Connection" id="5e055a4d" source="301ad9de" target="c7924798" relationship="5b93a03d"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="ad8b31f1" textAlignment="2" targetConnections="1bd4fe88" archimateElement="58fb0910">
+        <bounds x="587" y="192"/>
+        <sourceConnection xsi:type="archimate:Connection" id="24fe9c36" source="ad8b31f1" target="808cc735" relationship="cb4ba248"/>
+        <sourceConnection xsi:type="archimate:Connection" id="42598f4c" source="ad8b31f1" target="c7924798" relationship="d5b1dc7f"/>
+        <sourceConnection xsi:type="archimate:Connection" id="e5b68acb" source="ad8b31f1" target="02351334" relationship="56e834da"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="78cdfe8f" textAlignment="2" targetConnections="37394f24" archimateElement="586ecc06">
+        <bounds x="372" y="192"/>
+        <sourceConnection xsi:type="archimate:Connection" id="1bd4fe88" source="78cdfe8f" target="ad8b31f1" relationship="32f151af"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="808cc735" textAlignment="2" targetConnections="24fe9c36" archimateElement="06023e0e">
+        <bounds x="372" y="96"/>
+        <sourceConnection xsi:type="archimate:Connection" id="148b0178" source="808cc735" target="301ad9de" relationship="3164d9d1"/>
+        <sourceConnection xsi:type="archimate:Connection" id="ee438f6f" source="808cc735" target="93c12c3c" relationship="5dde9cc4"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="02351334" textAlignment="2" targetConnections="cf3ccb40 e5b68acb 1ee9667e" archimateElement="4cae20ca">
+        <bounds x="168" y="312"/>
+        <sourceConnection xsi:type="archimate:Connection" id="98b729c1" source="02351334" target="6ed2ece5" relationship="7b57f149"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="c636896d" textAlignment="2" targetConnections="b8d03923" archimateElement="bceff0fb">
+        <bounds x="276" y="396"/>
+        <sourceConnection xsi:type="archimate:Connection" id="1ee9667e" source="c636896d" target="02351334" relationship="8eae1894"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="c7924798" textAlignment="2" targetConnections="42598f4c 5e055a4d aeafc23b" archimateElement="f4080b87">
+        <bounds x="587" y="312"/>
+        <sourceConnection xsi:type="archimate:Connection" id="271260a0" source="c7924798" target="17cc2f66" relationship="b01d7c47"/>
+        <sourceConnection xsi:type="archimate:Connection" id="30057937" source="c7924798" target="af3b9ec8" relationship="dc15e498"/>
+        <sourceConnection xsi:type="archimate:Connection" id="e80f401f" source="c7924798" target="6709d356" relationship="0bd9a715"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="93c12c3c" textAlignment="2" targetConnections="ee438f6f" archimateElement="338241ea">
+        <bounds x="372" y="8"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="b036407b" textAlignment="2" archimateElement="51d35e07">
+        <bounds x="516" y="396"/>
+        <sourceConnection xsi:type="archimate:Connection" id="aeafc23b" source="b036407b" target="c7924798" relationship="49a19155"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="6ed2ece5" textAlignment="2" targetConnections="98b729c1" archimateElement="cb24bb3a">
+        <bounds x="168" y="480"/>
+        <sourceConnection xsi:type="archimate:Connection" id="b8d03923" source="6ed2ece5" target="c636896d" relationship="78785934"/>
+        <sourceConnection xsi:type="archimate:Connection" id="50bee558" source="6ed2ece5" target="72032f8d" relationship="53e237de"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="17cc2f66" textAlignment="2" targetConnections="271260a0" archimateElement="d7816b42">
+        <bounds x="586" y="485"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="af3b9ec8" textAlignment="2" targetConnections="30057937" archimateElement="f65760ff">
+        <bounds x="780" y="480"/>
+        <sourceConnection xsi:type="archimate:Connection" id="a4b4a273" source="af3b9ec8" target="72032f8d" relationship="d74db185"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="6709d356" textAlignment="2" targetConnections="e80f401f" archimateElement="3305b5c8">
+        <bounds x="744" y="258"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="72032f8d" textAlignment="2" targetConnections="a4b4a273 50bee558" archimateElement="4cd48b51">
+        <bounds x="768" y="84"/>
+      </child>
+      <documentation>This diagram shows a classic soho netork in a beginner modeler style.
+
+No metamodel used.
+Relations are actually modeling objects (one relation is used instead two technology interfaces here)
+Object attributes are modeled by properties instead of relations to other objects.
+
+This style uses few objects compared to more advanced styles, but some details cannot be shown on diagrams, and it is not easy to extend with new concepts.</documentation>
+    </element>
+    <element xsi:type="archimate:ArchimateDiagramModel" id="5d80ab16" name="New ArchiMate View">
+      <child xsi:type="archimate:DiagramObject" id="b867522c" textAlignment="2" targetConnections="b9a28a9d" archimateElement="bceff0fb">
+        <bounds x="408" y="156"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="a80a5f21" textAlignment="2" archimateElement="c24fb632">
+        <bounds x="576" y="273"/>
+        <sourceConnection xsi:type="archimate:Connection" id="b9a28a9d" source="a80a5f21" target="b867522c" relationship="fa9945fc"/>
+      </child>
+    </element>
+  </folder>
+  <property key="report:part" value="all"/>
+</archimate:model>

@@ -1,0 +1,664 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://www.opengroup.org/xsd/archimate/3.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengroup.org/xsd/archimate/3.0/ http://www.opengroup.org/xsd/archimate/3.1/archimate3_Diagram.xsd" identifier="eda90c04">
+  <name>Network generation - level 1</name>
+  <properties>
+    <property propertyDefinitionRef="propid-12">
+      <value>all</value>
+    </property>
+  </properties>
+  <elements>
+    <element identifier="id-3305b5c8" xsi:type="ApplicationComponent">
+      <name>Dhcp Server</name>
+      <properties>
+        <property propertyDefinitionRef="propid-1">
+          <value>192.168.2.100</value>
+        </property>
+        <property propertyDefinitionRef="propid-2">
+          <value>192.168.2.200</value>
+        </property>
+        <property propertyDefinitionRef="propid-3">
+          <value>clients</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-36c73938" xsi:type="Node">
+      <name>External firewall node 1</name>
+      <properties>
+        <property propertyDefinitionRef="propid-4">
+          <value>Linux</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-58fb0910" xsi:type="Node">
+      <name>External Firewall Node 2</name>
+      <properties>
+        <property propertyDefinitionRef="propid-4">
+          <value>Linux</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-586ecc06" xsi:type="CommunicationNetwork">
+      <name>Firewall hearbeat</name>
+      <properties>
+        <property propertyDefinitionRef="propid-5">
+          <value>192.168.1.0</value>
+        </property>
+        <property propertyDefinitionRef="propid-6">
+          <value>24</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-06023e0e" xsi:type="Node">
+      <name>External switch</name>
+      <properties>
+        <property propertyDefinitionRef="propid-5">
+          <value>1.1.1.200</value>
+        </property>
+        <property propertyDefinitionRef="propid-4">
+          <value>Zebra</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-4cae20ca" xsi:type="Node">
+      <name>DMZ switch</name>
+      <properties>
+        <property propertyDefinitionRef="propid-4">
+          <value>Zebra</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="bceff0fb" xsi:type="CommunicationNetwork">
+      <name>DMZ network</name>
+      <properties>
+        <property propertyDefinitionRef="propid-5">
+          <value>192.168.3.0</value>
+        </property>
+        <property propertyDefinitionRef="propid-6">
+          <value>24</value>
+        </property>
+        <property propertyDefinitionRef="propid-7">
+          <value>192.168.3.1</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="f4080b87" xsi:type="Node">
+      <name>Intranet switch</name>
+      <properties>
+        <property propertyDefinitionRef="propid-4">
+          <value>openwrt</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-338241ea" xsi:type="CommunicationNetwork">
+      <name>Provider network</name>
+      <properties>
+        <property propertyDefinitionRef="propid-5">
+          <value>1.1.1.0</value>
+        </property>
+        <property propertyDefinitionRef="propid-6">
+          <value>24</value>
+        </property>
+        <property propertyDefinitionRef="propid-7">
+          <value>1.1.1.1</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="id-51d35e07" xsi:type="CommunicationNetwork">
+      <name>Intranet network</name>
+      <properties>
+        <property propertyDefinitionRef="propid-5">
+          <value>192.168.2.0</value>
+        </property>
+        <property propertyDefinitionRef="propid-6">
+          <value>24</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="cb24bb3a" xsi:type="Node">
+      <name>Web server</name>
+      <properties>
+        <property propertyDefinitionRef="propid-4">
+          <value>Linux</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="d7816b42" xsi:type="Node">
+      <name>samba server</name>
+    </element>
+    <element identifier="f65760ff" xsi:type="Node">
+      <name>client</name>
+      <properties>
+        <property propertyDefinitionRef="propid-4">
+          <value>Debian</value>
+        </property>
+      </properties>
+    </element>
+    <element identifier="c24fb632" xsi:type="Node">
+      <name>new node</name>
+    </element>
+    <element identifier="id-4cd48b51" xsi:type="Path">
+      <name>reference to interface</name>
+      <properties>
+        <property propertyDefinitionRef="propid-8">
+          <value>FE-02</value>
+        </property>
+      </properties>
+    </element>
+  </elements>
+  <relationships>
+    <relationship identifier="a91b8f61" source="id-36c73938" target="id-586ecc06" xsi:type="Association">
+      <properties>
+        <property propertyDefinitionRef="propid-9">
+          <value>eth2</value>
+        </property>
+        <property propertyDefinitionRef="propid-5">
+          <value>192.168.1.1</value>
+        </property>
+      </properties>
+    </relationship>
+    <relationship identifier="id-32f151af" source="id-586ecc06" target="id-58fb0910" xsi:type="Association">
+      <properties>
+        <property propertyDefinitionRef="propid-9">
+          <value>eth2</value>
+        </property>
+        <property propertyDefinitionRef="propid-5">
+          <value>192.168.1.2</value>
+        </property>
+      </properties>
+    </relationship>
+    <relationship identifier="cb4ba248" source="id-58fb0910" target="id-06023e0e" xsi:type="Association">
+      <properties>
+        <property propertyDefinitionRef="propid-10">
+          <value>3</value>
+        </property>
+        <property propertyDefinitionRef="propid-9">
+          <value>eth0</value>
+        </property>
+        <property propertyDefinitionRef="propid-5">
+          <value>1.1.1.12</value>
+        </property>
+      </properties>
+    </relationship>
+    <relationship identifier="id-3164d9d1" source="id-06023e0e" target="id-36c73938" xsi:type="Association">
+      <properties>
+        <property propertyDefinitionRef="propid-10">
+          <value>2</value>
+        </property>
+        <property propertyDefinitionRef="propid-9">
+          <value>eth0</value>
+        </property>
+        <property propertyDefinitionRef="propid-5">
+          <value>1.1.1.11</value>
+        </property>
+      </properties>
+    </relationship>
+    <relationship identifier="id-5dde9cc4" source="id-06023e0e" target="id-338241ea" xsi:type="Association">
+      <properties>
+        <property propertyDefinitionRef="propid-10">
+          <value>1</value>
+        </property>
+      </properties>
+    </relationship>
+    <relationship identifier="id-297db42d" source="id-36c73938" target="id-4cae20ca" xsi:type="Association">
+      <properties>
+        <property propertyDefinitionRef="propid-9">
+          <value>eth4</value>
+        </property>
+        <property propertyDefinitionRef="propid-5">
+          <value>192.168.3.1</value>
+        </property>
+        <property propertyDefinitionRef="propid-10">
+          <value>1</value>
+        </property>
+        <property propertyDefinitionRef="propid-11">
+          <value>192.168.3.3</value>
+        </property>
+      </properties>
+    </relationship>
+    <relationship identifier="d5b1dc7f" source="id-58fb0910" target="f4080b87" xsi:type="Association">
+      <properties>
+        <property propertyDefinitionRef="propid-10">
+          <value>2</value>
+        </property>
+        <property propertyDefinitionRef="propid-9">
+          <value>eth3</value>
+        </property>
+        <property propertyDefinitionRef="propid-5">
+          <value>192.168.2.1</value>
+        </property>
+        <property propertyDefinitionRef="propid-11">
+          <value>192.168.2.3</value>
+        </property>
+      </properties>
+    </relationship>
+    <relationship identifier="id-5b93a03d" source="id-36c73938" target="f4080b87" xsi:type="Association">
+      <properties>
+        <property propertyDefinitionRef="propid-9">
+          <value>eth3</value>
+        </property>
+        <property propertyDefinitionRef="propid-5">
+          <value>192.168.2.2</value>
+        </property>
+        <property propertyDefinitionRef="propid-10">
+          <value>1</value>
+        </property>
+        <property propertyDefinitionRef="propid-11">
+          <value>192.168.3.3</value>
+        </property>
+      </properties>
+    </relationship>
+    <relationship identifier="id-56e834da" source="id-58fb0910" target="id-4cae20ca" xsi:type="Association">
+      <properties>
+        <property propertyDefinitionRef="propid-9">
+          <value>eth4</value>
+        </property>
+        <property propertyDefinitionRef="propid-10">
+          <value>2</value>
+        </property>
+        <property propertyDefinitionRef="propid-5">
+          <value>192.168.3.2</value>
+        </property>
+        <property propertyDefinitionRef="propid-11">
+          <value>192.168.3.3</value>
+        </property>
+      </properties>
+    </relationship>
+    <relationship identifier="id-7b57f149" source="id-4cae20ca" target="cb24bb3a" xsi:type="Association">
+      <properties>
+        <property propertyDefinitionRef="propid-5">
+          <value>192.168.3.10</value>
+        </property>
+        <property propertyDefinitionRef="propid-9">
+          <value>eth0</value>
+        </property>
+        <property propertyDefinitionRef="propid-10">
+          <value>5</value>
+        </property>
+      </properties>
+    </relationship>
+    <relationship identifier="id-8eae1894" source="bceff0fb" target="id-4cae20ca" xsi:type="Association" />
+    <relationship identifier="b01d7c47" source="f4080b87" target="d7816b42" xsi:type="Association">
+      <properties>
+        <property propertyDefinitionRef="propid-9">
+          <value>eth0</value>
+        </property>
+        <property propertyDefinitionRef="propid-10">
+          <value>3</value>
+        </property>
+        <property propertyDefinitionRef="propid-5">
+          <value>192.168.2.10</value>
+        </property>
+      </properties>
+    </relationship>
+    <relationship identifier="dc15e498" source="f4080b87" target="f65760ff" xsi:type="Association">
+      <properties>
+        <property propertyDefinitionRef="propid-10">
+          <value>4</value>
+        </property>
+        <property propertyDefinitionRef="propid-9">
+          <value>eth0</value>
+        </property>
+        <property propertyDefinitionRef="propid-5">
+          <value>dhcp</value>
+        </property>
+      </properties>
+    </relationship>
+    <relationship identifier="id-49a19155" source="id-51d35e07" target="f4080b87" xsi:type="Association" />
+    <relationship identifier="id-0bd9a715" source="f4080b87" target="id-3305b5c8" xsi:type="Realization" />
+    <relationship identifier="id-78785934" source="cb24bb3a" target="bceff0fb" xsi:type="Assignment" />
+    <relationship identifier="fa9945fc" source="c24fb632" target="bceff0fb" xsi:type="Assignment" />
+    <relationship identifier="d74db185" source="f65760ff" target="id-4cd48b51" xsi:type="Access" accessType="Write" />
+    <relationship identifier="id-53e237de" source="cb24bb3a" target="id-4cd48b51" xsi:type="Access" accessType="Read" />
+  </relationships>
+  <propertyDefinitions>
+    <propertyDefinition identifier="propid-5" type="string">
+      <name>IP</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-4" type="string">
+      <name>OS</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-7" type="string">
+      <name>gw</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-8" type="string">
+      <name>ifaceref</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-6" type="string">
+      <name>maskbits</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-2" type="string">
+      <name>maxip</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-1" type="string">
+      <name>minip</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-9" type="string">
+      <name>nodeif</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-3" type="string">
+      <name>poolname</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-12" type="string">
+      <name>report:part</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-10" type="string">
+      <name>switchport</name>
+    </propertyDefinition>
+    <propertyDefinition identifier="propid-11" type="string">
+      <name>virtualip</name>
+    </propertyDefinition>
+  </propertyDefinitions>
+  <views>
+    <diagrams>
+      <view identifier="id-508a11e2" xsi:type="Diagram">
+        <name>Classic SOHO example - beginner modeling style</name>
+        <documentation>This diagram shows a classic soho netork in a beginner modeler style.
+
+No metamodel used.
+Relations are actually modeling objects (one relation is used instead two technology interfaces here)
+Object attributes are modeled by properties instead of relations to other objects.
+
+This style uses few objects compared to more advanced styles, but some details cannot be shown on diagrams, and it is not easy to extend with new concepts.</documentation>
+        <node identifier="id-301ad9de" elementRef="id-36c73938" xsi:type="Element" x="168" y="196" w="120" h="55">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="ad8b31f1" elementRef="id-58fb0910" xsi:type="Element" x="587" y="192" w="120" h="55">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-78cdfe8f" elementRef="id-586ecc06" xsi:type="Element" x="372" y="192" w="120" h="55">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-808cc735" elementRef="id-06023e0e" xsi:type="Element" x="372" y="96" w="120" h="55">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-02351334" elementRef="id-4cae20ca" xsi:type="Element" x="168" y="312" w="120" h="55">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="c636896d" elementRef="bceff0fb" xsi:type="Element" x="276" y="396" w="120" h="55">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="c7924798" elementRef="f4080b87" xsi:type="Element" x="587" y="312" w="120" h="55">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-93c12c3c" elementRef="id-338241ea" xsi:type="Element" x="372" y="8" w="120" h="55">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="b036407b" elementRef="id-51d35e07" xsi:type="Element" x="516" y="396" w="120" h="55">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-6ed2ece5" elementRef="cb24bb3a" xsi:type="Element" x="168" y="480" w="120" h="55">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-17cc2f66" elementRef="d7816b42" xsi:type="Element" x="586" y="485" w="120" h="55">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="af3b9ec8" elementRef="f65760ff" xsi:type="Element" x="780" y="480" w="120" h="55">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-6709d356" elementRef="id-3305b5c8" xsi:type="Element" x="744" y="258" w="120" h="55">
+          <style>
+            <fillColor r="181" g="255" b="255" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="id-72032f8d" elementRef="id-4cd48b51" xsi:type="Element" x="768" y="84" w="120" h="55">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <connection identifier="id-37394f24" relationshipRef="a91b8f61" xsi:type="Relationship" source="id-301ad9de" target="id-78cdfe8f">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="cf3ccb40" relationshipRef="id-297db42d" xsi:type="Relationship" source="id-301ad9de" target="id-02351334">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-5e055a4d" relationshipRef="id-5b93a03d" xsi:type="Relationship" source="id-301ad9de" target="c7924798">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-24fe9c36" relationshipRef="cb4ba248" xsi:type="Relationship" source="ad8b31f1" target="id-808cc735">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-42598f4c" relationshipRef="d5b1dc7f" xsi:type="Relationship" source="ad8b31f1" target="c7924798">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="e5b68acb" relationshipRef="id-56e834da" xsi:type="Relationship" source="ad8b31f1" target="id-02351334">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-1bd4fe88" relationshipRef="id-32f151af" xsi:type="Relationship" source="id-78cdfe8f" target="ad8b31f1">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-148b0178" relationshipRef="id-3164d9d1" xsi:type="Relationship" source="id-808cc735" target="id-301ad9de">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="ee438f6f" relationshipRef="id-5dde9cc4" xsi:type="Relationship" source="id-808cc735" target="id-93c12c3c">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-98b729c1" relationshipRef="id-7b57f149" xsi:type="Relationship" source="id-02351334" target="id-6ed2ece5">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-1ee9667e" relationshipRef="id-8eae1894" xsi:type="Relationship" source="c636896d" target="id-02351334">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-271260a0" relationshipRef="b01d7c47" xsi:type="Relationship" source="c7924798" target="id-17cc2f66">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-30057937" relationshipRef="dc15e498" xsi:type="Relationship" source="c7924798" target="af3b9ec8">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="e80f401f" relationshipRef="id-0bd9a715" xsi:type="Relationship" source="c7924798" target="id-6709d356">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="aeafc23b" relationshipRef="id-49a19155" xsi:type="Relationship" source="b036407b" target="c7924798">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="b8d03923" relationshipRef="id-78785934" xsi:type="Relationship" source="id-6ed2ece5" target="c636896d">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="id-50bee558" relationshipRef="id-53e237de" xsi:type="Relationship" source="id-6ed2ece5" target="id-72032f8d">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+        <connection identifier="a4b4a273" relationshipRef="d74db185" xsi:type="Relationship" source="af3b9ec8" target="id-72032f8d">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+      </view>
+      <view identifier="id-5d80ab16" xsi:type="Diagram">
+        <name>New ArchiMate View</name>
+        <node identifier="b867522c" elementRef="bceff0fb" xsi:type="Element" x="408" y="156" w="120" h="55">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <node identifier="a80a5f21" elementRef="c24fb632" xsi:type="Element" x="576" y="273" w="120" h="55">
+          <style>
+            <fillColor r="201" g="231" b="183" a="100" />
+            <lineColor r="92" g="92" b="92" a="100" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </node>
+        <connection identifier="b9a28a9d" relationshipRef="fa9945fc" xsi:type="Relationship" source="a80a5f21" target="b867522c">
+          <style>
+            <lineColor r="0" g="0" b="0" />
+            <font name="Lucida Grande" size="12">
+              <color r="0" g="0" b="0" />
+            </font>
+          </style>
+        </connection>
+      </view>
+    </diagrams>
+  </views>
+</model>
