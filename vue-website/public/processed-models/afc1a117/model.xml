@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://www.opengroup.org/xsd/archimate/3.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengroup.org/xsd/archimate/3.0/ http://www.opengroup.org/xsd/archimate/3.1/archimate3_Diagram.xsd" identifier="afc1a117">
+  <name>openseamap propsal</name>
+  <elements>
+    <element identifier="c3fee181" xsi:type="BusinessObject">
+      <name>Chart</name>
+      <documentation>A chart of an area in a given format.</documentation>
+    </element>
+    <element identifier="id-081f8a17" xsi:type="BusinessProcess">
+      <name>Chart generation</name>
+      <documentation>A generic chart generation can
+ -  use either the (openseamap planet and the large sea datasets) or a predefined area extract, and
+   - do adhoc area extriction from them to generate input data
+ - and/or use the tileserver interface to obtain raster data, which
+   - can be augmented with a base map from a tileserver
+ - then do whatever conversion is necessary to create the chart
+
+ The quality of the chart can be enhanced by
+ - editing the openstreetmap databse
+ - editing one of the sea datasets
+ - editing rules of symbols</documentation>
+    </element>
+    <element identifier="id-406dc4cd" xsi:type="BusinessInterface">
+      <name>Openseamap tile server</name>
+      <documentation>The tile server serving the openseamap layer.
+Ideally uses other interfaces, and serves also as an example on how to use them.</documentation>
+    </element>
+    <element identifier="id-4ce45d60" xsi:type="BusinessInterface">
+      <name>Tileserver for base map</name>
+      <documentation>These are in the existing infrastructure, provide no marine use specific tiles.
+http://wiki.openstreetmap.org/wiki/Tile_servers</documentation>
+    </element>
+    <element identifier="id-7d31556d" xsi:type="ApplicationComponent">
+      <name>Chart generator tool</name>
+      <documentation>A tool to generate a chart in a specific format for a given area.</documentation>
+    </element>
+    <element identifier="id-83fc60e6" xsi:type="BusinessProcess">
+      <name>Adhoc area extraction</name>
+      <documentation>This step is the first performed by any map generator.
+This should have a well-defined interface.</documentation>
+    </element>
+    <element identifier="b801fe6b" xsi:type="ApplicationComponent">
+      <name>Area extraction tool</name>
+      <documentation>osmosis on steroids
+extracts an area using the openseamap planet file and large sea datasets
+it is also able to extract an area from an area extract for a larger one</documentation>
+    </element>
+    <element identifier="cf42d051" xsi:type="BusinessProcess">
+      <name>Base map tile generation</name>
+    </element>
+    <element identifier="id-16e208cd" xsi:type="BusinessObject">
+      <name>Base map tiles</name>
+    </element>
+    <element identifier="id-7c9e65fc" xsi:type="ApplicationComponent">
+      <name>Tile generator tool</name>
+      <documentation>This view contains everything for the wholistically minded</documentation>
+    </element>
+    <element identifier="id-7efdd425" xsi:type="BusinessObject">
+      <name>Area extracts for predefined areas</name>
+      <documentation>Still osm xml format.
+Contains every data for the given area, including the parts from the large sea datasets.</documentation>
+    </element>
+    <element identifier="id-497a2eda" xsi:type="BusinessObject">
+      <name>Large sea datasets</name>
+      <documentation>Large datasets should be merged with the openseamap planet when data for an area is extracted for further processing.</documentation>
+    </element>
+    <element identifier="ead1d0cd" xsi:type="BusinessObject">
+      <name>openseamap planet</name>
+      <documentation>The sea specific data in openstreetmap xml format.</documentation>
+    </element>
+    <element identifier="dff146cf" xsi:type="BusinessObject">
+      <name>openstreetmap planet</name>
+    </element>
+    <element identifier="id-743c9b1f" xsi:type="BusinessProcess">
+      <name>Predefined area extraction</name>
+      <documentation>Considered as
+- testbed for area extraction tool
+- help for those who generate more maps from an area (can run area extraction from local file).</documentation>
+    </element>
+    <element identifier="a1db8079" xsi:type="BusinessProcess">
+      <name>Sea data extraction</name>
+      <documentation>Entities which are (or can be) needed for marine chart generation are extracted.
+These are the ones defined in the S57 standard, and mapped to openstreetmap data. See http://wiki.openstreetmap.org/wiki/User:Skippern/INT-1 http://wiki.openstreetmap.org/wiki/OpenSeaMap/INT-1_Cross_Reference</documentation>
+    </element>
+    <element identifier="id-359ec1cc" xsi:type="BusinessObject">
+      <name>Sea datasets</name>
+      <documentation>Data is to be primarily stored in the openstreetmap database.
+Sea specific datasets are either
+- those which should not be added/imported to openstreetmap (see http://wiki.openstreetmap.org/wiki/Import/Guidelines, http://www.osmfoundation.org/wiki/Data_Working_Group )
+- experimental ones</documentation>
+    </element>
+    <element identifier="id-944f80a2" xsi:type="BusinessObject">
+      <name>Small sea datasets</name>
+      <documentation>Small datasets can be imported to the openseamap planet in the S57 extraction step..</documentation>
+    </element>
+    <element identifier="id-4c32e55e" xsi:type="ApplicationComponent">
+      <name>Sea data extractor</name>
+    </element>
+    <element identifier="id-49c7a21f" xsi:type="Goal">
+      <name>Chart generators should have ways to work with handleable sized datasets</name>
+    </element>
+    <element identifier="f16f3475" xsi:type="Assessment">
+      <name>Seamark data is much smaller than the whole opensreetmap one</name>
+    </element>
+    <element identifier="e83e32ec" xsi:type="Assessment">
+      <name>Some data are not acceptable in openstreetmap</name>
+    </element>
+    <element identifier="fb6edaee" xsi:type="BusinessProcess">
+      <name>Ad-hoc chart generation</name>
+      <documentation>I would allow it only for basic raster formats for the area in the browser's screen, and when the area on screen is not covered by a chart in the given zoom level. In other cases I would provide a link for the adequate chart.</documentation>
+    </element>
+    <element identifier="id-09df00f6" xsi:type="BusinessObject">
+      <name>chart definitions</name>
+      <documentation>Chart definition files driving the chart generators.
+They can be manually constructed, and the predefined ones are defined in and can be extracted from (ideally) openstreetmap database or (less ideally) from a small sea dataset.</documentation>
+    </element>
+    <element identifier="id-1af6dfb0" xsi:type="BusinessInterface">
+      <name>Chart downloader interface</name>
+      <documentation>Actually there would be some file service where the latest predefined charts can be downloaded,
+and also an interface on the web based map where charts covering and within the viewed area could be downloaded.</documentation>
+    </element>
+    <element identifier="ccee7062" xsi:type="BusinessService">
+      <name>Interfaces for end-user</name>
+    </element>
+    <element identifier="id-16cb5d0f" xsi:type="BusinessProcess">
+      <name>Predefined chart generation</name>
+    </element>
+    <element identifier="id-021e97da" xsi:type="BusinessObject">
+      <name>Predefined charts</name>
+    </element>
+    <element identifier="id-3724a358" xsi:type="BusinessInterface">
+      <name>Web-based map</name>
+    </element>
+    <element identifier="id-94842c46" xsi:type="BusinessService">
+      <name>Interfaces for mappers and developers</name>
+    </element>
+    <element identifier="id-92e8a182" xsi:type="BusinessInterface">
+      <name>Openstreetmap editing interfaces</name>
+    </element>
+    <element identifier="b70767a1" xsi:type="BusinessObject">
+      <name>Rules and Symbols</name>
+      <documentation>Rules and symbols tell how to graphically represent</documentation>
+    </element>
+    <element identifier="d277c00f" xsi:type="BusinessInterface">
+      <name>Rules and symbols format</name>
+      <documentation>This should be a well-defined interface to help those who want to enhance map quality.
+Ways to propose changes (e.g. issue a merge request here-and-there) should also be clearly stated.</documentation>
+    </element>
+    <element identifier="id-4a33e94e" xsi:type="BusinessProcess">
+      <name>Tile generation</name>
+    </element>
+    <element identifier="id-4c6b8e01" xsi:type="BusinessInterface">
+      <name>Chart definition format</name>
+      <documentation>A common way to describe what to be mapped, which is independent from the type of the chart;
+all chart generators can understand the basic parameters</documentation>
+    </element>
+    <element identifier="dcb2dc32" xsi:type="BusinessInterface">
+      <name>Area extraction interface</name>
+      <documentation>The interface here is the way to parameterize the area extraction tool,
+and the format of the area extract.</documentation>
+    </element>
+    <element identifier="f027e22a" xsi:type="BusinessInterface">
+      <name>Openseamap planet and area file service</name>
+      <documentation>It serves the openseamap planet file, the large sea datasets, and extracts for predefined areas.</documentation>
+    </element>
+    <element identifier="id-6962385a" xsi:type="BusinessInterface">
+      <name>Sea datasets interface</name>
+      <documentation>The format, and -where applicable - the ways of editing the dataset and get changes approved should be defined.</documentation>
+    </element>
+    <element identifier="id-2367b56a" xsi:type="Goal">
+      <name>The mapper/developer should have ways to fix data/tools for all steps of generation</name>
+    </element>
+  </elements>
+  <relationships>
+    <relationship identifier="c924c7b8" source="a1db8079" target="dff146cf" xsi:type="Access" accessType="Read" />
+    <relationship identifier="id-8564bf87" source="a1db8079" target="ead1d0cd" xsi:type="Access" accessType="Write" />
+    <relationship identifier="id-23e463d9" source="id-359ec1cc" target="id-944f80a2" xsi:type="Composition" />
+    <relationship identifier="id-5835e819" source="id-359ec1cc" target="id-497a2eda" xsi:type="Composition" />
+    <relationship identifier="id-6becf4cb" source="a1db8079" target="id-944f80a2" xsi:type="Access" accessType="Write" />
+    <relationship identifier="id-3d9d2bd3" source="cf42d051" target="dff146cf" xsi:type="Access" accessType="Read" />
+    <relationship identifier="id-1565bc93" source="cf42d051" target="id-16e208cd" xsi:type="Access" accessType="Write" />
+    <relationship identifier="f1d097a8" source="id-4ce45d60" target="id-16e208cd" xsi:type="Access" accessType="Read" />
+    <relationship identifier="id-763f6a19" source="id-743c9b1f" target="ead1d0cd" xsi:type="Access" accessType="Read" />
+    <relationship identifier="id-79cae223" source="id-743c9b1f" target="id-497a2eda" xsi:type="Access" accessType="Read" />
+    <relationship identifier="ee1fb618" source="f027e22a" target="ead1d0cd" xsi:type="Access" accessType="Read" />
+    <relationship identifier="id-6d81c137" source="f027e22a" target="id-497a2eda" xsi:type="Access" accessType="Read" />
+    <relationship identifier="id-40826f02" source="f027e22a" target="id-7efdd425" xsi:type="Access" accessType="Read" />
+    <relationship identifier="d44f8f4a" source="b801fe6b" target="id-743c9b1f" xsi:type="Serving" />
+    <relationship identifier="babc78fd" source="id-743c9b1f" target="id-7efdd425" xsi:type="Access" accessType="Write" />
+    <relationship identifier="f1904942" source="id-4a33e94e" target="id-406dc4cd" xsi:type="Serving" />
+    <relationship identifier="id-2367cddd" source="id-83fc60e6" target="id-4a33e94e" xsi:type="Serving" />
+    <relationship identifier="id-7b208d4b" source="id-83fc60e6" target="ead1d0cd" xsi:type="Access" accessType="Read" />
+    <relationship identifier="ac99d266" source="id-83fc60e6" target="id-497a2eda" xsi:type="Access" accessType="Read" />
+    <relationship identifier="id-199cb927" source="b801fe6b" target="id-83fc60e6" xsi:type="Serving" />
+    <relationship identifier="df0a23ea" source="id-7c9e65fc" target="id-4a33e94e" xsi:type="Serving" />
+    <relationship identifier="id-96e9cf1d" source="id-4a33e94e" target="b70767a1" xsi:type="Access" accessType="Read" />
+    <relationship identifier="id-626cb999" source="d277c00f" target="b70767a1" xsi:type="Association" />
+    <relationship identifier="id-93ec3e8b" source="dcb2dc32" target="id-83fc60e6" xsi:type="Serving" />
+    <relationship identifier="id-6d2e6b3f" source="dcb2dc32" target="id-081f8a17" xsi:type="Serving" />
+    <relationship identifier="f14e6fba" source="id-081f8a17" target="c3fee181" xsi:type="Access" accessType="Write" />
+    <relationship identifier="e1744b13" source="id-406dc4cd" target="id-081f8a17" xsi:type="Serving" />
+    <relationship identifier="id-7b7afe3c" source="id-83fc60e6" target="id-081f8a17" xsi:type="Serving" />
+    <relationship identifier="d9a0a2d5" source="id-4ce45d60" target="id-081f8a17" xsi:type="Serving" />
+    <relationship identifier="a763786d" source="id-6962385a" target="id-359ec1cc" xsi:type="Association" />
+    <relationship identifier="id-9a7a5f44" source="id-92e8a182" target="dff146cf" xsi:type="Access" accessType="ReadWrite" />
+    <relationship identifier="id-3365dc1f" source="id-94842c46" target="id-92e8a182" xsi:type="Serving" />
+    <relationship identifier="id-103dd74c" source="id-94842c46" target="f027e22a" xsi:type="Serving" />
+    <relationship identifier="id-1357f680" source="id-94842c46" target="id-4ce45d60" xsi:type="Serving" />
+    <relationship identifier="id-9dabc9a7" source="id-94842c46" target="d277c00f" xsi:type="Serving" />
+    <relationship identifier="id-58dab1cb" source="id-94842c46" target="id-6962385a" xsi:type="Serving" />
+    <relationship identifier="id-460b5da0" source="id-94842c46" target="dcb2dc32" xsi:type="Serving" />
+    <relationship identifier="id-522532de" source="id-94842c46" target="id-406dc4cd" xsi:type="Serving" />
+    <relationship identifier="e2bad0dc" source="id-7d31556d" target="id-081f8a17" xsi:type="Serving" />
+    <relationship identifier="a3a64b5e" source="id-406dc4cd" target="id-3724a358" xsi:type="Serving" />
+    <relationship identifier="f76ee7dd" source="id-94842c46" target="id-4c6b8e01" xsi:type="Serving" />
+    <relationship identifier="id-8075dd0b" source="id-4c6b8e01" target="id-09df00f6" xsi:type="Association" />
+    <relationship identifier="id-43695bd9" source="id-081f8a17" target="id-16cb5d0f" xsi:type="Serving" />
+    <relationship identifier="ea2e6609" source="id-16cb5d0f" target="id-09df00f6" xsi:type="Access" accessType="Read" />
+    <relationship identifier="b7db2d5d" source="id-16cb5d0f" target="id-021e97da" xsi:type="Access" accessType="Write" />
+    <relationship identifier="id-1bb9f80a" source="fb6edaee" target="id-1af6dfb0" xsi:type="Serving" />
+    <relationship identifier="e3b713b9" source="id-1af6dfb0" target="id-021e97da" xsi:type="Access" accessType="Read" />
+    <relationship identifier="id-9f6ce1fc" source="id-081f8a17" target="fb6edaee" xsi:type="Serving" />
+    <relationship identifier="id-3eedda13" source="ccee7062" target="id-3724a358" xsi:type="Serving" />
+    <relationship identifier="bb4c2aaa" source="ccee7062" target="id-1af6dfb0" xsi:type="Serving" />
+    <relationship identifier="b9dcf743" source="id-83fc60e6" target="id-7efdd425" xsi:type="Access" accessType="Read" />
+    <relationship identifier="d8511151" source="id-4c32e55e" target="a1db8079" xsi:type="Serving" />
+    <relationship identifier="id-0c498c14" source="id-359ec1cc" target="e83e32ec" xsi:type="Association" />
+    <relationship identifier="id-45b54cf5" source="id-49c7a21f" target="f027e22a" xsi:type="Association" />
+    <relationship identifier="id-52ce4fa7" source="id-49c7a21f" target="id-743c9b1f" xsi:type="Association" />
+    <relationship identifier="id-0ee11666" source="f16f3475" target="ead1d0cd" xsi:type="Association" />
+    <relationship identifier="b2dee21b" source="id-49c7a21f" target="id-7efdd425" xsi:type="Association" />
+    <relationship identifier="bd97ce9d" source="id-2367b56a" target="id-94842c46" xsi:type="Association" />
+  </relationships>
+  <propertyDefinitions>
+    <propertyDefinition identifier="propid-1" type="string">
+      <name>report:part</name>
+    </propertyDefinition>
+  </propertyDefinitions>
+</model>
