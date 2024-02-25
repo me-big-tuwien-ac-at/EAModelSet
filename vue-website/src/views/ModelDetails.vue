@@ -8,14 +8,28 @@ import axios from 'redaxios';
 const route = useRoute();
 const model = ref();
 
+const BASE_URL = 'https://raw.githubusercontent.com/plglaser/eamodelset-diagrams/main/diagrams/';
+const diagramUrls = ref<string[]>([]);
+
 onMounted(() => {
   // get data from model.json within model directory (by ID), located in public/
   const id = route.params.id as string;
   axios.get(`../processed-models/${id}/model.json`).then((res) => {
     model.value = res.data;
     console.log(res.data);
+    for (const view of model.value.views) {
+      console.log(view.id)
+      const imgUrl = `${BASE_URL}/${id}/${view.id}.png`
+      axios.get(imgUrl)
+        .then(() => diagramUrls.value.push(imgUrl))
+        .catch((err) => {
+          console.log(`Could not fetch diagram for view ${view.id}: ${err}`)
+        })
+    }
   });
 });
+
+console.log(diagramUrls.value)
 
 const getFormatSeverity = (format: string) => {
   switch (format) {
@@ -282,6 +296,18 @@ const formatDate = (date: string) => {
       </ul>
     </Fieldset>
 
+    <Fieldset legend="Diagrams" :toggleable="true" class="surface-card shadow-2 border-round">
+      <div class="carousel-container">
+      <Carousel :value="diagramUrls" :numVisible="1" :numScroll="1" class="diagram-container">
+        <template #item="slotProps">
+          <div class="card flex justify-content-center">
+            <Image :src=slotProps.data alt="Diagram" preview width="250" height="250" />
+          </div>
+        </template>
+      </Carousel>
+    </div>
+    </Fieldset>
+
     <Fieldset legend="Elements" :toggleable="true" :collapsed="true" class="surface-card shadow-2 border-round">
       <DataTable
         :value="model.elements"
@@ -336,5 +362,17 @@ const formatDate = (date: string) => {
   display: flex;
   flex-direction: column;
   gap: 1em;
+}
+.carousel-container {
+  display: block; /* or flex if you want to use flexbox */
+  width: 100%; /* or a specific width */
+  text-align: center; 
+}
+.diagram-container {
+  width: 500px;
+  max-width: 500px;
+  overflow-x: auto;
+  display: block;
+  margin: 0 auto;
 }
 </style>
