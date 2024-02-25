@@ -13,6 +13,7 @@ import "primeflex/primeflex.css" // css utility
 
 // PrimeVue Components
 import Button from 'primevue/button';
+import Carousel from 'primevue/carousel';
 import Chart from 'primevue/chart';
 import Checkbox from 'primevue/checkbox';
 import Chip from 'primevue/chip';
@@ -23,6 +24,7 @@ import Divider from 'primevue/divider';
 import Fieldset from 'primevue/fieldset';
 import InputNumber from 'primevue/inputnumber';
 import InputText from 'primevue/inputtext';
+import Image from 'primevue/image';
 import Menubar from 'primevue/menubar';
 import MultiSelect from 'primevue/multiselect';
 import OverlayPanel from 'primevue/overlaypanel';
@@ -39,6 +41,7 @@ app.use(router);
 app.use(PrimeVue, { ripple: true });
 
 app.component('Button', Button);
+app.component('Carousel', Carousel);
 app.component('Chart', Chart);
 app.component('Checkbox', Checkbox);
 app.component('Chip', Chip);
@@ -49,6 +52,7 @@ app.component('Divider', Divider);
 app.component('Fieldset', Fieldset); 
 app.component('InputNumber', InputNumber);
 app.component('InputText', InputText);
+app.component('Image', Image);
 app.component('Menubar', Menubar);
 app.component('MultiSelect', MultiSelect);
 app.component('OverlayPanel', OverlayPanel);
