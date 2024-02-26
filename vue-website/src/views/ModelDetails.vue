@@ -16,9 +16,7 @@ onMounted(() => {
   const id = route.params.id as string;
   axios.get(`../processed-models/${id}/model.json`).then((res) => {
     model.value = res.data;
-    console.log(res.data);
     for (const view of model.value.views) {
-      console.log(view.id)
       const imgUrl = `${BASE_URL}/${id}/${view.id}.png`
       axios.get(imgUrl)
         .then(() => diagramUrls.value.push(imgUrl))
@@ -28,8 +26,6 @@ onMounted(() => {
     }
   });
 });
-
-console.log(diagramUrls.value)
 
 const getFormatSeverity = (format: string) => {
   switch (format) {
