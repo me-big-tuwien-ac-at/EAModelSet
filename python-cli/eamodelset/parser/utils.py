@@ -169,13 +169,15 @@ class ParserUtils:
 
     @staticmethod
     def is_element(type):
-        return (ParserUtils.is_motivation_element(type) or
-                ParserUtils.is_strategy_element(type) or
-                ParserUtils.is_business_element(type) or
-                ParserUtils.is_application_element(type) or
-                ParserUtils.is_technology_element(type) or
-                ParserUtils.is_implementation_migration_element(type) or
-                ParserUtils.is_other_element(type))
+        return (
+            ParserUtils.is_motivation_element(type) or
+            ParserUtils.is_strategy_element(type) or
+            ParserUtils.is_business_element(type) or
+            ParserUtils.is_application_element(type) or
+            ParserUtils.is_technology_element(type) or
+            ParserUtils.is_implementation_migration_element(type) or
+            ParserUtils.is_other_element(type)
+        )
     
     @staticmethod
     def is_motivation_element(type):

@@ -22,10 +22,10 @@ class ParsedModel:
             "documentation": self.documentation,
             "file": self.file,
             "format": self.format,
-            "elements": [element.get_dict() for element in self.elements],
-            #"relationships": [relationship.__dict__ for relationship in self.relationships],
-            #"views": [view.__dict__ for view in self.views],
-            "has_warning": self.has_warning
+            "has_warning": self.has_warning,
+            "elements": [e.get_dict() for e in self.elements],
+            "relationships": [r.get_dict() for r in self.relationships],
+            "views": [v.get_dict() for v in self.views]
         }
         return json.dumps(model_dict, indent=4)
 
@@ -37,7 +37,7 @@ class ArchimateElement:
         self._type = _type
         self.documentation = documentation
         self.layer = layer
-    
+
     def get_dict(self) -> dict:
         return {
             "id": self.id,
@@ -47,13 +47,6 @@ class ArchimateElement:
             "documentation": self.documentation
         }
 
-class ArchimateView:
-    def __init__(self, id, name, documentation, viewpoint):
-        self.id = id
-        self.name = name
-        self.documentation = documentation
-        self.viewpoint = viewpoint
-
 class ArchimateRelationship:
     def __init__(self, id, name, source_id, target_id, type, documentation):
         self.id = id
@@ -62,3 +55,28 @@ class ArchimateRelationship:
         self.target_id = target_id
         self.type = type
         self.documentation = documentation
+    
+    def get_dict(self) -> dict:
+        return {
+            "id": self.id,
+            "name": self.name,
+            "sourceId": self.source_id,
+            "targetId": self.target_id,
+            "type": self.type,
+            "documentation": self.documentation
+        }
+
+class ArchimateView:
+    def __init__(self, id, name, documentation, viewpoint):
+        self.id = id
+        self.name = name
+        self.documentation = documentation
+        self.viewpoint = viewpoint
+    
+    def get_dict(self) -> dict:
+        return {
+            "id": self.id,
+            "name": self.name,
+            "documentation": self.documentation,
+            "viewpoint": self.viewpoint
+        }

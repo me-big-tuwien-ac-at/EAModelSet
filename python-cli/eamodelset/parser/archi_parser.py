@@ -5,6 +5,7 @@ from rich import print
 from eamodelset.parser.constants import ParserConstants
 from eamodelset.parser.model import (ParsedModel, ArchimateElement, ArchimateRelationship, ArchimateView)
 from eamodelset.parser.utils import ParserUtils
+from eamodelset.common.utils import log, log_warning, log_error
 
 class ArchiFileParser:
 
@@ -12,69 +13,71 @@ class ArchiFileParser:
     def parse_archi_model(file_path: Path) -> ParsedModel | None:
         doc = ParserUtils.parse_document(file_path)
         if doc is None:
-            print(f"[bold red]Error! Failed to parse document '{file_path}'[/bold red]")
+            log_error(f"Failed to parse document '{file_path}'")
             return None
         
-        root = doc.getroot()
-        # remove namespaces
-        root = ParserUtils.remove_ns(root, ParserConstants.Archi.ARCHIMATE_NS_VAL)
-        root = ParserUtils.remove_ns(root, ParserConstants.Archi.XML_NS)
+        root = ArchiFileParser.remove_namespaces(doc.getroot())
         if root.tag != ParserConstants.Archi.MODEL_TAG:
-            print(f"[bold red]Error! Root node tag should be <{ParserConstants.Archi.MODEL_TAG}> but was <{root.tag}>[/bold red]")
+            log_error(f"Root node tag should be <{ParserConstants.Archi.MODEL_TAG}> but was <{root.tag}>")
             return None
         
-        model = ArchiFileParser.create_empty_archi_model(root, file_path)
-        is_valid_model = ArchiFileParser.validate_model(root)
-        if not is_valid_model:
+        model = ArchiFileParser.create_empty_model(root, file_path)
+        if not ArchiFileParser.validate_model(root):
             model.set_has_warning(True)
 
-        # find all <element>'s
         elements = root.findall(f".//{ParserConstants.Archi.ELEMENT_TAG}")
         if not elements:
-            print(f"[bold red]Empty model: no <{ParserConstants.Archi.ELEMENT_TAG}> tags found![/bold red]")
-            return model
+            log_error(f"Empty model: no <{ParserConstants.Archi.ELEMENT_TAG}> tags found!")
+            return None
         
-        id_to_element = {}
-        id_to_relationship = {}
+        id_to_element, id_to_relationship = {}, {}
         for element in elements:
             element_type = ParserUtils.convert_type(element.get(ParserConstants.Archi.TYPE_ATTR))
-            # ELEMENT
-            if ParserUtils.is_element(element_type):
-                is_valid_element = ArchiFileParser.validate_element(element)
-                if not is_valid_element:
-                    model.set_has_warning(True)
-                archi_element = ArchiFileParser.create_archi_element(element, element_type)
-                model.elements.append(archi_element)
-                id_to_element[archi_element.id] = archi_element
-
-            # RELATIONSHIP
-            elif ParserUtils.is_relationship(element_type):
-                is_valid_relationship = ArchiFileParser.validate_relation(element)
-                relation = ArchiFileParser.create_archi_relation(element, element_type, id_to_element, id_to_relationship)
-                if not is_valid_relationship or relation is None:
-                    model.set_has_warning(True)
-                if relation:
-                    model.relationships.append(relation)
-            
-            # VIEW
-            elif ParserUtils.is_diagram_model(element_type):
-                is_valid_view = ArchiFileParser.validate_view(element)
-                if not is_valid_view:
-                    model.set_has_warning(True)
-                view = ArchiFileParser.create_view(element)
-                model.views.append(view)
-            elif ParserUtils.is_sketch_model(element_type):
-                # TODO
-                pass
-            else:
-                print(f"[bold red]Error! Unknown element type '{element_type}'[/bold red]")
-
+            ArchiFileParser.process_element(element, element_type, model, id_to_element, id_to_relationship)
+        
         return model
-
     
+    @staticmethod
+    def process_element(element, element_type, model, id_to_element, id_to_relationship):
+        # ELEMENT
+        if ParserUtils.is_element(element_type):
+            if not ArchiFileParser.validate_element(element):
+                model.set_has_warning(True)
+                return
+            archi_element = ArchiFileParser.create_element(element, element_type)
+            model.elements.append(archi_element)
+            id_to_element[archi_element.id] = archi_element
+
+        # RELATIONSHIP
+        elif ParserUtils.is_relationship(element_type):
+            if not ArchiFileParser.validate_relation(element):
+                model.set_has_warning(True)
+                return
+            relation = ArchiFileParser.create_relation(element, element_type, id_to_element, id_to_relationship)
+            # can be None if source/target element is not found
+            if relation:
+                model.relationships.append(relation)
+            else:
+                model.set_has_warning(True)
+        
+        # VIEW
+        elif ParserUtils.is_diagram_model(element_type):
+            if not ArchiFileParser.validate_view(element):
+                model.set_has_warning(True)
+                return
+            view = ArchiFileParser.create_view(element)
+            model.views.append(view)
+        elif ParserUtils.is_sketch_model(element_type):
+            pass
+        else:
+            log_error(f"Unknown element type '{element_type}'")
+    
+    # --------------------------------------------------
+    #                 OBJECT CREATION
+    # --------------------------------------------------
 
     @staticmethod
-    def create_empty_archi_model(root: ET.Element, source_file: Path):
+    def create_empty_model(root: ET.Element, source_file: Path):
         return ParsedModel(
             id=root.get(ParserConstants.Archi.ID_ATTR),
             name=root.get(ParserConstants.Archi.NAME_ATTR),
@@ -82,9 +85,9 @@ class ArchiFileParser:
             file=source_file.as_posix(),
             format=ParserConstants.Archi.FILE_EXTENSION.upper(),
         )
-    
+
     @staticmethod
-    def create_archi_element(element, type):
+    def create_element(element, type):
         return ArchimateElement(
             id=element.get(ParserConstants.Archi.ID_ATTR),
             name=element.get(ParserConstants.Archi.NAME_ATTR, ""),
@@ -94,32 +97,11 @@ class ArchiFileParser:
         )
     
     @staticmethod
-    def create_archi_relation(element, type, id_lookup, id_lookup2):
-        if not element.get(ParserConstants.Archi.ID_ATTR) or not element.get(ParserConstants.Archi.SOURCE_ATTR) or not element.get(ParserConstants.Archi.TARGET_ATTR):
-            print(f"[bold red]Missing attributes in {element.tag}[/bold red]")
+    def create_relation(element, type, id_lookup, id_lookup2):
+        source_id = ArchiFileParser.get_id_from_lookup(element.get(ParserConstants.Archi.SOURCE_ATTR), id_lookup, id_lookup2)
+        target_id = ArchiFileParser.get_id_from_lookup(element.get(ParserConstants.Archi.TARGET_ATTR), id_lookup, id_lookup2)
+        if source_id is None or target_id is None:
             return None
-
-        source_id, target_id = None, None
-        source = id_lookup.get(element.get(ParserConstants.Archi.SOURCE_ATTR))
-        if source is None:
-            source_rel = id_lookup2.get(element.get(ParserConstants.Archi.SOURCE_ATTR))
-            if source_rel is None:
-                print(f"[bold red]Unknown source={element.get(ParserConstants.Archi.SOURCE_ATTR)}[/bold red]")
-                return None
-            source_id = source_rel.id
-        else:
-            source_id = source.id
-
-        target = id_lookup.get(element.get(ParserConstants.Archi.TARGET_ATTR))
-        if target is None:
-            target_rel = id_lookup2.get(element.get(ParserConstants.Archi.TARGET_ATTR))
-            if target_rel is None:
-                print(f"[bold red]Unknown target={element.get(ParserConstants.Archi.TARGET_ATTR)}[/bold red]")
-                return None
-            target_id = target_rel.id
-        else:
-            target_id = target.id
-
         return ArchimateRelationship(
             id=element.get(ParserConstants.Archi.ID_ATTR),
             name=element.get(ParserConstants.Archi.NAME_ATTR, ""),
@@ -138,6 +120,23 @@ class ArchiFileParser:
             viewpoint=element.get(ParserConstants.Archi.VIEWPOINT_ATTR, "")
         )
     
+    # --------------------------------------------------
+    #                   UTILITIES
+    # --------------------------------------------------
+    
+    @staticmethod
+    def remove_namespaces(root):
+        root = ParserUtils.remove_ns(root, ParserConstants.Archi.ARCHIMATE_NS_VAL)
+        return ParserUtils.remove_ns(root, ParserConstants.Archi.XML_NS)
+
+    @staticmethod
+    def get_id_from_lookup(attr_value, id_lookup, id_lookup2):
+        item = id_lookup.get(attr_value) or id_lookup2.get(attr_value)
+        if item is None:
+            ArchiFileParser.log_error(f"Unknown id={attr_value}")
+            return None
+        return item.id
+    
     @staticmethod
     def get_documentation(element):
         doc_tag = "documentation" if element.tag != ParserConstants.Archi.MODEL_TAG else "purpose"
@@ -145,34 +144,49 @@ class ArchiFileParser:
         if len(docs) == 1:
             return docs[0].text
         elif len(docs) > 1:
-            print(f"[bold red]Element with id={element.get(ParserConstants.Archi.ID_ATTR)} has more than 1 documentation element![/bold red]")
+            log_warning(f"Element with id={element.get(ParserConstants.Archi.ID_ATTR)} has more than one <documentation> element!")
             return None
         return ""
 
+    # --------------------------------------------------
+    #                   VALIDATION
+    # --------------------------------------------------
+
     @staticmethod
-    def validate_model(model):
-        if not model.get(ParserConstants.Archi.NAME_ATTR) or not model.get(ParserConstants.Archi.ID_ATTR) or not model.get(ParserConstants.Archi.VERSION_ATTR):
-            print("[bold red]Missing one of attributes: 'name', 'id' or 'version'[/bold red]")
-            return False
-        return True
-    
-    @staticmethod
-    def validate_element(element):
-        if not element.get(ParserConstants.Archi.ID_ATTR) or not element.get(ParserConstants.Archi.TYPE_ATTR):
-            print(f"[bold red]Missing one of required attributes: '{ParserConstants.Archi.ID_ATTR}' or '{ParserConstants.Archi.TYPE_ATTR}'[/bold red]")   
-            return False
-        return True
-    
-    @staticmethod
-    def validate_relation(relation):
-        if not relation.get(ParserConstants.Archi.ID_ATTR) or not relation.get(ParserConstants.Archi.TYPE_ATTR) or not relation.get(ParserConstants.Archi.SOURCE_ATTR) or not relation.get(ParserConstants.Archi.TARGET_ATTR):
-            print(f"[bold red]Missing one of attributes: '{ParserConstants.Archi.ID_ATTR}', '{ParserConstants.Archi.TYPE_ATTR}', '{ParserConstants.Archi.SOURCE_ATTR}' or '{ParserConstants.Archi.TARGET_ATTR}'[/bold red]")
+    def validate_attributes(element, attributes):
+        missing_attrs = [attr for attr in attributes if not element.get(attr)]
+        if missing_attrs:
+            log_error(f"Missing attributes: {', '.join(missing_attrs)} in element with id={element.get(ParserConstants.Archi.ID_ATTR)}")
             return False
         return True
 
     @staticmethod
+    def validate_model(model):
+        return ArchiFileParser.validate_attributes(model, [
+            ParserConstants.Archi.NAME_ATTR, 
+            ParserConstants.Archi.ID_ATTR, 
+            ParserConstants.Archi.VERSION_ATTR
+        ])
+    
+    @staticmethod
+    def validate_element(element):
+        return ArchiFileParser.validate_attributes(element, [
+            ParserConstants.Archi.ID_ATTR, 
+            ParserConstants.Archi.TYPE_ATTR
+        ])
+    
+    @staticmethod
+    def validate_relation(relation):
+        return ArchiFileParser.validate_attributes(relation, [
+            ParserConstants.Archi.ID_ATTR, 
+            ParserConstants.Archi.TYPE_ATTR, 
+            ParserConstants.Archi.SOURCE_ATTR, 
+            ParserConstants.Archi.TARGET_ATTR
+        ])
+
+    @staticmethod
     def validate_view(element):
-        if not element.get(ParserConstants.Archi.ID_ATTR) or not element.get(ParserConstants.Archi.NAME_ATTR):
-            print(f"[bold red]Missing one of required attributes: '{ParserConstants.Archi.ID_ATTR}' or '{ParserConstants.Archi.NAME_ATTR}'[/bold red]")
-            return False
-        return True
+        return ArchiFileParser.validate_attributes(element, [
+            ParserConstants.Archi.ID_ATTR, 
+            ParserConstants.Archi.NAME_ATTR
+        ])
