@@ -54,7 +54,8 @@ public final class ModelUtils {
     }
 
     public static void setFormats(ArchimateModelNew model, File modelDir) {
-        // check if files are present and add corresponding format to list
+        // TODO: check if files are present and add corresponding format to list
+        /*
         if (new File(modelDir, "model.archimate").exists()) {
             model.getFormats().add("ARCHIMATE");
         }
@@ -65,6 +66,8 @@ public final class ModelUtils {
         if (csvDir.isDirectory() && csvDir.listFiles() != null) {
             model.getFormats().add("CSV");
         }
+        */
+        model.setFormats(new ArrayList<>(List.of("ARCHIMATE", "XML", "CSV", "JSON")));
     }
 
     public static void setLanguage(ArchimateModelNew model) {

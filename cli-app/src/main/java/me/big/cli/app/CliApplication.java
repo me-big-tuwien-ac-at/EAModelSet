@@ -16,6 +16,9 @@ public class CliApplication {
 
 	@Bean
 	public PromptProvider myPromptProvider() {
-		return () -> new AttributedString("EA ModelSet> ", AttributedStyle.DEFAULT.foreground(AttributedStyle.YELLOW));
+		return () -> new AttributedString(
+				"EA ModelSet> ",
+				AttributedStyle.DEFAULT.foreground(AttributedStyle.YELLOW)
+		);
 	}
 }

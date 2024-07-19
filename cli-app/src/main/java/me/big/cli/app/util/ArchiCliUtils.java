@@ -1,14 +1,10 @@
 package me.big.cli.app.util;
 
 import me.big.cli.app.model.ParsedModel;
-import org.jline.utils.OSUtils;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.file.Path;
-import java.util.List;
 
 public final class ArchiCliUtils {
 

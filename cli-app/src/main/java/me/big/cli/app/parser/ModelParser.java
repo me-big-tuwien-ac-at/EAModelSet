@@ -1,6 +1,7 @@
 package me.big.cli.app.parser;
 
 import lombok.extern.slf4j.Slf4j;
+import me.big.cli.app.model.ArchimateRelationship;
 import me.big.cli.app.model.ParsedModel;
 import java.io.File;
 
@@ -18,6 +19,13 @@ public final class ModelParser {
         } else {
             log.error("ERROR! Unknown file extension in '{}'", file.getName());
             return null;
+        }
+        if (model != null) {
+            for (ArchimateRelationship rel : model.getRelationships()) {
+                if (rel.getType().endsWith("Relationship")) {
+                    rel.setType(rel.getType().replace("Relationship", ""));
+                }
+            }
         }
         return model;
     }

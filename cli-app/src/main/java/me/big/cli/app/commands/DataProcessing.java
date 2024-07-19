@@ -110,65 +110,6 @@ public class DataProcessing {
         }
     }
 
-    @ShellMethod(value = "Add a model to the given dataset folder", key = "addModelDir")
-    public void processModel(
-            @Option(longNames = "modelPath", shortNames = 'm', required = true) String modelPath,
-            @Option(longNames = "datasetDirPath", shortNames = 'd', required = true) String datasetDirPath
-    ) throws IOException {
-        // verify provided model file and set up files for processing
-        if (!modelPath.endsWith(".xml") && !modelPath.endsWith(".archimate")) {
-            throw new IllegalArgumentException("ERROR: invalid file extension! Should end in '.xml' or '.archimate'");
-        }
-        File modelFile = FileUtils.getFile(modelPath);
-        File datasetDir = FileUtils.getDirFile(datasetDirPath);
-        // File datasetJsonFile = FileUtils.getRelativeFile(datasetDir, "dataset.json");
-        File processedModelsDir = FileUtils.getRelativeDir(datasetDir, "processed-models");
-
-        ParsedModel parsedModel = ModelParser.parseModel(modelFile);
-        if (!isValid(parsedModel)) {
-            return;
-        }
-
-        File modelDir = createModelDir(processedModelsDir, parsedModel);
-        FileUtils.storeSourceModel(modelDir, parsedModel, modelFile);
-        ArchiCliUtils.exportModel(modelDir, parsedModel, modelFile);
-        ArchimateModelNew jsonModel = ModelUtils.createJsonModelFrom(parsedModel);
-
-        ModelUtils.setSource(jsonModel, modelFile);
-        ModelUtils.setFormats(jsonModel, modelDir);
-        ModelUtils.setLanguage(jsonModel);
-        if (parsedModel.isHasWarning()) {
-            jsonModel.getTags().add("WARNING");
-        }
-        File file = FileUtils.storeJsonModelFile(modelDir, jsonModel);
-        if (file != null) {
-            System.out.println("Model successfully added to dataset!");
-        } else {
-            System.err.println("ERROR: failed to create JSON file!");
-        }
-    }
-
-    @ShellMethod(value = "Remove a model from the dataset", key = "removeModel")
-    public void removeModel(
-            @Option(required = true) String datasetDirPath,
-            @Option(required = true) String modelId
-    ) throws IOException {
-        File datasetDir = FileUtils.getDirFile(datasetDirPath);
-        File processedModelsDir = FileUtils.getRelativeDir(datasetDir, "processed-models");
-        File modelDir = FileUtils.getRelativeDir(processedModelsDir, modelId);
-        File jsonFile = FileUtils.getRelativeFile(modelDir, "model.json");
-        ObjectMapper mapper = new ObjectMapper();
-        ArchimateModelNew jsonModel = mapper.readValue(jsonFile, ArchimateModelNew.class);
-        File sourceFile = FileUtils.getRelativeFile(datasetDir.getParentFile(), jsonModel.getSourceFile());
-        boolean deleted = sourceFile.delete();
-        if (!deleted) {
-            System.err.printf("Error: failed to delete source file!%n");
-        }
-        System.out.printf("Deleting model directory for '%s'...%n", modelDir.getName());
-        org.apache.commons.io.FileUtils.deleteDirectory(modelDir);
-        System.out.println("Deleted!");
-    }
-
     public boolean isLoaded() {
         return loaded;
     }
