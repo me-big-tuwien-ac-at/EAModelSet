@@ -9,6 +9,9 @@ def log(msg: str, verbose: bool = False):
         current_time = datetime.now().strftime("%H:%M:%S")
         console.print(f"[dim cyan][{current_time}][/] {msg}")
 
+def info(msg: str):
+    console.print(f"{msg}")
+
 def log_warning(msg: str):
     console.print(f"[bold yellow][WARNING][/] [yellow]{msg}[/]")
 

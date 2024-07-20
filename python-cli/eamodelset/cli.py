@@ -3,15 +3,18 @@ from typing import Optional
 
 from eamodelset import __app_name__, __version__
 from eamodelset.commands.transform import transform
+from eamodelset.common.utils import info
 
+# initialize CLI
 app = typer.Typer(no_args_is_help=True)
+
+# register commands
 app.command(name="transform")(transform)
 
 def _version_callback(value: bool) -> None:
     if value:
-        typer.echo(f"{__app_name__} v{__version__}")
+        info(f"{__app_name__} v{__version__}")
         raise typer.Exit()
-
 
 @app.callback()
 def main(
