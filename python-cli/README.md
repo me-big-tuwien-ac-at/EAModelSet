@@ -11,6 +11,13 @@ poetry shell
 poetry install
 ```
 
+Run tests:
+
+```bash
+poetry run pytest
+```
+
+
 ## Commands
 
 ### Transform
