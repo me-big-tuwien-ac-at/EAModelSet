@@ -11,6 +11,7 @@ class ParsedModel:
         self.relationships = []
         self.views = []
         self.has_warning = False
+        self.warnings: List[str] = []
 
     def set_has_warning(self, has_warning):
         self.has_warning = has_warning
@@ -23,9 +24,10 @@ class ParsedModel:
             "file": self.file,
             "format": self.format,
             "has_warning": self.has_warning,
-            "elements": [e.get_dict() for e in self.elements],
-            "relationships": [r.get_dict() for r in self.relationships],
-            "views": [v.get_dict() for v in self.views]
+            "elements": [e.get_dict() for e in self.elements if e is not None],
+            "relationships": [r.get_dict() for r in self.relationships if r is not None],
+            "views": [v.get_dict() for v in self.views if v is not None],
+            "warnings": self.warnings
         }
         return json.dumps(model_dict, indent=4)
 

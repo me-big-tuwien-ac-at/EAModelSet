@@ -1,7 +1,6 @@
 # parser for ArchiMate models created through Archi (i.e. ending in *.archimate)
 from pathlib import Path
 from xml.etree import ElementTree as ET
-from rich import print
 from eamodelset.parser.constants import ParserConstants
 from eamodelset.parser.model import (ParsedModel, ArchimateElement, ArchimateRelationship, ArchimateView)
 from eamodelset.parser.utils import ParserUtils

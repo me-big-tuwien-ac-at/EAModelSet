@@ -2,24 +2,25 @@ import os
 import shutil
 import subprocess
 from enum import Enum
+from typing import List
 from pathlib import Path
 
 import typer
-from rich.console import Console
 from typing_extensions import Annotated
 
 from eamodelset.common.utils import log, log_error
 from eamodelset.parser.archi_parser import ArchiFileParser
+from eamodelset.parser.sap_sam_parser import SAPSAMParser
 from eamodelset.parser.model import ParsedModel
 
 DEFAULT_ARCHI_APP_PATH = '/Applications/Archi.app/Contents/MacOS/Archi'
 ARCHI_CLI_ARGS = ('-application', 'com.archimatetool.commandline.app', '-consoleLog', '-nosplash')
 INPUT_FILE_ARG = typer.Argument(exists=True, file_okay=True, dir_okay=False, writable=False, readable=True, resolve_path=True)
-console = Console()
 
 class InputFormat(str, Enum):
     XML = "xml"
     ARCHI = "archi"
+    SAP_SAM = "sap-sam"
 
 class OutputFormat(str, Enum):
     XML = "xml"
@@ -28,24 +29,54 @@ class OutputFormat(str, Enum):
     CSV = "csv"
     PNG = "png"
 
+def batch_transform(
+    input_dir: Annotated[Path, typer.Argument(exists=True, file_okay=False, dir_okay=True, readable=True, resolve_path=True)],
+    input_format: Annotated[InputFormat, typer.Argument(case_sensitive=False)],
+    output_dir: Annotated[Path, typer.Argument()],
+    output_format: Annotated[OutputFormat, typer.Argument(case_sensitive=False)],
+):
+    """Transform multiple models in a directory to different formats."""
+    if not output_dir.exists():
+        output_dir.mkdir(parents=True)
+
+    input_files = get_input_files(input_dir, input_format)
+
+    for input_file in input_files:
+        output_file = output_dir / f"{input_file.stem}.{output_format.value}"
+        transform(input_file, input_format, output_file, output_format)
+
+    log(f"Batch transformation complete. Transformed models stored in {output_format.value.upper()} format at '{output_dir}'", True)
+
+
+def get_input_files(input_dir: Path, input_format: InputFormat) -> List[Path]:
+    if input_format == InputFormat.ARCHI or input_format == InputFormat.XML:
+        extension = f".{input_format.value}"
+    else:
+        extension = ".json"
+    return [f for f in input_dir.iterdir() if f.is_file() and f.suffix.lower() == extension]
+
+
 def transform(
     input: Annotated[Path, INPUT_FILE_ARG],
     input_format:  Annotated[InputFormat, typer.Argument(case_sensitive=False)],
     output: Annotated[Path, typer.Argument()],
     output_format: Annotated[OutputFormat, typer.Argument(case_sensitive=False)],
 ):
-    """
-    Transform a model to different formats
-    """
+    """Transform a model to different formats."""
     if not validate_args(input_format, output, output_format):
         return
+    
     if output_format == OutputFormat.JSON:
         transform_to_json(input, input_format, output)
     else:
         if not Path(DEFAULT_ARCHI_APP_PATH).exists():
             log_error(f"Archi application not found at '{DEFAULT_ARCHI_APP_PATH}'.")
             return
+        if input_format == InputFormat.SAP_SAM and output_format != OutputFormat.JSON:
+            log_error("Unsupported output format!")
+            return
         export_model(input, input_format, output, output_format)
+        
     log(f"Transformed model stored in {output_format.value.upper()} format at '{output}'", True)
 
 def validate_args(input_format: InputFormat, output: Path, output_format: OutputFormat) -> bool:
@@ -70,8 +101,9 @@ def parse_model(input: Path, input_format: InputFormat) -> (ParsedModel | None):
         parsed_model = ArchiFileParser.parse_archi_model(input)
     elif input_format == InputFormat.XML:
         parsed_model = None  # TODO
-    else:
-        parsed_model = None
+    elif input_format == InputFormat.SAP_SAM:
+        parsed_model = SAPSAMParser.parse_sap_sam_model(input)
+
     if parsed_model:
         log("Model parsed successfully.")
         return parsed_model

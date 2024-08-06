@@ -85,6 +85,18 @@ other_types = {
     'OrJunction',
     'AndJunction'
 }
+
+ELEMENT_TYPES = set().union(
+    business_types,
+    application_types,
+    technology_types,
+    physical_types,
+    motivation_types,
+    strategy_types,
+    implementation_migration_types,
+    other_types
+)
+
 relationship_types = {
     'Association',
     'Serving',
@@ -98,6 +110,8 @@ relationship_types = {
     'Specialization',
     'Access'
 }
+
+
 
 layer_to_types = {
     "Business": business_types,
@@ -143,6 +157,7 @@ class ParserUtils:
             "InfrastructureFunction": "TechnologyFunction",
             "Network": "CommunicationNetwork",
             "CommunicationPath": "Path",
+            "Usedby": "Serving",
             "RealisationRelationship": "RealizationRelationship",
             "SpecialisationRelationship": "SpecializationRelationship"
         }

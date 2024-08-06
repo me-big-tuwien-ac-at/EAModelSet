@@ -12,8 +12,9 @@ __version__ = "0.1.0"
     DATA_READ_ERROR,
     DATA_WRITE_ERROR,
     JSON_ERROR,
-    ID_ERROR
-) = range(7)
+    ID_ERROR,
+    PARSER_ERROR
+) = range(8)
 
 ERRORS = {
     FILE_ERROR: "config file error",
@@ -21,4 +22,5 @@ ERRORS = {
     DATA_READ_ERROR: "dataset read error",
     DATA_WRITE_ERROR: "dataset write error",
     ID_ERROR: "model id error",
+    PARSER_ERROR: "parser error"
 }

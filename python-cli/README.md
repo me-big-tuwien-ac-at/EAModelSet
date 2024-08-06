@@ -17,8 +17,20 @@ Run tests:
 poetry run pytest
 ```
 
+Generate Documentation:
+
+```bash
+typer eamodelset.cli utils docs --output DOCS.md --name eamodelset
+```
+
 
 ## Commands
+
+### Init
+
+```bash
+eamodelset init ../dataset
+```
 
 ### Transform
 
